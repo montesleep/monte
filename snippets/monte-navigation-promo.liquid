@@ -1,0 +1,33 @@
+{%- liquid
+  assign promo_type = 'monte_promo'
+  if kind == 'bundle'
+    assign promo_type = 'monte_bundle_promo'
+  endif
+  assign promo = section.blocks | where: 'type', promo_type | first
+  assign media_image = promo.settings.mobile_image
+  assign media_video = promo.settings.mobile_video
+  assign placeholder = 'monte-nav-promo-mobile.png'
+  if desktop
+    assign media_image = promo.settings.desktop_image
+    assign media_video = promo.settings.desktop_video
+    assign placeholder = 'monte-nav-promo-desktop.png'
+  elsif kind == 'bundle'
+    assign media_image = promo.settings.image
+    assign media_video = promo.settings.video
+    assign placeholder = 'monte-nav-bundles-promo.png'
+  endif
+  unless promo.settings.show_placeholder
+    assign placeholder = ''
+  endunless
+-%}
+{%- if promo != blank and promo.settings.enabled -%}
+  <div class="monte-menu-promo{% if desktop %} mega-menu__promo monte-menu-promo--desktop{% elsif kind == 'bundle' %} monte-menu-promo--bundle{% endif %}" style="--promo-text: {{ promo.settings.text_color | default: '#fdfbf9' }}; --promo-button: {{ promo.settings.button_background | default: '#fdfbf9' }}; --promo-button-text: {{ promo.settings.button_text | default: '#232e71' }}; --promo-button-hover: {{ promo.settings.button_hover | default: '#eee7e0' }};" {{ promo.shopify_attributes }}>
+    <div class="monte-promo-media">{%- render 'monte-navigation-media', image: media_image, video: media_video, placeholder: placeholder, sizes: '(min-width: 1150px) 440px, 100vw', width: 880, height: 960 -%}</div>
+    <div class="monte-promo-content">
+      {%- if promo.settings.badge != blank -%}<span class="monte-promo-badge">{{ promo.settings.badge | escape }}</span>{%- endif -%}
+      {%- if promo.settings.heading != blank -%}<p class="monte-promo-heading">{{ promo.settings.heading | escape }}</p>{%- endif -%}
+      {%- if promo.settings.body != blank -%}<p class="monte-promo-body">{{ promo.settings.body | escape }}</p>{%- endif -%}
+      {%- if promo.settings.button_label != blank -%}<a class="button monte-promo-button" href="{{ promo.settings.link | default: routes.collections_url }}">{{ promo.settings.button_label | escape }}</a>{%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

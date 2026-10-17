@@ -6,12 +6,15 @@
   <nav class="header__link-list monte-header-navigation" aria-label="{{ shop_label | escape }}">
     <ul class="contents" role="list">
       <li>
-        <details is="mega-menu-disclosure" trigger="{{ section.settings.menu_open_trigger }}" {% if mega_menu_block %}{{ mega_menu_block.shopify_attributes }}{% endif %}>
+        <details is="mega-menu-disclosure" class="monte-shop-disclosure" trigger="click" {% if mega_menu_block %}{{ mega_menu_block.shopify_attributes }}{% endif %}>
           <summary class="monte-header-link text-with-icon link-faded-reverse">
             {{- shop_label | escape -}}
             <img class="monte-header-chevron" src="{{ 'monte-header-chevron.svg' | asset_url }}" width="10" height="7" alt="">
           </summary>
-          {%- render 'mega-menu-horizontal', link: section.settings.menu, mega_menu_block: mega_menu_block -%}
+          <div class="mega-menu monte-mega-menu">
+            {%- render 'monte-navigation-items', section: section, kind: 'collection', desktop: true -%}
+            {%- render 'monte-navigation-promo', section: section, desktop: true -%}
+          </div>
         </details>
       </li>
       <li>
@@ -23,7 +26,7 @@
   <nav class="header__link-list monte-header-navigation" aria-label="{{ section.settings.contact_label | escape }}">
     <ul class="contents" role="list">
       <li>
-        <details class="relative" is="dropdown-disclosure" trigger="{{ section.settings.menu_open_trigger }}">
+        <details class="relative monte-contact-disclosure" is="dropdown-disclosure" trigger="click">
           <summary class="monte-header-link text-with-icon link-faded-reverse">
             {{- section.settings.contact_label | escape -}}
             <img class="monte-header-chevron" src="{{ 'monte-header-chevron.svg' | asset_url }}" width="10" height="7" alt="">

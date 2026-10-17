@@ -1,0 +1,53 @@
+{%- liquid
+  assign block_type = 'monte_' | append: kind
+  assign items = section.blocks | where: 'type', block_type
+  assign source_menu = section.settings.menu
+  if kind == 'bundle'
+    assign source_menu = section.settings.bundles_menu
+  endif
+-%}
+<ul class="{% if desktop %}mega-menu__nav monte-collection-grid{% else %}monte-menu-rows{% endif %}" role="list">
+  {%- if items.size > 0 -%}
+    {%- for item in items -%}
+      {%- liquid
+        assign resource = item.settings.collection
+        if kind == 'bundle'
+          assign resource = item.settings.product
+        endif
+        assign item_label = item.settings.label | default: resource.title
+        assign item_url = resource.url | default: item.settings.link | default: routes.collections_url
+        assign item_image = item.settings.image | default: resource.image | default: resource.featured_image
+        assign item_description = item.settings.description
+        if kind == 'bundle'
+          assign item_label = item.settings.label
+          assign item_image = item.settings.image
+        endif
+        assign placeholder = ''
+        if item.settings.show_placeholder
+          assign placeholder = 'monte-nav-placeholder.png'
+        endif
+      -%}
+      <li {{ item.shopify_attributes }}>
+        <a class="monte-collection-link group{% unless desktop %} monte-menu-row{% endunless %}" href="{{ item_url }}">
+          <span class="monte-collection-image overflow-hidden">
+            {%- render 'monte-navigation-media', image: item_image, video: item.settings.video, placeholder: placeholder, sizes: '(min-width: 1150px) 195px, 56px' -%}
+          </span>
+          <span class="monte-menu-row-copy"><span class="reversed-link">{{ item_label | escape }}</span>{%- if kind == 'bundle' and item_description != blank -%}<span class="monte-menu-description">{{ item_description | escape }}</span>{%- endif -%}</span>
+          {%- unless desktop -%}<img class="monte-nav-arrow" src="{{ 'monte-nav-next.svg' | asset_url }}" width="20" height="20" alt="">{%- endunless -%}
+        </a>
+      </li>
+    {%- endfor -%}
+  {%- elsif kind == 'collection' -%}
+    {%- for link in source_menu.links -%}
+      {%- liquid
+        assign item_image = link.object.image | default: link.object.featured_image
+        assign item_description = link.object.metafields.custom.menu_description.value | default: link.object.description | strip_html | truncate: 85
+      -%}
+      <li><a class="monte-collection-link group{% unless desktop %} monte-menu-row{% endunless %}" href="{{ link.url }}">
+        <span class="monte-collection-image overflow-hidden">{%- render 'monte-navigation-media', image: item_image, sizes: '(min-width: 1150px) 195px, 56px' -%}</span>
+        <span class="monte-menu-row-copy"><span class="reversed-link">{{ link.title | escape }}</span>{% if kind == 'bundle' and item_description != blank %}<span class="monte-menu-description">{{ item_description | escape }}</span>{% endif %}</span>
+        {%- unless desktop -%}<img class="monte-nav-arrow" src="{{ 'monte-nav-next.svg' | asset_url }}" width="20" height="20" alt="">{%- endunless -%}
+      </a></li>
+    {%- endfor -%}
+  {%- endif -%}
+</ul>

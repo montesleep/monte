@@ -1,0 +1,70 @@
+/* Monte navigation extends Impact's disclosure and drawer components. */
+.header--monte .monte-header-contact {
+  top: 100%; inset-inline: auto 0; width: 264px; max-width: min(350px, calc(100vw - 32px));
+  padding: 20px 28px; gap: 12px; border: 1px solid var(--monte-menu-border);
+  border-radius: 16px; box-shadow: 0 6px 16px rgb(0 0 0 / .12);
+  color: var(--monte-menu-secondary); font-size: 16px; line-height: 24px;
+}
+.header--monte .monte-header-contact .dropdown-menu__item { opacity: 1; }
+.header--monte .monte-header-contact .dropdown-menu__item:hover { color: rgb(var(--header-text)); }
+.header--monte .monte-mega-menu {
+  padding: 8px 40px 64px; gap: clamp(32px, 5.56vw, 80px); border: 0; border-radius: 0 0 16px 16px;
+  box-shadow: none; mix-blend-mode: normal; z-index: 2;
+  max-height: var(--monte-menu-available-height, calc(100dvh - 120px));
+}
+.monte-mega-menu .monte-collection-grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px;
+  min-width: 0; max-width: none; flex: 1;
+}
+.monte-mega-menu .monte-collection-grid > li { width: auto; min-width: 0; }
+.monte-collection-link { display: flex; flex-direction: column; gap: 12px; color: inherit; font-size: 16px; line-height: 24px; font-weight: 600; text-align: center; }
+.monte-collection-image { display: block; position: relative; aspect-ratio: 1; width: 100%; border-radius: 16px; background: var(--monte-menu-card); }
+.monte-menu-media { display: block; width: 100%; height: 100%; object-fit: cover; }
+.monte-collection-image .monte-menu-media { transition: transform .4s cubic-bezier(.25,.46,.45,.94); }
+@media (hover: hover) { .monte-collection-link:hover .monte-menu-media { transform: scale(1.03); } }
+.monte-menu-promo { position: relative; isolation: isolate; flex-shrink: 0; overflow: hidden; border-radius: 16px; background: var(--monte-menu-card); color: var(--promo-text); min-height: 250px; padding: 16px; display: flex; align-items: flex-end; }
+.monte-promo-media { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+.monte-menu-promo::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 30%, rgb(0 0 0 / .6)); }
+.monte-promo-content { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; width: 100%; }
+.monte-promo-heading { font-family: var(--heading-font-family); font-weight: 500; font-size: 24px; line-height: 1.1; letter-spacing: 0; }
+.monte-promo-badge { color: rgb(var(--header-text)); background: rgb(var(--header-background)); font: 500 12px/1.5 'PP Neue Montreal Mono', monospace; text-transform: uppercase; letter-spacing: -.12px; padding: 3px 8px; border-radius: 4px; }
+.monte-menu-promo .monte-promo-button { --button-background: 253 251 249; --button-text-color: 35 46 113; padding: 0 16px; min-height: 32px; height: auto; border: 0; border-radius: 100px; background: var(--promo-button); color: var(--promo-button-text); font: 600 12px/1.5 var(--text-font-family); box-shadow: none; transition: background-color .2s ease-in-out; }
+.monte-menu-promo .monte-promo-button:hover { background: var(--promo-button-hover); }
+.monte-menu-promo--desktop { width: 32.353%; min-height: 480px; padding: 24px; }
+.monte-menu-promo--desktop .monte-promo-content { gap: 24px; }
+.monte-menu-promo--desktop .monte-promo-heading { font-size: 40px; }
+.monte-menu-promo--desktop .monte-promo-button { min-height: 56px; padding: 16px 32px; font-size: 16px; }
+.monte-menu-promo--desktop .monte-menu-media--placeholder { position: absolute; width: 146.91%; height: 202%; max-width: none; left: -23.45%; top: -51%; }
+.monte-menu-promo--bundle { min-height: 195px; padding: 20px 16px; align-items: flex-start; }
+.monte-menu-promo--bundle::before { background: linear-gradient(90deg, rgb(0 0 0 / .25), transparent); }
+.monte-menu-promo--bundle .monte-promo-content { width: 180px; max-width: 100%; gap: 16px; }
+.monte-promo-body { font-size: 12px; line-height: 1.4; opacity: .8; margin-top: -12px; }
+.monte-menu-backdrop { position: fixed; inset: 0; z-index: 9; background: rgb(0 0 0 / .6); backdrop-filter: blur(17px); -webkit-backdrop-filter: blur(17px); }
+.monte-menu-backdrop[hidden] { display: none; }
+.monte-menu-close { display: none; position: relative; width: 20px; height: 20px; }
+.monte-menu-close img { position: absolute; width: auto; height: auto; max-width: none; left: 1.66px; top: 1.66px; }
+[aria-controls="header-sidebar-menu"][aria-expanded="true"] .monte-menu-close { display: block; }
+[aria-controls="header-sidebar-menu"][aria-expanded="true"] .monte-header-icon--menu { display: none; }
+.monte-mobile-menu { --drawer-content-max-height: none; --drawer-body-padding: 0; --text-color: var(--header-text); width: 100%; padding: 0; height: calc(100dvh - var(--monte-mobile-menu-top, 110px)); z-index: 9; }
+.monte-mobile-menu::part(overlay), .monte-mobile-menu::part(outside-close-button), .monte-mobile-menu::part(header), .monte-mobile-menu::part(footer) { display: none; }
+.monte-mobile-menu::part(content) { border-radius: 0; background: rgb(var(--header-background)); height: 100%; min-height: 0; max-height: none; }
+.monte-mobile-menu::part(body) { display: block; padding: 0; height: 100%; overflow: hidden; }
+.monte-mobile-menu .panel__wrapper { padding: 0 20px 20px; gap: 16px; justify-content: flex-start; overscroll-behavior: contain; }
+.monte-mobile-menu .panel__wrapper[hidden] { display: none; }
+.monte-mobile-menu .monte-mobile-root { padding-top: 20px; gap: 32px; }
+.monte-mobile-top-links { display: grid; gap: 20px; }
+.monte-mobile-top-link { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; font: 500 24px/1.1 var(--heading-font-family); text-align: start; }
+.monte-nav-arrow { flex-shrink: 0; width: auto; height: auto; max-width: none; }
+.monte-mobile-menu .monte-menu-back { gap: 12px; font: 400 16px/24px var(--text-font-family); opacity: .5; width: fit-content; }
+.monte-menu-divider { width: 100%; height: 1px; object-fit: fill; flex-shrink: 0; }
+.monte-menu-rows { display: grid; gap: 8px; }
+.monte-menu-row { flex-direction: row; text-align: start; align-items: center; gap: 16px; padding: 4px 20px 4px 12px; background: var(--monte-menu-card); border-radius: 16px; font-size: 14px; line-height: 21px; }
+.monte-menu-row .monte-collection-image { flex-shrink: 0; width: 56px; height: 56px; border-radius: 8px; }
+.monte-menu-row-copy { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.monte-menu-description { display: block; color: var(--monte-menu-secondary); font-size: 12px; line-height: 18px; font-weight: 400; }
+.monte-mobile-contact { display: grid; gap: 20px; font-size: 18px; line-height: 27px; font-weight: 600; }
+.monte-mobile-contact a { display: block; }
+.monte-mobile-menu :is(a, button):active { opacity: .7; }
+.monte-mobile-menu .monte-promo-badge { font-size: 10px; line-height: 12px; padding: 4px 8px; }
+@media (min-width: 1150px) { .monte-mobile-menu { display: none; } }
+@media (prefers-reduced-motion: reduce) { .monte-collection-image .monte-menu-media { transition: none; } }

@@ -1,0 +1,39 @@
+<monte-navigation-drawer id="header-sidebar-menu" class="navigation-drawer drawer monte-mobile-menu" mobile-opening="left" open-from="left" aria-label="{{ 'header.general.menu' | t | escape }}" data-close-label="{{ 'general.accessibility.close' | t | escape }}" data-open-label="{{ 'header.general.menu' | t | escape }}" tabindex="-1">
+  <div class="panel-list__wrapper">
+    <div class="panel">
+      <div class="panel__wrapper monte-mobile-root">
+        <ul class="monte-mobile-top-links" role="list">
+          {%- assign keys = 'shop,bundles,contact' | split: ',' -%}
+          {%- for key in keys -%}
+            {%- assign label_key = key | append: '_label' -%}
+            <li><button type="button" class="monte-mobile-top-link group" data-panel="1-{{ forloop.index0 }}" aria-expanded="false"><span class="reversed-link">{{ section.settings[label_key] | escape }}</span><img class="monte-nav-arrow" src="{{ 'monte-nav-next.svg' | asset_url }}" width="20" height="20" alt=""></button></li>
+          {%- endfor -%}
+        </ul>
+        {%- render 'monte-navigation-promo', section: section -%}
+      </div>
+    </div>
+    <div class="panel" inert>
+      {%- for key in keys -%}
+        {%- assign label_key = key | append: '_label' -%}
+        <div class="panel__wrapper monte-mobile-subpanel" hidden>
+          <button type="button" class="monte-menu-back text-with-icon link-faded" data-panel="0"><img class="monte-nav-arrow" src="{{ 'monte-nav-back.svg' | asset_url }}" width="20" height="20" alt=""><span>{{ section.settings[label_key] | escape }}</span></button>
+          <img class="monte-menu-divider" src="{{ 'monte-nav-divider.png' | asset_url }}" width="335" height="1" alt="">
+          {%- case key -%}
+            {%- when 'shop' -%}{%- render 'monte-navigation-items', section: section, kind: 'collection' -%}
+            {%- when 'bundles' -%}
+              {%- render 'monte-navigation-items', section: section, kind: 'bundle' -%}
+              {%- render 'monte-navigation-promo', section: section, kind: 'bundle' -%}
+            {%- when 'contact' -%}
+              <ul class="monte-mobile-contact" role="list">
+                {%- for link in section.settings.secondary_menu.links -%}
+                  <li><a class="group" href="{{ link.url }}"><span class="reversed-link">{{ link.title | escape }}</span></a></li>
+                {%- else -%}
+                  <li><a class="group" href="{{ section.settings.contact_link | default: pages.contact.url }}"><span class="reversed-link">{{ section.settings.contact_label | escape }}</span></a></li>
+                {%- endfor -%}
+              </ul>
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</monte-navigation-drawer>

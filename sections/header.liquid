@@ -17,6 +17,8 @@ the underlying logic of the menu.
 {%- if section.settings.layout == 'monte' -%}
   {%- assign monte_header = true -%}
   {{- 'monte-header.css' | asset_url | stylesheet_tag -}}
+  {{- 'monte-navigation.css' | asset_url | stylesheet_tag -}}
+  <script type="module" src="{{ 'monte-navigation.js' | asset_url }}"></script>
 {%- endif -%}
 
 <style>
@@ -25,6 +27,9 @@ the underlying logic of the menu.
   }
 
   #shopify-section-{{ section.id }} {
+    --monte-menu-secondary: {{ section.settings.menu_secondary_color | default: '#52597e' }};
+    --monte-menu-card: {{ section.settings.menu_card_color | default: '#eee7e0' }};
+    --monte-menu-border: {{ section.settings.menu_border_color | default: '#dcd6cf' }};
     --monte-logo-mobile-width: {{ section.settings.logo_mobile_max_width }}px;
     --monte-logo-desktop-width: {{ section.settings.logo_max_width }}px;
     --header-grid-template: "main-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 1fr);
@@ -96,7 +101,7 @@ the underlying logic of the menu.
         <div class="header__icon-list">
           <button type="button" class="tap-area {% if monte_header %}monte-header-button monte-header-mobile link-faded-reverse {% endif %}{% if section.settings.layout != 'drawer' %}lg:hidden{% endif %}" aria-controls="header-sidebar-menu">
             <span class="sr-only">{{ 'header.general.menu' | t }}</span>
-            {%- if monte_header -%}{%- render 'monte-header-icon', name: 'menu', section: section -%}{%- else -%}{%- render 'icon' with 'hamburger' -%}{%- endif -%}
+            {%- if monte_header -%}{%- render 'monte-header-icon', name: 'menu', section: section -%}<span class="monte-menu-close" aria-hidden="true"><img src="{{ 'monte-nav-close-a.svg' | asset_url }}" alt="" width="17" height="17"><img src="{{ 'monte-nav-close-b.svg' | asset_url }}" alt="" width="17" height="17"></span>{%- else -%}{%- render 'icon' with 'hamburger' -%}{%- endif -%}
           </button>
 
           <a href="{{ routes.search_url }}" class="tap-area {% if monte_header %}monte-header-button monte-header-mobile link-faded-reverse{% else %}sm:hidden{% endif %}" aria-controls="search-drawer">
@@ -325,7 +330,10 @@ the underlying logic of the menu.
 {%- assign main_menu = section.settings.sidebar_menu | default: section.settings.menu -%}
 {%- assign secondary_menu = section.settings.secondary_menu -%}
 
-{%- if main_menu.links.size > 0 or secondary_menu.links.size > 0 -%}
+{%- if monte_header -%}
+  {%- render 'monte-mobile-navigation', section: section -%}
+  <monte-menu-controller></monte-menu-controller>
+{%- elsif main_menu.links.size > 0 or secondary_menu.links.size > 0 -%}
   <navigation-drawer mobile-opening="{{ section.settings.opening_from }}" open-from="left" id="header-sidebar-menu" class="navigation-drawer drawer {% if section.settings.layout != 'drawer' %}lg:hidden{% endif %}" {% if request.design_mode %}handle-section-events{% endif %}>
     <button is="close-button" aria-label="{{ 'general.accessibility.close' | t | escape }}" {%- if section.settings.opening_from == 'bottom' -%}class="sm-max:hidden"{%- endif -%}>
       {%- render 'icon' with 'close', width: 19, height: 19 -%}
@@ -471,7 +479,7 @@ the underlying logic of the menu.
       "id": "menu",
       "label": "Shop menu (Sklep)",
       "default": "main-menu",
-      "info": "Choose the menu shown under Sklep and in mobile navigation."
+      "info": "Used when no Monte collection blocks are added. Add collection blocks below Header to manage cards and optional media overrides."
     },
     {
       "type": "link_list",
@@ -655,6 +663,28 @@ the underlying logic of the menu.
       "label": "Background blur radius",
       "default": 4,
       "visible_if": "{{ section.settings.background_opacity < 100 }}"
+    },
+    {
+      "type": "header",
+      "content": "Monte menu colors"
+    },
+    {
+      "type": "color",
+      "id": "menu_secondary_color",
+      "label": "Secondary text",
+      "default": "#52597e"
+    },
+    {
+      "type": "color",
+      "id": "menu_card_color",
+      "label": "Card background",
+      "default": "#eee7e0"
+    },
+    {
+      "type": "color",
+      "id": "menu_border_color",
+      "label": "Border",
+      "default": "#dcd6cf"
     }
   ],
   "blocks": [
@@ -847,6 +877,260 @@ the underlying logic of the menu.
             }
           ],
           "default": "hide"
+        }
+      ]
+    },
+    {
+      "type": "monte_collection",
+      "name": "Monte collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "info": "Leave empty to use the collection title."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Fallback link",
+          "info": "Used only when no collection is selected."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "Optional. Overrides the image and plays automatically, muted, looped and without player controls."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_placeholder",
+          "label": "Show design placeholder when media is missing",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "monte_bundle",
+      "name": "Monte bundle",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Bundle product",
+          "info": "Used only as the destination when this item is selected."
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Title",
+          "info": "Enter the title shown in the menu. This is independent of the product title.",
+          "default": "Nazwa zestawu"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Subtitle",
+          "info": "Enter the subtitle shown in the menu. This is independent of the product description.",
+          "default": "Krótki opis"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Fallback link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Upload the menu image manually. The product image is never used."
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "Optional. Overrides the image and plays automatically, muted, looped and without player controls."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_placeholder",
+          "label": "Show design placeholder when media is missing",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "monte_promo",
+      "name": "Monte shop promo",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "enabled",
+          "label": "Show promo",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "video",
+          "id": "desktop_video",
+          "label": "Desktop Video",
+          "info": "Optional. Overrides the image and plays automatically, muted, looped and without player controls."
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "video",
+          "id": "mobile_video",
+          "label": "Mobile Video",
+          "info": "Optional. Overrides the image and plays automatically, muted, looped and without player controls."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_placeholder",
+          "label": "Use Figma images when media is missing",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "Nowość"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Jedwabne poszewki na poduszkę"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Zobacz poszewki"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#fdfbf9"
+        },
+        {
+          "type": "color",
+          "id": "button_background",
+          "label": "Button background",
+          "default": "#fdfbf9"
+        },
+        {
+          "type": "color",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "#232e71"
+        },
+        {
+          "type": "color",
+          "id": "button_hover",
+          "label": "Button hover background",
+          "default": "#eee7e0"
+        }
+      ]
+    },
+    {
+      "type": "monte_bundle_promo",
+      "name": "Monte bundle promo",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "enabled",
+          "label": "Show promo",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "Optional. Overrides the image and plays automatically, muted, looped and without player controls."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_placeholder",
+          "label": "Use Figma image when media is missing",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Połącz produkty, oszczędź więcej"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Text",
+          "default": "Wybierz dowolne produkty Monté i otrzymaj dodatkowe 15% rabatu na cały zestaw."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Stwórz swój zestaw"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#fdfbf9"
+        },
+        {
+          "type": "color",
+          "id": "button_background",
+          "label": "Button background",
+          "default": "#fdfbf9"
+        },
+        {
+          "type": "color",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "#232e71"
+        },
+        {
+          "type": "color",
+          "id": "button_hover",
+          "label": "Button hover background",
+          "default": "#eee7e0"
         }
       ]
     }

@@ -59,7 +59,119 @@
         "reduce_padding": false,
         "background_opacity": 100,
         "background_blur_radius": 0
-      }
+      },
+      "blocks": {
+        "monte_collection_0": {
+          "type": "monte_collection",
+          "settings": {
+            "label": "Wszystko",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        },
+        "monte_collection_1": {
+          "type": "monte_collection",
+          "settings": {
+            "label": "Zestawy",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        },
+        "monte_collection_2": {
+          "type": "monte_collection",
+          "settings": {
+            "label": "Maski",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        },
+        "monte_collection_3": {
+          "type": "monte_collection",
+          "settings": {
+            "label": "Poszewki",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        },
+        "monte_collection_4": {
+          "type": "monte_collection",
+          "settings": {
+            "label": "Czepki",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        },
+        "monte_collection_5": {
+          "type": "monte_collection",
+          "settings": {
+            "label": "Gumki",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        },
+        "monte_shop_promo": {
+          "type": "monte_promo",
+          "settings": {
+            "enabled": true,
+            "show_placeholder": true,
+            "badge": "Nowość",
+            "heading": "Jedwabne poszewki na poduszkę",
+            "button_label": "Zobacz poszewki",
+            "link": "/collections"
+          }
+        },
+        "monte_bundle_promo": {
+          "type": "monte_bundle_promo",
+          "settings": {
+            "enabled": true,
+            "show_placeholder": true,
+            "heading": "Połącz produkty, oszczędź więcej",
+            "body": "Wybierz dowolne produkty Monté i otrzymaj dodatkowe 15% rabatu na cały zestaw.",
+            "button_label": "Stwórz swój zestaw",
+            "link": "/collections"
+          }
+        },
+        "monte_bundle_0": {
+          "type": "monte_bundle",
+          "settings": {
+            "label": "Nazwa zestawu",
+            "description": "Krótki opis",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        },
+        "monte_bundle_1": {
+          "type": "monte_bundle",
+          "settings": {
+            "label": "Nazwa zestawu",
+            "description": "Krótki opis",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        },
+        "monte_bundle_2": {
+          "type": "monte_bundle",
+          "settings": {
+            "label": "Nazwa zestawu",
+            "description": "Krótki opis",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        }
+      },
+      "block_order": [
+        "monte_collection_0",
+        "monte_collection_1",
+        "monte_collection_2",
+        "monte_collection_3",
+        "monte_collection_4",
+        "monte_collection_5",
+        "monte_shop_promo",
+        "monte_bundle_promo",
+        "monte_bundle_0",
+        "monte_bundle_1",
+        "monte_bundle_2"
+      ]
     },
     "lv3_announcement_timer_aJt6UP": {
       "type": "lv3-announcement-timer",

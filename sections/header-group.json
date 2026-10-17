@@ -65,7 +65,7 @@
           "type": "monte_collection",
           "settings": {
             "label": "Wszystko",
-            "link": "/collections",
+            "link": "/collections/all",
             "show_placeholder": true
           }
         },
@@ -73,40 +73,45 @@
           "type": "monte_collection",
           "settings": {
             "label": "Zestawy",
-            "link": "/collections",
-            "show_placeholder": true
+            "link": "/collections/zestawy",
+            "show_placeholder": true,
+            "collection": "zestawy"
           }
         },
         "monte_collection_2": {
           "type": "monte_collection",
           "settings": {
             "label": "Maski",
-            "link": "/collections",
-            "show_placeholder": true
+            "link": "/collections/maski",
+            "show_placeholder": true,
+            "collection": "maski"
           }
         },
         "monte_collection_3": {
           "type": "monte_collection",
           "settings": {
             "label": "Poszewki",
-            "link": "/collections",
-            "show_placeholder": true
+            "link": "/collections/poszewki",
+            "show_placeholder": true,
+            "collection": "poszewki"
           }
         },
         "monte_collection_4": {
           "type": "monte_collection",
           "settings": {
             "label": "Czepki",
-            "link": "/collections",
-            "show_placeholder": true
+            "link": "/collections/czepki",
+            "show_placeholder": true,
+            "collection": "czepki"
           }
         },
         "monte_collection_5": {
           "type": "monte_collection",
           "settings": {
             "label": "Gumki",
-            "link": "/collections",
-            "show_placeholder": true
+            "link": "/collections/gumki",
+            "show_placeholder": true,
+            "collection": "gumki"
           }
         },
         "monte_shop_promo": {

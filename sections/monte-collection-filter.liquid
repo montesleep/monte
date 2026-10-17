@@ -6,7 +6,7 @@
   if category_collections == blank
     assign category_collections = collections
   endif
-  assign all_image = section.settings.all_image | default: collections.all.image | default: collections.all.products.first.featured_image
+  assign all_image = section.settings.all_image | default: collections.all.image | default: category_collections.first.image | default: collections.all.products.first.featured_image
   assign all_active = false
   if collection.handle == 'all'
     assign all_active = true
@@ -49,7 +49,7 @@
   "settings": [
     { "type": "collection_list", "id": "collections", "label": "Collections", "limit": 20, "info": "Choose and reorder categories. Names and images come from each collection. If empty, all available collections are shown. Links open the selected collection and activate its category automatically." },
     { "type": "text", "id": "all_label", "label": "All products label", "default": "Wszystko" },
-    { "type": "image_picker", "id": "all_image", "label": "All products image", "info": "Optional. Defaults to the all-products collection image or its first product image. Other category images are managed in Shopify collection settings." },
+    { "type": "image_picker", "id": "all_image", "label": "All products image", "info": "Optional. Defaults to the all-products or first category image, then the first product image. Other category images are managed in Shopify collection settings." },
     { "type": "text", "id": "accessibility_label", "label": "Navigation accessibility label", "default": "Kategorie kolekcji" },
     { "type": "header", "content": "Colors" },
     { "type": "color", "id": "text_color", "label": "Text", "default": "#232E71" },

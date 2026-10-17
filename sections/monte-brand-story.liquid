@@ -1,0 +1,193 @@
+{{ 'monte-brand-story.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign desktop_image = section.settings.image
+  assign desktop_video = section.settings.video
+  assign mobile_image = section.settings.mobile_image
+  assign mobile_video = section.settings.mobile_video
+  if mobile_image == blank and mobile_video == blank
+    assign mobile_image = desktop_image
+    assign mobile_video = desktop_video
+  endif
+  assign fallback = ''
+  if section.settings.show_default_image
+    assign fallback = 'monte-brand-story.png'
+  endif
+  assign button_label = section.settings.button_label | escape
+-%}
+<style>#shopify-section-{{ section.id }} { background: transparent; }</style>
+<reveal-items class="monte-story" margin="0px" style="--ms-primary: {{ section.settings.heading_color }}; --ms-secondary: {{ section.settings.body_color }}; --ms-top-mobile: {{ section.settings.padding_top_mobile }}px; --ms-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px; --ms-top-desktop: {{ section.settings.padding_top_desktop }}px; --ms-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;">
+  <div class="monte-story__layout">
+    <div class="monte-story__media{% if section.settings.image_zoom %} monte-story__media--zoom{% endif %}">
+      <div class="monte-story__desktop">
+        {%- if desktop_video != blank -%}
+          {%- render 'media', media: desktop_video, autoplay: true, loop: true, show_play_button: true, sizes: '60vw' -%}
+        {%- else -%}
+          {%- render 'monte-navigation-media', image: desktop_image, placeholder: fallback, width: 1814, height: 1400, sizes: '(min-width: 1000px) 60vw, 100vw' -%}
+        {%- endif -%}
+      </div>
+      <div class="monte-story__mobile{% if mobile_image == blank and mobile_video == blank and fallback != blank %} monte-story__mobile--design{% endif %}">
+        {%- if mobile_video != blank -%}
+          {%- render 'media', media: mobile_video, autoplay: true, loop: true, show_play_button: true, sizes: '100vw' -%}
+        {%- else -%}
+          {%- render 'monte-navigation-media', image: mobile_image, placeholder: fallback, width: 1814, height: 1400, sizes: '100vw' -%}
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="monte-story__content">
+      <div class="monte-story__copy">
+        {%- if section.settings.heading != blank -%}<h2 class="monte-story__heading">{{ section.settings.heading | escape | newline_to_br }}</h2>{%- endif -%}
+        {%- if section.settings.body != blank -%}<p class="monte-story__body">{{ section.settings.body | escape | newline_to_br }}</p>{%- endif -%}
+      </div>
+      {%- if button_label != blank and section.settings.button_link != blank -%}
+        {%- render 'button', content: button_label, href: section.settings.button_link, style: 'outline' -%}
+      {%- endif -%}
+    </div>
+  </div>
+</reveal-items>
+
+{% schema %}
+{
+  "name": "Monté Brand Story",
+  "tag": "section",
+  "class": "shopify-section--monte-story",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer",
+      "custom.overlay"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Desktop video",
+      "info": "Replaces the desktop image. Plays automatically, muted and without controls."
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile video",
+      "info": "Replaces the mobile image. If both mobile media fields are empty, desktop media is used."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_default_image",
+      "label": "Show design image when no media is selected",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "image_zoom",
+      "label": "Enable subtle desktop image zoom",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Dlaczego Monté?"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Subheading",
+      "default": "Jedwab morwowy 22 momme, uczciwa jakość i produkty stworzone z myślą o Twojej nocnej rutynie."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Poznaj naszą historię"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#232E71"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Subheading",
+      "default": "#52597E"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding top — desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding bottom — desktop",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top — mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom — mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Monté Brand Story"
+    }
+  ]
+}
+{% endschema %}

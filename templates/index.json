@@ -881,6 +881,12 @@
         "card_1_link": "/collections",
         "card_2_link": "/collections"
       }
+    },
+    "monte_brand_story": {
+      "type": "monte-brand-story",
+      "settings": {
+        "button_link": "shopify://pages/o-marce"
+      }
     }
   },
   "order": [
@@ -890,6 +896,7 @@
     "monte_reviews",
     "monte_spotlight",
     "faq_accordion_GirgW4",
+    "monte_brand_story",
     "section-6",
     "section-15",
     "stats_social_proof_i9KQdr",

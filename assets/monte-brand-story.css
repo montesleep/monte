@@ -1,0 +1,34 @@
+.monte-story { display: block; padding: var(--ms-top-mobile, 40px) 20px var(--ms-bottom-mobile, 40px); background: transparent; opacity: 1; color: var(--ms-primary, #232e71); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
+.monte-story__layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: start; }
+.monte-story__content { grid-row: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; min-width: 0; }
+.monte-story__copy { display: grid; gap: 16px; width: 100%; }
+.monte-story__heading { margin: 0; color: var(--ms-primary); font: 500 32px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
+.monte-story__body { margin: 0; color: var(--ms-secondary, #52597e); font: 400 14px/1.5 var(--text-font-family); overflow-wrap: anywhere; }
+.monte-story__media { position: relative; height: 250px; min-width: 0; overflow: hidden; border-radius: 16px; }
+.monte-story__media > div { position: relative; width: 100%; height: 100%; }
+.monte-story__desktop { display: none; }
+.monte-story__media :is(img, video, video-media) { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; border-radius: 0; }
+.monte-story__mobile--design img { position: absolute; width: 100.28%; height: 101%; left: .01%; top: -.44%; object-fit: fill; }
+.monte-story .button { min-height: 44px; height: auto; max-width: 100%; padding: 10px 24px; background: transparent; color: #232e71; border: 1px solid #232e71; border-radius: 100px; box-shadow: none; font: 600 14px/1.5 var(--text-font-family); letter-spacing: 0; text-transform: none; white-space: normal; text-align: center; transition: background-color .2s ease-in-out, color .2s ease-in-out; }
+.monte-story .button:focus-visible { outline: 2px solid #232e71; outline-offset: 4px; }
+@media (min-width: 1000px) {
+  .monte-story { padding: var(--ms-top-desktop, 80px) 40px var(--ms-bottom-desktop, 80px); }
+  .monte-story__layout { grid-template-columns: minmax(0, 720fr) minmax(0, 520fr); gap: clamp(40px, 8.333333vw, 120px); }
+  .monte-story__content { grid-column: 2; grid-row: 1; gap: 24px; }
+  .monte-story__copy { max-width: 320px; }
+  .monte-story__heading { font-size: 48px; }
+  .monte-story__body { font-size: 16px; }
+  .monte-story__media { grid-column: 1; grid-row: 1; height: 600px; }
+  .monte-story__desktop { display: block; }
+  .monte-story__mobile { display: none; }
+  .monte-story .button { min-height: 56px; padding: 15px 32px; font-size: 16px; }
+}
+@media (hover: hover) { .monte-story .button:hover { background: #232e71; color: #fdfbf9; } }
+@media (min-width: 1000px) and (hover: hover) and (pointer: fine) {
+  .monte-story__media--zoom > div { transition: transform .4s cubic-bezier(.25,.46,.45,.94); }
+  .monte-story__media--zoom:hover > div { transform: scale(1.03); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .monte-story .button, .monte-story__media > div { transition: none; }
+  .monte-story__media--zoom:hover > div { transform: none; }
+}

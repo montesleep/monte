@@ -15,7 +15,7 @@ class MonteNavigationDrawer extends NavigationDrawer {
     const signal = this._abortController.signal;
     this.header.addEventListener('click', event => {
       const control = event.target.closest('a, button');
-      if (this.open && control && control.getAttribute('aria-controls') !== this.id) this.hide();
+      if (this.open && control && !this.contains(control) && control.getAttribute('aria-controls') !== this.id) this.hide();
     }, { signal });
     this.addEventListener('dialog:after-hide', () => {
       this.controls.forEach(control => control.setAttribute('aria-label', this.dataset.openLabel));
@@ -31,12 +31,12 @@ class MonteNavigationDrawer extends NavigationDrawer {
     if (this.open) return;
     this._savedScroll = window.scrollY;
     window.scrollTo({ top: 0, behavior: 'instant' });
-    this.header.show();
+    if (this.header.hasAttribute('hide-on-scroll')) this.header.show();
     this.controls.forEach(control => control.setAttribute('aria-label', this.dataset.closeLabel));
     return super.show(animated);
   }
   _setInitialPosition() {
-    const top = Math.max(0, this.header.getBoundingClientRect().bottom);
+    const top = Math.max(0, this.header.closest('.shopify-section').getBoundingClientRect().bottom);
     this.style.setProperty('--monte-mobile-menu-top', `${top}px`);
     Object.assign(this.style, { top: `${top}px`, bottom: '0', left: '0', right: '0' });
   }

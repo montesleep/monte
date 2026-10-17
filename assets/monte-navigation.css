@@ -45,13 +45,13 @@
 .monte-menu-close img { position: absolute; width: auto; height: auto; max-width: none; left: 1.66px; top: 1.66px; }
 [aria-controls="header-sidebar-menu"][aria-expanded="true"] .monte-menu-close { display: block; }
 [aria-controls="header-sidebar-menu"][aria-expanded="true"] .monte-header-icon--menu { display: none; }
-.monte-mobile-menu { --drawer-content-max-height: none; --drawer-body-padding: 0; --text-color: var(--header-text); width: 100%; padding: 0; height: calc(100dvh - var(--monte-mobile-menu-top, 110px)); z-index: 9; }
+.monte-mobile-menu[mobile-opening="left"] { --drawer-content-max-height: none; --drawer-body-padding: 0; --text-color: var(--header-text); width: 100%; padding: 0; height: calc(100dvh - var(--monte-mobile-menu-top, 110px)); z-index: 9; }
 .monte-mobile-menu::part(overlay), .monte-mobile-menu::part(outside-close-button), .monte-mobile-menu::part(header), .monte-mobile-menu::part(footer) { display: none; }
 .monte-mobile-menu::part(content) { border-radius: 0; background: rgb(var(--header-background)); height: 100%; min-height: 0; max-height: none; }
 .monte-mobile-menu::part(body) { display: block; padding: 0; height: 100%; overflow: hidden; }
 .monte-mobile-menu .panel__wrapper { padding: 0 20px 20px; gap: 16px; justify-content: flex-start; overscroll-behavior: contain; }
 .monte-mobile-menu .panel__wrapper[hidden] { display: none; }
-.monte-mobile-menu .monte-mobile-root { padding-top: 20px; gap: 32px; }
+.monte-mobile-menu[mobile-opening="left"] .monte-mobile-root { padding-top: 20px; gap: 32px; }
 .monte-mobile-top-links { display: grid; gap: 20px; }
 .monte-mobile-top-link { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; font: 500 24px/1.1 var(--heading-font-family); text-align: start; }
 .monte-nav-arrow { flex-shrink: 0; width: auto; height: auto; max-width: none; }

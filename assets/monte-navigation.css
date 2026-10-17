@@ -1,11 +1,4 @@
 /* Monte navigation extends Impact's disclosure and drawer components. */
-@font-face {
-  font-family: 'Monte Satoshi';
-  src: url('monte-satoshi-regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 .header--monte, .monte-mobile-menu {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -52,7 +45,7 @@
 .monte-menu-promo--bundle { min-height: 195px; padding: 20px 16px; align-items: flex-start; }
 .monte-menu-promo--bundle::before { display: none; }
 .monte-menu-promo--bundle .monte-promo-content { width: 180px; max-width: 100%; gap: 16px; }
-.monte-promo-body { font-family: 'Monte Satoshi', var(--text-font-family); font-weight: 400; font-size: 12px; line-height: 1.4; opacity: .8; margin-top: -12px; }
+.monte-promo-body { font-family: var(--text-font-family); font-weight: 400; font-size: 12px; line-height: 1.5; opacity: .8; margin-top: -12px; }
 .monte-menu-backdrop { position: fixed; inset: 0; z-index: 9; background: rgb(0 0 0 / .6); backdrop-filter: blur(17px); -webkit-backdrop-filter: blur(17px); }
 .monte-menu-backdrop[hidden] { display: none; }
 .monte-menu-close { display: none; position: relative; width: 20px; height: 20px; }

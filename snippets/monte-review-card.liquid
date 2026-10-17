@@ -1,0 +1,26 @@
+<article class="monte-review" data-review-original data-review-id="{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="monte-review__stars" role="img" aria-label="{{ block.settings.rating }} z 5 gwiazdek">
+    {%- for index in (1..5) -%}
+      {%- assign icon_setting = 'star_' | append: index -%}
+      {%- assign custom_icon = block.settings[icon_setting] -%}
+      <span class="monte-review__star{% if custom_icon == blank %} monte-review__star--default{% if index > block.settings.rating %} monte-review__star--empty{% endif %}{% endif %}" aria-hidden="true">
+        {%- if custom_icon != blank -%}
+          {{- custom_icon | image_url: width: 64 | image_tag: width: 16, height: 16, loading: 'lazy', alt: '' -}}
+        {%- else -%}
+          <img src="{{ 'monte-review-star-line.svg' | asset_url }}" alt="" width="16" height="16" loading="lazy">
+          <img src="{{ 'monte-review-star-fill.svg' | asset_url }}" alt="" width="16" height="16" loading="lazy">
+        {%- endif -%}
+      </span>
+    {%- endfor -%}
+  </div>
+  <div class="monte-review__copy">
+    {%- if block.settings.title != blank -%}<h3 class="monte-review__title">{{ block.settings.title | escape }}</h3>{%- endif -%}
+    {%- if block.settings.content != blank -%}<div class="monte-review__body">{{ block.settings.content }}</div>{%- endif -%}
+  </div>
+  {%- if block.settings.author != blank or block.settings.verified -%}
+    <div class="monte-review__author">
+      {%- if block.settings.verified -%}<img src="{{ 'monte-review-verified.svg' | asset_url }}" width="16" height="16" alt="Zweryfikowana opinia" loading="lazy">{%- endif -%}
+      {%- if block.settings.author != blank -%}<span>{{ block.settings.author | escape }}</span>{%- endif -%}
+    </div>
+  {%- endif -%}
+</article>

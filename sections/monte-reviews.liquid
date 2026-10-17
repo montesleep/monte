@@ -1,0 +1,219 @@
+{{ 'monte-reviews.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'monte-reviews.js' | asset_url }}" defer></script>
+<style>#shopify-section-{{ section.id }} { background: transparent; }</style>
+{%- liquid
+  assign midpoint = section.blocks.size | plus: 1 | divided_by: 2
+  assign rating = settings.monte_social_rating | default: 4.5 | at_least: 0 | at_most: 5
+  assign rating_text = shop.metafields.custom.rating_text_score
+  assign carousel_id = 'reviews-' | append: section.id
+-%}
+<reveal-items class="monte-reviews" margin="0px">
+  <monte-reviews class="monte-reviews__panel{% if section.blocks.size == 0 %} monte-reviews__panel--empty{% endif %}" data-speed="{{ section.settings.scroll_speed }}" style="--reviews-panel: {{ section.settings.panel_color }}; --reviews-primary: {{ section.settings.text_color }}; --reviews-secondary: {{ section.settings.body_color }}; --reviews-card: {{ section.settings.card_color }}; --reviews-mobile-card: {{ section.settings.mobile_card_color }}; --reviews-star: {{ section.settings.star_color }};">
+    <div class="monte-reviews__intro">
+      {%- if section.settings.heading != blank -%}<h2 class="monte-reviews__heading">{{ section.settings.heading | escape | newline_to_br }}</h2>{%- endif -%}
+      {%- if section.settings.show_rating -%}
+        <div class="monte-reviews__rating">
+          {%- render 'monte-social-rating', rating: rating -%}
+          {%- if rating_text != blank -%}<div class="monte-reviews__rating-text">{{ rating_text | metafield_tag }}</div>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+    {%- if section.blocks.size > 0 -%}
+      <div class="monte-reviews__content">
+        <scroll-carousel id="{{ carousel_id }}" selector="[data-review-original]" class="monte-reviews__carousel scroll-area" tabindex="0" role="region" aria-label="Opinie klientów">
+          <div class="monte-reviews__columns">
+            {%- for column in (1..2) -%}
+              {%- liquid
+                assign column_offset = 0
+                if column == 2
+                  assign column_offset = midpoint
+                endif
+              -%}
+              {%- if column_offset < section.blocks.size -%}
+                <div class="monte-reviews__column{% if column == 2 %} monte-reviews__column--reverse{% endif %}">
+                  <div class="monte-reviews__track">
+                    <div class="monte-reviews__group" data-review-group>
+                      {%- for block in section.blocks offset: column_offset limit: midpoint -%}
+                        {%- render 'monte-review-card', block: block -%}
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </scroll-carousel>
+        <scroll-progress observes="{{ carousel_id }}" class="monte-reviews__progress scrollbar__progress" aria-hidden="true" style="--scroll-progress: 0;"></scroll-progress>
+      </div>
+    {%- elsif request.design_mode -%}
+      <p class="monte-reviews__placeholder">Add up to 10 review blocks to display your customer reviews.</p>
+    {%- endif -%}
+  </monte-reviews>
+</reveal-items>
+
+{% schema %}
+{
+  "name": "Monté Reviews",
+  "tag": "section",
+  "class": "shopify-section--monte-reviews",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer",
+      "custom.overlay"
+    ]
+  },
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Co mówią\nklienci o Monté"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "label": "Show shared rating",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "Rating text uses the shop metafield custom.rating_text_score. Stars use Theme settings > Monté social rating > Filled stars, shared with the hero."
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Desktop scrolling speed",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "default": 25,
+      "unit": "px/s",
+      "info": "Both columns pause together on hover or keyboard focus. Mobile uses a swipeable carousel."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "panel_color",
+      "label": "Panel background",
+      "default": "#e3e5f0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading and reviewer text",
+      "default": "#232e71"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Review text",
+      "default": "#52597e"
+    },
+    {
+      "type": "color",
+      "id": "card_color",
+      "label": "Desktop card background",
+      "default": "#fdfbf9"
+    },
+    {
+      "type": "color",
+      "id": "mobile_card_color",
+      "label": "Mobile card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Default star background",
+      "default": "#d9a17d"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Review text"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Reviewer name"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Show verified badge",
+          "default": false,
+          "info": "Enable only for reviews you have verified."
+        },
+        {
+          "type": "header",
+          "content": "Star icons"
+        },
+        {
+          "type": "paragraph",
+          "content": "Upload each icon separately. Empty slots use the default Monté star. The rating below describes the review for screen readers and controls default star fill."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Review rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "image_picker",
+          "id": "star_1",
+          "label": "Star 1 icon",
+          "info": "Square icon recommended. Replaces this entire star tile."
+        },
+        {
+          "type": "image_picker",
+          "id": "star_2",
+          "label": "Star 2 icon",
+          "info": "Square icon recommended. Replaces this entire star tile."
+        },
+        {
+          "type": "image_picker",
+          "id": "star_3",
+          "label": "Star 3 icon",
+          "info": "Square icon recommended. Replaces this entire star tile."
+        },
+        {
+          "type": "image_picker",
+          "id": "star_4",
+          "label": "Star 4 icon",
+          "info": "Square icon recommended. Replaces this entire star tile."
+        },
+        {
+          "type": "image_picker",
+          "id": "star_5",
+          "label": "Star 5 icon",
+          "info": "Square icon recommended. Replaces this entire star tile."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Monté Reviews"
+    }
+  ]
+}
+{% endschema %}

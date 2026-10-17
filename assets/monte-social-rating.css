@@ -1,0 +1,4 @@
+.monte-social-rating { display: inline-flex; gap: 2px; flex-shrink: 0; }
+.monte-social-rating__star { display: block; position: relative; width: 16px; height: 16px; border-radius: 2px; overflow: hidden; }
+.monte-social-rating__star img { display: block; position: absolute; top: 0; left: 0; max-width: none; }
+.monte-social-rating__star .monte-social-rating__glyph { top: 1.66667px; left: 1.69067px; }

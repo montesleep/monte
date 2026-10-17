@@ -1,0 +1,60 @@
+.monte-reviews { display: block; padding: 20px 4px; background: transparent; opacity: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
+.monte-reviews__panel { display: flex; flex-direction: column; gap: 32px; overflow: hidden; padding: 40px 20px; border-radius: 16px; background: var(--reviews-panel); color: var(--reviews-primary); }
+.monte-reviews__intro { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; min-width: 0; }
+.monte-reviews__heading { margin: 0; font: 500 32px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
+.monte-reviews__rating { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 400 14px/1.5 var(--text-font-family); }
+.monte-reviews__rating-text { min-width: 0; overflow-wrap: anywhere; }
+.monte-reviews__rating-text :is(p, div) { margin: 0; }
+.monte-reviews__rating-text :is(strong, b) { font-weight: 600; }
+.monte-reviews__content { min-width: 0; width: 100%; }
+.monte-reviews__carousel { display: flex; align-items: stretch; gap: 8px; position: relative; margin-right: -20px; padding-right: 20px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.monte-reviews__carousel::-webkit-scrollbar { display: none; }
+.monte-reviews__carousel:focus-visible { outline: 2px solid var(--reviews-primary); outline-offset: -2px; }
+.monte-reviews__columns, .monte-reviews__column, .monte-reviews__track, .monte-reviews__group { display: contents; }
+.monte-reviews [data-review-copy] { display: none; }
+.monte-review { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "stars" "copy" "author"; grid-template-rows: auto 1fr auto; gap: 12px; flex: 0 0 240px; min-width: 0; padding: 16px; border-radius: 16px; background: var(--reviews-mobile-card); scroll-snap-align: start; font: 400 14px/1.5 var(--text-font-family); color: var(--reviews-primary); }
+.monte-review__copy { grid-area: copy; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.monte-review__title { margin: 0; font: 600 16px/1.5 var(--text-font-family); color: inherit; letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
+.monte-review__body { color: var(--reviews-secondary); font: 400 14px/1.5 var(--text-font-family); overflow-wrap: anywhere; }
+.monte-review__body > :first-child { margin-top: 0; }
+.monte-review__body > :last-child { margin-bottom: 0; }
+.monte-review__body p + p { margin-top: 12px; }
+.monte-review__author { grid-area: author; display: flex; align-items: center; gap: 8px; min-width: 0; margin-top: 4px; font: 600 12px/1.5 var(--text-font-family); overflow-wrap: anywhere; }
+.monte-review__author > img { flex: 0 0 16px; }
+.monte-review__stars { grid-area: stars; display: flex; align-items: center; gap: 2px; }
+.monte-review__star { display: block; position: relative; width: 16px; height: 16px; flex: 0 0 16px; overflow: hidden; border-radius: 2px; }
+.monte-review__star > img { position: absolute; inset: 0; width: 16px; height: 16px; object-fit: contain; }
+.monte-review__star--default { background: var(--reviews-star); }
+.monte-review__star--empty { background: #eee7e0; }
+.monte-reviews__progress { --text-color: 35 46 113; height: 5px; margin-top: 32px; border-radius: 999px; overflow: hidden; background: color-mix(in srgb, var(--reviews-primary) 10%, transparent); }
+.monte-reviews__progress::before { background: var(--reviews-primary); border-radius: inherit; }
+.monte-reviews__progress[hidden] { display: none; }
+.monte-reviews__placeholder { margin: 0; font: 400 14px/1.5 var(--text-font-family); }
+@media (min-width: 1000px) {
+  .monte-reviews { padding: 40px 8px; }
+  .monte-reviews__panel { flex-direction: row; gap: 0; height: 620px; padding: 0 20px 0 0; }
+  .monte-reviews__intro { flex: 1; justify-content: center; align-self: stretch; gap: 40px; padding: 40px; }
+  .monte-reviews__heading { font-size: 48px; }
+  .monte-reviews__content { flex: 0 0 720px; max-width: 60%; height: 100%; }
+  .monte-reviews__carousel { display: block; height: 100%; margin: 0; padding: 0; overflow: hidden; scroll-snap-type: none; }
+  .monte-reviews__columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; height: 100%; }
+  .monte-reviews__column { display: block; min-width: 0; height: 100%; overflow: hidden; }
+  .monte-reviews__track { display: flex; flex-direction: column; will-change: transform; }
+  .monte-reviews__group, .monte-reviews [data-review-copy] { display: flex; flex-direction: column; gap: 16px; padding-bottom: 16px; flex-shrink: 0; }
+  .monte-reviews__track.is-ready { animation: monte-reviews-up var(--reviews-duration) linear infinite; animation-delay: calc(var(--reviews-duration) * -.2); }
+  .monte-reviews__column--reverse .monte-reviews__track.is-ready { animation-direction: reverse; }
+  .monte-reviews__carousel:is(:hover, :focus-within) .monte-reviews__track, .monte-reviews__panel.is-out-of-view .monte-reviews__track { animation-play-state: paused; }
+  .monte-review { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "copy copy" "author stars"; grid-template-rows: auto auto; column-gap: 12px; row-gap: 24px; flex: none; padding: 32px; background: var(--reviews-card); }
+  .monte-review__author { margin-top: 0; font-size: 14px; }
+  .monte-reviews__progress { display: none; }
+  .monte-reviews__panel.is-editing .monte-reviews__track { animation: none; transform: none; }
+  .monte-reviews__panel.is-editing .monte-reviews__column { overflow-y: auto; overscroll-behavior-y: contain; }
+  .monte-reviews__panel.is-editing [data-review-copy] { display: none; }
+  .monte-reviews__panel--empty { height: auto; min-height: 300px; }
+}
+@keyframes monte-reviews-up { from { transform: translateY(0); } to { transform: translateY(calc(-1 * var(--reviews-distance))); } }
+@media (min-width: 1000px) and (prefers-reduced-motion: reduce) {
+  .monte-reviews__track.is-ready { animation: none; transform: none; will-change: auto; }
+  .monte-reviews [data-review-copy] { display: none; }
+  .monte-reviews__column { overflow-y: auto; overscroll-behavior-y: contain; }
+}

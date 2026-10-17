@@ -11,45 +11,6 @@
   "type": "footer",
   "name": "Footer group",
   "sections": {
-    "trust_bar": {
-      "type": "trust-bar",
-      "blocks": {
-        "trust_1": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_1.svg",
-            "heading": "Darmowa dostawa od 250 zł",
-            "subline": "Dostawa kurierem InPost na terenie całej Polski."
-          }
-        },
-        "trust_2": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Shipment-Return--Streamline-Sharp.svg",
-            "heading": "30-nocna gwarancja zwrotu",
-            "subline": "Wypróbuj w domu, zwróć jeśli nie spełni oczekiwań."
-          }
-        },
-        "trust_3": {
-          "type": "item",
-          "settings": {
-            "icon": "shopify://shop_images/Package--Streamline-Sharp_1.svg",
-            "heading": "Wysyłka tego samego dnia",
-            "subline": "Zamów do 18:00, wysyłamy jeszcze dziś."
-          }
-        }
-      },
-      "block_order": [
-        "trust_1",
-        "trust_2",
-        "trust_3"
-      ],
-      "settings": {
-        "background_color": "#fdfbf9",
-        "heading_color": "#182153",
-        "body_color": "#182153"
-      }
-    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -145,16 +106,16 @@
           "type": "social_icon",
           "settings": {
             "icon": "shopify://shop_images/monte-footer-instagram.svg",
-            "label": "Instagram",
-            "link": "https://www.instagram.com/montesleep/"
+            "link": "https://www.instagram.com/montesleep/",
+            "label": "Instagram"
           }
         },
         "social_facebook": {
           "type": "social_icon",
           "settings": {
             "icon": "shopify://shop_images/monte-footer-facebook.svg",
-            "label": "Facebook",
-            "link": "https://www.facebook.com/profile.php?id=61574438946396"
+            "link": "https://www.facebook.com/profile.php?id=61574438946396",
+            "label": "Facebook"
           }
         }
       },
@@ -169,19 +130,25 @@
         "social_facebook"
       ],
       "settings": {
+        "brand_logo": "shopify://shop_images/monte-footer-brand.svg",
+        "brand_description": "Jedwabne akcesoria do snu i pielęgnacji włosów. Wysyłamy z Polski.",
         "card_background": "#182153",
-        "logo": "shopify://shop_images/monte-footer-wordmark.svg",
+        "text_color": "#fdfbf9",
+        "light_color": "#f8f1e9",
+        "hover_color": "#eee7e0",
+        "accent_color": "#232e71",
         "newsletter_heading": "Dołącz do rytuału",
         "newsletter_desc": "Odbierz darmową dostawę na pierwsze zamówienie i bądź na bieżąco z nowościami Monté.",
         "newsletter_placeholder": "Twój adres e-mail",
-        "copyright_text": "© 2026 Monté. Wszystkie prawa zastrzeżone.",
-        "brand_logo": "shopify://shop_images/monte-footer-brand.svg",
-        "brand_description": "Jedwabne akcesoria do snu i pielęgnacji włosów. Wysyłamy z Polski."
+        "newsletter_submit_label": "Zapisz się",
+        "newsletter_success": "Dziękujemy! Jeśli otrzymasz wiadomość z potwierdzeniem, kliknij w niej link, aby dokończyć zapis.",
+        "newsletter_error": "Nie udało się wysłać formularza. Spróbuj ponownie za chwilę.",
+        "logo": "shopify://shop_images/monte-footer-wordmark.svg",
+        "copyright_text": "© 2026 Monté. Wszystkie prawa zastrzeżone."
       }
     }
   },
   "order": [
-    "trust_bar",
     "footer",
     "monte_footer"
   ]

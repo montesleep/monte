@@ -35,7 +35,7 @@
 .monte-products__all .button { min-height: 44px; padding: 10px 24px; border: 1px solid var(--mp-primary); box-shadow: none; border-radius: 100px; background: transparent; color: var(--mp-primary); font: 600 14px/1.5 var(--text-font-family); letter-spacing: 0; text-transform: none; transition: background-color .2s ease-in-out, color .2s ease-in-out; }
 .monte-products :is(a, button):focus-visible { outline: 2px solid var(--mp-primary); outline-offset: 3px; }
 .monte-products__track:focus-visible { outline: 1px solid var(--mp-primary); outline-offset: 4px; }
-@media (max-width: 699px) { .monte-product-card:nth-child(n + 5) { display: none; } }
+@media (max-width: 699px) { .monte-products__track > .monte-product-card:nth-child(n + 5) { display: none; } }
 @media (min-width: 700px) {
   .monte-products { padding: 80px 40px; }
   .monte-products__layout { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }

@@ -1,0 +1,70 @@
+{{ 'monte-product-details.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'monte-product-details.js' | asset_url }}"></script>
+<monte-product-details class="monte-details" style="--md-primary: {{ section.settings.heading_color }}; --md-secondary: {{ section.settings.body_color }}; --md-border: {{ section.settings.border_color }}; --md-top: {{ section.settings.padding_top_desktop }}px; --md-bottom: {{ section.settings.padding_bottom_desktop }}px; --md-mobile-top: {{ section.settings.padding_top_mobile }}px; --md-mobile-bottom: {{ section.settings.padding_bottom_mobile }}px;">
+  <reveal-items class="monte-details__reveal" margin="0px">
+    <div class="monte-details__layout">
+      <div class="monte-details__intro">
+        {%- if section.settings.heading != blank -%}<h2 class="monte-details__heading">{{ section.settings.heading | escape | newline_to_br }}</h2>{%- endif -%}
+        {%- if section.settings.subheading != blank -%}<p class="monte-details__subheading">{{ section.settings.subheading | escape | newline_to_br }}</p>{%- endif -%}
+      </div>
+      <div class="monte-details__media">
+        {%- if section.settings.video != blank -%}
+          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', image_size: '1440x', class: 'monte-details__video' }}
+        {%- elsif section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '375,750,1100,1440,1800', sizes: '(min-width: 1000px) 50vw, 100vw' }}
+        {%- elsif section.settings.show_design_image -%}
+          <img src="{{ 'monte-product-detail.jpg' | asset_url }}" width="1440" height="1440" loading="lazy" alt="{{ section.settings.media_alt | escape }}">
+        {%- endif -%}
+      </div>
+      <div class="monte-details__list">
+        {%- for block in section.blocks -%}
+          <details is="monte-detail-disclosure" class="monte-details__item" {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+            <summary class="monte-details__question" aria-controls="Detail-{{ section.id }}-{{ block.id }}">
+              <span class="monte-details__ring" aria-hidden="true"><img src="{{ 'monte-detail-ring.svg' | asset_url }}" width="24" height="24" alt=""><span class="monte-details__progress"></span></span>
+              <span class="monte-details__title">{{ block.settings.title | escape }}</span>
+              <img class="monte-details__plus" src="{{ 'monte-detail-plus.svg' | asset_url }}" width="20" height="20" alt="" aria-hidden="true">
+            </summary>
+            <div class="monte-details__answer" id="Detail-{{ section.id }}-{{ block.id }}"><div class="monte-details__richtext prose">{{ block.settings.description }}</div></div>
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </reveal-items>
+</monte-product-details>
+
+{% schema %}
+{
+  "name": "Monté Product Details",
+  "tag": "section",
+  "class": "shopify-section--monte-details",
+  "disabled_on": { "groups": ["header", "footer", "custom.overlay"] },
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Jedwab, który dba\no Ciebie" },
+    { "type": "textarea", "id": "subheading", "label": "Description", "default": "Rozpakowanie, materiał, zapięcie rzepu, zobacz to wszystko z bliska. Poniżej cztery szczegóły, które sprawiają, że różnicę czuć od razu." },
+    { "type": "header", "content": "Media" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "video", "id": "video", "label": "Video", "info": "Replaces the image on all screen sizes. Plays continuously, muted and without player controls. Media stays the same for every accordion item." },
+    { "type": "checkbox", "id": "show_design_image", "label": "Show design image when no media is selected", "default": true },
+    { "type": "text", "id": "media_alt", "label": "Default image description", "default": "Rozpakowanie pudełka Monté" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "heading_color", "label": "Primary text and progress", "default": "#232E71" },
+    { "type": "color", "id": "body_color", "label": "Secondary text", "default": "#52597E" },
+    { "type": "color", "id": "border_color", "label": "Dividers", "default": "#DCD6CF" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Desktop top spacing", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Desktop bottom spacing", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Mobile top spacing", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Mobile bottom spacing", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 }
+  ],
+  "blocks": [{ "type": "item", "name": "Accordion item", "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Product detail" },
+    { "type": "richtext", "id": "description", "label": "Description" }
+  ] }],
+  "presets": [{ "name": "Monté Product Details", "blocks": [
+    { "type": "item", "settings": { "title": "100% blackout dla całkowitej ciemności" } },
+    { "type": "item", "settings": { "title": "Nie wchłania kosmetyków, zero załamów rano" } },
+    { "type": "item", "settings": { "title": "Bez ucisku na oczy i rzęsy przez całą noc" } },
+    { "type": "item", "settings": { "title": "Rzep zamiast gumki, nie ściska skroni" } }
+  ] }]
+}
+{% endschema %}

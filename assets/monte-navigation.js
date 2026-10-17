@@ -15,7 +15,10 @@ class MonteNavigationDrawer extends NavigationDrawer {
     const signal = this._abortController.signal;
     this.header.addEventListener('click', event => {
       const control = event.target.closest('a, button');
-      if (this.open && control && !this.contains(control) && control.getAttribute('aria-controls') !== this.id) this.hide();
+      if (this.open && control && !this.contains(control) && control.getAttribute('aria-controls') !== this.id) {
+        this.focusTrap.deactivate({ returnFocus: false });
+        this.hide();
+      }
     }, { signal });
     this.addEventListener('dialog:after-hide', () => {
       this.controls.forEach(control => control.setAttribute('aria-label', this.dataset.openLabel));
@@ -28,7 +31,7 @@ class MonteNavigationDrawer extends NavigationDrawer {
     }, { signal });
   }
   show(animated = true) {
-    if (this.open) return;
+    if (this.open || window.matchMedia('(min-width: 1150px)').matches) return;
     this._savedScroll = window.scrollY;
     window.scrollTo({ top: 0, behavior: 'instant' });
     if (this.header.hasAttribute('hide-on-scroll')) this.header.show();
@@ -67,6 +70,7 @@ class MonteNavigationDrawer extends NavigationDrawer {
   reinitializeDrawer() {
     this._panelAnimations?.forEach(animation => animation.finish());
     super.reinitializeDrawer();
+    this.querySelector('.panel').style.visibility = 'inherit';
     this.querySelectorAll('.panel').forEach((panel, index) => { panel.inert = index !== 0; });
     this.setExpanded();
     this._isTransitioning = false;

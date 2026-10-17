@@ -1,3 +1,4 @@
+<style>#shopify-section-{{ section.id }} { background: transparent; }</style>
 {{ 'monte-benefits.css' | asset_url | stylesheet_tag }}
 {%- capture benefit_items -%}
   {%- for block in section.blocks -%}

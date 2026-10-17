@@ -1,0 +1,32 @@
+{%- liquid
+  assign icon_file = 'monte-cart-' | append: icon | append: '.svg'
+  assign icon_width = 20
+  assign icon_height = 20
+  case icon
+    when 'dot'
+      assign icon_width = 4
+      assign icon_height = 4
+    when 'close'
+      assign icon_width = 13.5607
+      assign icon_height = 13.5607
+    when 'trash'
+      assign icon_width = 15
+      assign icon_height = 15
+    when 'minus'
+      assign icon_width = 10.3125
+      assign icon_height = 1.5
+    when 'plus'
+      assign icon_width = 10.3125
+      assign icon_height = 10.3125
+    when 'checkout'
+      assign icon_width = 22.1544
+      assign icon_height = 16.0607
+    when 'shipping'
+      assign icon_width = 16.6427
+      assign icon_height = 18.3585
+    when 'return'
+      assign icon_width = 16.875
+      assign icon_height = 16.875
+  endcase
+-%}
+<span class="monte-cart-icon monte-cart-icon--{{ icon }}" aria-hidden="true"><img src="{{ icon_file | asset_url }}" width="{{ icon_width }}" height="{{ icon_height }}" alt=""></span>

@@ -1,266 +1,290 @@
-<cart-drawer {% if request.design_mode %}handle-section-events{% endif %} class="cart-drawer drawer drawer--lg" id="cart-drawer">
-  {%- if cart.item_count == 0 -%}
-    <button is="close-button" aria-label="{{ 'general.accessibility.close' | t | escape }}">
-      {%- render 'icon' with 'close' -%}
-    </button>
-
-    <div class="empty-state align-self-center">
-      <div class="empty-state__icon-wrapper">
-        {%- render 'icon' with 'cart', width: 32, height: 32, stroke_width: 1 -%}
-        <span class="count-bubble count-bubble--lg">0</span>
-      </div>
-
-      <div class="prose">
-        <p class="h5">{{ 'cart.general.empty' | t }}</p>
-
-        {%- assign button_content = 'cart.general.continue_shopping' | t -%}
-        {%- render 'button', href: settings.cart_empty_button_link, size: 'xl', content: button_content -%}
-      </div>
+{{ 'monte-cart.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'monte-cart.js' | asset_url }}"></script>
+<style>@font-face { font-family: 'PP Mori'; src: url('https://cdn.shopify.com/s/files/1/1018/4258/3886/files/PPMori-Extrabold.ttf?v=1788241598') format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }</style>
+{%- capture amount_placeholder -%}{% raw %}{{ amount }}{% endraw %}{%- endcapture -%}
+<monte-cart-drawer id="cart-drawer" class="cart-drawer drawer drawer--lg monte-cart" tabindex="-1" aria-labelledby="MonteCartTitle" data-section-id="{{ section.id }}" data-error="{{ section.settings.error_message | escape }}" data-limit="{{ section.settings.limit_message | escape }}" data-updated="{{ section.settings.updated_message | escape }}" {% if request.design_mode %}handle-section-events{% endif %}
+  style="--cart-surface: {{ section.settings.background }}; --cart-card: {{ section.settings.card_color }}; --cart-text: {{ section.settings.text_color }}; --cart-secondary: {{ section.settings.secondary_color }}; --cart-border: {{ section.settings.border_color }}; --cart-compare: {{ section.settings.compare_color }}; --cart-savings: {{ section.settings.savings_color }}; --cart-inverse: {{ section.settings.inverse_color }}; --cart-hover: {{ section.settings.hover_color }};">
+  <div class="monte-cart-shell">
+    <div class="monte-cart-header">
+      <div class="monte-cart-heading"><h2 id="MonteCartTitle">{{ section.settings.title | escape }}</h2>{% render 'monte-cart-icon', icon: 'dot' %}<cart-count class="monte-cart-count">{{ cart.item_count }}</cart-count></div>
+      <button type="button" is="close-button" class="monte-cart-close link-faded-reverse" aria-label="{{ 'general.accessibility.close' | t | escape }}">{% render 'monte-cart-icon', icon: 'close' %}</button>
     </div>
-  {%- else -%}
-    <div class="cart-drawer__inner">
-      <div class="cart-drawer__top">
-        <div class="h-stack items-center justify-between">
-          <div class="h-stack grow gap-2 sm:gap-2.5">
-            <p class="h5">{{- 'cart.general.title' | t -}}</p>
-            <cart-count class="count-bubble count-bubble--md">{{ cart.item_count }}</cart-count>
-          </div>
-
-          <button type="button" is="close-button" class="drawer__close-icon">
-            <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>
-            {%- render 'icon' with 'close' -%}
-          </button>
-        </div>
-
-        {%- if settings.cart_show_free_shipping_threshold -%}
-          {%- render 'free-shipping-bar' -%}
-        {%- endif -%}
-      </div>
-
-      <div class="v-stack gap-6 sm:gap-8">
-        <div class="cart-drawer__line-items">
-          {%- for line_item in cart.items -%}
-            {%- render 'line-item', line_item: line_item, show_desktop_quantity: true -%}
-          {%- endfor -%}
-        </div>
-
-        {%- if section.settings.products.count > 0 -%}
-          <div class="cart-drawer__recommendations">
-            <div class="v-stack gap-2.5 sm:gap-4">
-              {%- capture carousel_id -%}cart-drawer-recommendations{%- endcapture -%}
-
-              {%- liquid
-                assign horizontal_products_blends = true
-                assign product_card_background = section.settings.product_card_background | default: product.settings.product_card_background
-
-                if product_card_background != 'rgba(0,0,0,0)' and product_card_background != blank and product_card_background != settings.dialog_background
-                  assign horizontal_products_blends = false
-                endif
-
-                assign rendered_recommendations = 0
-
-                capture recommendations
-                  for recommended_product in section.settings.products
-                    assign item_count_in_cart = cart | line_items_for: recommended_product
-
-                    if item_count_in_cart.size == 0
-                      render 'horizontal-product', product: recommended_product, show_add_to_cart: true, background: section.settings.product_card_background, text_color: section.settings.product_card_text_color
-                      assign rendered_recommendations = rendered_recommendations | plus: 1
-                    endif
-                  endfor
-                endcapture
-              -%}
-
-              {%- if rendered_recommendations > 0 -%}
-                <div class="h-stack justify-between gap-4">
-                  {%- if section.settings.recommendations_title != blank -%}
-                    <p>{{ section.settings.recommendations_title | escape }}</p>
-                  {%- endif -%}
-
-                  {%- if rendered_recommendations > 1 -%}
-                    <div class="h-stack gap-2 hidden sm:flex">
-                      <button is="prev-button" class="circle-chevron hover:colors" aria-controls="{{ carousel_id }}" aria-label="{{ 'general.accessibility.previous' | t | escape }}" disabled>{%- render 'icon' with 'chevron-left-small', direction_aware: true -%}</button>
-                      <button is="next-button" class="circle-chevron hover:colors" aria-controls="{{ carousel_id }}" aria-label="{{ 'general.accessibility.next' | t | escape }}">{%- render 'icon' with 'chevron-right-small', direction_aware: true -%}</button>
-                    </div>
-                  {%- endif -%}
-                </div>
-              {%- endif -%}
-
-              {%- if recommendations != blank -%}
-                <scroll-carousel selector=".horizontal-product" id="{{ carousel_id }}" class="horizontal-product-list-carousel {% unless horizontal_products_blends %}separate{% endunless %} scroll-area bleed">
-                  <div class="horizontal-product-list {% if horizontal_products_blends %}divide-x{% else %}separate{% endif %}">
-                    {{- recommendations -}}
-                  </div>
-                </scroll-carousel>
-              {%- endif -%}
-            </div>
-          </div>
-        {%- endif -%}
-      </div>
-    </div>
-
-    <div class="v-stack gap-4 sm:gap-6" slot="footer">
-      {%- if section.settings.allow_discount_application or cart.cart_level_discount_applications.size > 0 -%}
-        <div class="v-stack gap-2.5">
-          {%- if section.settings.allow_discount_application -%}
-            {%- render 'cart-discount' -%}
-          {%- endif -%}
-
-          {%- if cart.cart_level_discount_applications.size > 0 -%}
-            <div class="h-stack gap-2">
-              {%- for discount_application in cart.cart_level_discount_applications -%}
-                <div class="h-stack gap-4 justify-between">
-                  <div class="badge">
-                    {%- render 'icon' with 'discount' -%} {{ discount_application.title }} (-{{ discount_application.total_allocated_amount | money }})
-
-                    {%- if section.settings.allow_discount_application and discount_application.type != '' -%}
-                      <cart-discount-remove-button discount-code="{{ discount_application.title | escape }}" class="h-stack align-center">
-                        <button type="button">{%- render 'icon' with 'delete', width: 8, stroke_width: 3 -%}</button>
-                      </cart-discount-remove-button>
-                    {%- endif -%}
-                  </div>
-                </div>
-              {%- endfor -%}
-            </div>
-          {%- endif -%}
-        </div>
-      {%- endif -%}
-
-      <div class="v-stack gap-1">
-        <div class="h-stack gap-4 justify-between">
-          <span class="h5">{{ 'cart.general.total' | t }}</span>
-          <span class="h5">{{- cart.total_price | money_with_currency -}}</span>
-        </div>
-
-        {%- if section.settings.show_shipping_text -%}
-          {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-            <p class="text-subdued text-sm">{{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}</p>
-          {%- elsif cart.taxes_included -%}
-            <p class="text-subdued text-sm">{{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}</p>
-          {%- elsif shop.shipping_policy.body != blank -%}
-            <p class="text-subdued text-sm">{{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}</p>
-          {%- else -%}
-            <p class="text-subdued text-sm">{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}</p>
-          {%- endif -%}
-        {%- endif -%}
-
-        {%- if section.settings.show_cart_note -%}
-          <button type="button" class="justify-self-start" aria-controls="cart-drawer-note">
-            <span class="link text-sm text-subdued">
-              {%- if cart.note == blank -%}
-                {{- 'cart.general.add_order_note' | t -}}
-              {%- else -%}
-                {{- 'cart.general.edit_order_note' | t -}}
-              {%- endif -%}
-            </span>
-          </button>
-
-          <cart-note-dialog id="cart-drawer-note" class="cart-drawer__note">
-            <div class="cart-drawer__note-inner">
-              <div class="v-stack gap-4 sm:gap-6">
-                <p class="h5">{{ 'cart.general.order_note' | t }}</p>
-
-                <cart-note class="v-stack gap-4">
-                  {%- assign order_note = 'cart.general.order_note' | t -%}
-                  {%- assign order_save_label = 'cart.general.save_note' | t -%}
-
-                  {%- render 'input', name: 'note', multiline: 3, label: order_note, value: cart.note -%}
-
-                  <div class="justify-self-start">
-                    {%- render 'button', type: 'button', content: order_save_label, size: 'lg', is: 'close-button', secondary: true -%}
-                  </div>
-                </cart-note>
+    <monte-cart-shipping class="free-shipping-bar monte-cart-shipping" threshold="{{ section.settings.shipping_threshold | at_least: 0 | times: 100 }}" total-price="{{ cart.total_price }}" reached-message="{{ section.settings.shipping_success | escape }}" unreached-message="{{ section.settings.shipping_message | replace: '[amount]', amount_placeholder | escape }}">
+      <span>&nbsp;</span><progress-bar class="progress-bar" role="progressbar" aria-label="{{ section.settings.shipping_success | strip_html | escape }}" aria-valuemin="0" style="--progress: 0"></progress-bar>
+    </monte-cart-shipping>
+    <p class="monte-cart-feedback" role="alert" data-cart-error hidden></p>
+    <p class="sr-only" role="status" aria-live="polite" data-cart-status></p>
+    <div class="monte-cart-view" data-item-count="{{ cart.item_count }}">
+      <div class="monte-cart-scroll" tabindex="-1">
+        {%- if cart.empty? -%}
+          <div class="monte-cart-empty">
+            <div class="monte-cart-empty-copy">
+              <div class="monte-cart-illustration {% if section.settings.empty_image == blank and section.settings.empty_video == blank %}monte-cart-illustration--default{% endif %}">
+                {%- if section.settings.empty_video != blank -%}{{ section.settings.empty_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+                {%- elsif section.settings.empty_image != blank -%}{{ section.settings.empty_image | image_url: width: 440 | image_tag: sizes: '220px', widths: '172,220,344,440' }}
+                {%- else -%}<img src="{{ 'monte-cart-empty.png' | asset_url }}" width="220" height="220" alt="">{%- endif -%}
               </div>
+              <h3>{{ section.settings.empty_heading | escape }}</h3><p>{{ section.settings.empty_text | escape }}</p>
             </div>
-          </cart-note-dialog>
+            <div class="monte-cart-recommendations">{%- for recommended_product in section.settings.empty_products -%}{%- render 'monte-cart-recommendation', product: recommended_product, mode: 'empty', section: section -%}{%- endfor -%}</div>
+          </div>
+        {%- else -%}
+          <div class="monte-cart-lines">{%- for line_item in cart.items -%}{%- render 'monte-cart-line', line_item: line_item, section: section -%}{%- endfor -%}</div>
+          {%- if section.settings.products.count > 0 -%}
+            <section class="monte-cart-upsell" aria-labelledby="MonteCartUpsellTitle">
+              <div class="monte-cart-upsell-heading"><h3 id="MonteCartUpsellTitle">{{ section.settings.recommendations_title | escape }}</h3><div class="monte-cart-arrows">
+                <button type="button" data-carousel-direction="-1" aria-label="{{ 'general.accessibility.previous' | t | escape }}" aria-controls="MonteCartCarousel">{% render 'monte-cart-icon', icon: 'previous' %}</button>
+                <button type="button" data-carousel-direction="1" aria-label="{{ 'general.accessibility.next' | t | escape }}" aria-controls="MonteCartCarousel">{% render 'monte-cart-icon', icon: 'next' %}</button>
+              </div></div>
+              <scroll-carousel id="MonteCartCarousel" class="monte-cart-carousel scroll-area" tabindex="0" role="region" aria-label="{{ section.settings.recommendations_title | escape }}">{%- for recommended_product in section.settings.products -%}{%- render 'monte-cart-recommendation', product: recommended_product, mode: 'upsell', section: section -%}{%- endfor -%}</scroll-carousel>
+              <div class="monte-cart-carousel-track" aria-hidden="true"><span></span></div>
+            </section>
+          {%- endif -%}
         {%- endif -%}
       </div>
-
-      <form action="{{ routes.cart_url }}" method="POST" class="buy-buttons {% if section.settings.show_checkout_button %}buy-buttons--compact{% endif %}">
-        {%- assign checkout_label = 'cart.general.checkout' | t -%}
-
-        {%- if section.settings.show_view_cart_button or section.settings.show_checkout_button == false -%}
-          <a href="{{ routes.cart_url }}" class="button button--xl {% if section.settings.show_checkout_button %}button--secondary{% endif %}" data-no-instant>
-            {{- 'cart.general.view_cart' | t -}}
-          </a>
-        {%- endif -%}
-
-        {%- if section.settings.show_checkout_button -%}
-          {%- render 'button', type: 'submit', content: checkout_label, icon: 'picto-lock', name: 'checkout', size: 'xl' -%}
-        {%- endif -%}
-      </form>
+      {%- unless cart.empty? -%}
+        {%- liquid
+          assign compare_total = 0
+          for line_item in cart.items
+            assign compare_line = line_item.variant.compare_at_price | default: line_item.original_price | at_least: line_item.original_price | times: line_item.quantity
+            assign compare_total = compare_total | plus: compare_line
+          endfor
+          assign savings = compare_total | minus: cart.total_price | at_least: 0
+        -%}
+        <form action="{{ routes.cart_url }}" method="post" class="monte-cart-footer">
+          <div class="monte-cart-totals"><p class="monte-cart-savings"><span>{{ section.settings.savings_label | escape }}</span><span>{{ savings | money_without_trailing_zeros }}</span></p>
+            {%- for discount in cart.cart_level_discount_applications -%}<p class="monte-cart-discount"><span>{{ discount.title | escape }}</span><span>−{{ discount.total_allocated_amount | money_without_trailing_zeros }}</span></p>{%- endfor -%}
+            <p><span>{{ section.settings.total_label | escape }}</span>{% render 'monte-cart-price', price: cart.total_price, compare_price: compare_total %}</p>
+          </div>
+          <button type="submit" name="checkout" class="monte-cart-button monte-cart-button--primary monte-cart-checkout">{{ section.settings.checkout_label | escape }}{% render 'monte-cart-icon', icon: 'checkout' %}</button>
+          <div class="monte-cart-trust">{% for n in (1..2) %}{% assign text_key = 'trust_text_' | append: n %}{% assign icon_key = 'trust_icon_' | append: n %}{% if section.settings[text_key] != blank %}<span>{% if section.settings[icon_key] != blank %}{{ section.settings[icon_key] | image_url: width: 40 | image_tag: width: 20, height: 20, alt: '' }}{% elsif n == 1 %}{% render 'monte-cart-icon', icon: 'shipping' %}{% else %}{% render 'monte-cart-icon', icon: 'return' %}{% endif %}{{ section.settings[text_key] | escape }}</span>{% endif %}{% endfor %}</div>
+        </form>
+      {%- endunless -%}
     </div>
-  {%- endif -%}
-</cart-drawer>
+  </div>
+</monte-cart-drawer>
 
 {% schema %}
 {
   "name": "Cart drawer",
+  "class": "shopify-section--cart-drawer",
+  "tag": "section",
   "settings": [
+    {"type":"checkbox","id":"split_title_color","label":"Show title suffix as color","default":true,"info":"For single-variant products named Product - Color, show the suffix as a separate color label."},
+    {"type":"color","id":"background","label":"Drawer background","default":"#f8f1e9"},
     {
-      "type": "paragraph",
-      "content": "Cart drawer won't appear to your customers if you have set the cart type to Page in the global theme settings."
+      "type": "header",
+      "content": "Content"
     },
     {
-      "type": "paragraph",
-      "content": "Free shipping bar can be configured in global cart settings."
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Mój koszyk"
     },
     {
-      "type": "checkbox",
-      "id": "show_cart_note",
-      "label": "Show cart note",
-      "default": true
+      "type": "text",
+      "id": "add_label",
+      "label": "Add button label",
+      "default": "Dodaj"
     },
     {
-      "type": "checkbox",
-      "id": "show_shipping_text",
-      "label": "Show shipping text",
-      "default": true
+      "type": "text",
+      "id": "checkout_label",
+      "label": "Checkout button label",
+      "default": "Przejdź do kasy"
     },
     {
-      "type": "checkbox",
-      "id": "allow_discount_application",
-      "label": "Allow discount application",
-      "default": false
+      "type": "text",
+      "id": "color_label",
+      "label": "Color label",
+      "default": "Kolor:"
     },
     {
-      "type": "checkbox",
-      "id": "show_view_cart_button",
-      "label": "Show view cart button",
-      "default": true
+      "type": "text",
+      "id": "savings_label",
+      "label": "Savings label",
+      "default": "Oszczędzasz:"
     },
     {
-      "type": "checkbox",
-      "id": "show_checkout_button",
-      "label": "Show checkout button",
-      "default": true
+      "type": "text",
+      "id": "total_label",
+      "label": "Total label",
+      "default": "Razem:"
     },
     {
       "type": "header",
-      "content": "Product recommendations"
+      "content": "Free shipping"
+    },
+    {
+      "type": "number",
+      "id": "shipping_threshold",
+      "label": "Free shipping threshold",
+      "info": "Amount in the store currency. This display does not change shipping rates in Shopify.",
+      "default": 250
+    },
+    {
+      "type": "inline_richtext",
+      "id": "shipping_message",
+      "label": "Progress message",
+      "info": "Use [amount] for the remaining amount including currency.",
+      "default": "Brakuje Ci [amount] do <strong>darmowej dostawy</strong>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "shipping_success",
+      "label": "Success message",
+      "default": "Twoje zamówienie kwalifikuje się do <strong>darmowej dostawy!</strong>"
+    },
+    {
+      "type": "header",
+      "content": "Empty cart"
+    },
+    {
+      "type": "image_picker",
+      "id": "empty_image",
+      "label": "Illustration",
+      "info": "Optional. Uses the design illustration when empty."
+    },
+    {
+      "type": "video",
+      "id": "empty_video",
+      "label": "Illustration video",
+      "info": "Overrides the image. Plays automatically, muted and without player controls."
+    },
+    {
+      "type": "text",
+      "id": "empty_heading",
+      "label": "Heading",
+      "default": "Twój koszyk jest pusty"
+    },
+    {
+      "type": "textarea",
+      "id": "empty_text",
+      "label": "Description",
+      "default": "Nie wiesz, od czego zacząć? Oto nasze bestsellery."
+    },
+    {
+      "type": "product_list",
+      "id": "empty_products",
+      "label": "Recommended products",
+      "limit": 3,
+      "info": "Manually choose up to 3 products. The first available variant is selected by default."
+    },
+    {
+      "type": "header",
+      "content": "Filled cart"
     },
     {
       "type": "text",
       "id": "recommendations_title",
-      "label": "Heading",
-      "default": "Trending this month"
+      "label": "Upsell heading",
+      "default": "Może Ci się spodobać"
     },
     {
       "type": "product_list",
       "id": "products",
-      "label": "Recommendations",
-      "info": "Suggest additional products to your customers. Recommendations already in the cart are automatically hidden.",
-      "limit": 10
+      "label": "Upsell products",
+      "limit": 10,
+      "info": "Separate from empty-cart recommendations. Products remain visible after adding."
+    },
+    {
+      "type": "text",
+      "id": "trust_text_1",
+      "label": "Trust message 1",
+      "default": "Wysyłka tego samego dnia"
+    },
+    {
+      "type": "image_picker",
+      "id": "trust_icon_1",
+      "label": "Trust icon 1",
+      "info": "Optional. Uses the design icon when empty."
+    },
+    {
+      "type": "text",
+      "id": "trust_text_2",
+      "label": "Trust message 2",
+      "default": "30 dni na zwrot"
+    },
+    {
+      "type": "image_picker",
+      "id": "trust_icon_2",
+      "label": "Trust icon 2",
+      "info": "Optional. Uses the design icon when empty."
+    },
+    {
+      "type": "header",
+      "content": "Feedback"
+    },
+    {
+      "type": "text",
+      "id": "error_message",
+      "label": "Request error",
+      "default": "Nie udało się zaktualizować koszyka. Spróbuj ponownie."
+    },
+    {
+      "type": "text",
+      "id": "limit_message",
+      "label": "Quantity limit message",
+      "default": "Możesz dodać maksymalnie 50 sztuk tego wariantu."
+    },
+    {
+      "type": "text",
+      "id": "updated_message",
+      "label": "Screen reader update",
+      "default": "Koszyk został zaktualizowany."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
     },
     {
       "type": "color",
-      "id": "product_card_background",
-      "label": "Product card background"
+      "id": "card_color",
+      "label": "Card background",
+      "default": "#eee7e0"
     },
     {
       "type": "color",
-      "id": "product_card_text_color",
-      "label": "Product card text"
+      "id": "text_color",
+      "label": "Text and accent",
+      "default": "#232e71"
+    },
+    {
+      "type": "color",
+      "id": "secondary_color",
+      "label": "Secondary text",
+      "default": "#52597e"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Borders",
+      "default": "#dcd6cf"
+    },
+    {
+      "type": "color",
+      "id": "compare_color",
+      "label": "Compare-at price",
+      "default": "#8a2f3a"
+    },
+    {
+      "type": "color",
+      "id": "savings_color",
+      "label": "Savings",
+      "default": "#2f6b57"
+    },
+    {
+      "type": "color",
+      "id": "inverse_color",
+      "label": "Button text",
+      "default": "#fdfbf9"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Primary button hover",
+      "default": "#182153"
     }
   ]
 }

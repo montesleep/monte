@@ -1,0 +1,15 @@
+{%- liquid
+  assign display_title = product.title
+  assign color = product.metafields.custom.color.value
+  assign title_parts = product.title | split: ' - '
+  if section.settings.split_title_color and product.has_only_default_variant and title_parts.size == 2
+    assign display_title = title_parts | first
+    if color == blank
+      assign color = title_parts | last
+    endif
+  endif
+-%}
+{%- if mode == 'title' -%}{{ display_title | escape }}
+{%- elsif product.has_only_default_variant == false -%}<p class="monte-cart-variant">{{ variant.title | escape }}</p>
+{%- elsif color != blank -%}<p class="monte-cart-variant">{{ section.settings.color_label | escape }} {{ color | escape }}</p>
+{%- endif -%}

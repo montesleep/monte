@@ -1,0 +1,22 @@
+{%- assign variant = product.selected_or_first_available_variant -%}
+<article class="monte-cart-product monte-cart-product--{{ mode }}" data-cart-product>
+  <a class="monte-cart-image" href="{{ variant.url }}" aria-label="{{ product.title | escape }}">
+    {%- if product.featured_image -%}{{ product.featured_image | image_url: width: 320 | image_tag: loading: 'lazy', sizes: '160px', widths: '80,160,320' }}{%- else -%}{{ 'product-1' | placeholder_svg_tag }}{%- endif -%}
+  </a>
+  <div class="monte-cart-product-info">
+    <a href="{{ variant.url }}" class="monte-cart-product-title link-faded-reverse">{% render 'monte-cart-product-label', product: product, variant: variant, section: section, mode: 'title' %}</a>
+    {%- if mode == 'empty' -%}{%- render 'monte-cart-product-label', product: product, variant: variant, section: section -%}{%- endif -%}
+    {%- render 'monte-cart-price', price: variant.price, compare_price: variant.compare_at_price -%}
+  </div>
+  <form action="{{ routes.cart_add_url }}" method="post" data-cart-add-form data-focus-key="{{ mode }}-{{ product.id }}">
+    {%- if product.variants.size > 1 -%}
+      <label class="sr-only" for="CartVariant-{{ mode }}-{{ product.id }}">{{ 'product.general.variant' | t }}</label>
+      <select id="CartVariant-{{ mode }}-{{ product.id }}" name="id" class="monte-cart-variant-select" data-cart-variant>
+        {%- for option in product.variants -%}<option value="{{ option.id }}" {% if option.id == variant.id %}selected{% endif %} {% unless option.available %}disabled{% endunless %} data-price="{{ option.price | money_without_trailing_zeros | escape }}" data-compare="{% if option.compare_at_price > option.price %}{{ option.compare_at_price | money_without_trailing_zeros | escape }}{% endif %}" data-url="{{ option.url }}">{{ option.title | escape }}</option>{%- endfor -%}
+      </select>
+    {%- else -%}<input type="hidden" name="id" value="{{ variant.id }}">{%- endif -%}
+    <button type="submit" class="monte-cart-button {% if mode == 'empty' %}monte-cart-button--primary{% else %}monte-cart-button--outline{% endif %}" data-focus-key="add-{{ mode }}-{{ product.id }}" {% unless variant.available %}disabled{% endunless %} aria-label="{{ section.settings.add_label | escape }}: {{ product.title | escape }}">
+      <span>{% if variant.available %}{{ section.settings.add_label | escape }}{% else %}{{ 'product.general.sold_out_button' | t }}{% endif %}</span>{%- render 'monte-cart-icon', icon: 'plus' -%}
+    </button>
+  </form>
+</article>

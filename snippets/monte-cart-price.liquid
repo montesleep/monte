@@ -1,0 +1,4 @@
+<span class="monte-cart-price">
+  <span class="sr-only">{{ 'product.price.sale_price' | t }}</span><strong>{{ price | money_without_trailing_zeros }}</strong>
+  {%- if compare_price > price -%}<s><span class="sr-only">{{ 'product.price.regular_price' | t }}</span>{{ compare_price | money_without_trailing_zeros }}</s>{%- endif -%}
+</span>

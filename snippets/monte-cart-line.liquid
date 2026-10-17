@@ -1,0 +1,32 @@
+{%- liquid
+  assign minimum = line_item.variant.quantity_rule.min | default: 1 | at_least: 1
+  assign increment = line_item.variant.quantity_rule.increment | default: 1 | at_least: 1
+  assign maximum = line_item.variant.quantity_rule.max | default: 50 | at_most: 50
+  if line_item.variant.inventory_management != blank and line_item.variant.inventory_policy == 'deny'
+    assign maximum = maximum | at_most: line_item.variant.inventory_quantity
+  endif
+  assign compare_price = line_item.variant.compare_at_price | default: line_item.original_price | at_least: line_item.original_price | times: line_item.quantity
+-%}
+<article class="monte-cart-line" data-line-key="{{ line_item.key }}" data-quantity="{{ line_item.quantity }}" data-min="{{ minimum }}" data-max="{{ maximum }}" data-step="{{ increment }}">
+  <a class="monte-cart-image" href="{{ line_item.url }}" aria-label="{{ line_item.product.title | escape }}">{% if line_item.image %}{{ line_item.image | image_url: width: 160 | image_tag: loading: 'lazy', sizes: '80px', widths: '64,80,128,160' }}{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endif %}</a>
+  <div class="monte-cart-line-info">
+    <div class="monte-cart-line-top">
+      <div class="monte-cart-line-title">
+        <a href="{{ line_item.url }}" class="monte-cart-product-title link-faded-reverse">{% render 'monte-cart-product-label', product: line_item.product, variant: line_item.variant, section: section, mode: 'title' %}</a>
+        {%- render 'monte-cart-product-label', product: line_item.product, variant: line_item.variant, section: section -%}
+        {%- if line_item.selling_plan_allocation -%}<p class="monte-cart-variant">{{ line_item.selling_plan_allocation.selling_plan.name | escape }}</p>{%- endif -%}
+        {%- for property in line_item.properties -%}{%- assign first_character = property.first | slice: 0 -%}{%- if property.last != blank and first_character != '_' -%}<p class="monte-cart-variant">{{ property.first | escape }}: {{ property.last | escape }}</p>{%- endif -%}{%- endfor -%}
+      </div>
+      <button type="button" class="monte-cart-remove link-faded" data-cart-quantity="0" data-focus-key="remove-{{ line_item.key }}" aria-label="{{ 'cart.order.remove' | t | escape }}: {{ line_item.product.title | escape }}">{%- render 'monte-cart-icon', icon: 'trash' -%}</button>
+    </div>
+    <div class="monte-cart-line-bottom">
+      <div class="monte-cart-quantity" aria-label="{{ 'product.quantity.label' | t | escape }}">
+        <button type="button" data-cart-quantity="{{ line_item.quantity | minus: increment }}" data-focus-key="minus-{{ line_item.key }}" aria-label="{{ 'product.quantity.decrease_quantity' | t | escape }}" {% if line_item.quantity <= minimum %}disabled{% endif %}>{%- render 'monte-cart-icon', icon: 'minus' -%}</button>
+        <span>{{ line_item.quantity }}</span>
+        <button type="button" data-cart-quantity="{{ line_item.quantity | plus: increment }}" data-focus-key="plus-{{ line_item.key }}" aria-label="{{ 'product.quantity.increase_quantity' | t | escape }}" {% if line_item.quantity >= maximum %}disabled{% endif %}>{%- render 'monte-cart-icon', icon: 'plus' -%}</button>
+      </div>
+      {%- render 'monte-cart-price', price: line_item.final_line_price, compare_price: compare_price -%}
+    </div>
+    {%- for discount in line_item.line_level_discount_allocations -%}<p class="monte-cart-variant">{{ discount.discount_application.title | escape }} (−{{ discount.amount | money_without_trailing_zeros }})</p>{%- endfor -%}
+  </div>
+</article>

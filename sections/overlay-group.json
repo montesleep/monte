@@ -36,15 +36,17 @@
     "cart-drawer": {
       "type": "cart-drawer",
       "settings": {
-        "show_cart_note": true,
-        "show_shipping_text": true,
-        "allow_discount_application": false,
-        "show_view_cart_button": false,
-        "show_checkout_button": true,
-        "recommendations_title": "Trending this month",
-        "products": [],
-        "product_card_background": "#f2f2f2",
-        "product_card_text_color": ""
+        "empty_products": [
+          "midnight-blue-silk-sleep-mask",
+          "rose-noir-silk-sleep-mask",
+          "classic-black-silk-sleep-mask"
+        ],
+        "products": [
+          "champagne-gold-silk-sleep-mask",
+          "classic-black-silk-sleep-mask",
+          "rose-noir-silk-sleep-mask",
+          "midnight-blue-silk-sleep-mask"
+        ]
       }
     },
     "search-drawer": {

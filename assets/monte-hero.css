@@ -8,7 +8,8 @@
 .monte-hero__rating p { margin: 0; min-width: 0; overflow-wrap: anywhere; }
 .monte-social-rating { display: inline-flex; gap: 2px; flex-shrink: 0; }
 .monte-social-rating__star { display: block; position: relative; width: 16px; height: 16px; border-radius: 2px; overflow: hidden; }
-.monte-social-rating__star img { display: block; position: absolute; inset: 0; width: 16px; height: 16px; }
+.monte-social-rating__star img { display: block; position: absolute; top: 0; left: 0; max-width: none; }
+.monte-social-rating__star .monte-social-rating__half-star { top: 1.66667px; left: 1.69067px; }
 .monte-social-rating__fill { position: absolute; inset: 0; background: #d9a17d; }
 .monte-hero__messaging { display: grid; gap: 12px; width: 100%; }
 .monte-hero__heading { margin: 0; font: 500 40px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }

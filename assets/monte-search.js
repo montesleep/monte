@@ -148,6 +148,8 @@ class MonteSearchDrawer extends SearchDrawer {
     this.results.hidden = !active;
     if (!active) this.results.replaceChildren();
     this.loading.hidden = !active;
+    const empty = this.results.querySelector('[data-search-empty]');
+    if (active && empty) empty.hidden = true;
     this.error.hidden = true;
     this.status.textContent = '';
     this.scrollArea.scrollTop = 0;
@@ -181,9 +183,9 @@ class MonteSearchDrawer extends SearchDrawer {
   searchWords(value) {
     return value.normalize('NFC').toLocaleLowerCase().match(/[\p{L}\p{N}]+/gu) || [];
   }
-  matchesProduct(card, terms) {
+  matchesProduct(card, terms, exact = false) {
     const words = this.searchWords(`${card.dataset.searchTitle || ''} ${card.dataset.searchTags || ''}`);
-    return terms.length > 0 && terms.every(term => words.some(word => word.startsWith(term)));
+    return terms.length > 0 && terms.every(term => words.some(word => exact ? word === term : word.startsWith(term)));
   }
   async search(query, version) {
     if (version !== this.version || !this.isConnected) return;
@@ -193,7 +195,7 @@ class MonteSearchDrawer extends SearchDrawer {
     const url = new URL(this.form.action, location.origin);
     url.search = new URLSearchParams({ q: terms.join(' '), type: 'product', 'options[prefix]': 'last', section_id: 'monte-search-results' }).toString();
     let next = url.href;
-    let firstPage = true;
+    let resultPage;
     let productsLabel = '';
     const seenPages = new Set();
     const seenProducts = new Set();
@@ -210,13 +212,12 @@ class MonteSearchDrawer extends SearchDrawer {
         page.querySelectorAll('[data-product-id]').forEach(card => {
           if (!this.matchesProduct(card, terms)) card.remove();
         });
-        if (firstPage) {
+        if (!resultPage) {
+          resultPage = page;
           productsLabel = page.dataset.productsLabel;
-          this.results.replaceChildren(...page.childNodes);
-          this.results.querySelectorAll('[data-product-id]').forEach(card => seenProducts.add(card.dataset.productId));
-          firstPage = false;
+          page.querySelectorAll('[data-product-id]').forEach(card => seenProducts.add(card.dataset.productId));
         } else {
-          const grid = this.results.querySelector('.monte-search-grid');
+          const grid = resultPage.querySelector('.monte-search-grid');
           page.querySelectorAll('[data-product-id]').forEach(card => {
             if (!seenProducts.has(card.dataset.productId)) {
               seenProducts.add(card.dataset.productId);
@@ -224,8 +225,6 @@ class MonteSearchDrawer extends SearchDrawer {
             }
           });
         }
-        // Do not show an empty state until every candidate page has been checked.
-        this.results.querySelector('[data-search-empty]').hidden = true;
         next = page.dataset.nextUrl;
         if (next) {
           const nextUrl = new URL(next, url);
@@ -234,10 +233,16 @@ class MonteSearchDrawer extends SearchDrawer {
           next = nextUrl.href;
         }
       }
+      // Decide across all pages before rendering so prefix-only matches never flash before exact matches.
+      const cards = Array.from(resultPage.querySelectorAll('[data-product-id]'));
+      const exactMatches = new Set(cards.filter(card => this.matchesProduct(card, terms, true)));
+      if (exactMatches.size) cards.forEach(card => { if (!exactMatches.has(card)) card.remove(); });
+      const count = exactMatches.size || cards.length;
+      this.results.replaceChildren(...resultPage.childNodes);
       const empty = this.results.querySelector('[data-search-empty]');
-      empty.hidden = seenProducts.size > 0;
-      this.results.querySelector('.monte-search-grid').hidden = seenProducts.size === 0;
-      this.status.textContent = seenProducts.size ? `${productsLabel}: ${seenProducts.size}. ${query}` : empty.textContent.trim();
+      empty.hidden = count > 0;
+      this.results.querySelector('.monte-search-grid').hidden = count === 0;
+      this.status.textContent = count ? `${productsLabel}: ${count}. ${query}` : empty.textContent.trim();
     } catch (error) {
       if (error.name !== 'AbortError' && version === this.version && this.isConnected) this.error.hidden = false;
     } finally {

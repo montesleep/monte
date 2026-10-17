@@ -13,12 +13,20 @@ the underlying logic of the menu.
   {%- assign will_show_locale_selector = true -%}
 {%- endif -%}
 
+{%- assign monte_header = false -%}
+{%- if section.settings.layout == 'monte' -%}
+  {%- assign monte_header = true -%}
+  {{- 'monte-header.css' | asset_url | stylesheet_tag -}}
+{%- endif -%}
+
 <style>
   :root {
     --sticky-header-enabled: {%- if section.settings.enable_sticky -%}1{% else %}0{% endif %};
   }
 
   #shopify-section-{{ section.id }} {
+    --monte-logo-mobile-width: {{ section.settings.logo_mobile_max_width }}px;
+    --monte-logo-desktop-width: {{ section.settings.logo_max_width }}px;
     --header-grid-template: "main-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 1fr);
     --header-padding-block: {% if section.settings.reduce_padding %}var(--spacing-3){% else %}var(--spacing-4-5){% endif %};
     --header-background-opacity: {{ section.settings.background_opacity | divided_by: 100.0 }};
@@ -76,7 +84,7 @@ the underlying logic of the menu.
 </style>
 
 <height-observer variable="header">
-  <store-header class="header" {% if section.settings.hide_on_scroll %}hide-on-scroll="100"{% endif %} {% if section.settings.enable_sticky %}sticky{% endif %}>
+  <store-header class="header{% if monte_header %} header--monte{% endif %}" {% if section.settings.hide_on_scroll %}hide-on-scroll="100"{% endif %} {% if section.settings.enable_sticky %}sticky{% endif %}>
     <div class="header__wrapper">
       {%- comment -%}
       --------------------------------------------------------------------------------------------------------------------
@@ -86,17 +94,19 @@ the underlying logic of the menu.
 
       <div class="header__main-nav">
         <div class="header__icon-list">
-          <button type="button" class="tap-area {% if section.settings.layout != 'drawer' %}lg:hidden{% endif %}" aria-controls="header-sidebar-menu">
+          <button type="button" class="tap-area {% if monte_header %}monte-header-button monte-header-mobile link-faded-reverse {% endif %}{% if section.settings.layout != 'drawer' %}lg:hidden{% endif %}" aria-controls="header-sidebar-menu">
             <span class="sr-only">{{ 'header.general.menu' | t }}</span>
-            {%- render 'icon' with 'hamburger' -%}
+            {%- if monte_header -%}{%- render 'monte-header-icon', name: 'menu', section: section -%}{%- else -%}{%- render 'icon' with 'hamburger' -%}{%- endif -%}
           </button>
 
-          <a href="{{ routes.search_url }}" class="tap-area sm:hidden" aria-controls="search-drawer">
+          <a href="{{ routes.search_url }}" class="tap-area {% if monte_header %}monte-header-button monte-header-mobile link-faded-reverse{% else %}sm:hidden{% endif %}" aria-controls="search-drawer">
             <span class="sr-only">{{ 'header.general.search' | t }}</span>
-            {%- render 'icon' with 'search' -%}
+            {%- if monte_header -%}{%- render 'monte-header-icon', name: 'search', section: section -%}{%- else -%}{%- render 'icon' with 'search' -%}{%- endif -%}
           </a>
 
-          {%- if section.settings.layout != 'drawer' and section.settings.menu.links.size > 0 -%}
+          {%- if monte_header -%}
+            {%- render 'monte-header-navigation', area: 'primary', section: section -%}
+          {%- elsif section.settings.layout != 'drawer' and section.settings.menu.links.size > 0 -%}
             <nav class="header__link-list {% if section.settings.layout == 'logo_left_navigation_center' %}justify-center{% endif %} wrap" role="navigation">
               <ul class="contents" role="list">
                 {%- for link in section.settings.menu.links -%}
@@ -199,7 +209,13 @@ the underlying logic of the menu.
       {%- endcomment -%}
 
       {%- capture logo_content -%}
-        {%- if section.settings.logo -%}
+        {%- if monte_header and section.settings.use_brand_logo -%}
+          <span class="sr-only">{{ shop.name }}</span>
+          <span class="monte-header-logo" aria-hidden="true">
+            <img class="monte-header-logo__mobile" src="{{ 'monte-header-logo-mobile.svg' | asset_url }}" width="90" height="16" alt="">
+            <img class="monte-header-logo__desktop" src="{{ 'monte-header-logo-desktop.svg' | asset_url }}" width="135" height="24" alt="">
+          </span>
+        {%- elsif section.settings.logo -%}
           {%- capture sizes -%}{{ section.settings.logo_max_width }}px{%- endcapture -%}
           {%- capture widths -%}{{ section.settings.logo_max_width | times: 2 | at_most: section.settings.logo.width }}, {{ section.settings.logo_max_width | times: 3 | at_most: section.settings.logo.width }}{%- endcapture -%}
           <span class="sr-only">{{ shop.name }}</span>
@@ -229,7 +245,9 @@ the underlying logic of the menu.
       {%- endcomment -%}
 
       <div class="header__secondary-nav">
-        {%- if section.settings.layout != 'drawer' and section.settings.secondary_menu.links.size > 0 -%}
+        {%- if monte_header -%}
+          {%- render 'monte-header-navigation', area: 'secondary', section: section -%}
+        {%- elsif section.settings.layout != 'drawer' and section.settings.secondary_menu.links.size > 0 -%}
           <nav class="header__link-list" role="navigation">
             <ul class="contents">
               {%- for link in section.settings.secondary_menu.links -%}
@@ -254,28 +272,35 @@ the underlying logic of the menu.
             </li>
           {%- endif -%}
 
-          <li>
-            <a href="{{ routes.search_url }}" class="hidden tap-area sm:block" aria-controls="search-drawer">
+          <li {% if monte_header %}class="monte-header-desktop"{% endif %}>
+            <a href="{{ routes.search_url }}" class="tap-area {% if monte_header %}monte-header-button link-faded-reverse{% else %}hidden sm:block{% endif %}" aria-controls="search-drawer">
               <span class="sr-only">{{ 'header.general.search' | t }}</span>
-              {%- render 'icon' with 'search' -%}
+              {%- if monte_header -%}{%- render 'monte-header-icon', name: 'search', section: section -%}{%- else -%}{%- render 'icon' with 'search' -%}{%- endif -%}
             </a>
           </li>
           
           {%- if shop.customer_accounts_enabled -%}
             <li>
+              {%- if monte_header -%}
+                <a class="tap-area monte-header-button link-faded-reverse" href="{{ routes.account_url }}">
+                  <span class="sr-only">{{ 'header.general.login' | t }}</span>
+                  {%- render 'monte-header-icon', name: 'account', section: section -%}
+                </a>
+              {%- else -%}
               <shopify-account class="hidden sm:block" menu="{{ section.settings.customer_account_menu }}">
                 <div slot="signed-out-avatar" class="tap-area">
                   <span class="sr-only">{{ 'header.general.login' | t }}</span>
                   {%- render 'icon' with 'account' -%}
                 </div>
               </shopify-account>
+              {%- endif -%}
             </li>
           {%- endif -%}
 
           <li>
-            <a href="{{ routes.cart_url }}" data-no-instant class="relative block tap-area" {% if settings.cart_type != 'page' and request.page_type != 'cart' %}aria-controls="cart-drawer"{% endif %}>
+            <a href="{{ routes.cart_url }}" data-no-instant class="relative block tap-area{% if monte_header %} monte-header-button link-faded-reverse{% endif %}" {% if settings.cart_type != 'page' and request.page_type != 'cart' %}aria-controls="cart-drawer"{% endif %}>
               <span class="sr-only">{{ 'header.general.cart' | t }}</span>
-              {%- render 'icon' with 'cart' -%}
+              {%- if monte_header -%}{%- render 'monte-header-icon', name: 'cart', section: section -%}{%- else -%}{%- render 'icon' with 'cart' -%}{%- endif -%}
 
               <div class="header__cart-count">
                 <cart-count class="count-bubble {% if cart.item_count == 0 %}opacity-0{% endif %}">
@@ -331,6 +356,71 @@ the underlying logic of the menu.
   "tag": "header",
   "settings": [
     {
+      "type": "header",
+      "content": "Monte header"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_brand_logo",
+      "label": "Use the Monte brand logo",
+      "default": true,
+      "info": "Turn off to use the uploaded logo and its width settings."
+    },
+    {
+      "type": "text",
+      "id": "shop_label",
+      "label": "Shop menu label",
+      "default": "Sklep"
+    },
+    {
+      "type": "text",
+      "id": "bundles_label",
+      "label": "Bundles link label",
+      "default": "Zestawy"
+    },
+    {
+      "type": "url",
+      "id": "bundles_link",
+      "label": "Bundles link",
+      "default": "/collections",
+      "info": "Choose the dedicated bundles collection when it is ready."
+    },
+    {
+      "type": "text",
+      "id": "contact_label",
+      "label": "Contact menu label",
+      "default": "Kontakt"
+    },
+    {
+      "type": "url",
+      "id": "contact_link",
+      "label": "Contact fallback link"
+    },
+    {
+      "type": "image_picker",
+      "id": "menu_icon",
+      "label": "Menu icon",
+      "info": "Optional. Replaces the built-in icon on mobile and desktop."
+    },
+    {
+      "type": "image_picker",
+      "id": "search_icon",
+      "label": "Search icon",
+      "info": "Optional. Replaces the built-in icon on mobile and desktop."
+    },
+    {
+      "type": "image_picker",
+      "id": "account_icon",
+      "label": "Account icon",
+      "info": "Optional. Replaces the built-in icon on mobile and desktop."
+    },
+    {
+      "type": "image_picker",
+      "id": "cart_icon",
+      "label": "Cart icon",
+      "info": "Optional. Replaces the built-in icon on mobile and desktop."
+    },
+    {
       "type": "checkbox",
       "id": "enable_sticky",
       "label": "Enable sticky header",
@@ -380,7 +470,8 @@ the underlying logic of the menu.
       "type": "link_list",
       "id": "menu",
       "label": "Menu",
-      "default": "main-menu"
+      "default": "main-menu",
+      "info": "Used for the shop dropdown and mobile navigation in the Monte layout."
     },
     {
       "type": "link_list",
@@ -391,7 +482,7 @@ the underlying logic of the menu.
       "type": "link_list",
       "id": "secondary_menu",
       "label": "Secondary menu",
-      "info": "This menu won't show dropdown items. For best results, limit the number of links to 1 or 2."
+      "info": "Used for the contact dropdown and secondary mobile navigation in the Monte layout."
     },
     {
       "type": "link_list",
@@ -446,6 +537,10 @@ the underlying logic of the menu.
       "label": "Layout",
       "info": "When centering navigation, you should limit your links to 5.",
       "options": [
+        {
+          "value": "monte",
+          "label": "Monte — centered logo"
+        },
         {
           "value": "logo_left_navigation_inline",
           "label": "Logo left, navigation inline"

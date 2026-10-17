@@ -1,0 +1,16 @@
+{%- liquid
+  assign custom_setting = name | append: '_icon'
+  assign custom_icon = section.settings[custom_setting]
+  assign mobile_asset = 'monte-header-' | append: name | append: '-mobile.svg'
+  assign desktop_asset = 'monte-header-' | append: name | append: '-desktop.svg'
+-%}
+<span class="monte-header-icon monte-header-icon--{{ name }}" aria-hidden="true">
+  {%- if custom_icon != blank -%}
+    {{- custom_icon | image_url: width: 96 | image_tag: class: 'monte-header-icon__custom', alt: '', width: 24, height: 24 -}}
+  {%- else -%}
+    <img class="monte-header-icon__mobile" src="{{ mobile_asset | asset_url }}" width="20" height="20" alt="">
+    {%- unless name == 'menu' -%}
+      <img class="monte-header-icon__desktop" src="{{ desktop_asset | asset_url }}" width="24" height="24" alt="">
+    {%- endunless -%}
+  {%- endif -%}
+</span>

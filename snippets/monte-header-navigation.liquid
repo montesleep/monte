@@ -1,0 +1,46 @@
+{%- if area == 'primary' -%}
+  {%- liquid
+    assign shop_label = section.settings.shop_label | default: 'Sklep'
+    assign mega_menu_block = section.blocks | where: 'type', 'mega_menu' | first
+  -%}
+  <nav class="header__link-list monte-header-navigation" aria-label="{{ shop_label | escape }}">
+    <ul class="contents" role="list">
+      <li>
+        <details is="mega-menu-disclosure" trigger="{{ section.settings.menu_open_trigger }}" {% if mega_menu_block %}{{ mega_menu_block.shopify_attributes }}{% endif %}>
+          <summary class="monte-header-link text-with-icon link-faded-reverse">
+            {{- shop_label | escape -}}
+            <img class="monte-header-chevron" src="{{ 'monte-header-chevron.svg' | asset_url }}" width="10" height="7" alt="">
+          </summary>
+          {%- render 'mega-menu-horizontal', link: section.settings.menu, mega_menu_block: mega_menu_block -%}
+        </details>
+      </li>
+      <li>
+        <a class="monte-header-link link-faded-reverse" href="{{ section.settings.bundles_link | default: routes.collections_url }}">{{ section.settings.bundles_label | escape }}</a>
+      </li>
+    </ul>
+  </nav>
+{%- else -%}
+  <nav class="header__link-list monte-header-navigation" aria-label="{{ section.settings.contact_label | escape }}">
+    <ul class="contents" role="list">
+      <li>
+        <details class="relative" is="dropdown-disclosure" trigger="{{ section.settings.menu_open_trigger }}">
+          <summary class="monte-header-link text-with-icon link-faded-reverse">
+            {{- section.settings.contact_label | escape -}}
+            <img class="monte-header-chevron" src="{{ 'monte-header-chevron.svg' | asset_url }}" width="10" height="7" alt="">
+          </summary>
+          <div class="dropdown-menu dropdown-menu--restrictable monte-header-contact">
+            <ul class="contents" role="list">
+              {%- if section.settings.secondary_menu.links.size > 0 -%}
+                {%- for link in section.settings.secondary_menu.links -%}
+                  <li><a class="dropdown-menu__item group" href="{{ link.url }}"><span class="reversed-link">{{ link.title }}</span></a></li>
+                {%- endfor -%}
+              {%- else -%}
+                <li><a class="dropdown-menu__item group" href="{{ section.settings.contact_link }}"><span class="reversed-link">{{ section.settings.contact_label | escape }}</span></a></li>
+              {%- endif -%}
+            </ul>
+          </div>
+        </details>
+      </li>
+    </ul>
+  </nav>
+{%- endif -%}

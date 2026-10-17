@@ -1,0 +1,64 @@
+.header--monte {
+  --header-part-gap: 0px;
+  --header-icon-list-spacing: 4px;
+  --header-link-list-spacing: 0px;
+  --header-grid-template: "main-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 1fr);
+}
+.header--monte .header__wrapper { padding: 12px 16px; min-height: 60px; }
+.header--monte .header__secondary-nav { flex-wrap: nowrap; gap: 12px; }
+.header--monte .header__icon-list { gap: 4px; }
+.header--monte .monte-header-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 auto;
+  padding: 8px;
+  border-radius: 8px;
+}
+.header--monte .monte-header-button::before { inset: 0; }
+.header--monte .monte-header-desktop { display: none; }
+.header--monte .header__logo-image { width: var(--monte-logo-mobile-width, 90px); }
+.monte-header-logo { display: block; }
+.monte-header-logo img { width: auto; height: auto; max-width: none; }
+.monte-header-logo__desktop { display: none; }
+.monte-header-icon { display: grid; place-items: center; width: 20px; height: 20px; position: relative; }
+.monte-header-icon img { width: auto; height: auto; max-width: none; }
+.monte-header-icon .monte-header-icon__custom { width: 20px; height: 20px; object-fit: contain; }
+.monte-header-icon__desktop { display: none; }
+.monte-header-icon--search > img:not(.monte-header-icon__custom) { position: absolute; top: .78125px; left: .78125px; }
+.header--monte .header__cart-count { top: 1px; inset-inline-start: 19px; inset-inline-end: auto; pointer-events: none; }
+.header--monte .count-bubble {
+  min-width: 16px;
+  width: auto;
+  height: 16px;
+  padding-inline: 4px;
+  font-family: "PP Neue Montreal Mono", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -.12px;
+  font-variant-numeric: tabular-nums;
+}
+.monte-header-link { padding: 8px 12px; gap: 8px; font-family: var(--text-font-family); font-size: 16px; font-weight: 600; line-height: 24px; white-space: nowrap; }
+.monte-header-chevron { width: 10px; height: 7px; transition: transform .2s ease; }
+details[open] > summary > .monte-header-chevron { transform: rotate(180deg); }
+.monte-header-contact { inset-inline: auto 0; }
+@media (prefers-reduced-motion: reduce) {
+  .monte-header-chevron { transition: none; }
+}
+@media (min-width: 1150px) {
+  .header--monte .header__wrapper { padding: 20px 40px; min-height: 80px; }
+  .header--monte .monte-header-mobile { display: none; }
+  .header--monte .monte-header-desktop { display: flex; }
+  .header--monte .header__link-list { gap: 0; }
+  .header--monte .header__logo-image { width: var(--monte-logo-desktop-width, 135px); }
+  .monte-header-logo__mobile { display: none; }
+  .monte-header-logo__desktop { display: block; }
+  .monte-header-icon { width: 24px; height: 24px; }
+  .monte-header-icon__mobile { display: none; }
+  .monte-header-icon__desktop { display: block; }
+  .monte-header-icon .monte-header-icon__custom { width: 24px; height: 24px; }
+  .monte-header-icon--search > img:not(.monte-header-icon__custom) { top: .9375px; left: .9375px; }
+  .header--monte .header__cart-count { top: 2px; inset-inline-start: 22px; }
+}

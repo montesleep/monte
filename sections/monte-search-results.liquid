@@ -1,16 +1,13 @@
 {%- paginate search.results by 50 -%}
-  <div data-search-page data-next-url="{{ paginate.next.url | escape }}" data-count="{{ search.results_count }}" data-status="{{ 'search.results_count' | t: count: search.results_count, terms: search.terms | escape }}">
-    {%- if search.performed and search.results_count == 0 -%}
-      <div class="empty-state"><p class="h6">{{ 'search.general.no_results' | t }}</p></div>
-    {%- else -%}
-      <div class="monte-search-grid">
-        {%- for product in search.results -%}
-          {%- if product.object_type == 'product' -%}
-            {%- render 'monte-search-product-card', product: product -%}
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
+  <div data-search-page data-next-url="{{ paginate.next.url | escape }}" data-products-label="{{ 'search.general.products' | t | escape }}">
+    <div class="empty-state" data-search-empty{% if search.results_count > 0 %} hidden{% endif %}><p class="h6">{{ 'search.general.no_results' | t }}</p></div>
+    <div class="monte-search-grid">
+      {%- for product in search.results -%}
+        {%- if product.object_type == 'product' -%}
+          {%- render 'monte-search-product-card', product: product -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
   </div>
 {%- endpaginate -%}
 {% schema %}

@@ -131,7 +131,7 @@ class MonteSearchDrawer extends SearchDrawer {
     this.cancelSearch();
     const query = this.input.value.trim().replace(/\s+/g, ' ');
     this.toggleAttribute('has-text', query.length > 0);
-    const active = Array.from(query).length >= 3;
+    const active = Array.from(query).length >= 3 && this.searchWords(query).length > 0;
     this.toggleAttribute('has-query', active);
     this.idle.hidden = active;
     this.results.hidden = !active;
@@ -167,14 +167,23 @@ class MonteSearchDrawer extends SearchDrawer {
       }
     }
   }
+  searchWords(value) {
+    return value.normalize('NFC').toLocaleLowerCase().match(/[\p{L}\p{N}]+/gu) || [];
+  }
+  matchesProduct(card, terms) {
+    const words = this.searchWords(`${card.dataset.searchTitle || ''} ${card.dataset.searchTags || ''}`);
+    return terms.length > 0 && terms.every(term => words.some(word => word.startsWith(term)));
+  }
   async search(query, version) {
     if (version !== this.version || !this.isConnected) return;
     const request = this.request = new AbortController();
     this.results.setAttribute('aria-busy', 'true');
+    const terms = this.searchWords(query);
     const url = new URL(this.form.action, location.origin);
-    url.search = new URLSearchParams({ q: query, type: 'product', 'options[prefix]': 'last', section_id: 'monte-search-results' }).toString();
+    url.search = new URLSearchParams({ q: terms.join(' '), type: 'product', 'options[prefix]': 'last', section_id: 'monte-search-results' }).toString();
     let next = url.href;
     let firstPage = true;
+    let productsLabel = '';
     const seenPages = new Set();
     const seenProducts = new Set();
     try {
@@ -186,10 +195,14 @@ class MonteSearchDrawer extends SearchDrawer {
         if (version !== this.version || !this.isConnected) return;
         const page = doc.querySelector('[data-search-page]');
         if (!page) throw new Error('Search markup missing');
+        // Shopify's broad matching supplies candidates; only title/tag word prefixes qualify.
+        page.querySelectorAll('[data-product-id]').forEach(card => {
+          if (!this.matchesProduct(card, terms)) card.remove();
+        });
         if (firstPage) {
+          productsLabel = page.dataset.productsLabel;
           this.results.replaceChildren(...page.childNodes);
           this.results.querySelectorAll('[data-product-id]').forEach(card => seenProducts.add(card.dataset.productId));
-          this.status.textContent = page.dataset.status;
           firstPage = false;
         } else {
           const grid = this.results.querySelector('.monte-search-grid');
@@ -200,6 +213,8 @@ class MonteSearchDrawer extends SearchDrawer {
             }
           });
         }
+        // Do not show an empty state until every candidate page has been checked.
+        this.results.querySelector('[data-search-empty]').hidden = true;
         next = page.dataset.nextUrl;
         if (next) {
           const nextUrl = new URL(next, url);
@@ -208,6 +223,10 @@ class MonteSearchDrawer extends SearchDrawer {
           next = nextUrl.href;
         }
       }
+      const empty = this.results.querySelector('[data-search-empty]');
+      empty.hidden = seenProducts.size > 0;
+      this.results.querySelector('.monte-search-grid').hidden = seenProducts.size === 0;
+      this.status.textContent = seenProducts.size ? `${productsLabel}: ${seenProducts.size}. ${query}` : empty.textContent.trim();
     } catch (error) {
       if (error.name !== 'AbortError' && version === this.version && this.isConnected) this.error.hidden = false;
     } finally {

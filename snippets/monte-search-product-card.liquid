@@ -1,5 +1,5 @@
 {%- assign variant = product.selected_or_first_available_variant -%}
-<a href="{{ product.url }}" class="monte-search-product product-card{% if settings.show_secondary_image and product.media.size > 1 %} product-card--show-secondary-media{% endif %}" data-product-id="{{ product.id }}">
+<a href="{{ product.url }}" class="monte-search-product product-card{% if settings.show_secondary_image and product.media.size > 1 %} product-card--show-secondary-media{% endif %}" data-product-id="{{ product.id }}" data-search-title="{{ product.title | escape }}" data-search-tags="{{ product.tags | join: ' ' | escape }}">
   <div class="product-card__figure monte-search-product-image">
     {%- if product.featured_media -%}
       {{ product.featured_media | image_url: width: 700 | image_tag: class: 'product-card__image product-card__image--primary', loading: 'lazy', sizes: '(min-width: 700px) 230px, calc((100vw - 56px) / 2)', widths: '160,230,320,460,700' }}

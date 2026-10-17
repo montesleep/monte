@@ -26,7 +26,7 @@
 }
 @media (min-width: 700px) and (hover: hover) and (pointer: fine) {
   .monte-spotlight__media > div { transition: transform .4s cubic-bezier(.25,.46,.45,.94); }
-  .monte-spotlight__card:hover .monte-spotlight__media > div { transform: scale(1.2); }
+  .monte-spotlight__card:hover .monte-spotlight__media > div { transform: scale(1.03); }
 }
 @media (prefers-reduced-motion: reduce) {
   .monte-spotlight__media > div, .monte-spotlight .button { transition: none; }

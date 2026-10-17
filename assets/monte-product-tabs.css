@@ -32,7 +32,7 @@
 .monte-products__progress { display: none; }
 .monte-products__empty { margin: 0; padding-block: 32px; color: var(--mp-secondary); font: 400 16px/1.5 var(--text-font-family); }
 .monte-products__all { justify-self: center; }
-.monte-products__all .button { min-height: 44px; padding: 10px 24px; border: 1px solid var(--mp-primary); border-radius: 100px; background: transparent; color: var(--mp-primary); font: 600 14px/1.5 var(--text-font-family); letter-spacing: 0; text-transform: none; transition: background-color .2s ease-in-out, color .2s ease-in-out; }
+.monte-products__all .button { min-height: 44px; padding: 10px 24px; border: 1px solid var(--mp-primary); box-shadow: none; border-radius: 100px; background: transparent; color: var(--mp-primary); font: 600 14px/1.5 var(--text-font-family); letter-spacing: 0; text-transform: none; transition: background-color .2s ease-in-out, color .2s ease-in-out; }
 .monte-products :is(a, button):focus-visible { outline: 2px solid var(--mp-primary); outline-offset: 3px; }
 .monte-products__track:focus-visible { outline: 1px solid var(--mp-primary); outline-offset: 4px; }
 @media (max-width: 699px) { .monte-product-card:nth-child(n + 5) { display: none; } }
@@ -44,7 +44,7 @@
   .monte-products__panels { grid-area: 2 / 1 / auto / -1; }
   .monte-products__all { grid-area: 1 / 2; }
   .monte-products__all .button { min-height: 56px; padding: 15px 32px; font-size: 16px; }
-  .monte-products__track { display: grid; grid-template: auto / auto-flow calc((100% - 20px) / 2); gap: 20px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; cursor: grab; }
+  .monte-products__track { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc((100% - 20px) / 2); gap: 20px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; cursor: grab; }
   .monte-products__track.is-dragging { cursor: grabbing; user-select: none; }
   .monte-product-card__info { padding: 16px; gap: 16px; }
   .monte-product-card h3, .monte-product-card sale-price { font-size: 16px; }

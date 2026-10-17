@@ -22,7 +22,6 @@
         "countdown_enabled": true,
         "countdown_start_date": "2026-10-17",
         "countdown_start_time": "00:00",
-        "countdown_utc_offset": "+02:00",
         "countdown_label": "Czas do końca promocji",
         "background": "#232e71",
         "text_color": "#f8f1e9",

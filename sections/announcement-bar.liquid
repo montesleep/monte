@@ -6,8 +6,7 @@
   assign mobile_text = section.settings.mobile_text | default: section.settings.text
   assign start_date = section.settings.countdown_start_date | strip
   assign start_time = section.settings.countdown_start_time | strip
-  assign utc_offset = section.settings.countdown_utc_offset | strip
-  assign campaign_start = start_date | append: 'T' | append: start_time | append: ':00' | append: utc_offset
+  assign campaign_start = start_date | append: 'T' | append: start_time | append: ':00'
 -%}
 
 <style>
@@ -132,7 +131,7 @@
         {%- endif -%}
       </div>
       {%- if request.design_mode and section.settings.countdown_enabled -%}
-        <p class="monte-announcement__notice" data-countdown-notice hidden>Enter a valid campaign start date, time and UTC offset to start the 72-hour countdown.</p>
+        <p class="monte-announcement__notice" data-countdown-notice hidden>Enter a valid start date and time in Poland (Europe/Warsaw). Times skipped during the spring clock change are not valid.</p>
       {%- endif -%}
     </monte-announcement-bar>
   </height-observer>
@@ -158,8 +157,7 @@
     { "type": "checkbox", "id": "countdown_enabled", "label": "Show countdown", "default": false },
     { "type": "paragraph", "content": "The countdown ends exactly 72 hours after the campaign start, at the same moment for every visitor. Before the start it shows 03D 00G 00M 00S. After expiry it stays at zero. Turning it off only hides it; change the start date and time to reset it." },
     { "type": "text", "id": "countdown_start_date", "label": "Start date", "info": "Format: YYYY-MM-DD, for example 2026-10-17.", "visible_if": "{{ section.settings.countdown_enabled }}" },
-    { "type": "text", "id": "countdown_start_time", "label": "Start time", "default": "00:00", "info": "24-hour format: HH:MM.", "visible_if": "{{ section.settings.countdown_enabled }}" },
-    { "type": "text", "id": "countdown_utc_offset", "label": "Time zone (UTC offset)", "default": "+02:00", "info": "Use the offset for the start date: +02:00 for summer time in Poland, +01:00 for winter time. Format: +HH:MM or -HH:MM.", "visible_if": "{{ section.settings.countdown_enabled }}" },
+    { "type": "text", "id": "countdown_start_time", "label": "Start time (Poland)", "default": "00:00", "info": "24-hour format: HH:MM. Uses Europe/Warsaw automatically, including summer and winter time. During the autumn clock change, a repeated hour uses its first occurrence.", "visible_if": "{{ section.settings.countdown_enabled }}" },
     { "type": "text", "id": "countdown_label", "label": "Countdown accessibility label", "default": "Czas do końca promocji", "visible_if": "{{ section.settings.countdown_enabled }}" },
     { "type": "header", "content": "Colors" },
     { "type": "color", "id": "background", "label": "Bar background", "default": "#232e71" },

@@ -1,17 +1,44 @@
 // A shared campaign deadline; no visitor storage or automatic restarts.
 class MonteAnnouncementBar extends HTMLElement {
+  static parseStart(input) {
+    const match = /^(\d{4})-(\d{2})-(\d{2})T([01]\d|2[0-3]):([0-5]\d):00$/.exec(input);
+    if (!match) return NaN;
+    const [, year, month, day, hour, minute] = match.map(Number);
+    const wallTime = Date.UTC(year, month - 1, day, hour, minute);
+    const date = new Date(wallTime);
+    if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) return NaN;
+
+    try {
+      const formatter = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/Warsaw', calendar: 'gregory', numberingSystem: 'latn',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
+      });
+      const localTime = timestamp => {
+        const parts = Object.fromEntries(formatter.formatToParts(timestamp).map(part => [part.type, part.value]));
+        return Date.UTC(+parts.year, +parts.month - 1, +parts.day, +parts.hour, +parts.minute, +parts.second);
+      };
+      // Sample both sides of a clock change using Warsaw's time-zone rules.
+      const offsets = new Set([-86400000, 0, 86400000].map(delta => {
+        const probe = wallTime + delta;
+        return localTime(probe) - probe;
+      }));
+      const candidates = [...offsets].map(offset => wallTime - offset)
+        .filter(timestamp => localTime(timestamp) === wallTime);
+      // Reject a skipped spring hour; use the first occurrence of a repeated autumn hour.
+      return candidates.length ? Math.min(...candidates) : NaN;
+    } catch {
+      return NaN;
+    }
+  }
+
   connectedCallback() {
     this.disconnectedCallback();
     this.fields = ['days', 'hours', 'minutes', 'seconds'].map(unit => this.querySelector(`[data-countdown-${unit}]`));
     if (this.fields.some(field => !field)) return;
 
     const start = this.getAttribute('data-campaign-start') || '';
-    const match = /^(\d{4})-(\d{2})-(\d{2})T([01]\d|2[0-3]):([0-5]\d):00([+-])(0\d|1[0-4]):([0-5]\d)$/.exec(start);
-    const calendarDate = match ? new Date(Date.UTC(+match[1], +match[2] - 1, +match[3])) : null;
-    const validDate = calendarDate && calendarDate.getUTCFullYear() === +match[1]
-      && calendarDate.getUTCMonth() === +match[2] - 1 && calendarDate.getUTCDate() === +match[3]
-      && (+match[7] < 14 || +match[8] === 0);
-    this.start = validDate ? Date.parse(start) : NaN;
+    this.start = MonteAnnouncementBar.parseStart(start);
     const notice = this.querySelector('[data-countdown-notice]');
     if (notice) notice.hidden = Number.isFinite(this.start);
     if (!Number.isFinite(this.start)) {

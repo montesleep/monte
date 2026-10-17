@@ -1,8 +1,19 @@
 import { SearchDrawer } from 'theme';
-import { timeline } from 'vendor';
+import { timeline, FocusTrap } from 'vendor';
 
 class MonteSearchDrawer extends SearchDrawer {
   get initialFocus() { return this; }
+  get focusTrap() {
+    // Keep the input inactive on touch devices until the customer chooses it.
+    return this._focusTrap = this._focusTrap || new FocusTrap.createFocusTrap(this, {
+      onDeactivate: this.hide.bind(this),
+      allowOutsideClick: this._allowOutsideClick.bind(this),
+      initialFocus: () => this.contains(document.activeElement) ? document.activeElement : this,
+      fallbackFocus: this,
+      tabbableOptions: { getShadowRoot: true },
+      preventScroll: this.preventScrollWhenTrapped
+    });
+  }
   connectedCallback() {
     super.connectedCallback();
     this.form = this.querySelector('form');

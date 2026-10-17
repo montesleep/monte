@@ -13,53 +13,21 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
-      "blocks": {
-        "message_aw4dtc": {
-          "type": "message",
-          "settings": {
-            "text": "Dostawa w 1–2 dni robocze",
-            "url": ""
-          }
-        },
-        "message_WjyQeB": {
-          "type": "message",
-          "settings": {
-            "text": "Wysyłka tego samego dnia",
-            "url": ""
-          }
-        },
-        "message_RViAXw": {
-          "type": "message",
-          "settings": {
-            "text": "Darmowa dostawa od 250 zł",
-            "url": ""
-          }
-        },
-        "message": {
-          "type": "message",
-          "settings": {
-            "text": "30-nocna gwarancja zwrotu pieniędzy",
-            "url": ""
-          }
-        }
-      },
-      "block_order": [
-        "message_aw4dtc",
-        "message_WjyQeB",
-        "message_RViAXw",
-        "message"
-      ],
       "settings": {
-        "enable_sticky": false,
         "show_on_homepage_only": false,
-        "navigation_mode": "scrolling",
-        "autoplay": false,
-        "cycle_speed": 6,
-        "scrolling_speed": 16,
-        "text_size": "text-xs",
+        "text": "Letnia wyprzedaż: rabaty do -30%",
+        "mobile_text": "Letnia wyprzedaż:\nrabaty do -30%",
+        "show_icon": true,
+        "icon_text": "☀️",
+        "countdown_enabled": true,
+        "countdown_start_date": "2026-10-17",
+        "countdown_start_time": "11:04",
+        "countdown_utc_offset": "+02:00",
+        "countdown_label": "Czas do końca promocji",
         "background": "#232e71",
-        "background_gradient": "",
-        "text_color": "#f8f1e9"
+        "text_color": "#f8f1e9",
+        "timer_background": "#fdfbf9",
+        "timer_text_color": "#232e71"
       }
     },
     "header": {

@@ -1,94 +1,135 @@
-{%- if section.blocks.size > 0 -%}
-  {%- unless request.page_type != 'index' and section.settings.show_on_homepage_only -%}
-    {%- comment -%}
-    ------------------------------------------------------------------------------------------------------------------------
-    CSS
-    ------------------------------------------------------------------------------------------------------------------------
-    {%- endcomment -%}
-    <style>
-      :root {
-        --sticky-announcement-bar-enabled: {%- if section.settings.enable_sticky -%}1{% else %}0{% endif %};
-      }
+{%- liquid
+  assign show_bar = true
+  if section.settings.show_on_homepage_only and request.page_type != 'index'
+    assign show_bar = false
+  endif
+  assign mobile_text = section.settings.mobile_text | default: section.settings.text
+  assign start_date = section.settings.countdown_start_date | strip
+  assign start_time = section.settings.countdown_start_time | strip
+  assign utc_offset = section.settings.countdown_utc_offset | strip
+  assign campaign_start = start_date | append: 'T' | append: start_time | append: ':00' | append: utc_offset
+-%}
 
-      {%- if section.settings.enable_sticky -%}
-        #shopify-section-{{ section.id }} {
-          position: sticky;
-          top: 0;
-          z-index: 20;
-        }
+<style>
+  :root { --sticky-announcement-bar-enabled: 0; }
+  #shopify-section-{{ section.id }} {
+    position: relative;
+    --monte-announcement-background: {{ section.settings.background | default: '#232e71' }};
+    --monte-announcement-text: {{ section.settings.text_color | default: '#f8f1e9' }};
+    --monte-timer-background: {{ section.settings.timer_background | default: '#fdfbf9' }};
+    --monte-timer-text: {{ section.settings.timer_text_color | default: '#232e71' }};
+  }
+  #shopify-section-{{ section.id }} .monte-announcement {
+    display: block;
+    padding: 12px 16px;
+    background: var(--monte-announcement-background);
+    color: var(--monte-announcement-text);
+    font-family: "PP Neue Montreal Mono", monospace;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.12px;
+    text-transform: uppercase;
+  }
+  #shopify-section-{{ section.id }} .monte-announcement__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  #shopify-section-{{ section.id }} .monte-announcement__message {
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
+  #shopify-section-{{ section.id }} .monte-announcement__icon {
+    display: inline-block;
+    margin-inline-end: 0.5em;
+  }
+  #shopify-section-{{ section.id }} .monte-announcement__icon img {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    vertical-align: -3px;
+  }
+  #shopify-section-{{ section.id }} .monte-announcement__desktop { display: none; }
+  #shopify-section-{{ section.id }} .monte-announcement__timer {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 6px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  #shopify-section-{{ section.id }} .monte-announcement__unit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 24px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background: var(--monte-timer-background);
+    color: var(--monte-timer-text);
+  }
+  #shopify-section-{{ section.id }} .monte-announcement--text-only .monte-announcement__inner {
+    justify-content: center;
+    text-align: center;
+  }
+  #shopify-section-{{ section.id }} .monte-announcement__notice {
+    margin-top: 8px;
+    font-family: var(--text-font-family);
+    text-transform: none;
+    text-align: center;
+  }
+  @media (max-width: 359px) {
+    #shopify-section-{{ section.id }} .monte-announcement { font-size: 11px; }
+    #shopify-section-{{ section.id }} .monte-announcement__inner { gap: 8px; }
+  }
+  @media (min-width: 700px) {
+    #shopify-section-{{ section.id }} .monte-announcement { padding-block: 8px; }
+    #shopify-section-{{ section.id }} .monte-announcement__inner { justify-content: center; gap: 24px; }
+    #shopify-section-{{ section.id }} .monte-announcement__desktop { display: inline; }
+    #shopify-section-{{ section.id }} .monte-announcement__mobile { display: none; }
+  }
+</style>
 
-        .shopify-section--header ~ #shopify-section-{{ section.id }} {
-          top: calc(var(--sticky-header-enabled, 0) * var(--header-height, 0px));
-        }
-      {%- endif -%}
-    </style>
-
-    {%- comment -%}
-    ------------------------------------------------------------------------------------------------------------------------
-    LIQUID
-    ------------------------------------------------------------------------------------------------------------------------
-    {%- endcomment -%}
-
-    <height-observer variable="announcement-bar">
-      <div {% render 'surface', class: 'announcement-bar', background_gradient: section.settings.background_gradient, background: section.settings.background, text_color: section.settings.text_color %}>
-        {%- if section.settings.navigation_mode == 'scrolling' -%}
-          <marquee-text scrolling-speed="{{ section.settings.scrolling_speed }}" class="announcement-bar__scrolling-list">
-            {%- capture content -%}
-              {%- for block in section.blocks -%}
-                <p class="bold {{ section.settings.text_size }}" {{ block.shopify_attributes }}>
-                  {%- if block.settings.url != blank -%}
-                    <a href="{{ block.settings.url }}">{{ block.settings.text | escape }}</a>
-                  {%- else -%}
-                    {{ block.settings.text | escape }}
-                  {%- endif -%}
-                </p>
-
-                <span class="shape-circle shape--sm"></span>
-              {%- endfor -%}
-            {%- endcapture -%}
-
-            {%- for i in (1..10) -%}
-              <span class="announcement-bar__item" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
-                {{- content -}}
-              </span>
-            {%- endfor -%}
-          </marquee-text>
-        {%- else -%}
-          <div class="container">
-            <div class="announcement-bar__wrapper {% if section.blocks.size == 1 %}justify-center{% else %}justify-between{% endif %}">
-              {%- if section.blocks.size > 1 -%}
-                <button class="tap-area" is="prev-button" aria-controls="announcement-bar" aria-label="{{ 'general.accessibility.previous' | t }}">
-                  {%- render 'icon' with 'chevron-left', direction_aware: true -%}
-                </button>
+{%- if show_bar -%}
+  <height-observer variable="announcement-bar">
+    <monte-announcement-bar
+      class="monte-announcement{% unless section.settings.countdown_enabled %} monte-announcement--text-only{% endunless %}"
+      data-campaign-start="{{ campaign_start | escape }}"
+    >
+      <div class="monte-announcement__inner">
+        <p class="monte-announcement__message">
+          {%- if section.settings.show_icon -%}
+            <span class="monte-announcement__icon" aria-hidden="true">
+              {%- if section.settings.icon_image != blank -%}
+                {{- section.settings.icon_image | image_url: width: 32 | image_tag: width: 16, height: 16, alt: '' -}}
+              {%- else -%}
+                {{- section.settings.icon_text | escape -}}
               {%- endif -%}
-
-              <announcement-bar swipeable {% if section.settings.autoplay %}autoplay="{{ section.settings.cycle_speed }}"{% endif %} id="announcement-bar" class="announcement-bar__static-list">
-                {%- for block in section.blocks -%}
-                  <p class="bold {{ section.settings.text_size }} {% unless forloop.first %}reveal-invisible{% endunless %}" {{ block.shopify_attributes }}> 
-                    {%- if block.settings.url != blank -%}
-                      <a href="{{ block.settings.url }}">{{ block.settings.text | escape }}</a>
-                    {%- else -%}
-                      {{ block.settings.text | escape }}
-                    {%- endif -%}
-                  </p>
-                {%- endfor -%}
-              </announcement-bar>
-
-              {%- if section.blocks.size > 1 -%}
-                <button class="tap-area" is="next-button" aria-controls="announcement-bar" aria-label="{{ 'general.accessibility.next' | t }}">
-                  {%- render 'icon' with 'chevron-right', direction_aware: true -%}
-                </button>
-              {%- endif -%}
-            </div>
+            </span>
+          {%- endif -%}
+          <span class="monte-announcement__desktop">{{ section.settings.text | escape }}</span>
+          <span class="monte-announcement__mobile">{{ mobile_text | escape | newline_to_br }}</span>
+        </p>
+        {%- if section.settings.countdown_enabled -%}
+          <div class="monte-announcement__timer" role="timer" aria-live="off" aria-label="{{ section.settings.countdown_label | escape }}">
+            <span class="monte-announcement__unit"><span data-countdown-days>00</span>D</span>
+            <span class="monte-announcement__unit"><span data-countdown-hours>00</span>H</span>
+            <span class="monte-announcement__unit"><span data-countdown-minutes>00</span>M</span>
+            <span class="monte-announcement__unit"><span data-countdown-seconds>00</span>S</span>
           </div>
         {%- endif -%}
       </div>
-    </height-observer>
-
-    <script>
-      document.documentElement.style.setProperty('--announcement-bar-height', Math.round(document.getElementById('shopify-section-{{ section.id }}').clientHeight) + 'px');
-    </script>
-  {%- endunless -%}
+      {%- if request.design_mode and section.settings.countdown_enabled -%}
+        <p class="monte-announcement__notice" data-countdown-notice hidden>Enter a valid campaign start date, time and UTC offset to start the 72-hour countdown.</p>
+      {%- endif -%}
+    </monte-announcement-bar>
+  </height-observer>
 {%- endif -%}
 
 {% schema %}
@@ -96,127 +137,30 @@
   "name": "Announcement bar",
   "class": "shopify-section--announcement-bar",
   "tag": "aside",
-  "max_blocks": 5,
-  "blocks": [
-    {
-      "type": "message",
-      "name": "Message",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Text",
-          "default": "Announce something here"
-        },
-        {
-          "type": "url",
-          "id": "url",
-          "label": "Link"
-        }
-      ]
-    }
-  ],
+  "limit": 1,
+  "enabled_on": { "groups": ["header"] },
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "enable_sticky",
-      "label": "Enable sticky bar",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "show_on_homepage_only",
-      "label": "Show on homepage only",
-      "default": false
-    },
-    {
-      "type": "select",
-      "id": "navigation_mode",
-      "label": "Multiple message navigation",
-      "options": [
-        {
-          "value": "arrows",
-          "label": "Arrows"
-        },
-        {
-          "value": "scrolling",
-          "label": "Auto-scrolling"
-        }
-      ],
-      "default": "arrows"
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay",
-      "label": "Auto rotate between messages",
-      "default": false,
-      "visible_if": "{{ section.settings.navigation_mode == 'arrows' }}"
-    },
-    {
-      "type": "range",
-      "id": "cycle_speed",
-      "min": 4,
-      "max": 20,
-      "step": 1,
-      "unit": "sec",
-      "label": "Change messages every",
-      "default": 6,
-      "visible_if": "{{ section.settings.navigation_mode == 'arrows' and section.settings.autoplay }}"
-    },
-    {
-      "type": "range",
-      "id": "scrolling_speed",
-      "label": "Scrolling speed",
-      "min": 10,
-      "max": 30,
-      "unit": "s",
-      "default": 20,
-      "visible_if": "{{ section.settings.navigation_mode == 'scrolling' }}"
-    },
-    {
-      "type": "select",
-      "id": "text_size",
-      "label": "Text size",
-      "options": [
-        {
-          "value": "text-xxs",
-          "label": "X-Small"
-        },
-        {
-          "value": "text-xs",
-          "label": "Small"
-        },
-        {
-          "value": "text-base",
-          "label": "Medium"
-        },
-        {
-          "value": "text-lg",
-          "label": "Large"
-        }
-      ],
-      "default": "text-xs"
-    },
-    {
-      "type": "header",
-      "content": "Colors",
-      "info": "Gradient replaces solid colors when set."
-    },
-    {
-      "type": "color",
-      "id": "background",
-      "label": "Background"
-    },
-    {
-      "type": "color_background",
-      "id": "background_gradient",
-      "label": "Background gradient"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text"
-    }
-  ]
+    { "type": "paragraph", "content": "A static, non-clickable announcement above the header. It scrolls away with the page." },
+    { "type": "checkbox", "id": "show_on_homepage_only", "label": "Show on homepage only", "default": false },
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "text", "label": "Promo text", "default": "Letnia wyprzedaż: rabaty do -30%" },
+    { "type": "textarea", "id": "mobile_text", "label": "Mobile promo text", "info": "Optional. Add a line break for the mobile layout. Leave blank to use the main promo text." },
+    { "type": "checkbox", "id": "show_icon", "label": "Show icon", "default": true },
+    { "type": "text", "id": "icon_text", "label": "Icon or emoji", "default": "☀️", "visible_if": "{{ section.settings.show_icon }}" },
+    { "type": "image_picker", "id": "icon_image", "label": "Custom icon", "info": "Optional. Replaces the emoji. Use a square image with a transparent background.", "visible_if": "{{ section.settings.show_icon }}" },
+    { "type": "header", "content": "Countdown" },
+    { "type": "checkbox", "id": "countdown_enabled", "label": "Show countdown", "default": false },
+    { "type": "paragraph", "content": "The countdown ends exactly 72 hours after the campaign start, at the same moment for every visitor. Before the start it shows 03D 00H 00M 00S. After expiry it stays at zero. Turning it off only hides it; change the start date and time to reset it." },
+    { "type": "text", "id": "countdown_start_date", "label": "Start date", "info": "Format: YYYY-MM-DD, for example 2026-10-17.", "visible_if": "{{ section.settings.countdown_enabled }}" },
+    { "type": "text", "id": "countdown_start_time", "label": "Start time", "default": "00:00", "info": "24-hour format: HH:MM.", "visible_if": "{{ section.settings.countdown_enabled }}" },
+    { "type": "text", "id": "countdown_utc_offset", "label": "Time zone (UTC offset)", "default": "+02:00", "info": "Use the offset for the start date: +02:00 for summer time in Poland, +01:00 for winter time. Format: +HH:MM or -HH:MM.", "visible_if": "{{ section.settings.countdown_enabled }}" },
+    { "type": "text", "id": "countdown_label", "label": "Countdown accessibility label", "default": "Czas do końca promocji", "visible_if": "{{ section.settings.countdown_enabled }}" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background", "label": "Bar background", "default": "#232e71" },
+    { "type": "color", "id": "text_color", "label": "Promo text", "default": "#f8f1e9" },
+    { "type": "color", "id": "timer_background", "label": "Timer block background", "default": "#fdfbf9" },
+    { "type": "color", "id": "timer_text_color", "label": "Timer text", "default": "#232e71" }
+  ],
+  "presets": [{ "name": "Announcement bar" }]
 }
 {% endschema %}

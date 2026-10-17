@@ -73,5 +73,8 @@
 .monte-mobile-contact a { display: block; }
 .monte-mobile-menu :is(a, button):active { opacity: .7; }
 .monte-mobile-menu .monte-promo-badge { font-size: 10px; line-height: 12px; padding: 4px 8px; }
-@media (min-width: 1150px) { .monte-mobile-menu { display: none; } }
+@media (min-width: 1150px) {
+  .monte-mobile-menu { display: none; }
+  body:has(.monte-shop-disclosure[open]) .shopify-section--announcement-bar { z-index: 10; }
+}
 @media (prefers-reduced-motion: reduce) { .monte-collection-image .monte-menu-media { transition: none; } }

@@ -52,7 +52,7 @@
 .monte-menu-close img { position: absolute; width: auto; height: auto; max-width: none; left: 1.66px; top: 1.66px; }
 [aria-controls="header-sidebar-menu"][aria-expanded="true"] .monte-menu-close { display: block; }
 [aria-controls="header-sidebar-menu"][aria-expanded="true"] .monte-header-icon--menu { display: none; }
-.monte-mobile-menu[mobile-opening="left"] { --drawer-content-max-height: none; --drawer-body-padding: 0; --text-color: var(--header-text); width: 100%; padding: 0; height: calc(100dvh - var(--monte-mobile-menu-top, 110px)); z-index: 9; }
+.monte-mobile-menu[mobile-opening="left"] { --rounded-sm: 0px; --drawer-content-max-height: none; --drawer-body-padding: 0; --text-color: var(--header-text); width: 100%; padding: 0; height: var(--monte-mobile-menu-height, calc(100dvh - var(--monte-mobile-menu-top, 110px))); max-width: none; border-radius: 0; z-index: 9; }
 .monte-mobile-menu::part(overlay), .monte-mobile-menu::part(outside-close-button), .monte-mobile-menu::part(header), .monte-mobile-menu::part(footer) { display: none; }
 .monte-mobile-menu::part(content) { --rounded-sm: 0px; border-radius: 0; background: rgb(var(--header-background)); height: 100%; min-height: 0; max-height: none; }
 .monte-mobile-menu::part(body) { display: block; padding: 0; height: 100%; overflow: hidden; }
@@ -85,3 +85,11 @@
   to { background-color: rgb(0 0 0 / .6); backdrop-filter: blur(17px); -webkit-backdrop-filter: blur(17px); }
 }
 @media (prefers-reduced-motion: reduce) { .monte-menu-backdrop:not([hidden]) { animation: none; } }
+
+html.monte-mobile-menu-locked { overflow: hidden; overscroll-behavior: none; }
+@media (max-width: 1149px) {
+  .monte-mobile-menu-locked .shopify-section:has(> height-observer > store-header.header--monte) { position: relative !important; top: 0 !important; visibility: visible !important; }
+  .monte-mobile-menu-locked .header--monte { transform: none !important; touch-action: none; }
+  .monte-mobile-menu-locked .shopify-section--announcement-bar { touch-action: none; }
+  .monte-mobile-menu .panel__wrapper { touch-action: pan-y; overscroll-behavior: contain; }
+}

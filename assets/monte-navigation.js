@@ -16,19 +16,48 @@ class MonteNavigationDrawer extends NavigationDrawer {
     this.header.addEventListener('click', event => {
       const control = event.target.closest('a, button');
       if (this.open && control && !this.contains(control) && control.getAttribute('aria-controls') !== this.id) {
+        // Release our page lock before another header drawer acquires its own.
+        this.unlockPage();
         this.focusTrap.deactivate({ returnFocus: false });
         this.hide();
       }
     }, { signal });
     this.addEventListener('dialog:after-hide', () => {
       this.controls.forEach(control => control.setAttribute('aria-label', this.open ? this.dataset.closeLabel : this.dataset.openLabel));
-      if (this._savedScroll) window.scrollTo({ top: this._savedScroll, behavior: 'instant' });
-      this._savedScroll = 0;
+      this.unlockPage();
     }, { signal });
-    window.addEventListener('resize', () => {
+    const resize = () => {
       if (window.matchMedia('(min-width: 1150px)').matches) this.hide();
       else if (this.open) this._setInitialPosition();
-    }, { signal });
+    };
+    window.addEventListener('resize', resize, { signal });
+    window.visualViewport?.addEventListener('resize', resize, { signal });
+    this.headerResize = new ResizeObserver(() => { if (this.open) this._setInitialPosition(); });
+    this.headerResize.observe(this.header);
+    document.querySelectorAll('.shopify-section--announcement-bar').forEach(bar => this.headerResize.observe(bar));
+  }
+  disconnectedCallback() {
+    this.headerResize?.disconnect();
+    this.unlockPage();
+    super.disconnectedCallback();
+  }
+  lockPage() {
+    if (this.pageLock) return;
+    const body = document.body;
+    const properties = ['position', 'top', 'left', 'right', 'width', 'overflow', 'padding-right'];
+    this.pageLock = { x: window.scrollX, y: window.scrollY, styles: properties.map(name => [name, body.style.getPropertyValue(name), body.style.getPropertyPriority(name)]) };
+    // Show announcement and header together, then keep that layout fixed until close.
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    Object.assign(body.style, { position: 'fixed', top: '0px', left: '0px', right: '0px', width: '100%', overflow: 'hidden' });
+    document.documentElement.classList.add('monte-mobile-menu-locked');
+  }
+  unlockPage() {
+    if (!this.pageLock) return;
+    const { x, y, styles } = this.pageLock;
+    this.pageLock = null;
+    styles.forEach(([name, value, priority]) => value ? document.body.style.setProperty(name, value, priority) : document.body.style.removeProperty(name));
+    document.documentElement.classList.remove('monte-mobile-menu-locked');
+    window.scrollTo({ left: x, top: y, behavior: 'instant' });
   }
   show(animated = true) {
     if (window.matchMedia('(min-width: 1150px)').matches) return Promise.resolve();
@@ -54,8 +83,7 @@ class MonteNavigationDrawer extends NavigationDrawer {
     while (this.isConnected && this.open !== this._desiredOpen) {
       if (this._desiredOpen) {
         this.reinitializeDrawer();
-        this._savedScroll = window.scrollY;
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        this.lockPage();
         if (this.header.hasAttribute('hide-on-scroll')) this.header.show();
         this.controls.forEach(control => control.setAttribute('aria-label', this.dataset.closeLabel));
         await super.show(animated);
@@ -69,6 +97,7 @@ class MonteNavigationDrawer extends NavigationDrawer {
   _setInitialPosition() {
     const top = Math.max(0, this.header.closest('.shopify-section').getBoundingClientRect().bottom);
     this.style.setProperty('--monte-mobile-menu-top', `${top}px`);
+    this.style.setProperty('--monte-mobile-menu-height', `${Math.max(0, (window.visualViewport?.height || window.innerHeight) - top)}px`);
     Object.assign(this.style, { top: `${top}px`, bottom: '0', left: '0', right: '0' });
   }
   async switchToPanel(panelIndex, linkListIndex = null) {

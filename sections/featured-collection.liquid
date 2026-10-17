@@ -108,67 +108,77 @@
       "type": "text",
       "id": "monte_tabs_label",
       "label": "Tabs accessibility label",
-      "default": "Kategorie produktów"
+      "default": "Kategorie produktów",
+      "visible_if": "{{ section.settings.monte_product_tabs }}"
     },
     {
       "type": "text",
       "id": "monte_button_label",
       "label": "View all button label",
-      "default": "Zobacz wszystko"
+      "default": "Zobacz wszystko",
+      "visible_if": "{{ section.settings.monte_product_tabs }}"
     },
     {
       "type": "text",
       "id": "monte_empty_text",
       "label": "Empty tab message",
-      "default": "Już wkrótce."
+      "default": "Już wkrótce.",
+      "visible_if": "{{ section.settings.monte_product_tabs }}"
     },
     {
       "type": "color",
       "id": "monte_primary",
       "label": "Monté primary text and buttons",
-      "default": "#232E71"
+      "default": "#232E71",
+      "visible_if": "{{ section.settings.monte_product_tabs }}"
     },
     {
       "type": "color",
       "id": "monte_secondary",
       "label": "Monté secondary text",
-      "default": "#52597E"
+      "default": "#52597E",
+      "visible_if": "{{ section.settings.monte_product_tabs }}"
     },
     {
       "type": "color",
       "id": "monte_card_background",
       "label": "Monté product image background",
-      "default": "#EEE7E0"
+      "default": "#EEE7E0",
+      "visible_if": "{{ section.settings.monte_product_tabs }}"
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Collection"
+      "label": "Collection",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "product_list",
       "id": "products",
       "label": "Products",
-      "info": "Replaces collection when selected."
+      "info": "Replaces collection when selected.",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "checkbox",
       "id": "full_width",
       "label": "Full width",
-      "default": true
+      "default": true,
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "checkbox",
       "id": "stack_products",
       "label": "Stack products",
-      "default": true
+      "default": true,
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "checkbox",
       "id": "show_progress_bar",
       "label": "Show carousel progress bar",
       "default": false,
-      "visible_if": "{{ section.settings.stack_products == false }}"
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "range",
@@ -176,7 +186,8 @@
       "min": 2,
       "max": 50,
       "label": "Products to show",
-      "default": 6
+      "default": 6,
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "select",
@@ -192,7 +203,8 @@
           "label": "2"
         }
       ],
-      "default": "2"
+      "default": "2",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "range",
@@ -200,35 +212,41 @@
       "min": 2,
       "max": 5,
       "label": "Products per row (desktop)",
-      "default": 3
+      "default": 3,
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "text",
       "id": "subheading",
-      "label": "Subheading"
+      "label": "Subheading",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Featured collection"
+      "default": "Featured collection",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "richtext",
       "id": "content",
-      "label": "Content"
+      "label": "Content",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "url",
       "id": "link_url",
       "label": "Link URL",
-      "info": "Default to collection URL."
+      "info": "Default to collection URL.",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "text",
       "id": "link_text",
       "label": "Link text",
-      "default": "View all"
+      "default": "View all",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "header",
@@ -238,37 +256,44 @@
     {
       "type": "color",
       "id": "background",
-      "label": "Background"
+      "label": "Background",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "color_background",
       "id": "background_gradient",
-      "label": "Background gradient"
+      "label": "Background gradient",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "color",
       "id": "text_color",
-      "label": "Text"
+      "label": "Text",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "color",
       "id": "heading_color",
-      "label": "Heading color"
+      "label": "Heading color",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "color_background",
       "id": "heading_gradient",
-      "label": "Heading gradient"
+      "label": "Heading gradient",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "color",
       "id": "product_card_background",
-      "label": "Product card background"
+      "label": "Product card background",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     },
     {
       "type": "color",
       "id": "product_card_text_color",
-      "label": "Product card text"
+      "label": "Product card text",
+      "visible_if": "{{ section.settings.monte_product_tabs == false }}"
     }
   ],
   "presets": [

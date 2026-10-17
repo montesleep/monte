@@ -29,7 +29,7 @@
             <div class="monte-cart-recommendations">{%- for recommended_product in section.settings.empty_products -%}{%- render 'monte-cart-recommendation', product: recommended_product, mode: 'empty', section: section -%}{%- endfor -%}</div>
           </div>
         {%- else -%}
-          <div class="monte-cart-lines">{%- for line_item in cart.items -%}{%- render 'monte-cart-line', line_item: line_item, section: section -%}{%- endfor -%}</div>
+          <div class="monte-cart-lines">{%- render 'monte-cart-lines', cart: cart, section: section -%}</div>
           {%- if section.settings.products.count > 0 -%}
             <section class="monte-cart-upsell" aria-labelledby="MonteCartUpsellTitle">
               <div class="monte-cart-upsell-heading"><h3 id="MonteCartUpsellTitle">{{ section.settings.recommendations_title | escape }}</h3><div class="monte-cart-arrows">

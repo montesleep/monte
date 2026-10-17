@@ -239,6 +239,11 @@ class MonteCartDrawer extends CartDrawer {
       return await (format === 'text' ? response.text() : response.json());
     } finally { clearTimeout(timeout); }
   }
+  sameCartGroup(first, second) {
+    const properties = item => JSON.stringify(Object.entries(item.properties || {}).sort(([a], [b]) => a.localeCompare(b)));
+    return first.variant_id === second.variant_id && properties(first) === properties(second) &&
+      first.selling_plan_allocation?.selling_plan?.id === second.selling_plan_allocation?.selling_plan?.id;
+  }
   async mutateCart(action) {
     if (this.mutating) return;
     this.mutating = true;
@@ -255,24 +260,49 @@ class MonteCartDrawer extends CartDrawer {
       if (action.type === 'add') {
         const id = Number(new FormData(action.form).get('id'));
         const current = await this.request(`${root}cart.js`);
-        const existing = current.items.filter(item => item.variant_id === id && !item.selling_plan_allocation && Object.keys(item.properties || {}).length === 0);
+        // Preserve the existing PDP bundle marker when adding the same variant again.
+        const target = current.items.find(item => item.variant_id === id && !item.selling_plan_allocation && Object.keys(item.properties || {}).every(key => key === '_bundle'));
+        const existing = target ? current.items.filter(item => this.sameCartGroup(item, target)) : [];
+        const existingQuantity = existing.reduce((total, item) => total + item.quantity, 0);
         const input = action.form.querySelector('[name="id"]');
         const rules = (input.selectedOptions?.[0] || input).dataset;
         const quantity = Math.max(1, Number(existing.length ? rules.step : rules.min) || 1);
         const maximum = Math.min(50, Number(rules.max) || 50);
-        if (quantity > maximum || existing.some(item => item.quantity + quantity > maximum)) throw new Error(this.dataset.limit);
+        if (quantity > maximum || existingQuantity + quantity > maximum) throw new Error(this.dataset.limit);
         const added = await this.request(`${root}cart/add.js`, {
           method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-          body: JSON.stringify({ items: [{ id, quantity }], sections: [...new Set(sections)], sections_url: location.pathname })
+          body: JSON.stringify({ items: [{ id, quantity, ...(target ? { properties: target.properties } : {}) }], sections: [...new Set(sections)], sections_url: location.pathname })
         });
         cart = await this.request(`${root}cart.js`);
         cart.sections = added.sections;
       } else {
         if (!Number.isInteger(action.quantity) || action.quantity < 0 || action.quantity > 50) throw new Error(this.dataset.limit);
-        cart = await this.request(`${root}cart/change.js`, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: action.key, quantity: action.quantity, sections: [...new Set(sections)], sections_url: location.pathname })
-        });
+        const current = await this.request(`${root}cart.js`);
+        const target = current.items.find(item => item.key === action.key);
+        if (!target) throw new Error(this.dataset.error);
+        const group = current.items.filter(item => this.sameCartGroup(item, target));
+        const quantity = group.reduce((total, item) => total + item.quantity, 0);
+        const bundled = { sections: [...new Set(sections)], sections_url: location.pathname };
+        if (action.quantity > quantity) {
+          // Add validates inventory; update is only used below to reduce existing quantities.
+          const added = await this.request(`${root}cart/add.js`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...bundled, items: [{ id: target.variant_id, quantity: action.quantity - quantity, properties: target.properties, ...(target.selling_plan_allocation ? { selling_plan: target.selling_plan_allocation.selling_plan.id } : {}) }] })
+          });
+          cart = await this.request(`${root}cart.js`);
+          cart.sections = added.sections;
+        } else {
+          let remaining = action.quantity;
+          const updates = Object.fromEntries(group.map(item => {
+            const keep = Math.min(item.quantity, remaining);
+            remaining -= keep;
+            return [item.key, keep];
+          }));
+          cart = await this.request(`${root}cart/update.js`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...bundled, updates })
+          });
+        }
       }
       document.documentElement.dispatchEvent(new CustomEvent('cart:change', { bubbles: true, detail: { baseEvent: action.type === 'add' ? 'variant:add' : 'line-item:change', cart } }));
       this.querySelector('[data-cart-status]').textContent = this.dataset.updated;

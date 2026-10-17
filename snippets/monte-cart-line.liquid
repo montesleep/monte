@@ -5,11 +5,10 @@
   if line_item.variant.inventory_management != blank and line_item.variant.inventory_policy == 'deny'
     assign maximum = maximum | at_most: line_item.variant.inventory_quantity
   endif
-  assign next_quantity = line_item.quantity | plus: increment
-  assign previous_quantity = line_item.quantity | minus: increment
-  assign compare_price = line_item.variant.compare_at_price | default: line_item.original_price | at_least: line_item.original_price | times: line_item.quantity
+  assign next_quantity = group_quantity | plus: increment
+  assign previous_quantity = group_quantity | minus: increment
 -%}
-<article class="monte-cart-line" data-line-key="{{ line_item.key }}" data-quantity="{{ line_item.quantity }}" data-min="{{ minimum }}" data-max="{{ maximum }}" data-step="{{ increment }}">
+<article class="monte-cart-line" data-line-key="{{ line_item.key }}" data-quantity="{{ group_quantity }}" data-min="{{ minimum }}" data-max="{{ maximum }}" data-step="{{ increment }}">
   <a class="monte-cart-image" href="{{ line_item.url }}" aria-label="{{ line_item.product.title | escape }}">{% if line_item.image %}{{ line_item.image | image_url: width: 160 | image_tag: loading: 'lazy', sizes: '80px', widths: '64,80,128,160' }}{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endif %}</a>
   <div class="monte-cart-line-info">
     <div class="monte-cart-line-top">
@@ -23,12 +22,11 @@
     </div>
     <div class="monte-cart-line-bottom">
       <div class="monte-cart-quantity" aria-label="{{ 'product.quantity.label' | t | escape }}">
-        <button type="button" data-cart-quantity="{{ line_item.quantity | minus: increment }}" data-focus-key="minus-{{ line_item.key }}" aria-label="{{ 'product.quantity.decrease_quantity' | t | escape }}" {% if previous_quantity < minimum %}disabled{% endif %}>{%- render 'monte-cart-icon', icon: 'minus' -%}</button>
-        <span>{{ line_item.quantity }}</span>
-        <button type="button" data-cart-quantity="{{ line_item.quantity | plus: increment }}" data-focus-key="plus-{{ line_item.key }}" aria-label="{{ 'product.quantity.increase_quantity' | t | escape }}" {% if next_quantity > maximum %}disabled{% endif %}>{%- render 'monte-cart-icon', icon: 'plus' -%}</button>
+        <button type="button" data-cart-quantity="{{ group_quantity | minus: increment }}" data-focus-key="minus-{{ line_item.key }}" aria-label="{{ 'product.quantity.decrease_quantity' | t | escape }}" {% if previous_quantity < minimum %}disabled{% endif %}>{%- render 'monte-cart-icon', icon: 'minus' -%}</button>
+        <span>{{ group_quantity }}</span>
+        <button type="button" data-cart-quantity="{{ group_quantity | plus: increment }}" data-focus-key="plus-{{ line_item.key }}" aria-label="{{ 'product.quantity.increase_quantity' | t | escape }}" {% if next_quantity > maximum %}disabled{% endif %}>{%- render 'monte-cart-icon', icon: 'plus' -%}</button>
       </div>
-      {%- render 'monte-cart-price', price: line_item.final_line_price, compare_price: compare_price -%}
+      {%- render 'monte-cart-price', price: group_price, compare_price: group_compare -%}
     </div>
-    {%- for discount in line_item.line_level_discount_allocations -%}<p class="monte-cart-variant">{{ discount.discount_application.title | escape }} (−{{ discount.amount | money_without_trailing_zeros }})</p>{%- endfor -%}
   </div>
 </article>

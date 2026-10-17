@@ -133,7 +133,7 @@ html.monte-cart-locked { overflow: hidden; overscroll-behavior: none; }
 @media (prefers-reduced-motion: reduce) { .monte-cart *, .monte-cart *::before { transition-duration: 0s !important; scroll-behavior: auto !important; } }
 
 .monte-cart-scroll::-webkit-scrollbar { display: none; }
-html.monte-cart-locked shopify-chat { visibility: hidden; pointer-events: none; }
+html.monte-cart-locked shopify-chat { display: none !important; }
 
 .monte-cart-icon picture { display: grid; place-items: center; }
 @media (max-width: 699px) { .monte-cart-checkout .monte-cart-icon { width: 20px; height: 20px; } }

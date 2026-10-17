@@ -46,7 +46,7 @@
         "menu": "header",
         "sidebar_menu": "",
         "secondary_menu": "",
-        "customer_account_menu": "kontakt",
+        "customer_account_menu": "main-menu",
         "menu_open_trigger": "click",
         "opening_from": "bottom",
         "layout": "monte",

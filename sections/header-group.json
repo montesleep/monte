@@ -15,9 +15,9 @@
       "type": "announcement-bar",
       "settings": {
         "show_on_homepage_only": false,
-        "text": "Letnia wyprzedaż: rabaty do -30%",
-        "mobile_text": "Letnia wyprzedaż:\nrabaty do -30%",
-        "show_icon": true,
+        "text": "☀️ Letnia wyprzedaż: rabaty do -30%",
+        "mobile_text": "☀️ Letnia wyprzedaż: rabaty do -30%",
+        "show_icon": false,
         "icon_text": "☀️",
         "countdown_enabled": true,
         "countdown_start_date": "2026-10-17",

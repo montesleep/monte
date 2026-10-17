@@ -28,7 +28,7 @@
             "hero_button_hover": "#eee7e0",
             "heading_tag": "h2",
             "button_text": "Zobacz kolekcję",
-            "button_link": "/collections",
+            "button_link": "shopify://collections",
             "text_color": "#fdfbf9",
             "button_background": "#fdfbf9",
             "button_text_color": "#232e71",

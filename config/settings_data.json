@@ -21,7 +21,7 @@
     "icon_style": "mono",
     "button_style": "fill",
     "button_hover_effect": "fade",
-    "background": "#fdfbf9",
+    "background": "#f8f1e9",
     "text_color": "#182153",
     "success_color": "#2f6b57",
     "warning_color": "#b8762d",

@@ -13,6 +13,7 @@ CSS
   {%- endif -%}
 
   #shopify-section-{{ section.id }} {
+    {% if section.settings.monte_hero %}background: transparent;{% endif %}
     --slideshow-background: {{ section.blocks.first.settings.background_gradient | default: section.blocks.first.settings.background | default: section.settings.background_gradient | default: section.settings.background }};
     --slideshow-controls-background: {{ controls_background.rgb }};
     --slideshow-controls-color: {{ controls_color.rgb }};

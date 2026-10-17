@@ -1,3 +1,4 @@
+<style>#shopify-section-{{ section.id }} { background: transparent; }</style>
 {{ 'monte-product-tabs.css' | asset_url | stylesheet_tag }}
 <script type="module" src="{{ 'monte-product-tabs.js' | asset_url }}"></script>
 <monte-product-tabs class="monte-products" style="--mp-primary: {{ section.settings.monte_primary }}; --mp-secondary: {{ section.settings.monte_secondary }}; --mp-card: {{ section.settings.monte_card_background }};">
@@ -18,7 +19,7 @@
                   {%- render 'monte-product-card', product: product, tab_id: block.id -%}
                 {%- endfor -%}
               </div>
-              <scroll-progress class="monte-products__progress scrollbar__progress" observes="{{ scroll_id }}" aria-hidden="true" style="--scroll-progress: 1;"></scroll-progress>
+              <scroll-progress class="monte-products__progress scrollbar__progress" hidden observes="{{ scroll_id }}" aria-hidden="true" style="--scroll-progress: 1;"></scroll-progress>
             {%- else -%}
               <p class="monte-products__empty">{% if request.design_mode %}Select products in this tab's settings. The first four are shown on mobile.{% else %}{{ section.settings.monte_empty_text | escape }}{% endif %}</p>
             {%- endif -%}

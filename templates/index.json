@@ -80,7 +80,7 @@
         "content": "<p>Jeden produkt. Cztery kolory. Żadnych kompromisów.</p>",
         "link_url": "shopify://collections/all",
         "link_text": "",
-        "background": "#fdfbf9",
+        "background": "rgba(0,0,0,0)",
         "background_gradient": "",
         "text_color": "#182153",
         "heading_color": "#182153",
@@ -112,7 +112,10 @@
           "type": "tab",
           "settings": {
             "title": "Zestawy",
-            "products": []
+            "products": [
+              "rose-noir-silk-sleep-mask",
+              "midnight-blue-silk-sleep-mask"
+            ]
           }
         }
       },

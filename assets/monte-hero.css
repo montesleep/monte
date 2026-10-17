@@ -1,4 +1,4 @@
-.monte-hero { margin-inline: 4px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
+.monte-hero { background: transparent; margin-inline: 4px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
 .monte-hero .content-over-media { display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); gap: 0; min-height: var(--monte-hero-mobile-height, 620px); padding: 20px; border-radius: 16px; isolation: isolate; }
 .monte-hero .content-over-media > :is(picture, img, svg, video-media) { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; min-height: 0; grid-area: auto; z-index: 0; }
 .monte-hero .content-over-media > picture > img, .monte-hero .content-over-media > video-media > video { width: 100%; height: 100%; object-fit: cover; }

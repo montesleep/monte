@@ -1,6 +1,7 @@
 class MonteProductTabs extends HTMLElement {
   connectedCallback() {
     this.controller?.abort();
+    this.resizeObserver?.disconnect();
     this.controller = new AbortController();
     const { signal } = this.controller;
     this.tabs = [...this.querySelectorAll('[role="tab"]')];
@@ -22,10 +23,25 @@ class MonteProductTabs extends HTMLElement {
       const panel = event.target.closest('[role="tabpanel"]');
       if (panel) this.select(this.tabs.find(tab => tab.getAttribute('aria-controls') === panel.id));
     }, { signal });
-    this.querySelectorAll('.monte-products__track').forEach(track => this.enableDrag(track, signal));
+    this.tracks = [...this.querySelectorAll('.monte-products__track')];
+    this.resizeObserver = new ResizeObserver(() => this.updateOverflow());
+    this.tracks.forEach(track => {
+      this.enableDrag(track, signal);
+      this.resizeObserver.observe(track);
+    });
+    this.updateOverflow();
   }
   disconnectedCallback() {
     this.controller?.abort();
+    this.resizeObserver?.disconnect();
+  }
+  updateOverflow() {
+    this.tracks?.forEach(track => {
+      const overflowing = matchMedia('(min-width: 700px)').matches && track.clientWidth > 0 && track.scrollWidth > track.clientWidth + 1;
+      track.classList.toggle('is-overflowing', overflowing);
+      const progress = track.parentElement.querySelector('.monte-products__progress');
+      if (progress) progress.hidden = !overflowing;
+    });
   }
   select(selected) {
     if (!selected) return;
@@ -35,6 +51,7 @@ class MonteProductTabs extends HTMLElement {
       tab.tabIndex = active ? 0 : -1;
       this.panels.find(panel => panel.id === tab.getAttribute('aria-controls')).hidden = !active;
     });
+    this.updateOverflow();
   }
   enableDrag(track, signal) {
     let gesture = null;

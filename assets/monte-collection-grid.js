@@ -5,13 +5,18 @@ class MonteCollectionGrid extends HTMLElement {
     const { signal } = this.listeners;
     this.currentUrl = new URL(location.href);
     this.currentSort = this.querySelector('[role="option"][aria-selected="true"]')?.getAttribute('value');
-    this.addEventListener('facet:update', event => {
+    // Impact moves mobile popovers to document.body while they are open.
+    document.addEventListener('listbox:change', event => {
+      const popover = event.target.closest('x-popover');
+      if (popover?.id !== `monte-sort-${this.dataset.sectionId}`) return;
       event.stopPropagation();
-      const url = new URL(event.detail.url);
+      if (this.restoringSort) return;
+      const url = new URL(location.href);
+      url.searchParams.set('sort_by', event.detail.value);
       url.searchParams.delete('section_id');
       url.searchParams.delete('page');
-      this.load(url, { historyMode: 'push' });
-    }, { signal });
+      this.load(url, { historyMode: 'push', closed: popover.hide() });
+    }, { signal, capture: true });
     this.addEventListener('click', event => {
       const link = event.target.closest('[data-load-more]');
       if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -39,7 +44,7 @@ class MonteCollectionGrid extends HTMLElement {
     this.querySelector('.monte-catalog__results')?.setAttribute('aria-busy', String(busy));
     this.querySelector('[data-load-more]')?.setAttribute('aria-disabled', String(busy));
   }
-  async load(url, { append = false, historyMode } = {}) {
+  async load(url, { append = false, historyMode, closed } = {}) {
     this.request?.abort();
     const request = this.request = new AbortController();
     this.setBusy(true);
@@ -49,7 +54,7 @@ class MonteCollectionGrid extends HTMLElement {
     const requestUrl = new URL(url);
     requestUrl.searchParams.set('section_id', this.dataset.sectionId);
     try {
-      const response = await fetch(requestUrl, { signal: request.signal });
+      const [response] = await Promise.all([fetch(requestUrl, { signal: request.signal }), closed]);
       if (!response.ok) throw new Error('Collection request failed');
       const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
       const incoming = doc.querySelector('monte-collection-grid');
@@ -89,10 +94,13 @@ class MonteCollectionGrid extends HTMLElement {
         status.textContent = this.dataset.error;
         status.classList.remove('sr-only');
         // Keep the visible sort label consistent with the products after a failed request.
-        for (const option of this.querySelectorAll('[role="option"]')) {
-          const selected = option.getAttribute('value') === this.currentSort;
-          option.setAttribute('aria-selected', String(selected));
-          if (selected) this.querySelector('.monte-catalog__sort-button span').textContent = option.textContent.trim();
+        await closed;
+        const selected = [...this.querySelectorAll('[role="option"]')].find(option => option.getAttribute('value') === this.currentSort);
+        if (selected) {
+          this.restoringSort = true;
+          selected.closest('x-listbox').setAttribute('aria-activedescendant', selected.id);
+          this.querySelector('.monte-catalog__sort-button span').textContent = selected.textContent.trim();
+          this.restoringSort = false;
         }
       }
     } finally {

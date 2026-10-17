@@ -22,6 +22,10 @@
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
             "subheading": "Wszystko, czego potrzebujesz na dobrą noc.",
             "title": "Jedwab, który dba o Ciebie",
+            "hero_heading": "Jedwab, który\ndba o Ciebie",
+            "hero_mobile_subheading": "Wszystko, czego potrzebujesz\nna dobrą noc.",
+            "hero_show_rating": true,
+            "hero_button_hover": "#eee7e0",
             "heading_tag": "h2",
             "button_text": "Zobacz kolekcję",
             "button_link": "/collections",
@@ -31,11 +35,7 @@
             "overlay_color": "#000000",
             "overlay_opacity": 20,
             "background": "",
-            "background_gradient": "",
-            "hero_heading": "Jedwab, który\ndba o Ciebie",
-            "hero_mobile_subheading": "Wszystko, czego potrzebujesz\nna dobrą noc.",
-            "hero_show_rating": true,
-            "hero_button_hover": "#eee7e0"
+            "background_gradient": ""
           }
         }
       },
@@ -44,6 +44,9 @@
       ],
       "name": "Slideshow",
       "settings": {
+        "monte_hero": true,
+        "hero_desktop_height": 620,
+        "hero_mobile_height": 620,
         "full_width": true,
         "allow_transparent_header": false,
         "show_initial_transition": true,
@@ -53,48 +56,46 @@
         "autoplay": false,
         "cycle_speed": 6,
         "background": "rgba(0,0,0,0)",
-        "background_gradient": "",
-        "monte_hero": true,
-        "hero_desktop_height": 620,
-        "hero_mobile_height": 620
+        "background_gradient": ""
+      }
+    },
+    "monte_benefits": {
+      "type": "monte-benefits",
+      "blocks": {
+        "returns": {
+          "type": "benefit",
+          "settings": {
+            "text": "30 dni na zwrot",
+            "builtin_icon": "returns"
+          }
+        },
+        "shipping": {
+          "type": "benefit",
+          "settings": {
+            "text": "Wysyłka tego samego dnia",
+            "builtin_icon": "shipping"
+          }
+        },
+        "poland": {
+          "type": "benefit",
+          "settings": {
+            "text": "Polska firma",
+            "builtin_icon": "poland"
+          }
+        }
+      },
+      "block_order": [
+        "returns",
+        "shipping",
+        "poland"
+      ],
+      "settings": {
+        "text_color": "#182153",
+        "scrolling_speed": 12
       }
     },
     "section-5": {
       "type": "featured-collection",
-      "settings": {
-        "collection": "",
-        "products": [
-          "rose-noir-silk-sleep-mask",
-          "midnight-blue-silk-sleep-mask",
-          "classic-black-silk-sleep-mask",
-          "champagne-gold-silk-sleep-mask"
-        ],
-        "full_width": true,
-        "stack_products": false,
-        "show_progress_bar": false,
-        "products_count": 4,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "subheading": "",
-        "title": "Wybierz swój kolor",
-        "content": "<p>Jeden produkt. Cztery kolory. Żadnych kompromisów.</p>",
-        "link_url": "shopify://collections/all",
-        "link_text": "",
-        "background": "rgba(0,0,0,0)",
-        "background_gradient": "",
-        "text_color": "#182153",
-        "heading_color": "#182153",
-        "heading_gradient": "",
-        "product_card_background": "",
-        "product_card_text_color": "#182153",
-        "monte_product_tabs": true,
-        "monte_tabs_label": "Kategorie produktów",
-        "monte_button_label": "Zobacz wszystko",
-        "monte_empty_text": "Już wkrótce.",
-        "monte_primary": "#232E71",
-        "monte_secondary": "#52597E",
-        "monte_card_background": "#EEE7E0"
-      },
       "blocks": {
         "bestsellers": {
           "type": "tab",
@@ -122,7 +123,169 @@
       "block_order": [
         "bestsellers",
         "bundles"
-      ]
+      ],
+      "settings": {
+        "monte_product_tabs": true,
+        "monte_tabs_label": "Kategorie produktów",
+        "monte_button_label": "Zobacz wszystko",
+        "monte_empty_text": "Już wkrótce.",
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_card_background": "#eee7e0",
+        "collection": "",
+        "products": [
+          "rose-noir-silk-sleep-mask",
+          "midnight-blue-silk-sleep-mask",
+          "classic-black-silk-sleep-mask",
+          "champagne-gold-silk-sleep-mask"
+        ],
+        "full_width": true,
+        "stack_products": false,
+        "show_progress_bar": false,
+        "products_count": 4,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "subheading": "",
+        "title": "Wybierz swój kolor",
+        "content": "<p>Jeden produkt. Cztery kolory. Żadnych kompromisów.</p>",
+        "link_url": "shopify://collections/all",
+        "link_text": "",
+        "background": "rgba(0,0,0,0)",
+        "background_gradient": "",
+        "text_color": "#182153",
+        "heading_color": "#182153",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": "#182153"
+      }
+    },
+    "monte_reviews": {
+      "type": "monte-reviews",
+      "blocks": {
+        "testimonial_Tgzhdp": {
+          "type": "review",
+          "settings": {
+            "title": "Zupełnie inne odczucie niż tanie maski",
+            "content": "<p>Miałam wcześniej kilka masek z allegro i to jest po prostu inne. Jedwab jest miękki w sposób którego nie da się opisać. I trzyma się przez całą noc co było moim głównym problemem.</p>",
+            "author": "Marta W.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "testimonial_BhqWtW": {
+          "type": "review",
+          "settings": {
+            "title": "Mieszkam w centrum i w końcu sypiam",
+            "content": "<p>Wczesne słońce wpadało do mojego pokoju dosłownie o 5 rano. Teraz nie wiem kiedy wschodzi bo po prostu tego nie czuję. Polecam każdemu kto ma podobny problem.</p>",
+            "author": "Karolina B.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "testimonial_b3aLLh": {
+          "type": "review",
+          "settings": {
+            "title": "Nareszcie wysypiam się porządnie",
+            "content": "<p>Śpię z nią już trzeci tydzień. Mój krem zostaje na twarzy, zero załamów rano i w końcu nie budzi mnie poranne słońce przez zasłony.</p>",
+            "author": "Anna B.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "testimonial_7XLJa3": {
+          "type": "review",
+          "settings": {
+            "title": "Kupiłam sobie na urodziny",
+            "content": "<p>Trochę głupio było kupować sobie samej prezent ale serio nie żałuję. Opakowanie ładne, maska miękka i teraz wieczór wygląda zupełnie inaczej.</p>",
+            "author": "Natalia S.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "testimonial_WBUXhb": {
+          "type": "review",
+          "settings": {
+            "title": "Mam przedłużenia i bałam się",
+            "content": "<p>Serio bałam się że maska zniszczy mi rzęsy. Ale jedwab jest tak gładki że w ogóle nie czuję żadnego tarcia. Po trzech tygodniach przedłużenia wyglądają normalnie.</p>",
+            "author": "Zuzanna P.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "testimonial_RwXQKq": {
+          "type": "review",
+          "settings": {
+            "title": "Chłopak późno zasypia z telefonem",
+            "content": "<p>Mój chłopak scrolluje Instagrama kiedy ja już chcę spać. Światło od telefonu dosłownie nie pozwalało mi zasnąć. Teraz zakładam maskę i jest ciemno. Problem rozwiązany.</p>",
+            "author": "Joanna M.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "testimonial_UiUKEm": {
+          "type": "review",
+          "settings": {
+            "title": "W końcu krem zostaje na skórze",
+            "content": "<p>Używam dużo rzeczy przed snem i zawsze zastanawiałam się czy maska to wchłania. Tu tak się nie dzieje. Skóra rano wygląda nawilżona tak jak powinna po całej tej pielęgnacji.</p>",
+            "author": "Magdalena R.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "testimonial_aVXDcx": {
+          "type": "review",
+          "settings": {
+            "title": "Jedyna maska która nie zsuwa się",
+            "content": "<p>Próbowałam kilku i zawsze rano znajdowałam maskę gdzieś obok głowy. Rzep w tej masce naprawdę działa. Śpię na boku i rano maska jest na swoim miejscu.</p>",
+            "author": "Katarzyna N.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "testimonial_p3tdt9": {
+          "type": "review",
+          "settings": {
+            "title": "Zawsze mam ją w bagażu",
+            "content": "<p>Dużo podróżuję i ta maska jest teraz w moim bagażu zawsze. W samolocie szczególnie robi różnicę. Mieści się wszędzie i naprawdę pomaga zasnąć kiedy wokół jest jasno.</p>",
+            "author": "Agnieszka T.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "testimonial_qkxtmn": {
+          "type": "review",
+          "settings": {
+            "title": "Pielęgnacja w nocy ma sens",
+            "content": "<p>Używam retinolu i peptydów na noc i zależało mi żeby maska tego nie wchłaniała. Jedwab morwowy naprawdę inaczej się zachowuje. Zero wchłoniętego kremu, zero załamów.</p>",
+            "author": "Weronika D.",
+            "verified": true,
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_Tgzhdp",
+        "testimonial_BhqWtW",
+        "testimonial_b3aLLh",
+        "testimonial_7XLJa3",
+        "testimonial_WBUXhb",
+        "testimonial_RwXQKq",
+        "testimonial_UiUKEm",
+        "testimonial_aVXDcx",
+        "testimonial_p3tdt9",
+        "testimonial_qkxtmn"
+      ],
+      "settings": {
+        "heading": "Co mówią\nklienci o Monté",
+        "show_rating": true,
+        "scroll_speed": 25,
+        "panel_color": "#e3e5f0",
+        "text_color": "#232e71",
+        "body_color": "#52597e",
+        "card_color": "#fdfbf9",
+        "mobile_card_color": "#ffffff",
+        "star_color": "#d9a17d"
+      }
     },
     "section-6": {
       "type": "impact-text",
@@ -570,6 +733,7 @@
         "testimonial_bHGbyc",
         "testimonial_NFG8K3"
       ],
+      "disabled": true,
       "name": "Testimonials",
       "settings": {
         "full_width": true,
@@ -586,8 +750,7 @@
         "heading_gradient": "",
         "testimonial_card_background": "#fbf7f3",
         "testimonial_card_text_color": "#182153"
-      },
-      "disabled": true
+      }
     },
     "blog_posts_pRx46J": {
       "type": "blog-posts",
@@ -705,169 +868,6 @@
         "padding_bottom_desktop": 40,
         "padding_top_mobile": 32,
         "padding_bottom_mobile": 32
-      }
-    },
-    "monte_benefits": {
-      "type": "monte-benefits",
-      "blocks": {
-        "returns": {
-          "type": "benefit",
-          "settings": {
-            "text": "30 dni na zwrot",
-            "builtin_icon": "returns"
-          }
-        },
-        "shipping": {
-          "type": "benefit",
-          "settings": {
-            "text": "Wysyłka tego samego dnia",
-            "builtin_icon": "shipping"
-          }
-        },
-        "poland": {
-          "type": "benefit",
-          "settings": {
-            "text": "Polska firma",
-            "builtin_icon": "poland"
-          }
-        }
-      },
-      "block_order": [
-        "returns",
-        "shipping",
-        "poland"
-      ],
-      "settings": {
-        "text_color": "#182153",
-        "scrolling_speed": 12
-      }
-    },
-    "monte_reviews": {
-      "type": "monte-reviews",
-      "blocks": {
-        "testimonial_Tgzhdp": {
-          "type": "review",
-          "settings": {
-            "title": "Zupełnie inne odczucie niż tanie maski",
-            "content": "<p>Miałam wcześniej kilka masek z allegro i to jest po prostu inne. Jedwab jest miękki w sposób którego nie da się opisać. I trzyma się przez całą noc co było moim głównym problemem.</p>",
-            "author": "Marta W.",
-            "rating": 5,
-            "verified": false
-          }
-        },
-        "testimonial_BhqWtW": {
-          "type": "review",
-          "settings": {
-            "title": "Mieszkam w centrum i w końcu sypiam",
-            "content": "<p>Wczesne słońce wpadało do mojego pokoju dosłownie o 5 rano. Teraz nie wiem kiedy wschodzi bo po prostu tego nie czuję. Polecam każdemu kto ma podobny problem.</p>",
-            "author": "Karolina B.",
-            "rating": 5,
-            "verified": false
-          }
-        },
-        "testimonial_b3aLLh": {
-          "type": "review",
-          "settings": {
-            "title": "Nareszcie wysypiam się porządnie",
-            "content": "<p>Śpię z nią już trzeci tydzień. Mój krem zostaje na twarzy, zero załamów rano i w końcu nie budzi mnie poranne słońce przez zasłony.</p>",
-            "author": "Anna B.",
-            "rating": 5,
-            "verified": false
-          }
-        },
-        "testimonial_7XLJa3": {
-          "type": "review",
-          "settings": {
-            "title": "Kupiłam sobie na urodziny",
-            "content": "<p>Trochę głupio było kupować sobie samej prezent ale serio nie żałuję. Opakowanie ładne, maska miękka i teraz wieczór wygląda zupełnie inaczej.</p>",
-            "author": "Natalia S.",
-            "rating": 5,
-            "verified": false
-          }
-        },
-        "testimonial_WBUXhb": {
-          "type": "review",
-          "settings": {
-            "title": "Mam przedłużenia i bałam się",
-            "content": "<p>Serio bałam się że maska zniszczy mi rzęsy. Ale jedwab jest tak gładki że w ogóle nie czuję żadnego tarcia. Po trzech tygodniach przedłużenia wyglądają normalnie.</p>",
-            "author": "Zuzanna P.",
-            "rating": 5,
-            "verified": false
-          }
-        },
-        "testimonial_RwXQKq": {
-          "type": "review",
-          "settings": {
-            "title": "Chłopak późno zasypia z telefonem",
-            "content": "<p>Mój chłopak scrolluje Instagrama kiedy ja już chcę spać. Światło od telefonu dosłownie nie pozwalało mi zasnąć. Teraz zakładam maskę i jest ciemno. Problem rozwiązany.</p>",
-            "author": "Joanna M.",
-            "rating": 5,
-            "verified": false
-          }
-        },
-        "testimonial_UiUKEm": {
-          "type": "review",
-          "settings": {
-            "title": "W końcu krem zostaje na skórze",
-            "content": "<p>Używam dużo rzeczy przed snem i zawsze zastanawiałam się czy maska to wchłania. Tu tak się nie dzieje. Skóra rano wygląda nawilżona tak jak powinna po całej tej pielęgnacji.</p>",
-            "author": "Magdalena R.",
-            "rating": 5,
-            "verified": false
-          }
-        },
-        "testimonial_aVXDcx": {
-          "type": "review",
-          "settings": {
-            "title": "Jedyna maska która nie zsuwa się",
-            "content": "<p>Próbowałam kilku i zawsze rano znajdowałam maskę gdzieś obok głowy. Rzep w tej masce naprawdę działa. Śpię na boku i rano maska jest na swoim miejscu.</p>",
-            "author": "Katarzyna N.",
-            "rating": 5,
-            "verified": false
-          }
-        },
-        "testimonial_p3tdt9": {
-          "type": "review",
-          "settings": {
-            "title": "Zawsze mam ją w bagażu",
-            "content": "<p>Dużo podróżuję i ta maska jest teraz w moim bagażu zawsze. W samolocie szczególnie robi różnicę. Mieści się wszędzie i naprawdę pomaga zasnąć kiedy wokół jest jasno.</p>",
-            "author": "Agnieszka T.",
-            "rating": 5,
-            "verified": false
-          }
-        },
-        "testimonial_qkxtmn": {
-          "type": "review",
-          "settings": {
-            "title": "Pielęgnacja w nocy ma sens",
-            "content": "<p>Używam retinolu i peptydów na noc i zależało mi żeby maska tego nie wchłaniała. Jedwab morwowy naprawdę inaczej się zachowuje. Zero wchłoniętego kremu, zero załamów.</p>",
-            "author": "Weronika D.",
-            "rating": 5,
-            "verified": false
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_Tgzhdp",
-        "testimonial_BhqWtW",
-        "testimonial_b3aLLh",
-        "testimonial_7XLJa3",
-        "testimonial_WBUXhb",
-        "testimonial_RwXQKq",
-        "testimonial_UiUKEm",
-        "testimonial_aVXDcx",
-        "testimonial_p3tdt9",
-        "testimonial_qkxtmn"
-      ],
-      "settings": {
-        "heading": "Co mówią\nklienci o Monté",
-        "show_rating": true,
-        "scroll_speed": 25,
-        "panel_color": "#e3e5f0",
-        "text_color": "#232e71",
-        "body_color": "#52597e",
-        "card_color": "#fdfbf9",
-        "mobile_card_color": "#ffffff",
-        "star_color": "#d9a17d"
       }
     }
   },

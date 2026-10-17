@@ -1,4 +1,4 @@
-#main .shopify-section--monte-benefits { margin: 0; padding: 0; background: transparent; }
+.shopify-section--monte-benefits { margin: 0; padding: 0; background: transparent; }
 .monte-benefits { display: block; overflow: hidden; padding-block: 20px; color: var(--benefits-text-color, #182153); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; opacity: 1; }
 .monte-benefits__viewport { overflow: hidden; }
 .monte-benefits__track { display: flex; width: 100%; padding-inline-start: 20px; }

@@ -885,7 +885,8 @@
     "monte_brand_story": {
       "type": "monte-brand-story",
       "settings": {
-        "button_link": "shopify://pages/o-marce"
+        "button_link": "shopify://pages/o-marce",
+        "image_zoom": false
       }
     }
   },

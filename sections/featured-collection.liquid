@@ -1,3 +1,6 @@
+{%- if section.settings.monte_product_tabs -%}
+  {%- render 'monte-product-tabs' -%}
+{%- else -%}
 {%- render 'section-spacing-collapsing' -%}
 
 <style>
@@ -77,16 +80,66 @@
   </div>
 </div>
 
+
+{%- endif -%}
 {% schema %}
 {
   "name": "Featured collection",
   "class": "shopify-section--featured-collection",
   "tag": "section",
   "disabled_on": {
-    "templates": ["password"],
-    "groups": ["header", "custom.overlay"]
+    "templates": [
+      "password"
+    ],
+    "groups": [
+      "header",
+      "custom.overlay"
+    ]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "monte_product_tabs",
+      "label": "Monté product tabs",
+      "default": false,
+      "info": "Uses hand-picked products from Tab blocks. Mobile shows the first four products from each tab."
+    },
+    {
+      "type": "text",
+      "id": "monte_tabs_label",
+      "label": "Tabs accessibility label",
+      "default": "Kategorie produktów"
+    },
+    {
+      "type": "text",
+      "id": "monte_button_label",
+      "label": "View all button label",
+      "default": "Zobacz wszystko"
+    },
+    {
+      "type": "text",
+      "id": "monte_empty_text",
+      "label": "Empty tab message",
+      "default": "Już wkrótce."
+    },
+    {
+      "type": "color",
+      "id": "monte_primary",
+      "label": "Monté primary text and buttons",
+      "default": "#232E71"
+    },
+    {
+      "type": "color",
+      "id": "monte_secondary",
+      "label": "Monté secondary text",
+      "default": "#52597E"
+    },
+    {
+      "type": "color",
+      "id": "monte_card_background",
+      "label": "Monté product image background",
+      "default": "#EEE7E0"
+    },
     {
       "type": "collection",
       "id": "collection",
@@ -222,6 +275,28 @@
     {
       "name": "Featured collection",
       "category": "Collections"
+    }
+  ],
+  "max_blocks": 8,
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab title",
+          "default": "Products"
+        },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Products",
+          "limit": 50,
+          "info": "Choose at least four products for a complete mobile grid. The first four appear on mobile; all selected products appear in the desktop carousel."
+        }
+      ]
     }
   ]
 }

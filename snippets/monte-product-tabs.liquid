@@ -1,0 +1,31 @@
+{{ 'monte-product-tabs.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'monte-product-tabs.js' | asset_url }}"></script>
+<monte-product-tabs class="monte-products" style="--mp-primary: {{ section.settings.monte_primary }}; --mp-secondary: {{ section.settings.monte_secondary }}; --mp-card: {{ section.settings.monte_card_background }};">
+  <reveal-items class="monte-products__reveal" margin="0px">
+    <div class="monte-products__layout">
+      <div class="monte-products__tabs" role="tablist" aria-label="{{ section.settings.monte_tabs_label | escape }}">
+        {%- for block in section.blocks -%}
+          <button type="button" role="tab" id="ProductTab-{{ section.id }}-{{ block.id }}" aria-controls="ProductPanel-{{ section.id }}-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">{{ block.settings.title | escape }}</button>
+        {%- endfor -%}
+      </div>
+      <div class="monte-products__panels">
+        {%- for block in section.blocks -%}
+          {%- assign scroll_id = 'ProductTrack-' | append: section.id | append: '-' | append: block.id -%}
+          <div class="monte-products__panel" id="ProductPanel-{{ section.id }}-{{ block.id }}" role="tabpanel" aria-labelledby="ProductTab-{{ section.id }}-{{ block.id }}" data-block-id="{{ block.id }}" {% unless forloop.first %}hidden{% endunless %} {{ block.shopify_attributes }}>
+            {%- if block.settings.products.size > 0 -%}
+              <div class="monte-products__track" id="{{ scroll_id }}" tabindex="0" role="region" aria-label="{{ block.settings.title | escape }}">
+                {%- for product in block.settings.products -%}
+                  {%- render 'monte-product-card', product: product, tab_id: block.id -%}
+                {%- endfor -%}
+              </div>
+              <scroll-progress class="monte-products__progress scrollbar__progress" observes="{{ scroll_id }}" aria-hidden="true" style="--scroll-progress: 1;"></scroll-progress>
+            {%- else -%}
+              <p class="monte-products__empty">{% if request.design_mode %}Select products in this tab's settings. The first four are shown on mobile.{% else %}{{ section.settings.monte_empty_text | escape }}{% endif %}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="monte-products__all">{%- render 'button', content: section.settings.monte_button_label, href: routes.collections_url, style: 'outline' -%}</div>
+    </div>
+  </reveal-items>
+</monte-product-tabs>

@@ -1,0 +1,43 @@
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign color_option = nil
+  assign color_labels = 'general.label.color' | t | append: ',color,colour,kolor,couleur,farbe' | downcase | split: ','
+  for option in product.options_with_values
+    assign option_name = option.name | downcase | strip
+    assign swatched_values = option.values | map: 'swatch' | compact
+    if color_labels contains option_name or swatched_values.size > 0
+      assign color_option = option
+      break
+    endif
+  endfor
+-%}
+<article class="monte-product-card">
+  <a class="monte-product-card__link" href="{{ product.url }}" aria-label="{{ product.title | escape }}" draggable="false"></a>
+  <div class="monte-product-card__media">
+    {%- if product.featured_media -%}
+      {{- product.featured_media | image_url: width: 1200 | image_tag: class: 'monte-product-card__image', loading: 'lazy', widths: '180,260,360,500,650,850,1200', sizes: '(min-width: 1000px) calc((100vw - 140px) / 4), (min-width: 700px) calc((100vw - 100px) / 2), calc((100vw - 48px) / 2)', alt: '', draggable: 'false' -}}
+    {%- else -%}{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}{%- endif -%}
+    {%- render 'product-badges', product: product, variant: variant, types: 'monte_discount,monte_status', class: 'monte-product-card__badges' -%}
+  </div>
+  <div class="monte-product-card__info">
+    {%- if color_option != nil -%}
+      <div class="monte-product-card__swatches" aria-label="{{ color_option.name | escape }}">
+        {%- capture param_name -%}monte-{{ section.id }}-{{ tab_id }}-{{ product.id }}{%- endcapture -%}
+        {%- for option_value in color_option.values limit: 3 -%}
+          {%- assign option_key = 'option' | append: color_option.position -%}
+          {%- assign color_variant = product.variants | where: option_key, option_value.name | first -%}
+          {%- assign color_url = color_variant.url | default: product.url -%}
+          {%- render 'option-value', type: 'swatch', option_value: option_value, param_name: param_name, option_position: color_option.position, url: color_url, size: 'sm' -%}
+        {%- endfor -%}
+        {%- if color_option.values.size > 3 -%}<a class="monte-product-card__more" href="{{ product.url }}" aria-label="{{ 'product.general.available_colors_count' | t: count: color_option.values.size }}">+{{ color_option.values.size | minus: 3 }}</a>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="monte-product-card__details">
+      <div class="monte-product-card__titles">
+        <h3>{{ product.title | escape }}</h3>
+        {%- if product.metafields.custom.product_subtitle.value != blank -%}<p class="monte-product-card__subtitle">{{ product.metafields.custom.product_subtitle.value | escape }}</p>{%- endif -%}
+      </div>
+      {%- render 'price-list', variant: variant, hide_unit_price: true -%}
+    </div>
+  </div>
+</article>

@@ -86,8 +86,40 @@
         "heading_color": "#182153",
         "heading_gradient": "",
         "product_card_background": "",
-        "product_card_text_color": "#182153"
-      }
+        "product_card_text_color": "#182153",
+        "monte_product_tabs": true,
+        "monte_tabs_label": "Kategorie produktów",
+        "monte_button_label": "Zobacz wszystko",
+        "monte_empty_text": "Już wkrótce.",
+        "monte_primary": "#232E71",
+        "monte_secondary": "#52597E",
+        "monte_card_background": "#EEE7E0"
+      },
+      "blocks": {
+        "bestsellers": {
+          "type": "tab",
+          "settings": {
+            "title": "Bestsellery",
+            "products": [
+              "midnight-blue-silk-sleep-mask",
+              "classic-black-silk-sleep-mask",
+              "rose-noir-silk-sleep-mask",
+              "champagne-gold-silk-sleep-mask"
+            ]
+          }
+        },
+        "bundles": {
+          "type": "tab",
+          "settings": {
+            "title": "Zestawy",
+            "products": []
+          }
+        }
+      },
+      "block_order": [
+        "bestsellers",
+        "bundles"
+      ]
     },
     "section-6": {
       "type": "impact-text",

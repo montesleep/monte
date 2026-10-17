@@ -1,0 +1,66 @@
+.monte-products { display: block; padding: 40px 16px; color: var(--mp-primary, #232e71); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
+.monte-products__reveal { display: block; opacity: 1; }
+.monte-products__layout { display: grid; gap: 40px; min-width: 0; }
+.monte-products__tabs { display: flex; align-items: stretch; gap: 20px; width: max-content; max-width: 100%; overflow-x: auto; border-bottom: 1px solid #dcd6cf; scrollbar-width: none; }
+.monte-products__tabs::-webkit-scrollbar, .monte-products__track::-webkit-scrollbar { display: none; }
+.monte-products__tabs button { padding: 0 0 16px; border-bottom: 1px solid transparent; font: 500 32px/1.1 var(--heading-font-family); white-space: nowrap; color: var(--mp-primary); opacity: .4; transition: opacity .2s ease-in-out; }
+.monte-products__tabs button[aria-selected="true"] { border-bottom-color: currentColor; opacity: 1; }
+.monte-products__panel[hidden] { display: none; }
+.monte-products__panels, .monte-products__panel { min-width: 0; }
+.monte-products__track { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; }
+.monte-product-card { position: relative; min-width: 0; border-radius: 8px; isolation: isolate; }
+.monte-product-card__link { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.monte-product-card__media { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 16px; background: var(--mp-card, #eee7e0); }
+.monte-product-card__image, .monte-product-card__media > svg { display: block; width: 100%; height: 100%; object-fit: cover; }
+.monte-product-card__image { transition: transform .35s ease; }
+.monte-product-card__badges { position: absolute; inset: auto 0 0; display: flex; flex-wrap: wrap; gap: 4px; padding: 8px; pointer-events: none; }
+.monte-product-card__badges .badge { max-width: 100%; min-height: 20px; border-radius: 4px; padding: 4px 8px; font: 500 10px/1.2 'PP Neue Montreal Mono', monospace; letter-spacing: -.1px; text-transform: uppercase; white-space: normal; overflow-wrap: anywhere; }
+.monte-product-card__badges .monte-discount-badge { background: #d9e8e1; color: #2f6b57; }
+.monte-product-card__badges .monte-status-badge { background: var(--mp-primary); color: #fdfbf9; }
+.monte-product-card__info { display: grid; gap: 12px; padding: 12px; }
+.monte-product-card__swatches { position: relative; z-index: 2; display: flex; align-items: center; gap: 2px; width: max-content; max-width: 100%; }
+.monte-product-card__swatches .color-swatch { --swatch-size: 18px; --swatch-offset: 2px; width: 18px; height: 18px; margin: 3px; border-radius: 50%; }
+.monte-product-card__swatches .color-swatch:before { box-shadow: 0 0 0 1px; }
+.monte-product-card__more { color: var(--mp-secondary); font: 400 12px/1.5 var(--text-font-family); }
+.monte-product-card__details { display: grid; gap: 8px; }
+.monte-product-card__titles { display: grid; gap: 4px; }
+.monte-product-card h3 { margin: 0; font: 600 14px/1.5 var(--text-font-family); color: var(--mp-primary); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
+.monte-product-card__subtitle { margin: 0; font: 400 12px/1.5 var(--text-font-family); color: var(--mp-secondary); overflow-wrap: anywhere; }
+.monte-product-card .price-list { gap: 4px 8px; flex-wrap: wrap; }
+.monte-product-card sale-price { font: 600 14px/1.5 var(--text-font-family); color: var(--mp-primary); }
+.monte-product-card compare-at-price { font: 400 12px/1.5 var(--text-font-family); color: #8a2f3a; }
+.monte-products__progress { display: none; }
+.monte-products__empty { margin: 0; padding-block: 32px; color: var(--mp-secondary); font: 400 16px/1.5 var(--text-font-family); }
+.monte-products__all { justify-self: center; }
+.monte-products__all .button { min-height: 44px; padding: 10px 24px; border: 1px solid var(--mp-primary); border-radius: 100px; background: transparent; color: var(--mp-primary); font: 600 14px/1.5 var(--text-font-family); letter-spacing: 0; text-transform: none; transition: background-color .2s ease-in-out, color .2s ease-in-out; }
+.monte-products :is(a, button):focus-visible { outline: 2px solid var(--mp-primary); outline-offset: 3px; }
+.monte-products__track:focus-visible { outline: 1px solid var(--mp-primary); outline-offset: 4px; }
+@media (max-width: 699px) { .monte-product-card:nth-child(n + 5) { display: none; } }
+@media (min-width: 700px) {
+  .monte-products { padding: 80px 40px; }
+  .monte-products__layout { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+  .monte-products__tabs { grid-area: 1 / 1; }
+  .monte-products__tabs button { font-size: 48px; }
+  .monte-products__panels { grid-area: 2 / 1 / auto / -1; }
+  .monte-products__all { grid-area: 1 / 2; }
+  .monte-products__all .button { min-height: 56px; padding: 15px 32px; font-size: 16px; }
+  .monte-products__track { display: grid; grid-template: auto / auto-flow calc((100% - 20px) / 2); gap: 20px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; cursor: grab; }
+  .monte-products__track.is-dragging { cursor: grabbing; user-select: none; }
+  .monte-product-card__info { padding: 16px; gap: 16px; }
+  .monte-product-card h3, .monte-product-card sale-price { font-size: 16px; }
+  .monte-product-card__subtitle, .monte-product-card compare-at-price { font-size: 14px; }
+  .monte-product-card__badges { padding: 16px; }
+  .monte-product-card__badges .badge { min-height: 24px; padding-block: 3px; font-size: 12px; line-height: 1.5; letter-spacing: -.12px; }
+  .monte-products__progress { display: block; margin-top: 40px; height: 4px; border-radius: 999px; overflow: hidden; background: #eee7e0; }
+  .monte-products__progress:before { background: var(--mp-primary); border-radius: inherit; }
+}
+@media (min-width: 1000px) { .monte-products__track { grid-auto-columns: calc((100% - 60px) / 4); } }
+@media (hover: hover) {
+  .monte-products__tabs button:hover { opacity: 1; }
+  .monte-products__all .button:hover { background: #232e71; color: #fdfbf9; }
+}
+@media (min-width: 700px) and (hover: hover) {
+  .monte-product-card:hover .monte-product-card__image { transform: scale(1.2); }
+  .is-dragging .monte-product-card .monte-product-card__image { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .monte-products *, .monte-products *:before { transition: none !important; } }

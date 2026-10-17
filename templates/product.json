@@ -596,11 +596,49 @@
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
       }
+    },
+    "monte_product_features": {
+      "type": "monte-product-features",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "title": "Chłodny latem, przyjemny zimą",
+            "description": "<p>Naturalna regulacja temperatury każdej nocy.</p>",
+            "design_image": "1"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "title": "Rzep, który się dopasowuje",
+            "description": "<p>Bez ucisku na skronie, nie czepia się o włosy.</p>",
+            "design_image": "2"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "title": "Budzisz się bardziej wypoczęta",
+            "description": "<p>Głęboki sen w pełnej ciemności.</p>",
+            "design_image": "3"
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3"
+      ],
+      "settings": {
+        "heading": "Małe detale, które\nzmieniają jakość snu"
+      }
     }
   },
   "order": [
     "main",
     "monte_product_details",
+    "monte_product_features",
     "monte_reviews_i8MLb9",
     "faq_accordion_Xmc94w"
   ]

@@ -1,0 +1,47 @@
+{%- liquid
+  assign fallback = blank
+  assign image_width = 1200
+  assign image_height = 1200
+  if block.settings.design_image != 'none'
+    assign fallback = 'monte-feature-' | append: block.settings.design_image | append: '.jpg'
+    if block.settings.design_image == '2'
+      assign image_width = 1048
+    endif
+  endif
+  assign mobile_image = block.settings.mobile_image
+  assign mobile_video = block.settings.mobile_video
+  if mobile_image == blank and mobile_video == blank
+    assign mobile_image = block.settings.image
+    assign mobile_video = block.settings.video
+  endif
+  assign badge_asset = 'monte-feature-badge-2.svg'
+  if index == 1
+    assign badge_asset = 'monte-feature-badge-1.svg'
+  endif
+  assign number = block.settings.number
+  if number == blank
+    assign number = index
+    if index < 10
+      assign number = index | prepend: '0'
+    endif
+  endif
+-%}
+<article class="monte-feature" {{ block.shopify_attributes }}>
+  <div class="monte-feature__media">
+    <div class="monte-feature__media-desktop">
+      {%- render 'monte-navigation-media', image: block.settings.image, video: block.settings.video, placeholder: fallback, width: image_width, height: image_height, sizes: '(min-width: 1000px) calc((100vw - 120px) / 3), 240px' -%}
+    </div>
+    <div class="monte-feature__media-mobile">
+      {%- render 'monte-navigation-media', image: mobile_image, video: mobile_video, placeholder: fallback, width: image_width, height: image_height, sizes: '240px' -%}
+    </div>
+  </div>
+  <div class="monte-feature__content">
+    <div class="monte-feature__title-row">
+      {%- if section.settings.show_numbers -%}
+        <span class="monte-feature__badge"><span class="monte-feature__badge-shape" style="--mf-badge-shape: url('{{ badge_asset | asset_url }}');" aria-hidden="true"></span><span class="monte-feature__badge-label">{{ number | escape }}</span></span>
+      {%- endif -%}
+      {%- if block.settings.title != blank -%}<h3 class="monte-feature__title">{{ block.settings.title | escape }}</h3>{%- endif -%}
+    </div>
+    {%- if block.settings.description != blank -%}<div class="monte-feature__body prose">{{ block.settings.description }}</div>{%- endif -%}
+  </div>
+</article>

@@ -1,0 +1,41 @@
+.shopify-section--monte-features { margin: 0; padding: 0; background: transparent; }
+.monte-features { display: block; padding: var(--mf-mobile-top, 40px) 20px var(--mf-mobile-bottom, 40px); background: transparent; color: var(--mf-primary); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
+.monte-features__reveal { display: grid; gap: 40px; min-width: 0; opacity: 1; }
+.monte-features__heading { margin: 0; font: 500 32px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
+.monte-features__track { display: flex; position: relative; gap: 20px; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
+.monte-features__track::-webkit-scrollbar { display: none; }
+.monte-features__track:focus-visible { outline: 2px solid var(--mf-primary); outline-offset: -2px; }
+.monte-feature { flex: 0 0 min(240px, 100%); min-width: 0; display: flex; flex-direction: column; gap: 16px; scroll-snap-align: start; }
+.monte-feature__media { position: relative; width: 100%; aspect-ratio: 1; border-radius: 16px; overflow: hidden; background: var(--mf-surface); }
+.monte-feature__media-desktop, .monte-feature__media-mobile { position: absolute; inset: 0; }
+.monte-feature__media-desktop { display: none; }
+.monte-feature__media :is(img, video) { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; transition: transform .4s cubic-bezier(.25,.46,.45,.94); }
+.monte-feature__content { display: flex; flex-direction: column; gap: 12px; }
+.monte-feature__title-row { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.monte-feature__badge { position: relative; display: grid; place-items: center; flex: 0 0 32px; width: 32px; height: 24px; color: var(--mf-badge-text); font: 500 14px/1.2 'PP Neue Montreal Mono', monospace; letter-spacing: -.14px; }
+.monte-feature__badge-shape { position: absolute; width: 36px; height: 32px; left: -2px; top: -4.5px; background: var(--mf-badge); mask: var(--mf-badge-shape) center / 36px 32px no-repeat; -webkit-mask: var(--mf-badge-shape) center / 36px 32px no-repeat; }
+.monte-feature__badge-label { position: relative; text-box: trim-both cap alphabetic; }
+.monte-feature__title { flex: 1; min-width: 0; margin: 0; font: 500 20px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
+.monte-feature__body { font: 400 14px/1.5 var(--text-font-family); color: var(--mf-secondary); overflow-wrap: anywhere; }
+.monte-feature__body > :first-child { margin-top: 0; }
+.monte-feature__body > :last-child { margin-bottom: 0; }
+.monte-feature__body p + p { margin-top: 12px; }
+.monte-features__progress { height: 4px; border-radius: 999px; overflow: hidden; background: var(--mf-surface); }
+.monte-features__progress::before { background: var(--mf-primary); border-radius: inherit; }
+.monte-features__progress[hidden] { display: none; }
+@media (min-width: 1000px) {
+  .monte-features { padding: var(--mf-top, 80px) 40px var(--mf-bottom, 80px); }
+  .monte-features__heading { justify-self: center; max-width: 600px; font-size: 48px; text-align: center; }
+  .monte-features__track { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 0; scroll-padding: 0; overflow: visible; scroll-snap-type: none; }
+  .monte-feature { gap: 32px; }
+  .monte-feature__media-desktop { display: block; }
+  .monte-feature__media-mobile { display: none; }
+  .monte-feature__title { font-size: 24px; }
+  .monte-feature__body { font-size: 16px; }
+  .monte-feature__badge { font-size: 16px; letter-spacing: -.16px; }
+  .monte-features__progress { display: none; }
+}
+@media (min-width: 1000px) and (hover: hover) and (pointer: fine) {
+  .monte-feature__media:hover img { transform: scale(1.03); }
+}
+@media (prefers-reduced-motion: reduce) { .monte-feature__media img { transition: none; } }

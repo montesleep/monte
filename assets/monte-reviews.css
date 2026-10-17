@@ -7,7 +7,7 @@
 .monte-reviews__rating-text :is(p, div) { margin: 0; }
 .monte-reviews__rating-text :is(strong, b) { font-weight: 600; }
 .monte-reviews__content { min-width: 0; width: 100%; }
-.monte-reviews__carousel { display: flex; align-items: stretch; gap: 8px; position: relative; margin-right: -20px; padding-right: 20px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.monte-reviews__carousel { display: flex; align-items: stretch; gap: 8px; position: relative; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .monte-reviews__carousel::-webkit-scrollbar { display: none; }
 .monte-reviews__carousel:focus-visible { outline: 2px solid var(--reviews-primary); outline-offset: -2px; }
 .monte-reviews__columns, .monte-reviews__column, .monte-reviews__track, .monte-reviews__group { display: contents; }
@@ -36,7 +36,7 @@
   .monte-reviews__intro { flex: 1; justify-content: center; align-self: stretch; gap: 40px; padding: 40px; }
   .monte-reviews__heading { font-size: 48px; }
   .monte-reviews__content { flex: 0 0 720px; max-width: 60%; height: 100%; }
-  .monte-reviews__carousel { display: block; height: 100%; margin: 0; padding: 0; overflow: hidden; scroll-snap-type: none; }
+  .monte-reviews__carousel { display: block; height: 100%; margin: 0; padding: 0; scroll-padding-inline: 0; overflow: hidden; scroll-snap-type: none; }
   .monte-reviews__columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; height: 100%; }
   .monte-reviews__column { display: block; min-width: 0; height: 100%; overflow-y: auto; overscroll-behavior-y: contain; }
   .monte-reviews__column:has(.is-ready) { overflow: hidden; }

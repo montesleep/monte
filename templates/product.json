@@ -325,6 +325,59 @@
         "input_text_color": ""
       }
     },
+    "monte_product_details": {
+      "type": "monte-product-details",
+      "blocks": {
+        "detail_1": {
+          "type": "item",
+          "settings": {
+            "title": "100% blackout dla całkowitej ciemności",
+            "description": "<p>Tak. Monté ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. 94% klientów w ankiecie po zakupie oceniło blackout jako całkowity.</p>"
+          }
+        },
+        "detail_2": {
+          "type": "item",
+          "settings": {
+            "title": "Nie wchłania kosmetyków, zero załamów rano",
+            "description": "<p>Dobra rutyna zaczyna się od tego, co dotyka twojej skóry przez całą noc. Jedwab morwowy 22 momme jest gładki i spokojny dla twarzy, więc budzisz się wypoczęta, bez załamów i śladów na skórze.</p>"
+          }
+        },
+        "detail_3": {
+          "type": "item",
+          "settings": {
+            "title": "Bez ucisku na oczy i rzęsy przez całą noc",
+            "description": "<p>Nie. Monté jest zaprojektowana z myślą o osobach, które rezygnowały z masek właśnie z powodu ucisku. Jedwabne wypełnienie unosi tkaninę nad powierzchnią oczu, więc nie ma żadnego kontaktu z gałką oczną ani rzęsami.</p>"
+          }
+        },
+        "detail_4": {
+          "type": "item",
+          "settings": {
+            "title": "Rzep zamiast gumki, nie ściska skroni",
+            "description": "<p>Tak. Rzep dopasowujesz raz pod swój obwód głowy i maska trzyma się przez całą noc, nawet jeśli śpisz na boku. 91% klientów potwierdziło, że nie zsunęła się ani razu.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "detail_1",
+        "detail_2",
+        "detail_3",
+        "detail_4"
+      ],
+      "settings": {
+        "heading": "Jedwab, który dba\no Ciebie",
+        "subheading": "Rozpakowanie, materiał, zapięcie rzepu, zobacz to wszystko z bliska. Poniżej cztery szczegóły, które sprawiają, że różnicę czuć od razu.",
+        "video": "{{ product.metafields.custom.mask_preview.value }}",
+        "show_design_image": true,
+        "media_alt": "Rozpakowanie pudełka Monté",
+        "heading_color": "#232e71",
+        "body_color": "#52597e",
+        "border_color": "#dcd6cf",
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
     "marquee_bar": {
       "type": "marquee-bar",
       "blocks": {
@@ -912,6 +965,14 @@
         "faq_8"
       ],
       "settings": {
+        "monte_layout": false,
+        "subheading": "Nie możesz znaleźć tego, czego szukasz? Chętnie pomożemy.",
+        "button_label": "Skontaktuj się z nami",
+        "button_link": "",
+        "open_first": true,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf",
         "tagline": "CZĘSTO ZADAWANE PYTANIA",
         "heading": "Wiemy, o czym **myślisz**",
         "background_color": "#fdfbf9",
@@ -922,46 +983,6 @@
         "padding_top_mobile": 32,
         "padding_bottom_mobile": 32
       }
-    },
-    "monte_product_details": {
-      "type": "monte-product-details",
-      "blocks": {
-        "detail_1": {
-          "type": "item",
-          "settings": {
-            "title": "100% blackout dla całkowitej ciemności",
-            "description": "<p>Tak. Monté ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. 94% klientów w ankiecie po zakupie oceniło blackout jako całkowity.</p>"
-          }
-        },
-        "detail_2": {
-          "type": "item",
-          "settings": {
-            "title": "Nie wchłania kosmetyków, zero załamów rano",
-            "description": "<p>Dobra rutyna zaczyna się od tego, co dotyka twojej skóry przez całą noc. Jedwab morwowy 22 momme jest gładki i spokojny dla twarzy, więc budzisz się wypoczęta, bez załamów i śladów na skórze.</p>"
-          }
-        },
-        "detail_3": {
-          "type": "item",
-          "settings": {
-            "title": "Bez ucisku na oczy i rzęsy przez całą noc",
-            "description": "<p>Nie. Monté jest zaprojektowana z myślą o osobach, które rezygnowały z masek właśnie z powodu ucisku. Jedwabne wypełnienie unosi tkaninę nad powierzchnią oczu, więc nie ma żadnego kontaktu z gałką oczną ani rzęsami.</p>"
-          }
-        },
-        "detail_4": {
-          "type": "item",
-          "settings": {
-            "title": "Rzep zamiast gumki, nie ściska skroni",
-            "description": "<p>Tak. Rzep dopasowujesz raz pod swój obwód głowy i maska trzyma się przez całą noc, nawet jeśli śpisz na boku. 91% klientów potwierdziło, że nie zsunęła się ani razu.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "detail_1",
-        "detail_2",
-        "detail_3",
-        "detail_4"
-      ],
-      "settings": {}
     }
   },
   "order": [

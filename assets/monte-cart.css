@@ -20,10 +20,10 @@
 .monte-cart-icon--close, .monte-cart-icon--trash { width: 16px; height: 16px; }
 .monte-cart-close { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px; }
 .monte-cart .monte-cart-shipping { display: grid; flex: none; gap: 8px; padding: 12px 40px 0; font-size: 12px; line-height: 1.5; text-align: center; }
-.monte-cart-shipping strong, .monte-cart-shipping .bold { font-weight: 800; color: inherit; }
+.monte-cart-shipping strong, .monte-cart-shipping .bold { font-family: 'PP Mori Extrabold', var(--text-font-family); font-weight: 800; color: inherit; }
 .monte-cart-shipping .progress-bar { display: block; height: 10px; border: 1px solid var(--cart-border); border-radius: 999px; padding: 2px; background: var(--cart-card); background-clip: content-box; overflow: hidden; }
 .monte-cart-shipping .progress-bar::before { background: var(--cart-text); height: 4px; border-radius: inherit; }
-.monte-cart-scroll { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; padding: 20px; }
+.monte-cart-scroll { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; padding: 20px; scrollbar-width: none; }
 .monte-cart-empty { display: grid; gap: 20px; }
 .monte-cart-empty-copy { text-align: center; display: flex; flex-direction: column; align-items: center; }
 .monte-cart-empty-copy h3 { margin-top: 16px; }
@@ -82,10 +82,10 @@
 .monte-cart-savings { color: var(--cart-savings); }
 .monte-cart-checkout { min-height: 44px; font-size: 14px; gap: 12px; }
 .monte-cart-checkout .monte-cart-icon { width: 24px; height: 24px; }
-.monte-cart-trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 16px; font-size: 10px; }
+.monte-cart-trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 24px; font-size: 12px; }
 .monte-cart-trust > span { display: flex; align-items: center; gap: 8px; }
-.monte-cart-trust > span > img { width: 16px; height: 16px; object-fit: contain; }
-.monte-cart-trust .monte-cart-icon { width: 16px; height: 16px; transform: scale(.8); }
+.monte-cart-trust > span > img { width: 20px; height: 20px; object-fit: contain; }
+.monte-cart-trust .monte-cart-icon { width: 20px; height: 20px; }
 .monte-cart-feedback { flex: none; padding: 8px 20px; color: var(--cart-compare); font-size: 12px; }
 .monte-cart [hidden] { display: none !important; }
 .monte-cart[aria-busy="true"] [data-cart-add-form], .monte-cart[aria-busy="true"] .monte-cart-quantity, .monte-cart[aria-busy="true"] .monte-cart-remove { cursor: progress; }
@@ -131,3 +131,9 @@ html.monte-cart-locked { overflow: hidden; overscroll-behavior: none; }
 }
 @media (max-width: 359px) { .monte-cart-line-bottom { flex-wrap: wrap; } .monte-cart-shipping { padding-inline: 20px !important; } .monte-cart-upsell-heading h3 { font-size: 18px; } }
 @media (prefers-reduced-motion: reduce) { .monte-cart *, .monte-cart *::before { transition-duration: 0s !important; scroll-behavior: auto !important; } }
+
+.monte-cart-scroll::-webkit-scrollbar { display: none; }
+html.monte-cart-locked shopify-chat { visibility: hidden; pointer-events: none; }
+
+.monte-cart-icon picture { display: grid; place-items: center; }
+@media (max-width: 699px) { .monte-cart-checkout .monte-cart-icon { width: 20px; height: 20px; } }

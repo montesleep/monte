@@ -29,4 +29,4 @@
       assign icon_height = 16.875
   endcase
 -%}
-<span class="monte-cart-icon monte-cart-icon--{{ icon }}" aria-hidden="true"><img src="{{ icon_file | asset_url }}" width="{{ icon_width }}" height="{{ icon_height }}" alt=""></span>
+<span class="monte-cart-icon monte-cart-icon--{{ icon }}" aria-hidden="true">{% if icon == 'checkout' %}<picture><source media="(max-width: 699px)" srcset="{{ 'monte-cart-checkout-mobile.svg' | asset_url }}">{% endif %}<img src="{{ icon_file | asset_url }}" width="{{ icon_width }}" height="{{ icon_height }}" alt="">{% if icon == 'checkout' %}</picture>{% endif %}</span>

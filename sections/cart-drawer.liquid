@@ -1,6 +1,6 @@
 {{ 'monte-cart.css' | asset_url | stylesheet_tag }}
 <script type="module" src="{{ 'monte-cart.js' | asset_url }}"></script>
-<style>@font-face { font-family: 'PP Mori'; src: url('https://cdn.shopify.com/s/files/1/1018/4258/3886/files/PPMori-Extrabold.ttf?v=1788241598') format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }</style>
+<style>@font-face { font-family: 'PP Mori Extrabold'; src: url('https://cdn.shopify.com/s/files/1/1018/4258/3886/files/PPMori-Extrabold.ttf?v=1788241598') format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }</style>
 {%- capture amount_placeholder -%}{% raw %}{{ amount }}{% endraw %}{%- endcapture -%}
 <monte-cart-drawer id="cart-drawer" class="cart-drawer drawer drawer--lg monte-cart" tabindex="-1" aria-labelledby="MonteCartTitle" data-section-id="{{ section.id }}" data-error="{{ section.settings.error_message | escape }}" data-limit="{{ section.settings.limit_message | escape }}" data-updated="{{ section.settings.updated_message | escape }}" {% if request.design_mode %}handle-section-events{% endif %}
   style="--cart-surface: {{ section.settings.background }}; --cart-card: {{ section.settings.card_color }}; --cart-text: {{ section.settings.text_color }}; --cart-secondary: {{ section.settings.secondary_color }}; --cart-border: {{ section.settings.border_color }}; --cart-compare: {{ section.settings.compare_color }}; --cart-savings: {{ section.settings.savings_color }}; --cart-inverse: {{ section.settings.inverse_color }}; --cart-hover: {{ section.settings.hover_color }};">
@@ -134,7 +134,7 @@
       "type": "inline_richtext",
       "id": "shipping_success",
       "label": "Success message",
-      "default": "Twoje zamówienie kwalifikuje się do <strong>darmowej dostawy!</strong>"
+      "default": "<strong>Darmowa dostawa</strong> dla Twojego zamówienia!"
     },
     {
       "type": "header",

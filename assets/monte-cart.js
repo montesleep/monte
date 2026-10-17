@@ -2,6 +2,10 @@ import { CartDrawer, FreeShippingBar } from 'theme';
 import { timeline, FocusTrap } from 'vendor';
 
 class MonteCartShipping extends FreeShippingBar {
+  constructor() {
+    super();
+    this._currencyFormatter = new Intl.NumberFormat(Shopify.locale, { style: 'currency', currency: Shopify.currency.active, minimumFractionDigits: 0, maximumFractionDigits: 2 });
+  }
   _onCartChanged(event) { this.totalPrice = event.detail.cart.total_price; }
 }
 
@@ -49,6 +53,8 @@ class MonteCartDrawer extends CartDrawer {
       if (!compare) { compare = document.createElement('s'); card.querySelector('.monte-cart-price').append(compare); }
       compare.textContent = option.dataset.compare;
       compare.hidden = !option.dataset.compare;
+      const image = card.querySelector('.monte-cart-image img');
+      if (image && option.dataset.image) { image.src = option.dataset.image; image.removeAttribute('srcset'); }
       const variant = card.querySelector('.monte-cart-variant');
       if (variant) variant.textContent = option.textContent;
     }, { signal });
@@ -140,19 +146,26 @@ class MonteCartDrawer extends CartDrawer {
   }
   _onVariantAdded(event) {
     // ProductForm emits variant:add before cart:change. Render first to avoid an empty-state flash.
-    this.renderCart(event.detail.cart);
-    super._onVariantAdded(event);
+    if (this.renderCart(event.detail.cart)) super._onVariantAdded(event);
+    else this._onCartRefresh().then(() => {
+      if (Number(this.querySelector('.monte-cart-view').dataset.itemCount) > 0) super._onVariantAdded(event);
+    });
   }
   _onCartChanged(event) {
-    if (!this.renderCart(event.detail.cart)) this._onCartRefresh().catch(() => this.showError(this.dataset.error));
+    if (!this.renderCart(event.detail.cart)) this._onCartRefresh();
   }
-  async _onCartRefresh() {
+  _onCartRefresh() {
+    if (this.refreshRequest) return this.refreshRequest;
+    this.refreshRequest = this.refreshDrawer().catch(() => this.showError(this.dataset.error)).finally(() => { this.refreshRequest = null; });
+    return this.refreshRequest;
+  }
+  async refreshDrawer() {
     const version = this.refreshVersion = (this.refreshVersion || 0) + 1;
     const url = new URL(window.Shopify.routes.root, location.origin);
     url.searchParams.set('section_id', this.dataset.sectionId);
     const html = await this.request(url, undefined, 'text');
     if (version !== this.refreshVersion || !this.isConnected) return;
-    this.renderCart({ sections: { [this.dataset.sectionId]: html } });
+    if (!this.renderCart({ sections: { [this.dataset.sectionId]: html } })) throw new Error(this.dataset.error);
   }
   renderCart(cart) {
     const html = cart?.sections?.[this.dataset.sectionId];
@@ -243,10 +256,14 @@ class MonteCartDrawer extends CartDrawer {
         const id = Number(new FormData(action.form).get('id'));
         const current = await this.request(`${root}cart.js`);
         const existing = current.items.filter(item => item.variant_id === id && !item.selling_plan_allocation && Object.keys(item.properties || {}).length === 0);
-        if (existing.some(item => item.quantity >= 50)) throw new Error(this.dataset.limit);
+        const input = action.form.querySelector('[name="id"]');
+        const rules = (input.selectedOptions?.[0] || input).dataset;
+        const quantity = Math.max(1, Number(existing.length ? rules.step : rules.min) || 1);
+        const maximum = Math.min(50, Number(rules.max) || 50);
+        if (quantity > maximum || existing.some(item => item.quantity + quantity > maximum)) throw new Error(this.dataset.limit);
         const added = await this.request(`${root}cart/add.js`, {
           method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-          body: JSON.stringify({ items: [{ id, quantity: 1 }], sections: [...new Set(sections)], sections_url: location.pathname })
+          body: JSON.stringify({ items: [{ id, quantity }], sections: [...new Set(sections)], sections_url: location.pathname })
         });
         cart = await this.request(`${root}cart.js`);
         cart.sections = added.sections;

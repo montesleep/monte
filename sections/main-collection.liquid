@@ -21,9 +21,18 @@
           <span id="{{ sort_id }}-value">{{ sort_label | escape }}</span>
           <img src="{{ 'monte-header-chevron.svg' | asset_url }}" width="10" height="7" alt="">
         </button>
-        <x-popover id="{{ sort_id }}" class="popover" close-on-listbox-select anchor-horizontal="end" anchor-vertical="end">
+        <x-popover id="{{ sort_id }}" class="popover monte-sort" style="--ms-primary: {{ section.settings.text_color }}; --ms-secondary: {{ section.settings.secondary_color }}; --ms-muted: {{ section.settings.muted_color }};" close-on-listbox-select anchor-horizontal="end" anchor-vertical="end">
+          <div slot="title" class="monte-sort__heading">
+            <span>{{ section.settings.sort_label | escape }}:</span>
+            <button type="button" is="close-button" class="monte-sort__close" aria-label="{{ 'general.accessibility.close' | t | escape }}">
+              <img src="{{ 'monte-search-close.svg' | asset_url }}" width="13.5607" height="13.5607" alt="">
+            </button>
+            <img class="monte-sort__divider" src="{{ 'monte-nav-divider.png' | asset_url }}" width="335" height="1" alt="">
+          </div>
           <x-listbox class="popover-listbox" aria-owns="{{ sort_id }}-value">
-            {%- for option in collection.sort_options -%}
+            {%- assign sort_values = 'best-selling,title-ascending,title-descending,price-ascending,price-descending' | split: ',' -%}
+            {%- for sort_value in sort_values -%}
+              {%- assign option = collection.sort_options | where: 'value', sort_value | first -%}
               <button type="button" class="popover-listbox__option group" role="option" value="{{ option.value }}" {% if option.value == selected_sort %}aria-selected="true"{% endif %}>
                 <span class="reversed-link">{% if option.value == 'best-selling' %}{{ section.settings.best_selling_label | escape }}{% else %}{{ option.name | escape }}{% endif %}</span>
               </button>

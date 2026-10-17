@@ -1,0 +1,225 @@
+{{ 'monte-spotlight.css' | asset_url | stylesheet_tag }}
+<style>#shopify-section-{{ section.id }} { background: transparent; }</style>
+<reveal-items class="monte-spotlight" margin="0px">
+  {%- for number in (1..2) -%}
+    {%- render 'monte-spotlight-card', number: number, section: section -%}
+  {%- endfor -%}
+</reveal-items>
+
+{% schema %}
+{
+  "name": "Monté Product Spotlight",
+  "tag": "section",
+  "class": "shopify-section--monte-spotlight",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer",
+      "custom.overlay"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "video",
+      "id": "card_1_video",
+      "label": "Desktop video",
+      "info": "Replaces the desktop image. Plays automatically, muted and without controls."
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "video",
+      "id": "card_1_mobile_video",
+      "label": "Mobile video",
+      "info": "Replaces the mobile image. If both mobile media fields are empty, desktop media is used."
+    },
+    {
+      "type": "checkbox",
+      "id": "card_1_show_default_image",
+      "label": "Show design image when no media is selected",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "card_1_badge",
+      "label": "Badge text",
+      "default": "Bestseller"
+    },
+    {
+      "type": "color",
+      "id": "card_1_badge_background",
+      "label": "Badge background",
+      "default": "#232e71"
+    },
+    {
+      "type": "color",
+      "id": "card_1_badge_color",
+      "label": "Badge text color",
+      "default": "#fdfbf9"
+    },
+    {
+      "type": "textarea",
+      "id": "card_1_heading",
+      "label": "Heading",
+      "default": "Jedwabne maski do spania"
+    },
+    {
+      "type": "textarea",
+      "id": "card_1_body",
+      "label": "Subheading",
+      "default": "Pełny blackout i jedwab morwowy 22 momme, który chroni skórę przez całą noc."
+    },
+    {
+      "type": "text",
+      "id": "card_1_button_label",
+      "label": "Button label",
+      "default": "Zobacz maski"
+    },
+    {
+      "type": "url",
+      "id": "card_1_link",
+      "label": "Button link",
+      "default": "/collections"
+    },
+    {
+      "type": "color",
+      "id": "card_1_text_color",
+      "label": "Heading and subheading color",
+      "default": "#fdfbf9"
+    },
+    {
+      "type": "color",
+      "id": "card_1_button_background",
+      "label": "Button background",
+      "default": "#fdfbf9"
+    },
+    {
+      "type": "color",
+      "id": "card_1_button_text_color",
+      "label": "Button text color",
+      "default": "#232e71"
+    },
+    {
+      "type": "color",
+      "id": "card_1_button_hover",
+      "label": "Button hover background",
+      "default": "#eee7e0"
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "video",
+      "id": "card_2_video",
+      "label": "Desktop video",
+      "info": "Replaces the desktop image. Plays automatically, muted and without controls."
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "video",
+      "id": "card_2_mobile_video",
+      "label": "Mobile video",
+      "info": "Replaces the mobile image. If both mobile media fields are empty, desktop media is used."
+    },
+    {
+      "type": "checkbox",
+      "id": "card_2_show_default_image",
+      "label": "Show design image when no media is selected",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "card_2_badge",
+      "label": "Badge text",
+      "default": "Nowość"
+    },
+    {
+      "type": "color",
+      "id": "card_2_badge_background",
+      "label": "Badge background",
+      "default": "#f8f1e9"
+    },
+    {
+      "type": "color",
+      "id": "card_2_badge_color",
+      "label": "Badge text color",
+      "default": "#232e71"
+    },
+    {
+      "type": "textarea",
+      "id": "card_2_heading",
+      "label": "Heading",
+      "default": "Jedwabne poszewki na poduszkę"
+    },
+    {
+      "type": "textarea",
+      "id": "card_2_body",
+      "label": "Subheading",
+      "default": "Mniej załamów na skórze rano i włosy, które nie plączą się w nocy."
+    },
+    {
+      "type": "text",
+      "id": "card_2_button_label",
+      "label": "Button label",
+      "default": "Zobacz poszewki"
+    },
+    {
+      "type": "url",
+      "id": "card_2_link",
+      "label": "Button link",
+      "default": "/collections"
+    },
+    {
+      "type": "color",
+      "id": "card_2_text_color",
+      "label": "Heading and subheading color",
+      "default": "#fdfbf9"
+    },
+    {
+      "type": "color",
+      "id": "card_2_button_background",
+      "label": "Button background",
+      "default": "#fdfbf9"
+    },
+    {
+      "type": "color",
+      "id": "card_2_button_text_color",
+      "label": "Button text color",
+      "default": "#232e71"
+    },
+    {
+      "type": "color",
+      "id": "card_2_button_hover",
+      "label": "Button hover background",
+      "default": "#eee7e0"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Monté Product Spotlight"
+    }
+  ]
+}
+{% endschema %}

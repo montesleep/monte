@@ -869,6 +869,13 @@
         "padding_top_mobile": 32,
         "padding_bottom_mobile": 32
       }
+    },
+    "monte_spotlight": {
+      "type": "monte-spotlight",
+      "settings": {
+        "card_1_link": "/collections",
+        "card_2_link": "/collections"
+      }
     }
   },
   "order": [
@@ -876,6 +883,7 @@
     "monte_benefits",
     "section-5",
     "monte_reviews",
+    "monte_spotlight",
     "section-6",
     "section-15",
     "stats_social_proof_i9KQdr",

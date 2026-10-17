@@ -1,0 +1,77 @@
+{%- liquid
+  assign prefix = 'card_' | append: number | append: '_'
+  assign key = prefix | append: 'image'
+  assign desktop_image = section.settings[key]
+  assign key = prefix | append: 'video'
+  assign desktop_video = section.settings[key]
+  assign key = prefix | append: 'mobile_image'
+  assign mobile_image = section.settings[key]
+  assign key = prefix | append: 'mobile_video'
+  assign mobile_video = section.settings[key]
+  if mobile_image == blank and mobile_video == blank
+    assign mobile_image = desktop_image
+    assign mobile_video = desktop_video
+  endif
+  assign key = prefix | append: 'show_default_image'
+  assign fallback = ''
+  assign image_width = 2000
+  assign image_height = 905
+  if section.settings[key]
+    assign fallback = 'monte-spotlight-masks.png'
+    if number == 2
+      assign fallback = 'monte-spotlight-pillows.png'
+      assign image_width = 1200
+      assign image_height = 1800
+    endif
+  endif
+  assign key = prefix | append: 'badge'
+  assign badge = section.settings[key]
+  assign key = prefix | append: 'heading'
+  assign heading = section.settings[key]
+  assign key = prefix | append: 'body'
+  assign body = section.settings[key]
+  assign key = prefix | append: 'button_label'
+  assign button_label = section.settings[key] | escape
+  assign key = prefix | append: 'link'
+  assign link = section.settings[key]
+  assign key = prefix | append: 'button_background'
+  assign button_background = section.settings[key]
+  assign key = prefix | append: 'button_text_color'
+  assign button_text_color = section.settings[key]
+-%}
+{%- capture card_style -%}
+  {%- assign key = prefix | append: 'text_color' -%}--spotlight-text: {{ section.settings[key] }};
+  {%- assign key = prefix | append: 'badge_background' -%}--spotlight-badge-bg: {{ section.settings[key] }};
+  {%- assign key = prefix | append: 'badge_color' -%}--spotlight-badge-text: {{ section.settings[key] }};
+  {%- assign key = prefix | append: 'button_hover' -%}--spotlight-button-hover: {{ section.settings[key] }};
+{%- endcapture -%}
+<article class="monte-spotlight__card" style="{{ card_style | strip_newlines }}">
+  <div class="monte-spotlight__media" aria-hidden="true">
+    <div class="monte-spotlight__media-desktop">
+      {%- if desktop_video != blank -%}
+        {%- render 'media', media: desktop_video, autoplay: true, loop: true, show_play_button: true, sizes: '(min-width: 700px) 50vw, 100vw' -%}
+      {%- else -%}
+        {%- render 'monte-navigation-media', image: desktop_image, placeholder: fallback, width: image_width, height: image_height, sizes: '(min-width: 700px) 50vw, 100vw' -%}
+      {%- endif -%}
+    </div>
+    <div class="monte-spotlight__media-mobile">
+      {%- if mobile_video != blank -%}
+        {%- render 'media', media: mobile_video, autoplay: true, loop: true, show_play_button: true, sizes: '100vw' -%}
+      {%- else -%}
+        {%- render 'monte-navigation-media', image: mobile_image, placeholder: fallback, width: image_width, height: image_height, sizes: '100vw' -%}
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="monte-spotlight__content">
+    {%- if badge != blank -%}<span class="monte-spotlight__badge">{{ badge | escape }}</span>{%- endif -%}
+    {%- if heading != blank or body != blank -%}
+      <div class="monte-spotlight__details">
+        {%- if heading != blank -%}<h2 class="monte-spotlight__heading">{{ heading | escape | newline_to_br }}</h2>{%- endif -%}
+        {%- if body != blank -%}<p class="monte-spotlight__body">{{ body | escape | newline_to_br }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if button_label != blank and link != blank -%}
+      {%- render 'button', content: button_label, href: link, background: button_background, text_color: button_text_color, style: 'fill' -%}
+    {%- endif -%}
+  </div>
+</article>

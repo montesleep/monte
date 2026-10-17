@@ -954,5 +954,24 @@
         "info": "The newsletter list to subscribe to. Leave blank to disable newsletter submissions."
       }
     ]
+  },
+  {
+    "name": "Monté social rating",
+    "settings": [
+      {
+        "type": "range",
+        "id": "monte_social_rating",
+        "label": "Filled stars",
+        "min": 0,
+        "max": 5,
+        "step": 0.5,
+        "default": 4.5,
+        "info": "Shared across Monté sections. Supports half stars."
+      },
+      {
+        "type": "paragraph",
+        "content": "Edit the shared rating text in Settings → Metafields and metaobjects → Store → custom.rating_text_social."
+      }
+    ]
   }
 ]

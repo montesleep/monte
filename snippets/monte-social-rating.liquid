@@ -1,0 +1,14 @@
+{%- comment -%}Shared Monté social rating. Each star supports a partial fill without changing the Figma SVG assets.{%- endcomment -%}
+<div class="monte-social-rating" role="img" aria-label="{{ rating | replace: '.', ',' }} z 5 gwiazdek">
+  {%- for star in (1..5) -%}
+    {%- assign previous_stars = star | minus: 1 -%}
+    {%- assign fill_percent = rating | minus: previous_stars | at_least: 0 | at_most: 1 | times: 100 -%}
+    <span class="monte-social-rating__star" aria-hidden="true">
+      <img src="{{ 'monte-rating-empty.svg' | asset_url }}" width="16" height="16" alt="">
+      <span class="monte-social-rating__fill" style="clip-path: inset(0 {{ 100 | minus: fill_percent }}% 0 0);">
+        <img src="{{ 'monte-rating-outline.svg' | asset_url }}" width="16" height="16" alt="">
+        <img src="{{ 'monte-rating-star.svg' | asset_url }}" width="16" height="16" alt="">
+      </span>
+    </span>
+  {%- endfor -%}
+</div>

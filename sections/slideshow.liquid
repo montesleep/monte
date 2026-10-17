@@ -1,3 +1,4 @@
+{%- if section.settings.monte_hero -%}{{ 'monte-hero.css' | asset_url | stylesheet_tag }}{%- endif -%}
 {%- comment -%}
 ------------------------------------------------------------------------------------------------------------------------
 CSS
@@ -15,6 +16,8 @@ CSS
     --slideshow-background: {{ section.blocks.first.settings.background_gradient | default: section.blocks.first.settings.background | default: section.settings.background_gradient | default: section.settings.background }};
     --slideshow-controls-background: {{ controls_background.rgb }};
     --slideshow-controls-color: {{ controls_color.rgb }};
+    --monte-hero-mobile-height: {{ section.settings.hero_mobile_height }}px;
+    --monte-hero-desktop-height: {{ section.settings.hero_desktop_height }}px;
 
     {%- if section.settings.allow_transparent_header -%}
       margin-block-start: calc(-1 * var(--header-height) * var(--section-is-first));
@@ -45,7 +48,7 @@ LIQUID
 
 {%- assign slideshow_id = 'slideshow-' | append: section.id -%}
 
-<x-slideshow class="slideshow {% unless section.settings.full_width %}slideshow--boxed{% endunless %} {% if section.blocks.size > 1 %}slideshow--multiple-slides{% endif %}" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
+<x-slideshow class="slideshow {% if section.settings.monte_hero %}monte-hero{% endif %} {% unless section.settings.full_width %}slideshow--boxed{% endunless %} {% if section.blocks.size > 1 %}slideshow--multiple-slides{% endif %}" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
   {%- unless section.settings.full_width -%}
     <span class="slideshow__slide-background"></span>
   {%- endunless -%}
@@ -115,6 +118,9 @@ LIQUID
           {%- capture content_class -%}{{ block.settings.mobile_text_position }} {{ block.settings.desktop_text_position }}{%- endcapture -%}
 
           <div {% render 'surface', class: content_class, text_color: block.settings.text_color %}>
+            {%- if section.settings.monte_hero -%}
+              {%- render 'monte-hero-content', block: block, section: section, first_slide: forloop.first -%}
+            {%- else -%}
             <div class="prose">
               {%- if block.settings.subheading != blank -%}
                 <p class="subheading" data-sequence="subheading">{{ block.settings.subheading | escape }}</p>
@@ -130,6 +136,7 @@ LIQUID
                 {%- render 'button', href: block.settings.button_link, content: block.settings.button_text, size: 'xl', background: block.settings.button_background, text_color: block.settings.button_text_color -%}
               {%- endif -%}
             </div>
+            {%- endif -%}
           </div>
         </div>
       {%- endcapture -%}
@@ -195,10 +202,42 @@ LIQUID
   "class": "shopify-section--slideshow",
   "tag": "section",
   "disabled_on": {
-    "groups": ["header", "custom.overlay"]
+    "groups": [
+      "header",
+      "custom.overlay"
+    ]
   },
   "max_blocks": 5,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "monte_hero",
+      "label": "Monté hero layout",
+      "default": false,
+      "info": "Use the Monté homepage design. Add an Image or Video slide with separate desktop and mobile media."
+    },
+    {
+      "type": "range",
+      "id": "hero_desktop_height",
+      "label": "Desktop hero minimum height",
+      "min": 400,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 620,
+      "visible_if": "{{ section.settings.monte_hero }}"
+    },
+    {
+      "type": "range",
+      "id": "hero_mobile_height",
+      "label": "Mobile hero minimum height",
+      "min": 400,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 620,
+      "visible_if": "{{ section.settings.monte_hero }}"
+    },
     {
       "type": "checkbox",
       "id": "full_width",
@@ -450,6 +489,31 @@ LIQUID
           "default": "Slide title"
         },
         {
+          "type": "textarea",
+          "id": "hero_heading",
+          "label": "Monté hero heading",
+          "info": "Overrides Heading in the Monté hero layout. Use a new line to control the line break."
+        },
+        {
+          "type": "textarea",
+          "id": "hero_mobile_subheading",
+          "label": "Monté hero mobile subheading",
+          "info": "Optional mobile text with line breaks. Leave blank to use Subheading."
+        },
+        {
+          "type": "checkbox",
+          "id": "hero_show_rating",
+          "label": "Show Monté social rating",
+          "default": true,
+          "info": "The text uses the store metafield custom.rating_text_social. Set the shared star rating under Theme settings → Monté social rating."
+        },
+        {
+          "type": "color",
+          "id": "hero_button_hover",
+          "label": "Monté hero button hover",
+          "default": "#eee7e0"
+        },
+        {
           "type": "select",
           "id": "heading_tag",
           "label": "Heading size",
@@ -675,6 +739,31 @@ LIQUID
           "id": "title",
           "label": "Heading",
           "default": "Slide title"
+        },
+        {
+          "type": "textarea",
+          "id": "hero_heading",
+          "label": "Monté hero heading",
+          "info": "Overrides Heading in the Monté hero layout. Use a new line to control the line break."
+        },
+        {
+          "type": "textarea",
+          "id": "hero_mobile_subheading",
+          "label": "Monté hero mobile subheading",
+          "info": "Optional mobile text with line breaks. Leave blank to use Subheading."
+        },
+        {
+          "type": "checkbox",
+          "id": "hero_show_rating",
+          "label": "Show Monté social rating",
+          "default": true,
+          "info": "The text uses the store metafield custom.rating_text_social. Set the shared star rating under Theme settings → Monté social rating."
+        },
+        {
+          "type": "color",
+          "id": "hero_button_hover",
+          "label": "Monté hero button hover",
+          "default": "#eee7e0"
         },
         {
           "type": "select",

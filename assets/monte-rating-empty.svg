@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Star outline" clip-path="url(#clip0_0_11)">
+<g id="Vector">
+<path d="M4.10133 13.6667L8 11.484L11.8987 13.6667L11.028 9.284L14.3087 6.25067L9.872 5.724L8 1.66667L6.128 5.724L1.69067 6.25067L4.972 9.284L4.10133 13.6667Z" fill-rule="evenodd" clip-rule="evenodd" fill="#D9A17D"/>
+<path d="M11.8987 13.6667L8 11.484V16H16V0H8V1.66667L9.872 5.724L14.3087 6.25067L11.028 9.284L11.8987 13.6667Z" fill="#F8F1E9" fill-opacity="0.4"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_11">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>

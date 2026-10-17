@@ -15,23 +15,27 @@
         "block-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Banner_Desktop.jpg",
-            "mobile_image": "shopify://shop_images/Banner_Mobile.jpg",
+            "image": "shopify://shop_images/monte-hero-desktop.png",
+            "mobile_image": "shopify://shop_images/monte-hero-mobile.png",
             "content_max_width": 600,
-            "mobile_text_position": "place-self-end-center text-center",
+            "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
-            "subheading": "JEDWABNA MASKA DO SPANIA",
-            "title": "Twoja skóra i sen <br> zasługują na jedwab",
+            "subheading": "Wszystko, czego potrzebujesz na dobrą noc.",
+            "title": "Jedwab, który dba o Ciebie",
             "heading_tag": "h2",
-            "button_text": "Odkryj maskę Monté",
-            "button_link": "shopify://products/midnight-blue-silk-sleep-mask",
-            "text_color": "#182153",
-            "button_background": "#232e71",
-            "button_text_color": "#fdfbf9",
+            "button_text": "Zobacz kolekcję",
+            "button_link": "/collections",
+            "text_color": "#fdfbf9",
+            "button_background": "#fdfbf9",
+            "button_text_color": "#232e71",
             "overlay_color": "#000000",
-            "overlay_opacity": 0,
+            "overlay_opacity": 20,
             "background": "",
-            "background_gradient": ""
+            "background_gradient": "",
+            "hero_heading": "Jedwab, który\ndba o Ciebie",
+            "hero_mobile_subheading": "Wszystko, czego potrzebujesz\nna dobrą noc.",
+            "hero_show_rating": true,
+            "hero_button_hover": "#eee7e0"
           }
         }
       },
@@ -42,14 +46,17 @@
       "settings": {
         "full_width": true,
         "allow_transparent_header": false,
-        "show_initial_transition": false,
+        "show_initial_transition": true,
         "image_size": "auto",
         "controls_type": "none",
         "transition_type": "fade_with_text",
         "autoplay": false,
         "cycle_speed": 6,
         "background": "rgba(0,0,0,0)",
-        "background_gradient": "linear-gradient(127deg, rgba(66, 74, 48, 1) 11%, rgba(138, 157, 123, 1) 100%)"
+        "background_gradient": "",
+        "monte_hero": true,
+        "hero_desktop_height": 620,
+        "hero_mobile_height": 620
       }
     },
     "section-5": {

@@ -1,0 +1,31 @@
+{%- liquid
+  assign hero_heading = block.settings.hero_heading | default: block.settings.title
+  assign rating_text = shop.metafields.custom.rating_text_social.value
+  assign rating = settings.monte_social_rating | default: 4.5 | at_least: 0 | at_most: 5
+-%}
+<div class="monte-hero__content" style="--hero-button-hover: {{ block.settings.hero_button_hover | default: '#eee7e0' }};">
+  {%- if block.settings.hero_show_rating -%}
+    <div class="monte-hero__rating" data-sequence="subheading">
+      {%- render 'monte-social-rating', rating: rating -%}
+      {%- if rating_text != blank -%}<p>{{ rating_text | escape }}</p>{%- endif -%}
+    </div>
+  {%- endif -%}
+  <div class="monte-hero__messaging">
+    {%- if hero_heading != blank -%}
+      {%- if first_slide and request.page_type == 'index' -%}
+        <h1 class="monte-hero__heading" data-sequence="heading">{{ hero_heading | escape | newline_to_br }}</h1>
+      {%- else -%}
+        <h2 class="monte-hero__heading" data-sequence="heading">{{ hero_heading | escape | newline_to_br }}</h2>
+      {%- endif -%}
+    {%- endif -%}
+    {%- if block.settings.subheading != blank -%}
+      <p class="monte-hero__subheading {% if block.settings.hero_mobile_subheading != blank %}monte-hero__subheading--desktop{% endif %}" data-sequence="subheading">{{ block.settings.subheading | escape }}</p>
+    {%- endif -%}
+    {%- if block.settings.hero_mobile_subheading != blank -%}
+      <p class="monte-hero__subheading monte-hero__subheading--mobile" data-sequence="subheading">{{ block.settings.hero_mobile_subheading | escape | newline_to_br }}</p>
+    {%- endif -%}
+  </div>
+  {%- if block.settings.button_text != blank -%}
+    {%- render 'button', href: block.settings.button_link, content: block.settings.button_text, background: block.settings.button_background, text_color: block.settings.button_text_color, style: 'fill' -%}
+  {%- endif -%}
+</div>

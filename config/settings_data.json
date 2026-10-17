@@ -119,8 +119,6 @@
           "background_color": "#ffffff",
           "font_color": "#000000",
           "button_color": "#232e71",
-          "secondary_color": "#fdfbf9",
-          "ternary_color": "#232e71",
           "button_icon": "chat_bubble",
           "button_text": "no_text",
           "button_horizontal_position": "bottom_right",

@@ -32,15 +32,21 @@
     "header": {
       "type": "header",
       "settings": {
+        "use_brand_logo": true,
+        "shop_label": "Sklep",
+        "bundles_label": "Zestawy",
+        "bundles_link": "/collections",
+        "contact_label": "Kontakt",
+        "contact_link": "shopify://pages/contact",
         "enable_sticky": true,
         "hide_on_scroll": false,
         "logo": "shopify://shop_images/Logo_Monte_Black.svg",
         "logo_max_width": 135,
         "logo_mobile_max_width": 90,
-        "menu": "main-menu",
+        "menu": "header",
         "sidebar_menu": "",
         "secondary_menu": "",
-        "customer_account_menu": "main-menu",
+        "customer_account_menu": "kontakt",
         "menu_open_trigger": "click",
         "opening_from": "bottom",
         "layout": "monte",
@@ -52,13 +58,7 @@
         "transparent_header_text_color": "#ffffff",
         "reduce_padding": false,
         "background_opacity": 100,
-        "background_blur_radius": 0,
-        "use_brand_logo": true,
-        "shop_label": "Sklep",
-        "bundles_label": "Zestawy",
-        "bundles_link": "/collections",
-        "contact_label": "Kontakt",
-        "contact_link": "shopify://pages/contact"
+        "background_blur_radius": 0
       }
     },
     "lv3_announcement_timer_aJt6UP": {

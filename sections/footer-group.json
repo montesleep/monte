@@ -103,49 +103,58 @@
           "type": "payment_icon",
           "settings": {
             "icon": "shopify://shop_images/Visa.svg",
-            "label": "Payment method"
+            "label": "Visa"
           }
         },
         "payment_icon_NtV3tV": {
           "type": "payment_icon",
           "settings": {
             "icon": "shopify://shop_images/Mastercard.svg",
-            "label": "Payment method"
+            "label": "Mastercard"
           }
         },
         "payment_icon_HfERAr": {
           "type": "payment_icon",
           "settings": {
             "icon": "shopify://shop_images/Przelewy24.svg",
-            "label": "Payment method"
+            "label": "Przelewy24"
           }
         },
         "payment_icon_EGyjHe": {
           "type": "payment_icon",
           "settings": {
             "icon": "shopify://shop_images/Blik.svg",
-            "label": "Payment method"
+            "label": "Blik"
           }
         },
         "nav_store": {
           "type": "nav_column",
           "settings": {
-            "heading": "SKLEP",
+            "heading": "Sklep",
             "menu": "sklep"
           }
         },
         "nav_legal": {
           "type": "nav_column",
           "settings": {
-            "heading": "INFORMACJE PRAWNE",
+            "heading": "Informacje prawne",
             "menu": "informacje-prawne"
           }
         },
-        "nav_social": {
-          "type": "nav_column",
+        "social_instagram": {
+          "type": "social_icon",
           "settings": {
-            "heading": "OBSERWUJ NAS",
-            "menu": "obserwuj-nas"
+            "icon": "shopify://shop_images/monte-footer-instagram.svg",
+            "label": "Instagram",
+            "link": "https://www.instagram.com/montesleep/"
+          }
+        },
+        "social_facebook": {
+          "type": "social_icon",
+          "settings": {
+            "icon": "shopify://shop_images/monte-footer-facebook.svg",
+            "label": "Facebook",
+            "link": "https://www.facebook.com/profile.php?id=61574438946396"
           }
         }
       },
@@ -156,15 +165,18 @@
         "payment_icon_EGyjHe",
         "nav_store",
         "nav_legal",
-        "nav_social"
+        "social_instagram",
+        "social_facebook"
       ],
       "settings": {
-        "card_background": "#232e71",
-        "logo": "shopify://shop_images/Heading.svg",
-        "newsletter_heading": "DOŁĄCZ DO RYTUAŁU",
+        "card_background": "#182153",
+        "logo": "shopify://shop_images/monte-footer-wordmark.svg",
+        "newsletter_heading": "Dołącz do rytuału",
         "newsletter_desc": "Odbierz darmową dostawę na pierwsze zamówienie i bądź na bieżąco z nowościami Monté.",
         "newsletter_placeholder": "Twój adres e-mail",
-        "copyright_text": "© 2026 Monté. Wszystkie prawa zastrzeżone."
+        "copyright_text": "© 2026 Monté. Wszystkie prawa zastrzeżone.",
+        "brand_logo": "shopify://shop_images/monte-footer-brand.svg",
+        "brand_description": "Jedwabne akcesoria do snu i pielęgnacji włosów. Wysyłamy z Polski."
       }
     }
   },

@@ -937,5 +937,22 @@
         "info": "180 x 180px .png recommended"
       }
     ]
+  },
+  {
+    "name": "Klaviyo",
+    "settings": [
+      {
+        "type": "text",
+        "id": "klaviyo_public_api_key",
+        "label": "Klaviyo Public API Key",
+        "info": "Use the public Site ID, never a private API key. Leave blank to disable newsletter submissions."
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_list_id",
+        "label": "Klaviyo List ID",
+        "info": "The newsletter list to subscribe to. Leave blank to disable newsletter submissions."
+      }
+    ]
   }
 ]

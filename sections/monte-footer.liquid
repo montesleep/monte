@@ -1,446 +1,62 @@
-<style>
-  #shopify-section-{{ section.id }} {
-    padding: 0;
-  }
-
-  .mfooter-{{ section.id }} {
-    background-color: #fdfbf9;
-    padding: 8px;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__card {
-    background-color: {{ section.settings.card_background }};
-    border-radius: 16px;
-    padding: 24px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    overflow: hidden;
-  }
-
-  /* ---- TOP ---- */
-  .mfooter-{{ section.id }} .mfooter__top {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  /* Newsletter column */
-  .mfooter-{{ section.id }} .mfooter__newsletter {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__newsletter-header {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__col-heading {
-    font-family: "PP Neue Montreal Mono", monospace;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #f8f1e9;
-    line-height: 1.5;
-    border-bottom: 1px dashed #50598e;
-    padding-bottom: 20px;
-    margin: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .mfooter-{{ section.id }} .mfooter__col-heading {
-      padding-bottom: 17px;
-    }
-  }
-
-  .mfooter-{{ section.id }} .mfooter__newsletter-desc {
-    font-family: "PP Mori", sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    color: #c4c7d9;
-    line-height: 1.5;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    margin: 0;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__newsletter-form {
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__input-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #fdfbf9;
-    border-radius: 999px;
-    height: 44px;
-    padding: 4px 4px 4px 24px;
-    gap: 8px;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__email-input {
-    flex: 1;
-    border: none;
-    background: transparent;
-    font-family: "PP Mori", sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    color: #182153;
-    outline: none;
-    min-width: 0;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__email-input::placeholder {
-    color: rgba(24, 33, 83, 0.75);
-  }
-
-  .mfooter-{{ section.id }} .mfooter__submit-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 999px;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__submit-btn svg {
-    width: 12px;
-    height: 12px;
-  }
-
-  /* Nav columns */
-  .mfooter-{{ section.id }} .mfooter__nav-columns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px 16px;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__nav-col {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    min-width: 140px;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__nav-links li a {
-    display: block;
-    position: relative;
-    font-family: "PP Mori", sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    color: #c4c7d9;
-    line-height: 1.5;
-    text-decoration: none;
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__nav-links li a {
-    width: fit-content;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__nav-links li a::after {
-    content: '';
-    position: absolute;
-    bottom: 6px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: #c4c7d9;
-    transition: width 0.25s ease;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__nav-links li a:hover::after {
-    width: 100%;
-  }
-
-  /* ---- BOTTOM ---- */
-  .mfooter-{{ section.id }} .mfooter__bottom {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__logo-wrap {
-    width: 100%;
-    height: 56px;
-    overflow: hidden;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__logo-wrap img {
-    width: 100%;
-    height: 100%;
-    object-position: center;
-    display: block;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__logo-text {
-    font-family: "PP Pangaia", serif;
-    font-size: 48px;
-    font-weight: 500;
-    color: #f8f1e9;
-    line-height: 1;
-    text-align: center;
-    letter-spacing: -1px;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__divider {
-    width: 100%;
-    height: 1px;
-    background: none;
-    border: none;
-    border-top: 1px dashed #50598e;
-    margin: 0;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__credits {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__copyright {
-    font-family: "PP Mori", sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    color: #848ab0;
-    line-height: 1.5;
-    white-space: nowrap;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__payments {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__payment-badge {
-    width: 23px;
-    height: 16px;
-    border-radius: 4px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .mfooter-{{ section.id }} .mfooter__payment-badge img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-  }
-
-  /* ---- DESKTOP ---- */
-  @media screen and (min-width: 900px) {
-    .mfooter-{{ section.id }} {
-      padding: 12px;
-    }
-
-    .mfooter-{{ section.id }} .mfooter__card {
-      border-radius: 24px;
-      padding: 40px;
-      gap: 56px;
-      max-width: 1416px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .mfooter-{{ section.id }} .mfooter__top {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 40px;
-    }
-
-    .mfooter-{{ section.id }} .mfooter__newsletter {
-      width: 380px;
-      flex-shrink: 0;
-    }
-
-    .mfooter-{{ section.id }} .mfooter__nav-columns {
-      flex-wrap: nowrap;
-      gap: 32px;
-      justify-content: flex-end;
-    }
-
-    .mfooter-{{ section.id }} .mfooter__nav-col {
-      width: 180px;
-      min-width: 0;
-      gap: 16px;
-    }
-
-    .mfooter-{{ section.id }} .mfooter__bottom {
-      gap: 32px;
-    }
-
-    .mfooter-{{ section.id }} .mfooter__logo-wrap {
-      height: 236px;
-    }
-
-    .mfooter-{{ section.id }} .mfooter__logo-text {
-      font-size: 140px;
-      text-align: center;
-    }
-
-    .mfooter-{{ section.id }} .mfooter__credits {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0;
-    }
-
-    .mfooter-{{ section.id }} .mfooter__payments {
-      justify-content: flex-end;
-      gap: 12px;
-    }
-  }
-
-  #shopify-section-{{ section.id }} .contact-form {
-    padding: 0;
-  }
-</style>
-
+{{ 'monte-footer.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'monte-footer.js' | asset_url }}"></script>
 {%- liquid
-  assign payment_blocks = section.blocks | where: 'type', 'payment_icon'
   assign nav_blocks = section.blocks | where: 'type', 'nav_column'
+  assign social_blocks = section.blocks | where: 'type', 'social_icon'
+  assign payment_blocks = section.blocks | where: 'type', 'payment_icon'
 -%}
-
-<footer class="mfooter-{{ section.id }}" role="contentinfo">
+<footer class="mfooter" style="--footer-background: {{ section.settings.card_background }}; --footer-text: {{ section.settings.text_color }}; --footer-light: {{ section.settings.light_color }}; --footer-hover: {{ section.settings.hover_color }}; --footer-accent: {{ section.settings.accent_color }};">
   <div class="mfooter__card">
-
-    <!-- TOP -->
-    <div class="mfooter__top">
-
-      <!-- Newsletter -->
-      <div class="mfooter__newsletter">
-        <div class="mfooter__newsletter-header">
-          <h3 class="mfooter__col-heading">{{ section.settings.newsletter_heading }}</h3>
-          {%- if section.settings.newsletter_desc != blank -%}
-            <p class="mfooter__newsletter-desc">{{ section.settings.newsletter_desc }}</p>
+    <reveal-items class="mfooter__top">
+      <div class="mfooter__brand">
+        {%- if section.settings.brand_logo != blank -%}
+          <div class="mfooter__column-header"><a class="mfooter__brand-logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">{{ section.settings.brand_logo | image_url: width: 508 | image_tag: loading: 'lazy', widths: '127,254,508', sizes: '127px', alt: shop.name }}</a></div>
+        {%- endif -%}
+        {%- if section.settings.brand_description != blank -%}<p class="mfooter__description">{{ section.settings.brand_description | escape | newline_to_br }}</p>{%- endif -%}
+        {%- capture social_content -%}
+          {%- for block in social_blocks limit: 4 -%}
+            {%- if block.settings.icon != blank -%}
+              <a class="mfooter__social link-faded-reverse" {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% else %}role="link" aria-disabled="true"{% endif %} aria-label="{{ block.settings.label | default: block.settings.icon.alt | default: 'Social media' | escape }}" {{ block.shopify_attributes }}>{{ block.settings.icon | image_url: width: 96 | image_tag: loading: 'lazy', alt: '', widths: '24,48,96', sizes: '24px' }}</a>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- if social_content != blank -%}<div class="mfooter__socials">{{ social_content }}</div>{%- endif -%}
+      </div>
+      {%- for block in nav_blocks -%}
+        <div class="mfooter__nav-col" {{ block.shopify_attributes }}>
+          {%- if block.settings.heading != blank -%}<h2 class="mfooter__column-header mfooter__col-heading">{{ block.settings.heading | escape }}</h2>{%- endif -%}
+          {%- if block.settings.menu != blank -%}
+            <ul class="mfooter__nav-links" role="list">{%- for link in block.settings.menu.links -%}<li><a class="link-faded" href="{{ link.url }}" {% if link.current %}aria-current="page"{% endif %}>{{ link.title | escape }}</a></li>{%- endfor -%}</ul>
           {%- endif -%}
         </div>
-        <div class="mfooter__newsletter-form">
-          {%- form 'customer', id: 'footer-newsletter-form' -%}
-            <input type="hidden" name="contact[tags]" value="newsletter">
-            <div class="mfooter__input-row">
-              <input
-                class="mfooter__email-input"
-                type="email"
-                name="contact[email]"
-                placeholder="{{ section.settings.newsletter_placeholder }}"
-                required
-                autocomplete="email"
-              >
-              <button type="submit" class="mfooter__submit-btn" aria-label="Subscribe">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <g clip-path="url(#clip0_2001_5089)">
-                  <path d="M0.84375 5.99756H10.6875" stroke="#182153" stroke-opacity="0.75" stroke-width="1.25"/>
-                  <path d="M5.76562 10.9219L10.6875 6L5.76562 1.07812" stroke="#182153" stroke-opacity="0.75" stroke-width="1.25"/>
-                </g>
-                <defs>
-                  <clipPath id="clip0_2001_5089">
-                    <rect width="12" height="12" fill="white"/>
-                  </clipPath>
-                </defs>
-              </svg>
-              </button>
-            </div>
-          {%- endform -%}
+      {%- endfor -%}
+      <div class="mfooter__newsletter">
+        {%- if section.settings.newsletter_heading != blank -%}<h2 class="mfooter__column-header mfooter__col-heading">{{ section.settings.newsletter_heading | escape }}</h2>{%- endif -%}
+        <div class="mfooter__newsletter-content">
+          {%- if section.settings.newsletter_desc != blank -%}<p class="mfooter__description">{{ section.settings.newsletter_desc | escape | newline_to_br }}</p>{%- endif -%}
+          <monte-footer-newsletter data-public-key="{{ settings.klaviyo_public_api_key | strip | escape }}" data-list-id="{{ settings.klaviyo_list_id | strip | escape }}" data-success="{{ section.settings.newsletter_success | escape }}" data-error="{{ section.settings.newsletter_error | escape }}">
+            <form class="mfooter__newsletter-form" onsubmit="return false;">
+              <label class="sr-only" for="FooterEmail-{{ section.id }}">{{ section.settings.newsletter_placeholder | escape }}</label>
+              <div class="mfooter__input-row">
+                <input id="FooterEmail-{{ section.id }}" class="mfooter__email-input" type="email" name="email" placeholder="{{ section.settings.newsletter_placeholder | escape }}" required autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false">
+                <button type="submit" class="mfooter__submit-btn" aria-label="{{ section.settings.newsletter_submit_label | escape }}"><img src="{{ 'monte-footer-arrow.svg' | asset_url }}" width="12" height="9" alt=""></button>
+              </div>
+              <p class="mfooter__form-message" role="status" aria-live="polite" hidden></p>
+            </form>
+          </monte-footer-newsletter>
         </div>
       </div>
-
-      <!-- Nav columns -->
-      {%- if nav_blocks.size > 0 -%}
-        <div class="mfooter__nav-columns">
-          {%- for block in nav_blocks -%}
-            <div class="mfooter__nav-col" {{ block.shopify_attributes }}>
-              {%- if block.settings.heading != blank -%}
-                <p class="mfooter__col-heading">{{ block.settings.heading }}</p>
-              {%- endif -%}
-              {%- if block.settings.menu != blank -%}
-                {%- assign nav_menu = linklists[block.settings.menu] -%}
-                {%- if nav_menu.links.size > 0 -%}
-                  <ul class="mfooter__nav-links">
-                    {%- for link in nav_menu.links -%}
-                      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                    {%- endfor -%}
-                  </ul>
-                {%- endif -%}
-              {%- endif -%}
-            </div>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-
-    </div>
-
-    <!-- BOTTOM -->
-    <div class="mfooter__bottom">
-
-      <!-- Logo -->
-      <div class="mfooter__logo-wrap">
-        {%- if section.settings.logo != blank -%}
-          {{
-            section.settings.logo
-            | image_url: width: 1400
-            | image_tag:
-              loading: 'lazy',
-              alt: section.settings.logo.alt | default: shop.name | escape
-          }}
-        {%- else -%}
-          <div class="mfooter__logo-text">{{ shop.name | upcase }}</div>
-        {%- endif -%}
-      </div>
-
-      <hr class="mfooter__divider">
-
-      <!-- Credits -->
+    </reveal-items>
+    {%- if section.settings.logo != blank -%}<reveal-items class="mfooter__wordmark"><div>{{ section.settings.logo | image_url: width: 2800 | image_tag: loading: 'lazy', widths: '343,686,1360,2000,2800', sizes: '(min-width: 1100px) calc(100vw - 80px), calc(100vw - 32px)', alt: shop.name }}</div></reveal-items>{%- endif -%}
+    <reveal-items class="mfooter__bottom">
       <div class="mfooter__credits">
-        <span class="mfooter__copyright">{{ section.settings.copyright_text }}</span>
-
-        {%- if payment_blocks.size > 0 -%}
-          <div class="mfooter__payments" aria-label="Payment methods">
-            {%- for block in payment_blocks -%}
-              {%- if block.settings.icon != blank -%}
-                <div class="mfooter__payment-badge" {{ block.shopify_attributes }}>
-                  {{
-                    block.settings.icon
-                    | image_url: width: 80
-                    | image_tag:
-                      loading: 'lazy',
-                      alt: block.settings.label | escape
-                  }}
-                </div>
-              {%- endif -%}
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
+        {%- if section.settings.copyright_text != blank -%}<p class="mfooter__copyright">{{ section.settings.copyright_text | escape }}</p>{%- endif -%}
+        {%- capture payment_content -%}
+          {%- for block in payment_blocks limit: 10 -%}{%- if block.settings.icon != blank -%}<span class="mfooter__payment-badge" {{ block.shopify_attributes }}>{{ block.settings.icon | image_url: width: 140 | image_tag: loading: 'lazy', alt: block.settings.label, sizes: '35px', widths: '35,70,140' }}</span>{%- endif -%}{%- endfor -%}
+        {%- endcapture -%}
+        {%- if payment_content != blank -%}<div class="mfooter__payments" aria-label="Payment methods">{{ payment_content }}</div>{%- endif -%}
       </div>
-
-    </div>
+    </reveal-items>
   </div>
 </footer>
 
@@ -448,64 +64,122 @@
 {
   "name": "Monté Footer",
   "tag": "section",
-  "class": "section",
+  "class": "shopify-section--monte-footer",
   "settings": [
     {
       "type": "header",
-      "content": "Card"
+      "content": "Brand"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo",
+      "label": "Brand logo"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description",
+      "label": "Brand description",
+      "default": "Jedwabne akcesoria do snu i pielęgnacji włosów. Wysyłamy z Polski."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
     },
     {
       "type": "color",
       "id": "card_background",
-      "label": "Card background",
+      "label": "Footer background",
+      "default": "#182153"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#fdfbf9"
+    },
+    {
+      "type": "color",
+      "id": "light_color",
+      "label": "Light buttons and input",
+      "default": "#f8f1e9"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Light hover background",
+      "default": "#eee7e0"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Input text and submit button",
       "default": "#232e71"
-    },
-    {
-      "type": "header",
-      "content": "Logo"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo image (full-width wordmark)"
     },
     {
       "type": "header",
       "content": "Newsletter"
     },
     {
+      "type": "paragraph",
+      "content": "Configure Klaviyo Public API Key and Klaviyo List ID under Theme settings → Klaviyo. When either field is empty, the form validates the email without submitting it."
+    },
+    {
       "type": "text",
       "id": "newsletter_heading",
-      "label": "Column heading",
-      "default": "Join the Ritual"
+      "label": "Heading",
+      "default": "Dołącz do rytuału"
     },
     {
       "type": "text",
       "id": "newsletter_desc",
       "label": "Description",
-      "default": "Get 15% off your first order, plus quiet updates and new drops."
+      "default": "Odbierz darmową dostawę na pierwsze zamówienie i bądź na bieżąco z nowościami Monté."
     },
     {
       "type": "text",
       "id": "newsletter_placeholder",
-      "label": "Input placeholder",
-      "default": "Enter your email"
+      "label": "Email placeholder",
+      "default": "Twój adres e-mail"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_submit_label",
+      "label": "Submit button accessibility label",
+      "default": "Zapisz się"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_success",
+      "label": "Success message",
+      "default": "Dziękujemy! Jeśli otrzymasz wiadomość z potwierdzeniem, kliknij w niej link, aby dokończyć zapis."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_error",
+      "label": "Error message",
+      "default": "Nie udało się wysłać formularza. Spróbuj ponownie za chwilę."
     },
     {
       "type": "header",
       "content": "Bottom"
     },
     {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Large wordmark image",
+      "info": "Remove the image to hide the wordmark. Its original aspect ratio is preserved."
+    },
+    {
       "type": "text",
       "id": "copyright_text",
       "label": "Copyright text",
-      "default": "© 2026 Monté. All Rights Reserved."
+      "default": "© 2026 Monté. Wszystkie prawa zastrzeżone."
     }
   ],
   "blocks": [
     {
       "type": "nav_column",
-      "name": "Nav column",
+      "name": "Menu column",
       "settings": [
         {
           "type": "text",
@@ -519,7 +193,8 @@
           "label": "Menu",
           "default": "footer"
         }
-      ]
+      ],
+      "limit": 2
     },
     {
       "type": "payment_icon",
@@ -536,6 +211,31 @@
           "label": "Alt text (e.g. Visa)",
           "default": "Payment method"
         }
+      ],
+      "limit": 10
+    },
+    {
+      "type": "social_icon",
+      "name": "Social icon",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon",
+          "info": "This item is hidden when no icon is selected."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Accessibility label",
+          "default": "Social media"
+        }
       ]
     }
   ],
@@ -546,26 +246,25 @@
         {
           "type": "nav_column",
           "settings": {
-            "heading": "Store",
+            "heading": "Sklep",
             "menu": "footer"
           }
         },
         {
           "type": "nav_column",
           "settings": {
-            "heading": "Legal",
-            "menu": "footer"
-          }
-        },
-        {
-          "type": "nav_column",
-          "settings": {
-            "heading": "Follow Us",
+            "heading": "Informacje prawne",
             "menu": "footer"
           }
         }
       ]
     }
-  ]
+  ],
+  "enabled_on": {
+    "groups": [
+      "footer"
+    ]
+  },
+  "max_blocks": 16
 }
 {% endschema %}

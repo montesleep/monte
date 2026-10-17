@@ -6,7 +6,18 @@
   if category_collections == blank
     assign category_collections = collections
   endif
-  assign all_image = section.settings.all_image | default: category_collections.first.image | default: collections.all.image | default: collections.all.products.first.featured_image
+  assign all_image = section.settings.all_image
+  if all_image == blank
+    for category in category_collections
+      if category.image != blank
+        assign all_image = category.image
+        break
+      endif
+    endfor
+  endif
+  if all_image == blank
+    assign all_image = collections.all.image | default: collections.all.products.first.featured_image
+  endif
   assign all_active = false
   if collection.handle == 'all'
     assign all_active = true

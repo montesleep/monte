@@ -49,12 +49,51 @@
     },
     "search-drawer": {
       "type": "search-drawer",
-      "settings": {
-        "full_width": false,
-        "show_article_category": true,
-        "search_menu": "",
-        "search_menu_show_title": true
-      }
+      "settings": {},
+      "blocks": {
+        "monte_search_tag_1": {
+          "type": "popular_search",
+          "settings": {
+            "label": "Maski do spania",
+            "link": "/collections"
+          }
+        },
+        "monte_search_tag_2": {
+          "type": "popular_search",
+          "settings": {
+            "label": "Poszewki",
+            "link": "/collections"
+          }
+        },
+        "monte_search_tag_3": {
+          "type": "popular_search",
+          "settings": {
+            "label": "Czepki",
+            "link": "/collections"
+          }
+        },
+        "monte_search_tag_4": {
+          "type": "popular_search",
+          "settings": {
+            "label": "Gumki",
+            "link": "/collections"
+          }
+        },
+        "monte_search_tag_5": {
+          "type": "popular_search",
+          "settings": {
+            "label": "Zestawy",
+            "link": "/collections"
+          }
+        }
+      },
+      "block_order": [
+        "monte_search_tag_1",
+        "monte_search_tag_2",
+        "monte_search_tag_3",
+        "monte_search_tag_4",
+        "monte_search_tag_5"
+      ]
     }
   },
   "order": [

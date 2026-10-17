@@ -1,0 +1,67 @@
+/* Monte search uses the Impact drawer and shared product components. */
+.monte-search {
+  --rounded-sm: 16px; --drawer-body-padding: 0; --drawer-content-max-height: 100dvh;
+  width: 100%; height: auto; max-height: 100dvh; padding: 0; pointer-events: none;
+  color: var(--search-text); font: 400 14px/1.5 var(--text-font-family);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none;
+}
+.monte-search::part(overlay) { background: rgb(0 0 0 / .6); backdrop-filter: blur(17px); -webkit-backdrop-filter: blur(17px); pointer-events: auto; }
+.monte-search::part(content) { height: auto; max-height: 100dvh; overflow: hidden; background: var(--search-surface); color: var(--search-text); border-radius: 16px; pointer-events: auto; }
+.monte-search::part(body) { display: block; min-height: 0; padding: 0; overflow: hidden; }
+.monte-search::part(header), .monte-search::part(footer), .monte-search::part(outside-close-button) { display: none; }
+.monte-search[has-query], .monte-search[has-query]::part(content) { height: 100dvh; }
+.monte-search-form { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.monte-search-header { display: flex; flex: none; align-items: center; gap: 12px; padding: 20px 20px 8px; background: var(--search-surface); }
+.monte-search-field { display: flex; flex: 1; min-width: 0; align-items: center; gap: 12px; height: 44px; padding: 0 16px; border: 1px solid var(--search-border); border-radius: 999px; background: var(--search-card); color: var(--search-disabled); }
+.monte-search-field:focus-within, .monte-search[has-text] .monte-search-field { color: var(--search-text); }
+.monte-search-field input { appearance: none; border: 0; outline: 0; box-shadow: none; background: transparent; min-width: 0; width: 100%; padding: 0; color: inherit; font: inherit; }
+.monte-search-field input::placeholder { color: inherit; opacity: 1; }
+.monte-search-field input::-webkit-search-cancel-button { display: none; }
+.monte-search-icon { display: grid; place-items: center; width: 20px; height: 20px; flex: none; }
+.monte-search-icon picture { display: block; grid-area: 1 / 1; }
+.monte-search-icon img { width: auto; height: auto; max-width: none; }
+.monte-search-icon--active { visibility: hidden; }
+.monte-search-field:focus-within .monte-search-icon--active, .monte-search[has-text] .monte-search-icon--active { visibility: visible; }
+.monte-search-field:focus-within .monte-search-icon--idle, .monte-search[has-text] .monte-search-icon--idle { visibility: hidden; }
+.monte-search-close { display: grid; place-items: center; width: 32px; height: 32px; flex: none; padding: 8px; border-radius: 8px; }
+.monte-search-close img { width: auto; height: auto; max-width: none; }
+.monte-search-scroll { min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 20px; }
+.monte-search-idle { display: grid; gap: 12px; }
+.monte-search-idle > p { color: var(--search-secondary); }
+.monte-search-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.monte-search-tag { display: block; padding: 8px 16px; border-radius: 999px; background: var(--search-card); font-weight: 600; transition: background-color .2s ease-in-out; }
+.monte-search-tag:hover { background: var(--search-border); }
+.monte-search-tag:active { opacity: .7; }
+.monte-search-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; row-gap: 12px; }
+.monte-search-product { display: flex; flex-direction: column; gap: 0; min-width: 0; background: transparent; color: var(--search-text); }
+.monte-search-product-image { aspect-ratio: 1; border-radius: 16px; background: var(--search-card); overflow: hidden; isolation: isolate; }
+.monte-search-product-image > img, .monte-search-product-image > svg { width: 100%; height: 100%; object-fit: cover; }
+.monte-search-product-image .product-card__image--secondary { position: absolute; inset: 0; opacity: 0; }
+.monte-search-product-info { display: flex; flex-direction: column; gap: 8px; padding: 12px; }
+.monte-search-product-title { font: 600 14px/1.5 var(--text-font-family); overflow-wrap: anywhere; }
+.monte-search-product .price-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.monte-search-product sale-price { font: 600 14px/1.5 var(--text-font-family); color: var(--search-text); }
+.monte-search-product compare-at-price { font: 400 12px/1.5 var(--text-font-family); color: var(--search-compare); }
+.monte-search-badges { position: absolute; inset: auto 0 0; display: flex; flex-wrap: wrap; gap: 4px; padding: 8px; pointer-events: none; }
+.monte-search-badges .badge { min-height: 20px; padding: 4px 8px; border-radius: 4px; font: 500 10px/1.2 'PP Neue Montreal Mono', monospace; letter-spacing: -.1px; text-transform: uppercase; }
+.monte-search-badges .monte-discount-badge { background: var(--search-sale-bg); color: var(--search-sale-text); }
+.monte-search-badges .monte-status-badge { background: var(--search-text); color: var(--search-inverse); }
+.monte-search .empty-state { padding: 32px 0; }
+.monte-search .empty-state .h6 { font: 400 16px/1.5 var(--text-font-family); }
+.monte-search-loading { padding-top: 16px; }
+.monte-search [hidden] { display: none !important; }
+@media (min-width: 700px) {
+  .monte-search { width: 520px; height: 100dvh; font-size: 16px; --rounded-sm: 16px 0 0 16px; }
+  .monte-search::part(content) { height: 100%; border-radius: 16px 0 0 16px; }
+  .monte-search-header { gap: 16px; padding-bottom: 12px; }
+  .monte-search-field { height: 58px; padding-inline: 24px; }
+  .monte-search-icon { width: 24px; height: 24px; }
+  .monte-search-idle { gap: 16px; }
+  .monte-search-grid { gap: 20px; }
+  .monte-search-product-info { padding: 16px; }
+  .monte-search-product-title, .monte-search-product sale-price { font-size: 16px; }
+  .monte-search-product compare-at-price { font-size: 14px; }
+  .monte-search-badges { padding: 16px; }
+  .monte-search-badges .badge { min-height: 24px; font-size: 12px; line-height: 1.5; letter-spacing: -.12px; padding-block: 3px; }
+}
+@media (prefers-reduced-motion: reduce) { .monte-search-tag { transition: none; } }

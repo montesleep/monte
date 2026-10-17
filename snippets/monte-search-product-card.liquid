@@ -1,0 +1,18 @@
+{%- assign variant = product.selected_or_first_available_variant -%}
+<a href="{{ product.url }}" class="monte-search-product product-card{% if settings.show_secondary_image and product.media.size > 1 %} product-card--show-secondary-media{% endif %}" data-product-id="{{ product.id }}">
+  <div class="product-card__figure monte-search-product-image">
+    {%- if product.featured_media -%}
+      {{ product.featured_media | image_url: width: 700 | image_tag: class: 'product-card__image product-card__image--primary', loading: 'lazy', sizes: '(min-width: 700px) 230px, calc((100vw - 56px) / 2)', widths: '160,230,320,460,700' }}
+      {%- if settings.show_secondary_image and product.media.size > 1 -%}
+        {{ product.media[1] | image_url: width: 700 | image_tag: class: 'product-card__image product-card__image--secondary', loading: 'lazy', sizes: '(min-width: 700px) 230px, calc((100vw - 56px) / 2)', widths: '160,230,320,460,700', aria-hidden: 'true' }}
+      {%- endif -%}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+    {%- endif -%}
+    {%- render 'product-badges', product: product, variant: variant, types: 'monte_discount,monte_status', class: 'monte-search-badges' -%}
+  </div>
+  <div class="monte-search-product-info">
+    <p class="monte-search-product-title">{{ product.title | escape }}</p>
+    {%- render 'price-list', variant: variant, hide_unit_price: true -%}
+  </div>
+</a>

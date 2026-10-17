@@ -287,6 +287,142 @@
         "star_color": "#d9a17d"
       }
     },
+    "monte_spotlight": {
+      "type": "monte-spotlight",
+      "settings": {
+        "card_1_show_default_image": true,
+        "card_1_badge": "Bestseller",
+        "card_1_badge_background": "#232e71",
+        "card_1_badge_color": "#fdfbf9",
+        "card_1_heading": "Jedwabne maski do spania",
+        "card_1_body": "Pełny blackout i jedwab morwowy 22 momme, który chroni skórę przez całą noc.",
+        "card_1_button_label": "Zobacz maski",
+        "card_1_link": "/collections",
+        "card_1_text_color": "#fdfbf9",
+        "card_1_button_background": "#fdfbf9",
+        "card_1_button_text_color": "#232e71",
+        "card_1_button_hover": "#eee7e0",
+        "card_2_show_default_image": true,
+        "card_2_badge": "Nowość",
+        "card_2_badge_background": "#f8f1e9",
+        "card_2_badge_color": "#232e71",
+        "card_2_heading": "Jedwabne poszewki na poduszkę",
+        "card_2_body": "Mniej załamów na skórze rano i włosy, które nie plączą się w nocy.",
+        "card_2_button_label": "Zobacz poszewki",
+        "card_2_link": "/collections",
+        "card_2_text_color": "#fdfbf9",
+        "card_2_button_background": "#fdfbf9",
+        "card_2_button_text_color": "#232e71",
+        "card_2_button_hover": "#eee7e0"
+      }
+    },
+    "faq_accordion_GirgW4": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_item_y7V84r": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy naprawdę blokuje światło?",
+            "answer": "<p>Tak. Monté ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. 94% klientów w ankiecie po zakupie oceniło blackout jako całkowity.</p>"
+          }
+        },
+        "faq_item_mEikbH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Nienawidzę masek, które uciskają oczy. Czy ta też tak działa?",
+            "answer": "<p>Nie. Monté jest zaprojektowana z myślą o osobach, które rezygnowały z masek właśnie z powodu ucisku. Jedwabne wypełnienie unosi tkaninę nad powierzchnią oczu, więc nie ma żadnego kontaktu z gałką oczną ani rzęsami.</p>"
+          }
+        },
+        "faq_item_ejC9zQ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy utrzyma się na miejscu, jeśli ruszam się podczas snu?",
+            "answer": "<p>Tak. Rzep dopasowujesz raz pod swój obwód głowy i maska trzyma się przez całą noc, nawet jeśli śpisz na boku. 91% klientów potwierdziło, że nie zsunęła się ani razu.</p>"
+          }
+        },
+        "faq_item_R9cRE3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Co oznacza \"jedwab 22 momme\" i dlaczego to ważne?",
+            "answer": "<p>Momme to jednostka gęstości tkaniny jedwabnej. Im wyższa wartość, tym jedwab jest grubszy, trwalszy i bardziej miękki w dotyku. 22 momme to standard premium. Tańsze maski zazwyczaj mają 16-19 momme, co oznacza cieńszą i mniej trwałą tkaninę.</p>"
+          }
+        },
+        "faq_item_FcDxnM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy Monté to produkt medyczny albo \"leczy\" problemy ze snem?",
+            "answer": "<p>Monté nie jest produktem medycznym i nie leczy bezsenności. To luksusowy akcesoria do snu, który pomaga stworzyć lepsze warunki do zasypiania, eliminując rozpraszające światło. Jeśli masz poważne problemy ze snem, skonsultuj się z lekarzem.</p>"
+          }
+        },
+        "faq_item_wxHMyp": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy nadaje się do podróży i drzemek?",
+            "answer": "<p>Tak. Monté jest lekka i mieści się w eleganckim pudełku, które łatwo zmieści się w torbie podręcznej. Działa równie dobrze w samolocie, pociągu, hotelu czy podczas drzemki w ciągu dnia.</p>"
+          }
+        },
+        "faq_item_tfj77a": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Jak ją pielęgnować?",
+            "answer": "<p>Pranie ręczne w zimnej wodzie (maks. 30°C) z delikatnym detergentem do jedwabiu. Susz na płasko, z dala od słońca. Po wysuszeniu możesz przywrócić puszystość żelazkiem w trybie pary od wewnętrznej strony tkaniny.</p>"
+          }
+        },
+        "faq_item_q4MBdR": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Co jeśli maska mi nie odpowiada?",
+            "answer": "<p>Oferujemy 30-nocną gwarancję zwrotu pieniędzy. Jeśli maska nie spełni twoich oczekiwań, odeślij ją w oryginalnym, nieużywanym stanie w ciągu 30 nocy od zakupu, a zwrócimy ci pełną kwotę. Bez pytań.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_y7V84r",
+        "faq_item_mEikbH",
+        "faq_item_ejC9zQ",
+        "faq_item_R9cRE3",
+        "faq_item_FcDxnM",
+        "faq_item_wxHMyp",
+        "faq_item_tfj77a",
+        "faq_item_q4MBdR"
+      ],
+      "settings": {
+        "monte_layout": true,
+        "subheading": "Nie możesz znaleźć tego, czego szukasz? Chętnie pomożemy.",
+        "button_label": "Skontaktuj się z nami",
+        "button_link": "/pages/contact",
+        "open_first": true,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf",
+        "tagline": "CZĘSTO ZADAWANE PYTANIA",
+        "heading": "Wiemy,\no czym myślisz",
+        "background_color": "#fdfbf9",
+        "heading_color": "#182153",
+        "body_color": "#182153bf",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "monte_brand_story": {
+      "type": "monte-brand-story",
+      "settings": {
+        "show_default_image": true,
+        "image_zoom": false,
+        "heading": "Dlaczego Monté?",
+        "body": "Jedwab morwowy 22 momme, uczciwa jakość i produkty stworzone z myślą o Twojej nocnej rutynie.",
+        "button_label": "Poznaj naszą historię",
+        "button_link": "shopify://pages/o-marce",
+        "heading_color": "#232e71",
+        "body_color": "#52597e",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
     "section-6": {
       "type": "impact-text",
       "settings": {
@@ -420,82 +556,6 @@
         "chart_background": "",
         "chart_text_color": "",
         "chart_true_false_color": ""
-      }
-    },
-    "stats_social_proof_i9KQdr": {
-      "type": "stats-social-proof",
-      "blocks": {
-        "feature_item_6Uzrex": {
-          "type": "feature_item",
-          "settings": {
-            "text": "Nie wchłania kosmetyków, krem zostaje tam gdzie powinien"
-          }
-        },
-        "feature_item_bRAbUt": {
-          "type": "feature_item",
-          "settings": {
-            "text": "Zero załamów na skórze po przebudzeniu"
-          }
-        }
-      },
-      "block_order": [
-        "feature_item_6Uzrex",
-        "feature_item_bRAbUt"
-      ],
-      "name": "Stats & Social Proof",
-      "settings": {
-        "image": "shopify://shop_images/Hand_and_Mask.png",
-        "tagline": "BEAUTY SLEEP",
-        "heading": "Twoja skóra pracuje w nocy. Jedwab jej nie przeszkadza.",
-        "body": "Wieczorna pielęgnacja ma sens tylko wtedy, kiedy kosmetyki zostają na skórze, a nie na poduszce czy masce. Jedwab morwowy 22 momme nie wchłania kremów, nie trze o skórę i nie zostawia załamów rano. Budzisz się tak, jak powinnaś.",
-        "footnote": "",
-        "background_color": "#fdfbf9",
-        "heading_color": "#182153",
-        "body_color": "#182153",
-        "reverse_desktop": false,
-        "reverse_mobile": false,
-        "padding_top_desktop": 40,
-        "padding_bottom_desktop": 40,
-        "padding_top_mobile": 32,
-        "padding_bottom_mobile": 32
-      }
-    },
-    "stats_social_proof_TgFgh4": {
-      "type": "stats-social-proof",
-      "blocks": {
-        "feature_item_jpAgYw": {
-          "type": "feature_item",
-          "settings": {
-            "text": "100% blackout potwierdzony przez 94% klientów"
-          }
-        },
-        "feature_item_FUXWaX": {
-          "type": "feature_item",
-          "settings": {
-            "text": "Jedwabne wypełnienie bez ucisku na oczy przez całą noc"
-          }
-        }
-      },
-      "block_order": [
-        "feature_item_jpAgYw",
-        "feature_item_FUXWaX"
-      ],
-      "name": "Stats & Social Proof",
-      "settings": {
-        "image": "shopify://shop_images/onte-silk-sleep-mask-midnight-blue-lying-logo.jpg",
-        "tagline": "GŁĘBOKI SEN",
-        "heading": "Ciemność, której twój mózg  potrzebuje każdej nocy",
-        "body": "Melatonina wydziela się tylko w ciemności. Każde źródło światła, poranne słońce, ekran telefonu, lampka w korytarzu, zakłóca ten proces i sprawia że śpisz płycej niż powinieneś. Monté eliminuje światło całkowicie, żebyś mogła spać tak jak twoje ciało naprawdę potrzebuje.",
-        "footnote": "",
-        "background_color": "#fdfbf9",
-        "heading_color": "#182153",
-        "body_color": "#182153",
-        "reverse_desktop": true,
-        "reverse_mobile": false,
-        "padding_top_desktop": 40,
-        "padding_bottom_desktop": 40,
-        "padding_top_mobile": 32,
-        "padding_bottom_mobile": 32
       }
     },
     "testimonials_fAAqzD": {
@@ -787,107 +847,6 @@
         "heading_color": "#182153",
         "heading_gradient": ""
       }
-    },
-    "faq_accordion_GirgW4": {
-      "type": "faq-accordion",
-      "blocks": {
-        "faq_item_y7V84r": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Czy naprawdę blokuje światło?",
-            "answer": "<p>Tak. Monté ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. 94% klientów w ankiecie po zakupie oceniło blackout jako całkowity.</p>"
-          }
-        },
-        "faq_item_mEikbH": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Nienawidzę masek, które uciskają oczy. Czy ta też tak działa?",
-            "answer": "<p>Nie. Monté jest zaprojektowana z myślą o osobach, które rezygnowały z masek właśnie z powodu ucisku. Jedwabne wypełnienie unosi tkaninę nad powierzchnią oczu, więc nie ma żadnego kontaktu z gałką oczną ani rzęsami.</p>"
-          }
-        },
-        "faq_item_ejC9zQ": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Czy utrzyma się na miejscu, jeśli ruszam się podczas snu?",
-            "answer": "<p>Tak. Rzep dopasowujesz raz pod swój obwód głowy i maska trzyma się przez całą noc, nawet jeśli śpisz na boku. 91% klientów potwierdziło, że nie zsunęła się ani razu.</p>"
-          }
-        },
-        "faq_item_R9cRE3": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Co oznacza \"jedwab 22 momme\" i dlaczego to ważne?",
-            "answer": "<p>Momme to jednostka gęstości tkaniny jedwabnej. Im wyższa wartość, tym jedwab jest grubszy, trwalszy i bardziej miękki w dotyku. 22 momme to standard premium. Tańsze maski zazwyczaj mają 16-19 momme, co oznacza cieńszą i mniej trwałą tkaninę.</p>"
-          }
-        },
-        "faq_item_FcDxnM": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Czy Monté to produkt medyczny albo \"leczy\" problemy ze snem?",
-            "answer": "<p>Monté nie jest produktem medycznym i nie leczy bezsenności. To luksusowy akcesoria do snu, który pomaga stworzyć lepsze warunki do zasypiania, eliminując rozpraszające światło. Jeśli masz poważne problemy ze snem, skonsultuj się z lekarzem.</p>"
-          }
-        },
-        "faq_item_wxHMyp": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Czy nadaje się do podróży i drzemek?",
-            "answer": "<p>Tak. Monté jest lekka i mieści się w eleganckim pudełku, które łatwo zmieści się w torbie podręcznej. Działa równie dobrze w samolocie, pociągu, hotelu czy podczas drzemki w ciągu dnia.</p>"
-          }
-        },
-        "faq_item_tfj77a": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Jak ją pielęgnować?",
-            "answer": "<p>Pranie ręczne w zimnej wodzie (maks. 30°C) z delikatnym detergentem do jedwabiu. Susz na płasko, z dala od słońca. Po wysuszeniu możesz przywrócić puszystość żelazkiem w trybie pary od wewnętrznej strony tkaniny.</p>"
-          }
-        },
-        "faq_item_q4MBdR": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Co jeśli maska mi nie odpowiada?",
-            "answer": "<p>Oferujemy 30-nocną gwarancję zwrotu pieniędzy. Jeśli maska nie spełni twoich oczekiwań, odeślij ją w oryginalnym, nieużywanym stanie w ciągu 30 nocy od zakupu, a zwrócimy ci pełną kwotę. Bez pytań.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "faq_item_y7V84r",
-        "faq_item_mEikbH",
-        "faq_item_ejC9zQ",
-        "faq_item_R9cRE3",
-        "faq_item_FcDxnM",
-        "faq_item_wxHMyp",
-        "faq_item_tfj77a",
-        "faq_item_q4MBdR"
-      ],
-      "settings": {
-        "tagline": "CZĘSTO ZADAWANE PYTANIA",
-        "heading": "Wiemy,\no czym myślisz",
-        "background_color": "#fdfbf9",
-        "heading_color": "#182153",
-        "body_color": "#182153bf",
-        "padding_top_desktop": 80,
-        "padding_bottom_desktop": 80,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40,
-        "monte_layout": true,
-        "subheading": "Nie możesz znaleźć tego, czego szukasz? Chętnie pomożemy.",
-        "button_label": "Skontaktuj się z nami",
-        "button_link": "/pages/contact",
-        "open_first": true
-      }
-    },
-    "monte_spotlight": {
-      "type": "monte-spotlight",
-      "settings": {
-        "card_1_link": "/collections",
-        "card_2_link": "/collections"
-      }
-    },
-    "monte_brand_story": {
-      "type": "monte-brand-story",
-      "settings": {
-        "button_link": "shopify://pages/o-marce",
-        "image_zoom": false
-      }
     }
   },
   "order": [
@@ -900,8 +859,6 @@
     "monte_brand_story",
     "section-6",
     "section-15",
-    "stats_social_proof_i9KQdr",
-    "stats_social_proof_TgFgh4",
     "testimonials_fAAqzD",
     "blog_posts_pRx46J"
   ]

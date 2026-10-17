@@ -3,6 +3,7 @@
 .monte-faq__layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
 .monte-faq__intro { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; min-width: 0; }
 .monte-faq__heading { margin: 0; color: var(--mf-primary); font: 500 32px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
+.monte-faq__heading br { display: none; }
 .monte-faq__description { margin: 0; color: var(--mf-secondary); font: 400 14px/1.5 var(--text-font-family); overflow-wrap: anywhere; }
 .monte-faq__button .button { min-height: 44px; padding: 10px 24px; max-width: 100%; background: transparent; color: #232e71; border: 1px solid #232e71; box-shadow: none; border-radius: 100px; font: 600 14px/1.5 var(--text-font-family); letter-spacing: 0; text-transform: none; transition: background-color .2s ease-in-out, color .2s ease-in-out; }
 .monte-faq__list { --mf-row-padding: 20px; min-width: 0; }
@@ -25,6 +26,7 @@
 @media (min-width: 1000px) {
   .monte-faq { padding: var(--mf-top-desktop, 80px) 40px var(--mf-bottom-desktop, 80px); }
   .monte-faq__layout { grid-template-columns: minmax(0, 520fr) minmax(0, 720fr); gap: clamp(40px, 8.333333vw, 120px); }
+  .monte-faq__heading br { display: block; }
   .monte-faq__heading { max-width: 320px; font-size: 48px; }
   .monte-faq__description { max-width: 320px; font-size: 16px; }
   .monte-faq__button { margin-top: 8px; }

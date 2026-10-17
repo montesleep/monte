@@ -8,7 +8,7 @@
     <div class="monte-faq__layout">
       <div class="monte-faq__intro">
         {%- if section.settings.heading != blank -%}
-          <h2 class="monte-faq__heading">{{ section.settings.heading | remove: '**' | escape }}</h2>
+          <h2 class="monte-faq__heading">{{ section.settings.heading | remove: '**' | escape | newline_to_br }}</h2>
         {%- endif -%}
         {%- if section.settings.subheading != blank -%}
           <p class="monte-faq__description">{{ section.settings.subheading | escape | newline_to_br }}</p>

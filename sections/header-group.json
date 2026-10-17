@@ -58,7 +58,7 @@
         "bundles_label": "Zestawy",
         "bundles_link": "/collections",
         "contact_label": "Kontakt",
-        "contact_link": "/pages/contact"
+        "contact_link": "shopify://pages/contact"
       }
     },
     "lv3_announcement_timer_aJt6UP": {

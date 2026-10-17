@@ -35,7 +35,7 @@
                   <li><a class="dropdown-menu__item group" href="{{ link.url }}"><span class="reversed-link">{{ link.title }}</span></a></li>
                 {%- endfor -%}
               {%- else -%}
-                <li><a class="dropdown-menu__item group" href="{{ section.settings.contact_link }}"><span class="reversed-link">{{ section.settings.contact_label | escape }}</span></a></li>
+                <li><a class="dropdown-menu__item group" href="{{ section.settings.contact_link | default: pages.contact.url }}"><span class="reversed-link">{{ section.settings.contact_label | escape }}</span></a></li>
               {%- endif -%}
             </ul>
           </div>

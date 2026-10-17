@@ -31,12 +31,39 @@ class MonteNavigationDrawer extends NavigationDrawer {
     }, { signal });
   }
   show(animated = true) {
-    if (this.open || window.matchMedia('(min-width: 1150px)').matches) return;
-    this._savedScroll = window.scrollY;
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    if (this.header.hasAttribute('hide-on-scroll')) this.header.show();
-    this.controls.forEach(control => control.setAttribute('aria-label', this.dataset.closeLabel));
-    return super.show(animated);
+    if (window.matchMedia('(min-width: 1150px)').matches) return Promise.resolve();
+    return this._setDrawerOpen(true, animated);
+  }
+  hide() { return this._setDrawerOpen(false); }
+  _onToggleClicked(event) {
+    event?.preventDefault();
+    return this._setDrawerOpen(!(this._desiredOpen ?? this.open));
+  }
+  _setDrawerOpen(open, animated = true) {
+    this._desiredOpen = open;
+    if (!this._drawerTransition) {
+      // Finish each Impact transition before applying the latest requested state.
+      this._drawerTransition = this._applyDrawerState(animated).finally(() => {
+        this._drawerTransition = null;
+        if (this.isConnected && this.open !== this._desiredOpen) this._setDrawerOpen(this._desiredOpen);
+      });
+    }
+    return this._drawerTransition;
+  }
+  async _applyDrawerState(animated) {
+    while (this.isConnected && this.open !== this._desiredOpen) {
+      if (this._desiredOpen) {
+        this.reinitializeDrawer();
+        this._savedScroll = window.scrollY;
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        if (this.header.hasAttribute('hide-on-scroll')) this.header.show();
+        this.controls.forEach(control => control.setAttribute('aria-label', this.dataset.closeLabel));
+        await super.show(animated);
+      } else {
+        this._panelVersion = (this._panelVersion || 0) + 1;
+        await super.hide();
+      }
+    }
   }
   _setInitialPosition() {
     const top = Math.max(0, this.header.closest('.shopify-section').getBoundingClientRect().bottom);
@@ -44,7 +71,8 @@ class MonteNavigationDrawer extends NavigationDrawer {
     Object.assign(this.style, { top: `${top}px`, bottom: '0', left: '0', right: '0' });
   }
   async switchToPanel(panelIndex, linkListIndex = null) {
-    if (this._isTransitioning) return;
+    if (this._isTransitioning || !this.open || !this._desiredOpen) return;
+    const version = this._panelVersion = (this._panelVersion || 0) + 1;
     this._isTransitioning = true;
     const panels = this.querySelectorAll('.panel');
     const forward = linkListIndex !== null;
@@ -63,12 +91,15 @@ class MonteNavigationDrawer extends NavigationDrawer {
       animate(incoming, { visibility: ['visible', 'visible'], transform: [`translateX(${direction * 100}%)`, 'translateX(0%)'], opacity: [0, 1] }, { duration })
     ];
     await Promise.all(this._panelAnimations.map(animation => animation.finished));
+    if (version !== this._panelVersion || !this.isConnected) return;
     outgoing.style.visibility = 'hidden';
     this._isTransitioning = false;
     if (this.open) (forward ? incoming.querySelector('.panel__wrapper:not([hidden]) .monte-menu-back') : this._returnControl)?.focus({ preventScroll: true });
   }
   reinitializeDrawer() {
+    this._panelVersion = (this._panelVersion || 0) + 1;
     this._panelAnimations?.forEach(animation => animation.finish());
+    this._panelAnimations = [];
     super.reinitializeDrawer();
     this.querySelector('.panel').style.visibility = 'inherit';
     this.querySelectorAll('.panel').forEach((panel, index) => { panel.inert = index !== 0; });
@@ -106,10 +137,9 @@ class MonteMenuController extends HTMLElement {
     this.update();
   }
   update() {
-    const panel = this.shop.querySelector('.monte-mega-menu');
     this.header.style.setProperty('--monte-menu-available-height', `${Math.max(0, window.innerHeight - this.header.getBoundingClientRect().bottom)}px`);
     this.overlay.hidden = !this.shop.open || window.innerWidth < 1150;
-    this.overlay.style.top = `${panel.getBoundingClientRect().bottom}px`;
+
   }
   disconnectedCallback() { this.abort?.abort(); this.resize?.disconnect(); this.overlay?.remove(); }
 }

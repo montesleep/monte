@@ -1,4 +1,16 @@
 /* Monte navigation extends Impact's disclosure and drawer components. */
+@font-face {
+  font-family: 'Monte Satoshi';
+  src: url('monte-satoshi-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.header--monte, .monte-mobile-menu {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+}
 .header--monte .monte-header-contact {
   top: 100%; inset-inline: auto 0; width: 264px; max-width: min(350px, calc(100vw - 32px));
   padding: 20px 28px; gap: 12px; border: 1px solid var(--monte-menu-border);
@@ -9,7 +21,8 @@
 .header--monte .monte-header-contact .dropdown-menu__item:hover { color: rgb(var(--header-text)); }
 .header--monte .monte-mega-menu {
   padding: 8px 40px 64px; gap: clamp(32px, 5.56vw, 80px); border: 0; border-radius: 0 0 16px 16px;
-  box-shadow: none; mix-blend-mode: normal; z-index: 2;
+  box-shadow: none; mix-blend-mode: normal; z-index: 2; align-items: stretch;
+  clip-path: inset(0 round 0 0 16px 16px);
   max-height: var(--monte-menu-available-height, calc(100dvh - 120px));
 }
 .monte-mega-menu .monte-collection-grid {
@@ -18,7 +31,7 @@
 }
 .monte-mega-menu .monte-collection-grid > li { width: auto; min-width: 0; }
 .monte-collection-link { display: flex; flex-direction: column; gap: 12px; color: inherit; font-size: 16px; line-height: 24px; font-weight: 600; text-align: center; }
-.monte-collection-image { display: block; position: relative; aspect-ratio: 1; width: 100%; border-radius: 16px; background: var(--monte-menu-card); }
+.monte-collection-image { display: block; position: relative; aspect-ratio: 1; width: 100%; border-radius: 16px; overflow: hidden; background: var(--monte-menu-card); }
 .monte-menu-media { display: block; width: 100%; height: 100%; object-fit: cover; }
 .monte-collection-image .monte-menu-media { transition: transform .4s cubic-bezier(.25,.46,.45,.94); }
 @media (hover: hover) { .monte-collection-link:hover .monte-menu-media { transform: scale(1.03); } }
@@ -28,17 +41,18 @@
 .monte-promo-content { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; width: 100%; }
 .monte-promo-heading { font-family: var(--heading-font-family); font-weight: 500; font-size: 24px; line-height: 1.1; letter-spacing: 0; }
 .monte-promo-badge { color: rgb(var(--header-text)); background: rgb(var(--header-background)); font: 500 12px/1.5 'PP Neue Montreal Mono', monospace; text-transform: uppercase; letter-spacing: -.12px; padding: 3px 8px; border-radius: 4px; }
-.monte-menu-promo .monte-promo-button { --button-background: 253 251 249; --button-text-color: 35 46 113; padding: 0 16px; min-height: 32px; height: auto; border: 0; border-radius: 100px; background: var(--promo-button); color: var(--promo-button-text); font: 600 12px/1.5 var(--text-font-family); box-shadow: none; transition: background-color .2s ease-in-out; }
+.monte-menu-promo .monte-promo-button { --button-background: 253 251 249; --button-text-color: 35 46 113; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 0 16px; min-height: 32px; height: auto; letter-spacing: 0; border: 0; border-radius: 100px; background: var(--promo-button); color: var(--promo-button-text); font: 600 12px/1.5 var(--text-font-family); box-shadow: none; transition: background-color .2s ease-in-out; }
+.monte-promo-button > span { text-box-trim: trim-both; text-box-edge: cap alphabetic; }
 .monte-menu-promo .monte-promo-button:hover { background: var(--promo-button-hover); }
-.monte-menu-promo--desktop { width: 32.353%; min-height: 480px; padding: 24px; }
+.monte-menu-promo--desktop { width: min(440px, 32.353%); align-self: stretch; min-height: 480px; padding: 24px; }
 .monte-menu-promo--desktop .monte-promo-content { gap: 24px; }
 .monte-menu-promo--desktop .monte-promo-heading { font-size: 40px; }
 .monte-menu-promo--desktop .monte-promo-button { min-height: 56px; padding: 16px 32px; font-size: 16px; }
 .monte-menu-promo--desktop .monte-menu-media--placeholder { position: absolute; width: 146.91%; height: 202%; max-width: none; left: -23.45%; top: -51%; }
 .monte-menu-promo--bundle { min-height: 195px; padding: 20px 16px; align-items: flex-start; }
-.monte-menu-promo--bundle::before { background: linear-gradient(90deg, rgb(0 0 0 / .25), transparent); }
+.monte-menu-promo--bundle::before { display: none; }
 .monte-menu-promo--bundle .monte-promo-content { width: 180px; max-width: 100%; gap: 16px; }
-.monte-promo-body { font-size: 12px; line-height: 1.4; opacity: .8; margin-top: -12px; }
+.monte-promo-body { font-family: 'Monte Satoshi', var(--text-font-family); font-weight: 400; font-size: 12px; line-height: 1.4; opacity: .8; margin-top: -12px; }
 .monte-menu-backdrop { position: fixed; inset: 0; z-index: 9; background: rgb(0 0 0 / .6); backdrop-filter: blur(17px); -webkit-backdrop-filter: blur(17px); }
 .monte-menu-backdrop[hidden] { display: none; }
 .monte-menu-close { display: none; position: relative; width: 20px; height: 20px; }

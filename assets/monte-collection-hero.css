@@ -1,0 +1,26 @@
+.monte-collection-hero { display: block; margin-inline: 4px; background: transparent; opacity: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
+.monte-collection-hero__frame { display: flex; flex-direction: column; justify-content: flex-end; position: relative; isolation: isolate; min-height: var(--mch-height-mobile, 420px); padding: 20px; overflow: hidden; border-radius: 16px; background: #182153; }
+.monte-collection-hero__media, .monte-collection-hero__overlay { position: absolute; inset: 0; pointer-events: none; }
+.monte-collection-hero__media { z-index: 0; }
+.monte-collection-hero__media :is(picture, img, video, video-media), .monte-collection-hero__desktop, .monte-collection-hero__mobile { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--mch-mobile-image-position, 50% 50%); border-radius: 0; }
+.monte-collection-hero__desktop { display: none; }
+.monte-collection-hero__frame--gradient .monte-collection-hero__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180.101deg, transparent 32.646%, rgba(0, 0, 0, .8) 93.074%); }
+.monte-collection-hero__overlay { z-index: 1; background: var(--mch-overlay, #000); opacity: var(--mch-overlay-opacity, .2); }
+.monte-collection-hero__content { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; position: relative; z-index: 2; width: 100%; max-width: 600px; }
+.monte-collection-hero__rating { display: flex; align-items: center; gap: 8px; max-width: 100%; color: var(--mch-rating, #fdfbf9); font: 400 14px/1.5 var(--text-font-family); }
+.monte-collection-hero__rating p { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.monte-collection-hero__copy { display: grid; gap: 12px; width: 100%; }
+.monte-collection-hero__heading { margin: 0; color: var(--mch-heading, #fdfbf9); font: 500 40px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
+.monte-collection-hero__subheading { margin: 0; color: var(--mch-body, #fdfbf9); font: 400 16px/1.5 var(--text-font-family); opacity: .8; overflow-wrap: anywhere; }
+@media (min-width: 700px) {
+  .monte-collection-hero { margin-inline: 8px; }
+  .monte-collection-hero__frame { min-height: var(--mch-height-desktop, 460px); padding: 64px 40px; }
+  .monte-collection-hero__media :is(img, video) { object-position: var(--mch-image-position, 50% 50%); }
+  .monte-collection-hero__desktop { display: block; }
+  .monte-collection-hero__mobile { display: none; }
+  .monte-collection-hero__frame--gradient .monte-collection-hero__media::after { display: none; }
+  .monte-collection-hero__content { gap: 24px; }
+  .monte-collection-hero__copy { gap: 16px; }
+  .monte-collection-hero__heading { font-size: 56px; }
+  .monte-collection-hero__subheading { font-size: 20px; }
+}

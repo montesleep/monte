@@ -1,345 +1,112 @@
-{%- assign show_image = false -%}
-
-{%- if section.settings.show_collection_image and collection.image or section.settings.image -%}
-  {%- assign show_image = true -%}
-{%- endif -%}
-
-{%- capture collection_header -%}
-  {%- if section.settings.show_collection_title -%}
-    <h1 class="{{ section.settings.collection_title_size }}" {% if settings.heading_apparition != 'none' and show_image %}reveal-on-scroll="true"{% endif %}>
-      {%- render 'styled-text', content: collection.title, apparition_effect: true -%}
-    </h1>
-  {%- endif -%}
-
-  {%- if section.settings.show_collection_description and collection.description != blank -%}
-    <div class="prose">
-      {{- collection.description -}}
-    </div>
-  {%- endif -%}
-{%- endcapture -%}
-
-{%- if show_image -%}
-  <style>
-    #shopify-section-{{ section.id }} {
-      {%- if section.settings.full_width -%}
-        --section-outer-spacing-block: 0;
+{{ 'monte-collection-hero.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign desktop_image = section.settings.image
+  assign desktop_video = section.settings.video
+  assign mobile_image = section.settings.mobile_image
+  assign mobile_video = section.settings.mobile_video
+  if mobile_image == blank and mobile_video == blank
+    assign mobile_image = desktop_image
+    assign mobile_video = desktop_video
+  endif
+  assign rating = settings.monte_social_rating | default: 4.5 | at_least: 0 | at_most: 5
+  assign rating_text = shop.metafields.custom.rating_text_social.value
+-%}
+<style>
+  #shopify-section-{{ section.id }} { background: transparent; margin: 0; padding: 0; }
+</style>
+<reveal-items class="monte-collection-hero" selector=".monte-collection-hero__content" margin="0px" style="--mch-height-desktop: {{ section.settings.desktop_height }}px; --mch-height-mobile: {{ section.settings.mobile_height }}px; --mch-heading: {{ section.settings.heading_color }}; --mch-body: {{ section.settings.body_color }}; --mch-rating: {{ section.settings.rating_color }}; --mch-overlay: {{ section.settings.overlay_color }}; --mch-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --mch-image-position: {{ desktop_image.presentation.focal_point | default: '50% 50%' }}; --mch-mobile-image-position: {{ mobile_image.presentation.focal_point | default: '50% 50%' }};">
+  <div class="monte-collection-hero__frame{% if section.settings.mobile_gradient %} monte-collection-hero__frame--gradient{% endif %}">
+    <div class="monte-collection-hero__media" aria-hidden="true">
+      {%- if desktop_video == blank and mobile_video == blank -%}
+        <picture>
+          {%- if mobile_image != blank -%}
+            <source media="(max-width: 699px)" srcset="{{ mobile_image | image_url: width: 400 }} 400w, {{ mobile_image | image_url: width: 600 }} 600w, {{ mobile_image | image_url: width: 800 }} 800w, {{ mobile_image | image_url: width: 1200 }} 1200w" sizes="calc(100vw - 8px)" width="{{ mobile_image.width }}" height="{{ mobile_image.height }}">
+          {%- elsif section.settings.show_default_images -%}
+            <source media="(max-width: 699px)" srcset="{{ 'monte-collection-hero-mobile.png' | asset_url }}" width="932" height="1308">
+          {%- endif -%}
+          {%- if desktop_image != blank -%}
+            {{- desktop_image | image_url: width: 3200 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400,600,800,1000,1200,1600,2000,2400,3200', sizes: '(min-width: 700px) calc(100vw - 16px), calc(100vw - 8px)', alt: '' -}}
+          {%- elsif section.settings.show_default_images -%}
+            <img src="{{ 'monte-collection-hero-desktop.png' | asset_url }}" width="1746" height="810" loading="eager" fetchpriority="high" alt="">
+          {%- elsif mobile_image != blank -%}
+            {{- mobile_image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400,600,800,1200,1600', sizes: '100vw', alt: '' -}}
+          {%- endif -%}
+        </picture>
       {%- else -%}
-        --section-spacing-block-end: 0;
-      {%- endif -%}
-
-      --content-over-media-overlay: {{ section.settings.overlay_color.rgb }} / {{ section.settings.overlay_opacity | divided_by: 100.0 }};
-
-      {%- if section.settings.allow_transparent_header -%}
-        margin-block-start: calc(-1 * var(--header-height) * var(--section-is-first));
-      {%- endif -%}
-    }
-
-    {%- unless section.settings.full_width -%}
-      .shopify-section:first-child .section[allow-transparent-header] {
-        padding-block-start: max(var(--section-inner-max-spacing-block), var(--header-height));
-      }
-    {%- endunless -%}
-  </style>
-
-  <div {% render 'section-properties' %} {%- if section.settings.allow_transparent_header -%}allow-transparent-header{% endif %}>
-    {%- capture class -%}collection-banner content-over-media content-over-media--{{ section.settings.image_size }} {% if section.settings.full_width %}full-bleed{% else %}shadow-block rounded-lg{% endif %}{%- endcapture -%}
-
-    <image-banner reveal-on-scroll="true" {% if section.settings.enable_parallax %}parallax="0.3"{% endif %} {% render 'surface', class: class, text_color: section.settings.text_color %}>
-      {%- assign desktop_image = section.settings.image | default: collection.image -%}
-      {%- capture default_size -%}{% if section.settings.enable_parallax %}130vw{% else %}100vw{% endif %}{%- endcapture -%}
-      {%- capture sizes -%}{% if section.settings.full_width %}{{ default_size }}{% else %}(max-width: 740px) calc({{ default_size }} - 40px), (max-width: 999px) calc({{ default_size }} - 64px), min({{ settings.page_width | times: 1.3 }}px, {{ default_size }} - 96px){% endif %}{%- endcapture -%}
-
-      <picture>
-        {%- if section.settings.mobile_image != blank -%}
-          <source
-            media="(max-width: 699px)"
-            srcset="{{ section.settings.mobile_image | image_url: width: 400 }} 400w, {{ section.settings.mobile_image | image_url: width: 600 }} 600w, {{ section.settings.mobile_image | image_url: width: 800 }} 800w, {{ section.settings.mobile_image | image_url: width: 1000 }} 1000w, {{ section.settings.mobile_image | image_url: width: 1200 }} 1200w"
-            width="{{ section.settings.mobile_image.width }}"
-            height="{{ section.settings.mobile_image.height }}"
-          >
-        {%- endif -%}
-
-        {{- desktop_image | image_url: width: desktop_image.width | image_tag: fetchpriority: 'high', sizes: sizes, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200' -}}
-      </picture>
-
-      {%- if collection_header != blank -%}
-        <div class="{{ section.settings.mobile_text_position }} {{ section.settings.desktop_text_position }}">
-          <div class="v-stack gap-4 sm:gap-6">
-            {{- collection_header -}}
-          </div>
-        </div>
-      {%- endif -%}
-
-      {%- if section.settings.featured_product != blank -%}
-        {%- if section.settings.desktop_text_position contains 'center-end' or section.settings.desktop_text_position contains 'start-end' -%}
-          {%- assign featured_product_position = 'place-self-end-start' -%}
-        {%- else -%}
-          {%- assign featured_product_position = 'place-self-end' -%}
-        {%- endif -%}
-
-        <div class="{{ featured_product_position }} hidden md:block">
-          <div class="collection-featured-product">
-            {%- if section.settings.featured_product_heading != blank -%}
-              <p class="collection-featured-product__title text-xs bold">{{ section.settings.featured_product_heading | escape }}</p>
+        {%- for device in (1..2) -%}
+          {%- liquid
+            assign device_class = 'desktop'
+            assign hero_video = desktop_video
+            assign hero_image = desktop_image
+            assign default_image = 'monte-collection-hero-desktop.png'
+            assign image_width = 1746
+            assign image_height = 810
+            if device == 2
+              assign device_class = 'mobile'
+              assign hero_video = mobile_video
+              assign hero_image = mobile_image
+              assign default_image = 'monte-collection-hero-mobile.png'
+              assign image_width = 932
+              assign image_height = 1308
+            endif
+          -%}
+          <div class="monte-collection-hero__{{ device_class }}">
+            {%- if hero_video != blank -%}
+              {%- render 'media', media: hero_video, autoplay: true, loop: true, show_play_button: true, preload: true, sizes: '100vw' -%}
+            {%- elsif hero_image != blank -%}
+              {{- hero_image | image_url: width: 2400 | image_tag: loading: 'eager', widths: '400,600,800,1200,1600,2000,2400', sizes: '100vw', alt: '' -}}
+            {%- elsif section.settings.show_default_images -%}
+              <img src="{{ default_image | asset_url }}" width="{{ image_width }}" height="{{ image_height }}" loading="eager" alt="">
             {%- endif -%}
-
-            <a href="{{ section.settings.featured_product.url }}" class="collection-featured-product__content">
-              {%- render 'horizontal-product', product: section.settings.featured_product, size: 'sm', output_link: false -%}
-            </a>
           </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+    <div class="monte-collection-hero__overlay" aria-hidden="true"></div>
+    <div class="monte-collection-hero__content">
+      {%- if section.settings.show_rating -%}
+        <div class="monte-collection-hero__rating">
+          {%- render 'monte-social-rating', rating: rating -%}
+          {%- if rating_text != blank -%}<p>{{ rating_text | escape }}</p>{%- endif -%}
         </div>
       {%- endif -%}
-    </image-banner>
-  </div>
-{%- else -%}
-  {%- if collection_header != blank -%}
-    <div class="collection-header">
-      <div class="container">
-        <div class="v-stack gap-4 sm:gap-6">
-          {{- collection_header -}}
+      {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+        <div class="monte-collection-hero__copy">
+          {%- if section.settings.heading != blank -%}<h1 class="monte-collection-hero__heading">{{ section.settings.heading | escape | newline_to_br }}</h1>{%- endif -%}
+          {%- if section.settings.subheading != blank -%}<p class="monte-collection-hero__subheading">{{ section.settings.subheading | escape | newline_to_br }}</p>{%- endif -%}
         </div>
-      </div>
+      {%- endif -%}
     </div>
-  {%- endif -%}
-{%- endif -%}
+  </div>
+</reveal-items>
 
 {% schema %}
 {
-  "name": "Collection banner",
+  "name": "Monté Collection Hero",
   "class": "shopify-section--collection-banner",
   "tag": "section",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "full_width",
-      "label": "Full width",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "allow_transparent_header",
-      "label": "Allow transparent header",
-      "info": "This setting only applies when this section is the first one.",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_parallax",
-      "label": "Enable parallax effect",
-      "info": "Parallax effect crops images.",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_collection_title",
-      "label": "Show collection title",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_collection_description",
-      "label": "Show collection description",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_collection_image",
-      "label": "Show collection image",
-      "info": "[Learn more](https://help.shopify.com/en/manual/products/collections/collection-layout#add-or-change-the-featured-image-for-a-collection) about adding or editing a collection image.",
-      "default": true
-    },
-    {
-      "type": "select",
-      "id": "collection_title_size",
-      "label": "Collection title size",
-      "options": [
-        {
-          "value": "h0",
-          "label": "XX-Large"
-        },
-        {
-          "value": "h1",
-          "label": "X-Large"
-        },
-        {
-          "value": "h2",
-          "label": "Large"
-        },
-        {
-          "value": "h3",
-          "label": "Medium"
-        },
-        {
-          "value": "h4",
-          "label": "Small"
-        },
-        {
-          "value": "h5",
-          "label": "X-Small"
-        },
-        {
-          "value": "h6",
-          "label": "XX-Small"
-        }
-      ],
-      "default": "h0"
-    },
-    {
-      "type": "select",
-      "id": "image_size",
-      "label": "Image size",
-      "options": [
-        {
-          "value": "auto",
-          "label": "Original image ratio"
-        },
-        {
-          "value": "sm",
-          "label": "Small"
-        },
-        {
-          "value": "md",
-          "label": "Medium"
-        },
-        {
-          "value": "lg",
-          "label": "Large"
-        }
-      ],
-      "info": "Choose \"Original image ratio\" to avoid image cropping. [Learn more](https://help.shopify.com/en/manual/online-store/images/theme-images#best-practices-for-slideshows-and-full-widtw-images)",
-      "default": "auto"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image",
-      "info": "3200 x 1600px .jpg recommended. Default to collection image."
-    },
-    {
-      "type": "image_picker",
-      "id": "mobile_image",
-      "label": "Mobile image",
-      "info": "1300 x 1500px .jpg recommended. Default to desktop image."
-    },
-    {
-      "type": "select",
-      "id": "mobile_text_position",
-      "label": "Mobile content position",
-      "options": [
-        {
-          "value": "place-self-start text-start",
-          "label": "Top left"
-        },
-        {
-          "value": "place-self-start-center text-center",
-          "label": "Top center"
-        },
-        {
-          "value": "place-self-start-end text-end",
-          "label": "Top right"
-        },
-        {
-          "value": "place-self-center-start text-start",
-          "label": "Middle left"
-        },
-        {
-          "value": "place-self-center text-center",
-          "label": "Middle center"
-        },
-        {
-          "value": "place-self-center-end text-end",
-          "label": "Middle right"
-        },
-        {
-          "value": "place-self-end-start text-start",
-          "label": "Bottom left"
-        },
-        {
-          "value": "place-self-end-center text-center",
-          "label": "Bottom center"
-        },
-        {
-          "value": "place-self-end text-end",
-          "label": "Bottom right"
-        }
-      ],
-      "default": "place-self-center text-center"
-    },
-    {
-      "type": "select",
-      "id": "desktop_text_position",
-      "label": "Desktop content position",
-      "options": [
-        {
-          "value": "sm:place-self-start sm:text-start",
-          "label": "Top left"
-        },
-        {
-          "value": "sm:place-self-start-center sm:text-center",
-          "label": "Top center"
-        },
-        {
-          "value": "sm:place-self-start-end sm:text-end",
-          "label": "Top right"
-        },
-        {
-          "value": "sm:place-self-center-start sm:text-start",
-          "label": "Middle left"
-        },
-        {
-          "value": "sm:place-self-center sm:text-center",
-          "label": "Middle center"
-        },
-        {
-          "value": "sm:place-self-center-end sm:text-end",
-          "label": "Middle right"
-        }
-      ],
-      "default": "sm:place-self-center sm:text-center"
-    },
-    {
-      "type": "header",
-      "content": "Featured product",
-      "info": "This product won't show on small screens or collection that do not show image."
-    },
-    {
-      "type": "product",
-      "id": "featured_product",
-      "label": "Product"
-    },
-    {
-      "type": "text",
-      "id": "featured_product_heading",
-      "label": "Heading",
-      "default": "Featured product"
-    },
-    {
-      "type": "header",
-      "content": "Colors",
-      "info": "Ignored when no image is used."
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "overlay_color",
-      "label": "Overlay",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "label": "Overlay opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 30
-    }
+    { "type": "paragraph", "content": "Shared by every collection using this template. Images, copy and colors are edited here. The rating is shared with the homepage." },
+    { "type": "header", "content": "Media" },
+    { "type": "image_picker", "id": "image", "label": "Desktop image" },
+    { "type": "video", "id": "video", "label": "Desktop video", "info": "Replaces the desktop image. Plays automatically, muted, looping and without controls." },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },
+    { "type": "video", "id": "mobile_video", "label": "Mobile video", "info": "Replaces the mobile image. If both mobile fields are empty, selected desktop media is used." },
+    { "type": "checkbox", "id": "show_default_images", "label": "Show design images when no media is selected", "default": true },
+    { "type": "range", "id": "desktop_height", "label": "Desktop minimum height", "min": 300, "max": 800, "step": 20, "unit": "px", "default": 460 },
+    { "type": "range", "id": "mobile_height", "label": "Mobile minimum height", "min": 300, "max": 800, "step": 20, "unit": "px", "default": 420 },
+    { "type": "header", "content": "Content" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Cała kolekcja Monté" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Maski, poszewki, czepki i gumki,\n100% jedwab morwowy, 22 momme." },
+    { "type": "checkbox", "id": "show_rating", "label": "Show shared rating", "default": true },
+    { "type": "paragraph", "content": "Text uses the shop metafield custom.rating_text_social. Stars use Theme settings > Monté social rating > Filled stars." },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "heading_color", "label": "Heading", "default": "#FDFBF9" },
+    { "type": "color", "id": "body_color", "label": "Subheading", "default": "#FDFBF9" },
+    { "type": "color", "id": "rating_color", "label": "Rating text", "default": "#FDFBF9" },
+    { "type": "color", "id": "overlay_color", "label": "Image overlay", "default": "#000000" },
+    { "type": "range", "id": "overlay_opacity", "label": "Image overlay opacity", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 20 },
+    { "type": "checkbox", "id": "mobile_gradient", "label": "Add mobile bottom gradient", "info": "Adds the design's dark gradient behind the content. Text and rating remain unaffected.", "default": true }
   ]
 }
 {% endschema %}

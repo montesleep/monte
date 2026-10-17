@@ -50,6 +50,10 @@
 .monte-search .empty-state .h6 { font: 400 16px/1.5 var(--text-font-family); }
 .monte-search-loading { padding-top: 16px; }
 .monte-search [hidden] { display: none !important; }
+@media (max-width: 699px) {
+  .monte-search[has-query] { --rounded-sm: 0px; width: 100%; }
+  .monte-search[has-query]::part(content) { width: 100%; border-radius: 0; }
+}
 @media (min-width: 700px) {
   .monte-search { width: 520px; height: var(--search-viewport-height, 100dvh); font-size: 16px; --rounded-sm: 16px 0 0 16px; }
   .monte-search::part(content) { height: 100%; border-radius: 16px 0 0 16px; }

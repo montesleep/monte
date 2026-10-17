@@ -1,0 +1,16 @@
+<span class="monte-benefits__item" role="listitem" {% unless duplicate %}{{ block.shopify_attributes }}{% endunless %}>
+  {%- if block.settings.icon != blank or block.settings.builtin_icon != 'none' -%}
+    <span class="monte-benefits__icon" aria-hidden="true">
+      {%- if block.settings.icon != blank -%}
+        {{- block.settings.icon | image_url: width: 96 | image_tag: class: 'monte-benefits__custom-icon', widths: '32,64,96', sizes: '32px', loading: 'lazy', alt: '' -}}
+      {%- else -%}
+        {%- case block.settings.builtin_icon -%}
+          {%- when 'returns' -%}<img src="{{ 'monte-benefit-returns.svg' | asset_url }}" width="26.5" height="26.5" alt="">
+          {%- when 'shipping' -%}<img src="{{ 'monte-benefit-shipping.svg' | asset_url }}" width="26.1283" height="28.8029" alt="">
+          {%- when 'poland' -%}<img src="{{ 'monte-benefit-poland.svg' | asset_url }}" width="32" height="32" alt="">
+        {%- endcase -%}
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+  {%- if block.settings.text != blank -%}<span class="monte-benefits__text">{{ block.settings.text | escape }}</span>{%- endif -%}
+</span>

@@ -1,0 +1,27 @@
+.shopify-section--monte-benefits { margin: 0; padding: 0; }
+.monte-benefits { display: block; overflow: hidden; padding-block: 20px; color: var(--benefits-text-color, #182153); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; opacity: 1; }
+.monte-benefits__viewport { overflow: hidden; }
+.monte-benefits__track { display: flex; width: 100%; padding-inline-start: 20px; }
+.monte-benefits__group { display: flex; align-items: center; flex: 0 0 auto; min-width: 40px; gap: 20px; padding-inline-end: 20px; }
+.monte-benefits__item { display: flex; align-items: center; justify-content: center; gap: 12px; flex-shrink: 0; }
+.monte-benefits__icon { display: flex; align-items: center; justify-content: center; flex: 0 0 32px; width: 32px; height: 32px; overflow: hidden; }
+.monte-benefits__icon img { display: block; max-width: none; }
+.monte-benefits__icon .monte-benefits__custom-icon { width: 32px; height: 32px; object-fit: contain; }
+.monte-benefits__text { margin: 0; font: 500 18px/1.1 var(--heading-font-family); letter-spacing: 0; white-space: nowrap; }
+@media (max-width: 699px) and (prefers-reduced-motion: no-preference) {
+  .monte-benefits__group { animation: translateFull var(--marquee-animation-duration, 20s) linear infinite; }
+}
+@media (min-width: 700px) {
+  .monte-benefits { padding-inline: 40px; }
+  .monte-benefits__track { padding: 0; }
+  .monte-benefits__group { flex: 1 1 100%; min-width: 0; padding: 0; }
+  .monte-benefits__group[aria-hidden] { display: none; }
+  .monte-benefits__item { flex: 1 1 0; min-width: 0; }
+  .monte-benefits__text { font-size: 20px; white-space: normal; overflow-wrap: anywhere; }
+}
+@media (prefers-reduced-motion: reduce), (scripting: none) {
+  .monte-benefits__group[aria-hidden] { display: none; }
+  .monte-benefits__group { flex-wrap: wrap; justify-content: center; flex: 1 1 auto; animation: none; }
+  .monte-benefits__item { max-width: 100%; }
+  .monte-benefits__text { white-space: normal; overflow-wrap: anywhere; }
+}

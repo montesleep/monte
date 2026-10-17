@@ -670,10 +670,46 @@
         "padding_top_mobile": 32,
         "padding_bottom_mobile": 32
       }
+    },
+    "monte_benefits": {
+      "type": "monte-benefits",
+      "blocks": {
+        "returns": {
+          "type": "benefit",
+          "settings": {
+            "text": "30 dni na zwrot",
+            "builtin_icon": "returns"
+          }
+        },
+        "shipping": {
+          "type": "benefit",
+          "settings": {
+            "text": "Wysyłka tego samego dnia",
+            "builtin_icon": "shipping"
+          }
+        },
+        "poland": {
+          "type": "benefit",
+          "settings": {
+            "text": "Polska firma",
+            "builtin_icon": "poland"
+          }
+        }
+      },
+      "block_order": [
+        "returns",
+        "shipping",
+        "poland"
+      ],
+      "settings": {
+        "text_color": "#182153",
+        "scrolling_speed": 12
+      }
     }
   },
   "order": [
     "section-1",
+    "monte_benefits",
     "section-5",
     "section-6",
     "section-15",

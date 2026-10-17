@@ -1,0 +1,135 @@
+{{ 'monte-benefits.css' | asset_url | stylesheet_tag }}
+{%- capture benefit_items -%}
+  {%- for block in section.blocks -%}
+    {%- if block.settings.text != blank or block.settings.icon != blank or block.settings.builtin_icon != 'none' -%}
+      {%- render 'monte-benefit-item', block: block, duplicate: false -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if benefit_items != blank -%}
+  <reveal-items class="monte-benefits" style="--benefits-text-color: {{ section.settings.text_color }};" margin="0px">
+    <div class="monte-benefits__viewport">
+      <marquee-text class="monte-benefits__track" scrolling-speed="{{ section.settings.scrolling_speed }}">
+        <span class="monte-benefits__group" role="list">{{ benefit_items }}</span>
+        {%- capture duplicate_items -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.text != blank or block.settings.icon != blank or block.settings.builtin_icon != 'none' -%}
+              {%- render 'monte-benefit-item', block: block, duplicate: true -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- comment -%}Copies keep the native Impact marquee filled even with one short benefit. Only the first group is exposed to assistive technology and the theme editor.{%- endcomment -%}
+        {%- for copy in (1..19) -%}
+          <span class="monte-benefits__group" aria-hidden="true">{{ duplicate_items }}</span>
+        {%- endfor -%}
+      </marquee-text>
+    </div>
+  </reveal-items>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Monté Benefits",
+  "tag": "section",
+  "class": "shopify-section--monte-benefits",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "custom.overlay"
+    ]
+  },
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#182153"
+    },
+    {
+      "type": "range",
+      "id": "scrolling_speed",
+      "label": "Mobile scrolling duration",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "s",
+      "default": 12,
+      "info": "Time to travel approximately one screen width. Higher values make the movement slower. Desktop remains static."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Your benefit"
+        },
+        {
+          "type": "select",
+          "id": "builtin_icon",
+          "label": "Default icon",
+          "default": "none",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "returns",
+              "label": "Returns"
+            },
+            {
+              "value": "shipping",
+              "label": "Shipping"
+            },
+            {
+              "value": "poland",
+              "label": "Polish company"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Custom icon",
+          "info": "Replaces the default icon. Displayed in a 32 × 32 px frame."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Monté Benefits",
+      "category": "Content",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "30 dni na zwrot",
+            "builtin_icon": "returns"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "Wysyłka tego samego dnia",
+            "builtin_icon": "shipping"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "Polska firma",
+            "builtin_icon": "poland"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -50,9 +50,10 @@
 .monte-cart-button--outline { background: transparent; color: var(--cart-text); }
 .monte-cart-button:disabled { opacity: .5; cursor: not-allowed; }
 .monte-cart-variant-select { appearance: auto; border: 1px solid var(--cart-border); border-radius: 8px; width: 100%; padding: 4px; margin-bottom: 8px; font-size: 12px; background: var(--cart-surface); }
-.monte-cart-line { display: flex; gap: 12px; padding: 12px; border-radius: 16px; background: var(--cart-card); align-items: flex-start; }
+.monte-cart-line { min-width: 0; display: flex; gap: 12px; padding: 12px; border-radius: 16px; background: var(--cart-card); align-items: flex-start; }
 .monte-cart-line > .monte-cart-image { width: 64px; }
-.monte-cart-line-info { flex: 1; min-width: 0; display: grid; gap: 12px; }
+.monte-cart-line-info { flex: 1; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.monte-cart-line-discount .monte-cart-discount-amount { white-space: nowrap; }
 .monte-cart-line-top, .monte-cart-line-bottom { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .monte-cart-line-top { align-items: flex-start; gap: 16px; }
 .monte-cart-remove { flex: none; width: 16px; height: 21px; display: grid; place-items: center; opacity: .5; }

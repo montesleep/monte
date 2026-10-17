@@ -1,16 +1,16 @@
 .shopify-section--monte-footer { padding: 0; }
-.mfooter { background: var(--footer-background); color: var(--footer-text); border-radius: 0 0 16px 16px; font: 400 14px/1.5 var(--text-font-family); }
+.mfooter { background: var(--footer-background); color: var(--footer-text); border-radius: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; font: 400 14px/1.5 var(--text-font-family); }
 .mfooter__card { padding: 40px 16px; display: grid; gap: 40px; }
 .mfooter__top { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
 .mfooter__top > * { min-width: 0; }
-.mfooter__column-header { display: flex; align-items: center; min-height: 39px; padding-bottom: 16px; border-bottom: 1px dashed rgb(from var(--footer-text) r g b / .2); margin: 0 0 8px; }
+.mfooter__column-header { display: flex; align-items: center; padding-bottom: 16px; border-bottom: 1px dashed rgb(from var(--footer-text) r g b / .2); margin: 0 0 8px; }
 .mfooter__col-heading { font: 500 18px/1.1 var(--heading-font-family); color: inherit; text-transform: none; letter-spacing: 0; overflow-wrap: anywhere; }
 .mfooter__brand-logo { display: block; width: 127px; max-width: 100%; }
 .mfooter__brand-logo img { display: block; width: 100%; height: auto; }
 .mfooter__description { margin: 0; padding-block: 8px; color: rgb(from var(--footer-text) r g b / .7); overflow-wrap: anywhere; }
 .mfooter__socials { display: flex; flex-wrap: wrap; gap: 20px; padding: 16px 8px; }
 .mfooter__social { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 999px; background: var(--footer-light); }
-.mfooter__social img { width: auto; height: auto; max-width: 24px; max-height: 24px; }
+.mfooter__social img { display: block; width: 24px; height: 24px; object-fit: contain; flex-shrink: 0; }
 .mfooter__nav-links { list-style: none; margin: 0; padding: 0; }
 .mfooter__nav-links a { display: block; width: fit-content; max-width: 100%; padding-block: 8px; overflow-wrap: anywhere; --text-color: 253 251 249; }
 .mfooter__nav-links .link-faded { opacity: 1; color: rgb(from var(--footer-text) r g b / .7); transition: color .2s ease-in-out; }

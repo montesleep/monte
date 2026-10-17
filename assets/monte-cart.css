@@ -12,7 +12,8 @@
 .monte-cart h2, .monte-cart h3 { font-family: var(--heading-font-family); font-weight: 500; line-height: 1.1; letter-spacing: 0; text-transform: none; }
 .monte-cart h2 { font-size: 24px; }
 .monte-cart h3 { font-size: 20px; }
-.monte-cart-count { width: 24px; height: 24px; display: grid; place-items: center; background: var(--cart-text); color: var(--cart-inverse); border-radius: 999px; font: 500 14px/1.2 'PP Neue Montreal Mono', monospace; letter-spacing: -.14px; }
+/* Keep zero visible inside the drawer when Impact animates an empty cart count. */
+.monte-cart-count { opacity: 1 !important; width: 24px; height: 24px; display: grid; place-items: center; background: var(--cart-text); color: var(--cart-inverse); border-radius: 999px; font: 500 14px/1.2 'PP Neue Montreal Mono', monospace; letter-spacing: -.14px; }
 .monte-cart-icon { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; vertical-align: middle; }
 .monte-cart-icon img { width: auto; height: auto; max-width: none; }
 .monte-cart-icon--dot { width: 4px; height: 4px; }

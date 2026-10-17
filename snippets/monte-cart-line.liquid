@@ -28,5 +28,17 @@
       </div>
       {%- render 'monte-cart-price', price: group_price, compare_price: group_compare -%}
     </div>
+    {%- assign discount_titles = group_discounts | map: 'discount_application' | map: 'title' | uniq -%}
+    {%- for discount_title in discount_titles -%}
+      {%- liquid
+        assign discount_amount = 0
+        for discount in group_discounts
+          if discount.discount_application.title == discount_title
+            assign discount_amount = discount_amount | plus: discount.amount
+          endif
+        endfor
+      -%}
+      {%- if discount_amount > 0 -%}<p class="monte-cart-variant monte-cart-line-discount">{{ discount_title | escape }} (−{{ discount_amount | money_without_trailing_zeros }})</p>{%- endif -%}
+    {%- endfor -%}
   </div>
 </article>

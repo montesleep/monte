@@ -6,12 +6,14 @@
       assign group_quantity = 0
       assign group_price = 0
       assign group_compare = 0
+      assign group_discounts = '' | split: ','
       assign properties = line_item.properties | json
       assign plan_id = line_item.selling_plan_allocation.selling_plan.id
       for candidate in cart.items
         assign candidate_properties = candidate.properties | json
         assign candidate_plan = candidate.selling_plan_allocation.selling_plan.id
         if candidate.variant_id == line_item.variant_id and candidate_properties == properties and candidate_plan == plan_id
+          assign group_discounts = group_discounts | concat: candidate.line_level_discount_allocations
           assign group_quantity = group_quantity | plus: candidate.quantity
           assign group_price = group_price | plus: candidate.final_line_price
           assign compare = candidate.variant.compare_at_price | default: candidate.original_price | at_least: candidate.original_price | times: candidate.quantity
@@ -24,7 +26,7 @@
           assign rendered_keys = rendered_keys | append: candidate_marker
         endif
       endfor
-      render 'monte-cart-line', line_item: line_item, section: section, group_quantity: group_quantity, group_price: group_price, group_compare: group_compare
+      render 'monte-cart-line', line_item: line_item, section: section, group_quantity: group_quantity, group_price: group_price, group_compare: group_compare, group_discounts: group_discounts
     -%}
   {%- endunless -%}
 {%- endfor -%}

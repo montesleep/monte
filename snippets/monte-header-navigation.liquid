@@ -6,7 +6,7 @@
   <nav class="header__link-list monte-header-navigation" aria-label="{{ shop_label | escape }}">
     <ul class="contents" role="list">
       <li>
-        <details is="mega-menu-disclosure" class="monte-shop-disclosure" trigger="click" {% if mega_menu_block %}{{ mega_menu_block.shopify_attributes }}{% endif %}>
+        <details is="monte-mega-menu-disclosure" class="monte-shop-disclosure" trigger="click" {% if mega_menu_block %}{{ mega_menu_block.shopify_attributes }}{% endif %}>
           <summary class="monte-header-link text-with-icon link-faded-reverse">
             {{- shop_label | escape -}}
             <img class="monte-header-chevron" src="{{ 'monte-header-chevron.svg' | asset_url }}" width="10" height="7" alt="">

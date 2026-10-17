@@ -78,3 +78,10 @@
   body:has(.monte-shop-disclosure[open]) .shopify-section--announcement-bar { z-index: 10; }
 }
 @media (prefers-reduced-motion: reduce) { .monte-collection-image .monte-menu-media { transition: none; } }
+
+.monte-menu-backdrop:not([hidden]) { animation: monte-menu-backdrop-reveal .3s ease both; }
+@keyframes monte-menu-backdrop-reveal {
+  from { background-color: rgb(0 0 0 / 0); backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0); }
+  to { background-color: rgb(0 0 0 / .6); backdrop-filter: blur(17px); -webkit-backdrop-filter: blur(17px); }
+}
+@media (prefers-reduced-motion: reduce) { .monte-menu-backdrop:not([hidden]) { animation: none; } }

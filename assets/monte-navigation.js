@@ -1,5 +1,5 @@
-import { NavigationDrawer } from 'theme';
-import { animate } from 'vendor';
+import { NavigationDrawer, MegaMenuDisclosure } from 'theme';
+import { animate, timeline } from 'vendor';
 
 class MonteNavigationDrawer extends NavigationDrawer {
   get shouldAppendToBody() { return false; }
@@ -146,3 +146,32 @@ class MonteMenuController extends HTMLElement {
 }
 if (!customElements.get('monte-navigation-drawer')) customElements.define('monte-navigation-drawer', MonteNavigationDrawer);
 if (!customElements.get('monte-menu-controller')) customElements.define('monte-menu-controller', MonteMenuController);
+
+class MonteMegaMenuDisclosure extends MegaMenuDisclosure {
+  _transition(value) {
+    this.desiredOpen = value;
+    if (!this.menuTransition) {
+      this.menuTransition = this.applyMenuState().finally(() => {
+        this.menuTransition = null;
+        if (this.isConnected && this.hasAttribute('open') !== this.desiredOpen) this._transition(this.desiredOpen);
+      });
+    }
+    return this.menuTransition;
+  }
+  async applyMenuState() {
+    while (this.isConnected && this.hasAttribute('open') !== this.desiredOpen) await super._transition(this.desiredOpen);
+  }
+  _transitionIn() { return this.animateMenu(true); }
+  _transitionOut() { return this.animateMenu(false); }
+  animateMenu(open) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.themeVariables.settings.reduceMenuAnimation;
+    const closed = 'inset(0 0 100% 0 round 0 0 16px 16px)';
+    const expanded = 'inset(0 0 0 0 round 0 0 16px 16px)';
+    this.contentElement.style.opacity = '1';
+    return timeline([
+      [this.contentElement, { clipPath: open ? [closed, expanded] : [expanded, closed] }, { duration: reduced ? 0 : .4, easing: [.86, 0, .07, 1], at: reduced ? 0 : .15 }],
+      [this.contentElement.children, { opacity: open ? [0, 1] : [1, 0] }, { duration: reduced ? 0 : .15, at: open && !reduced ? .55 : 0 }]
+    ]).finished;
+  }
+}
+if (!customElements.get('monte-mega-menu-disclosure')) customElements.define('monte-mega-menu-disclosure', MonteMegaMenuDisclosure, { extends: 'details' });

@@ -1,15 +1,15 @@
 /* Monte search uses the Impact drawer and shared product components. */
 .monte-search {
-  --rounded-sm: 16px; --drawer-body-padding: 0; --drawer-content-max-height: 100dvh;
-  width: 100%; height: auto; max-height: 100dvh; padding: 0; pointer-events: none;
+  --rounded-sm: 0 0 16px 16px; --drawer-body-padding: 0; --drawer-content-max-height: var(--search-viewport-height, 100dvh);
+  width: 100%; height: auto; max-height: var(--search-viewport-height, 100dvh); padding: 0; pointer-events: none;
   color: var(--search-text); font: 400 14px/1.5 var(--text-font-family);
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none;
 }
-.monte-search::part(overlay) { background: rgb(0 0 0 / .6); backdrop-filter: blur(17px); -webkit-backdrop-filter: blur(17px); pointer-events: auto; }
-.monte-search::part(content) { height: auto; max-height: 100dvh; overflow: hidden; background: var(--search-surface); color: var(--search-text); border-radius: 16px; pointer-events: auto; }
+.monte-search::part(overlay) { background: rgb(0 0 0 / .6); backdrop-filter: blur(17px); -webkit-backdrop-filter: blur(17px); pointer-events: auto; min-height: 0; touch-action: none; }
+.monte-search::part(content) { height: auto; max-height: var(--search-viewport-height, 100dvh); overflow: hidden; background: var(--search-surface); color: var(--search-text); border-radius: 0 0 16px 16px; pointer-events: auto; }
 .monte-search::part(body) { display: block; min-height: 0; padding: 0; overflow: hidden; }
 .monte-search::part(header), .monte-search::part(footer), .monte-search::part(outside-close-button) { display: none; }
-.monte-search[has-query], .monte-search[has-query]::part(content) { height: 100dvh; }
+.monte-search[has-query], .monte-search[has-query]::part(content) { height: var(--search-viewport-height, 100dvh); }
 .monte-search-form { display: flex; flex-direction: column; height: 100%; min-height: 0; }
 .monte-search-header { display: flex; flex: none; align-items: center; gap: 12px; padding: 20px 20px 8px; background: var(--search-surface); }
 .monte-search-field { display: flex; flex: 1; min-width: 0; align-items: center; gap: 12px; height: 44px; padding: 0 16px; border: 1px solid var(--search-border); border-radius: 999px; background: var(--search-card); color: var(--search-disabled); }
@@ -34,7 +34,7 @@
 .monte-search-tag:active { opacity: .7; }
 .monte-search-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; row-gap: 12px; }
 .monte-search-product { display: flex; flex-direction: column; gap: 0; min-width: 0; background: transparent; color: var(--search-text); }
-.monte-search-product-image { aspect-ratio: 1; border-radius: 16px; background: var(--search-card); overflow: hidden; isolation: isolate; }
+.monte-search-product-image { flex: none; width: 100%; aspect-ratio: 1; border-radius: 16px; background: var(--search-card); overflow: hidden; isolation: isolate; }
 .monte-search-product-image > img, .monte-search-product-image > svg { width: 100%; height: 100%; object-fit: cover; }
 .monte-search-product-image .product-card__image--secondary { position: absolute; inset: 0; opacity: 0; }
 .monte-search-product-info { display: flex; flex-direction: column; gap: 8px; padding: 12px; }
@@ -51,7 +51,7 @@
 .monte-search-loading { padding-top: 16px; }
 .monte-search [hidden] { display: none !important; }
 @media (min-width: 700px) {
-  .monte-search { width: 520px; height: 100dvh; font-size: 16px; --rounded-sm: 16px 0 0 16px; }
+  .monte-search { width: 520px; height: var(--search-viewport-height, 100dvh); font-size: 16px; --rounded-sm: 16px 0 0 16px; }
   .monte-search::part(content) { height: 100%; border-radius: 16px 0 0 16px; }
   .monte-search-header { gap: 16px; padding-bottom: 12px; }
   .monte-search-field { height: 58px; padding-inline: 24px; }
@@ -65,3 +65,11 @@
   .monte-search-badges .badge { min-height: 24px; font-size: 12px; line-height: 1.5; letter-spacing: -.12px; padding-block: 3px; }
 }
 @media (prefers-reduced-motion: reduce) { .monte-search-tag { transition: none; } }
+
+html.monte-search-locked { overflow: hidden; overscroll-behavior: none; }
+.monte-search-product-image > img { transition: transform .4s cubic-bezier(.25,.46,.45,.94), opacity .2s ease; }
+@media (min-width: 700px) and (hover: hover) {
+  .monte-search-product:hover .monte-search-product-image > img,
+  .monte-search-product:focus-visible .monte-search-product-image > img { transform: scale(1.03); }
+}
+@media (prefers-reduced-motion: reduce) { .monte-search-product-image > img { transition: none; } }

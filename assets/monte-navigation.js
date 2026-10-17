@@ -21,7 +21,7 @@ class MonteNavigationDrawer extends NavigationDrawer {
       }
     }, { signal });
     this.addEventListener('dialog:after-hide', () => {
-      this.controls.forEach(control => control.setAttribute('aria-label', this.dataset.openLabel));
+      this.controls.forEach(control => control.setAttribute('aria-label', this.open ? this.dataset.closeLabel : this.dataset.openLabel));
       if (this._savedScroll) window.scrollTo({ top: this._savedScroll, behavior: 'instant' });
       this._savedScroll = 0;
     }, { signal });
@@ -59,6 +59,7 @@ class MonteNavigationDrawer extends NavigationDrawer {
         if (this.header.hasAttribute('hide-on-scroll')) this.header.show();
         this.controls.forEach(control => control.setAttribute('aria-label', this.dataset.closeLabel));
         await super.show(animated);
+        this.controls.forEach(control => control.setAttribute('aria-label', this.dataset.closeLabel));
       } else {
         this._panelVersion = (this._panelVersion || 0) + 1;
         await super.hide();
@@ -98,7 +99,8 @@ class MonteNavigationDrawer extends NavigationDrawer {
   }
   reinitializeDrawer() {
     this._panelVersion = (this._panelVersion || 0) + 1;
-    this._panelAnimations?.forEach(animation => animation.finish());
+    // Cancel retained effects; finishing an old animation can hide the reset panel again.
+    this._panelAnimations?.forEach(animation => animation.cancel());
     this._panelAnimations = [];
     super.reinitializeDrawer();
     this.querySelector('.panel').style.visibility = 'inherit';
@@ -139,7 +141,6 @@ class MonteMenuController extends HTMLElement {
   update() {
     this.header.style.setProperty('--monte-menu-available-height', `${Math.max(0, window.innerHeight - this.header.getBoundingClientRect().bottom)}px`);
     this.overlay.hidden = !this.shop.open || window.innerWidth < 1150;
-
   }
   disconnectedCallback() { this.abort?.abort(); this.resize?.disconnect(); this.overlay?.remove(); }
 }

@@ -14,10 +14,8 @@
 .monte-faq__question-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .monte-faq__question-row > span:first-child { min-width: 0; overflow-wrap: anywhere; transition: opacity .2s ease-in-out; }
 .monte-faq__icon { display: grid; width: 24px; height: 24px; flex: 0 0 24px; }
-.monte-faq__icon img { grid-area: 1 / 1; width: 24px; height: 24px; transition: opacity .2s ease-in-out; }
-.monte-faq__close { opacity: 0; }
-.monte-faq__item[aria-expanded="true"] .monte-faq__plus { opacity: 0; }
-.monte-faq__item[aria-expanded="true"] .monte-faq__close { opacity: 1; }
+.monte-faq__icon img { grid-area: 1 / 1; width: 24px; height: 24px; transform: rotate(0deg); transform-origin: center; transition: transform .3s cubic-bezier(.25,.46,.45,.94); }
+.monte-faq__item[aria-expanded="true"] .monte-faq__plus { transform: rotate(45deg); }
 /* Account for Impact's four-pixel content reveal offset. */
 .monte-faq__answer { margin-top: calc(20px - var(--mf-row-padding)); padding-bottom: calc(var(--mf-row-padding) - 4px); transform: translateY(-4px); color: var(--mf-secondary); font: 400 14px/1.5 var(--text-font-family); overflow-wrap: anywhere; }
 .monte-faq__answer > :first-child { margin-top: 0; }

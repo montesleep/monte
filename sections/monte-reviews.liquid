@@ -4,7 +4,7 @@
 {%- liquid
   assign midpoint = section.blocks.size | plus: 1 | divided_by: 2
   assign rating = settings.monte_social_rating | default: 4.5 | at_least: 0 | at_most: 5
-  assign rating_text = shop.metafields.custom.rating_text_score
+  assign rating_text = shop.metafields.custom.rating_text_social.value
   assign carousel_id = 'reviews-' | append: section.id
 -%}
 <reveal-items class="monte-reviews" margin="0px">
@@ -14,7 +14,7 @@
       {%- if section.settings.show_rating -%}
         <div class="monte-reviews__rating">
           {%- render 'monte-social-rating', rating: rating -%}
-          {%- if rating_text != blank -%}<div class="monte-reviews__rating-text">{{ rating_text | metafield_tag }}</div>{%- endif -%}
+          {%- if rating_text != blank -%}<div class="monte-reviews__rating-text">{{ rating_text | escape }}</div>{%- endif -%}
         </div>
       {%- endif -%}
     </div>
@@ -79,7 +79,7 @@
     },
     {
       "type": "paragraph",
-      "content": "Rating text uses the shop metafield custom.rating_text_score. Stars use Theme settings > Monté social rating > Filled stars, shared with the hero."
+      "content": "Rating text and stars are shared with the hero. Text uses the shop metafield custom.rating_text_social. Stars use Theme settings > Monté social rating > Filled stars."
     },
     {
       "type": "range",

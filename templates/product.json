@@ -378,288 +378,101 @@
         "padding_bottom_mobile": 40
       }
     },
-    "testimonials_eU6FBb": {
-      "type": "testimonials",
+    "faq_accordion_Xmc94w": {
+      "type": "faq-accordion",
       "blocks": {
-        "testimonial_VhXdcR": {
-          "type": "testimonial",
+        "faq_item_m4ywzT": {
+          "type": "faq_item",
           "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Marta W.",
-            "title": "Zupełnie inne odczucie niż tanie maski",
-            "content": "<p>Miałam wcześniej kilka masek z allegro i to jest po prostu inne. Jedwab jest miękki w sposób którego nie da się opisać. I trzyma się przez całą noc co było moim głównym problemem.</p>"
+            "question": "Will it actually block light?",
+            "answer": "<p>Yes. The Monté sleep mask is designed with a contoured shape and blackout-grade fabric that blocks 100% of light — even in bright rooms or on early-morning flights.</p>"
           }
         },
-        "testimonial_agdpf9": {
-          "type": "testimonial",
+        "faq_item_UEDN3E": {
+          "type": "faq_item",
           "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Karolina B.",
-            "title": "Mieszkam w centrum i w końcu sypiam",
-            "content": "<p>Wczesne słońce wpadało do mojego pokoju dosłownie o 5 rano. Teraz nie wiem kiedy wschodzi bo po prostu tego nie czuję. Polecam każdemu kto ma podobny problem.</p>"
+            "question": "I hate tight masks. Will this press on my eyes?",
+            "answer": "<p>No. The mask uses a 3D contoured shell that sits away from your eyelids entirely, so there's no pressure on your eyes — even if you're a side sleeper.</p>"
           }
         },
-        "testimonial_Gzpj8D": {
-          "type": "testimonial",
+        "faq_item_96eT9K": {
+          "type": "faq_item",
           "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Anna B.",
-            "title": "Nareszcie wysypiam się porządnie",
-            "content": "<p>Śpię z nią już trzeci tydzień. Mój krem zostaje na twarzy, zero załamów rano i w końcu nie budzi mnie poranne słońce przez zasłony.</p>"
+            "question": "Will it stay in place if I move at night?",
+            "answer": "<p>Yes. The adjustable elastic band is designed to hold the mask comfortably in place through the night, whether you sleep on your back, side, or stomach.</p>"
           }
         },
-        "testimonial_d8xwRT": {
-          "type": "testimonial",
+        "faq_item_gX4T6F": {
+          "type": "faq_item",
           "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Natalia S.",
-            "title": "Kupiłam sobie na urodziny",
-            "content": "<p>Trochę głupio było kupować sobie samej prezent ale serio nie żałuję. Opakowanie ładne, maska miękka i teraz wieczór wygląda zupełnie inaczej.</p>"
+            "question": "What does \"22-momme silk\" mean, and why does it matter?",
+            "answer": "<p>Momme (mm) is the weight and density measure for silk. 22mm is considered premium — it's heavier, more durable, and feels noticeably softer than lower-grade silks used in most sleep masks.</p>"
           }
         },
-        "testimonial_PXyGht": {
-          "type": "testimonial",
+        "faq_item_qTakJz": {
+          "type": "faq_item",
           "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Zuzanna P.",
-            "title": "Mam przedłużenia i bałam się",
-            "content": "<p>Serio bałam się że maska zniszczy mi rzęsy. Ale jedwab jest tak gładki że w ogóle nie czuję żadnego tarcia. Po trzech tygodniach przedłużenia wyglądają normalnie.</p>"
+            "question": "Is Monté a medical product or does it \"treat\" sleep issues?",
+            "answer": "<p>Monté is not a medical device. It's a sleep accessory designed to improve the conditions for rest. If you have a sleep disorder, please consult a healthcare professional.</p>"
           }
         },
-        "testimonial_zQeKBB": {
-          "type": "testimonial",
+        "faq_item_xhaMtz": {
+          "type": "faq_item",
           "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Joanna M.",
-            "title": "Chłopak późno zasypia z telefonem",
-            "content": "<p>Mój chłopak scrolluje Instagrama kiedy ja już chcę spać. Światło od telefonu dosłownie nie pozwalało mi zasnąć. Teraz zakładam maskę i jest ciemno. Problem rozwiązany.</p>"
+            "question": "Is it good for travel and naps?",
+            "answer": "<p>Yes — it's one of the best travel companions you can pack. Lightweight, compact, and effective in any lighting environment. Works just as well on a plane, train, or couch.</p>"
           }
         },
-        "testimonial_CLEtDD": {
-          "type": "testimonial",
+        "faq_item_4RnRjU": {
+          "type": "faq_item",
           "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Magdalena R.",
-            "title": "W końcu krem zostaje na skórze",
-            "content": "<p>Używam dużo rzeczy przed snem i zawsze zastanawiałam się czy maska to wchłania. Tu tak się nie dzieje. Skóra rano wygląda nawilżona tak jak powinna po całej tej pielęgnacji.</p>"
+            "question": "How do I care for it?",
+            "answer": "<p>Hand wash in cool water with a gentle detergent. Lay flat to dry. Avoid machine washing or wringing to preserve the silk and shape.</p>"
           }
         },
-        "testimonial_hec9fP": {
-          "type": "testimonial",
-          "disabled": true,
+        "faq_item_hq4pgp": {
+          "type": "faq_item",
           "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Aleksandra C.",
-            "title": "Mąż zasypia z telewizorem",
-            "content": "<p>Mąż zasypia przy telewizorze i to był mój problem od lat. Ta maska zmieniła sytuację całkowicie. Blackout jest naprawdę dobry i nie czuję żadnego ucisku na oczy przez całą noc.</p>"
-          }
-        },
-        "testimonial_AwqnpW": {
-          "type": "testimonial",
-          "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Katarzyna N.",
-            "title": "Jedyna maska która nie zsuwa się",
-            "content": "<p>Próbowałam kilku i zawsze rano znajdowałam maskę gdzieś obok głowy. Rzep w tej masce naprawdę działa. Śpię na boku i rano maska jest na swoim miejscu.</p>"
-          }
-        },
-        "testimonial_c4ReL9": {
-          "type": "testimonial",
-          "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Agnieszka T.",
-            "title": "Zawsze mam ją w bagażu",
-            "content": "<p>Dużo podróżuję i ta maska jest teraz w moim bagażu zawsze. W samolocie szczególnie robi różnicę. Mieści się wszędzie i naprawdę pomaga zasnąć kiedy wokół jest jasno.</p>"
-          }
-        },
-        "testimonial_fKMVRX": {
-          "type": "testimonial",
-          "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Weronika D.",
-            "title": "Pielęgnacja w nocy ma sens",
-            "content": "<p>Używam retinolu i peptydów na noc i zależało mi żeby maska tego nie wchłaniała. Jedwab morwowy naprawdę inaczej się zachowuje. Zero wchłoniętego kremu, zero załamów.</p>"
-          }
-        },
-        "testimonial_kUgnAC": {
-          "type": "testimonial",
-          "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Paulina J.",
-            "title": "Kupiłam też dla mamy",
-            "content": "<p>Byłam tak zadowolona po pierwszym tygodniu że zamówiłam drugą dla mamy. Obie jesteśmy zadowolone. Mama mówi że śpi lepiej niż od lat.</p>"
-          }
-        },
-        "testimonial_C6GHq4": {
-          "type": "testimonial",
-          "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Dominika L.",
-            "title": "Kładzenie się spać jest przyjemne",
-            "content": "<p>Brzmi dziwnie ale odkąd mam tę maskę kładzenie się spać stało się czymś na co czekam. Jedwab jest tak miękki że po prostu chce się leżeć.</p>"
-          }
-        },
-        "testimonial_eUpFfN": {
-          "type": "testimonial",
-          "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Ewelina G.",
-            "title": "Zero ucisku na oczy",
-            "content": "<p>Miałam wcześniej maskę która bolała po nocy. Serio bolała gałki oczne. Ta w ogóle nie uciska. Nie wiem jak to możliwe ale przez całą noc w ogóle jej nie czuję.</p>"
-          }
-        },
-        "testimonial_ceQ6F6": {
-          "type": "testimonial",
-          "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Monika F.",
-            "title": "Po miesiącu wciąż jak nowa",
-            "content": "<p>Już miesiąc i jedwab wygląda tak samo jak po otwarciu paczki. Poprzednie maski po kilku praniach wyglądały koszmarnie. Ta po prostu trzyma jakość.</p>"
-          }
-        },
-        "testimonial_RtmA46": {
-          "type": "testimonial",
-          "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Sylwia H.",
-            "title": "Rzep to była dobra decyzja",
-            "content": "<p>Gumka w poprzednich maskach albo ściskała albo się rozciągała po miesiącu. Rzep dopasowuję raz i gotowe. Nie rozumiem dlaczego wszystkie maski nie mają rzepa</p>"
-          }
-        },
-        "testimonial_nYWNid": {
-          "type": "testimonial",
-          "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 4,
-            "author": "Barbara K.",
-            "title": "Dobra, ale trzeba wiedzieć o praniu",
-            "content": "<p>Maska jest naprawdę dobra. Jedyna rzecz o której warto wiedzieć to że po praniu trzeba ją przeprasować parą żeby wróciła do miękkości. Po tym jest znowu idealna.</p>"
-          }
-        },
-        "testimonial_zxQaTW": {
-          "type": "testimonial",
-          "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Izabela W.",
-            "title": "Pomogła mi zasypiać szybciej",
-            "content": "<p>Miałam problem z zasypianiem od dawna. Maska nie jest cudem ale ciemność naprawdę robi różnicę. Przestałam liczyć ile czasu zajmuje mi zaśnięcie bo po prostu zasypiam.</p>"
-          }
-        },
-        "testimonial_h33GD6": {
-          "type": "testimonial",
-          "settings": {
-            "round_avatar": true,
-            "show_rating": true,
-            "rating": 5,
-            "author": "Beata Z.",
-            "title": "Kupiłam jako prezent i sama chcę drugą",
-            "content": "<p>Kupiłam dla przyjaciółki na urodziny. Opakowanie wyglądało naprawdę ładnie. Przyjaciółka jest zachwycona i teraz sama chcę zamówić dla siebie.</p>"
+            "question": "What if it's not right for me?",
+            "answer": "<p>We offer a 30-day return policy. If it doesn't work for you, reach out to our team and we'll sort it out — no questions asked.</p>"
           }
         }
       },
       "block_order": [
-        "testimonial_VhXdcR",
-        "testimonial_agdpf9",
-        "testimonial_Gzpj8D",
-        "testimonial_d8xwRT",
-        "testimonial_PXyGht",
-        "testimonial_zQeKBB",
-        "testimonial_CLEtDD",
-        "testimonial_hec9fP",
-        "testimonial_AwqnpW",
-        "testimonial_c4ReL9",
-        "testimonial_fKMVRX",
-        "testimonial_kUgnAC",
-        "testimonial_C6GHq4",
-        "testimonial_eUpFfN",
-        "testimonial_ceQ6F6",
-        "testimonial_RtmA46",
-        "testimonial_nYWNid",
-        "testimonial_zxQaTW",
-        "testimonial_h33GD6"
+        "faq_item_m4ywzT",
+        "faq_item_UEDN3E",
+        "faq_item_96eT9K",
+        "faq_item_gX4T6F",
+        "faq_item_qTakJz",
+        "faq_item_xhaMtz",
+        "faq_item_4RnRjU",
+        "faq_item_hq4pgp"
       ],
-      "disabled": true,
-      "name": "Testimonials",
+      "name": "FAQ Accordion",
       "settings": {
-        "full_width": true,
-        "stack_testimonials": false,
-        "subheading": "",
-        "title": "Co mówią nasi klienci",
-        "content": "",
-        "link_url": "",
-        "link_text": "",
-        "background": "#fdfbf9",
-        "background_gradient": "",
-        "text_color": "#182153",
+        "monte_layout": true,
+        "subheading": "Nie możesz znaleźć tego, czego szukasz? Chętnie pomożemy.",
+        "button_label": "Skontaktuj się z nami",
+        "button_link": "",
+        "open_first": true,
+        "monte_primary": "#232E71",
+        "monte_secondary": "#52597E",
+        "monte_border": "#DCD6CF",
+        "tagline": "FAQ",
+        "heading": "Wiemy,\no czym myślisz",
+        "background_color": "#fdfbf9",
         "heading_color": "#182153",
-        "heading_gradient": "",
-        "testimonial_card_background": "#fbf7f3",
-        "testimonial_card_text_color": "#182153"
-      }
-    },
-    "1777526803097e4acf": {
-      "type": "apps",
-      "settings": {
-        "full_width": true,
-        "remove_vertical_spacing": false,
-        "remove_horizontal_spacing": false,
-        "background": "",
-        "background_gradient": "",
-        "text_color": ""
-      }
-    },
-    "1782076459c5859218": {
-      "type": "apps",
-      "settings": {
-        "full_width": true,
-        "remove_vertical_spacing": false,
-        "remove_horizontal_spacing": false,
-        "background": "",
-        "background_gradient": "",
-        "text_color": ""
+        "body_color": "#182153",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
       }
     }
   },
   "order": [
     "main",
     "monte_product_details",
-    "testimonials_eU6FBb",
-    "1777526803097e4acf",
-    "1782076459c5859218"
+    "faq_accordion_Xmc94w"
   ]
 }

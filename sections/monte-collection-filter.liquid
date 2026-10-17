@@ -1,0 +1,62 @@
+{{ 'monte-collection-filter.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'monte-collection-filter.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign category_collections = section.settings.collections
+  if category_collections == blank
+    assign category_collections = collections
+  endif
+  assign all_image = section.settings.all_image | default: collections.all.image | default: collections.all.products.first.featured_image
+  assign all_active = false
+  if collection.handle == 'all'
+    assign all_active = true
+  endif
+  assign current_in_list = false
+-%}
+
+<reveal-items class="monte-categories-reveal" selector=".monte-categories" margin="0px">
+  <monte-collection-filter class="monte-categories" style="--category-color: {{ section.settings.text_color }}; --category-ring: {{ section.settings.active_color }}; --category-border: {{ section.settings.border_color }}; --category-surface: {{ section.settings.icon_background }};">
+    <nav aria-label="{{ section.settings.accessibility_label | escape }}">
+      <div class="monte-categories__track" tabindex="0" aria-label="{{ section.settings.accessibility_label | escape }}">
+        {%- render 'monte-collection-category', title: section.settings.all_label, url: routes.all_products_collection_url, image: all_image, active: all_active -%}
+        {%- for category in category_collections -%}
+          {%- unless category.handle == 'all' -%}
+            {%- liquid
+              assign category_active = false
+              if collection.handle == category.handle
+                assign category_active = true
+                assign current_in_list = true
+              endif
+            -%}
+            {%- render 'monte-collection-category', title: category.title, url: category.url, image: category.image, active: category_active -%}
+          {%- endunless -%}
+        {%- endfor -%}
+        {%- unless all_active or current_in_list or collection == blank -%}
+          {%- render 'monte-collection-category', title: collection.title, url: collection.url, image: collection.image, active: true -%}
+        {%- endunless -%}
+      </div>
+    </nav>
+    <div class="monte-categories__progress" aria-hidden="true" hidden><span></span></div>
+  </monte-collection-filter>
+</reveal-items>
+
+{% schema %}
+{
+  "name": "Monté Collection Filter",
+  "tag": "section",
+  "class": "shopify-section--monte-collection-filter",
+  "enabled_on": { "templates": ["collection"] },
+  "settings": [
+    { "type": "collection_list", "id": "collections", "label": "Collections", "limit": 20, "info": "Choose and reorder categories. Names and images come from each collection. If empty, all available collections are shown. Links open the selected collection and activate its category automatically." },
+    { "type": "text", "id": "all_label", "label": "All products label", "default": "Wszystko" },
+    { "type": "image_picker", "id": "all_image", "label": "All products image", "info": "Optional. Defaults to the all-products collection image or its first product image. Other category images are managed in Shopify collection settings." },
+    { "type": "text", "id": "accessibility_label", "label": "Navigation accessibility label", "default": "Kategorie kolekcji" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#232E71" },
+    { "type": "color", "id": "active_color", "label": "Active ring and progress", "default": "#232E71" },
+    { "type": "color", "id": "border_color", "label": "Inactive ring", "default": "#DCD6CF" },
+    { "type": "color", "id": "icon_background", "label": "Image and progress background", "default": "#EEE7E0" }
+  ],
+  "presets": [{ "name": "Monté Collection Filter", "category": "Collections" }]
+}
+{% endschema %}

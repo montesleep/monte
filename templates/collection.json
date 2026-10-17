@@ -1,1 +1,1 @@
-{"sections":{"banner":{"type":"collection-banner","settings":{}},"main":{"type":"main-collection","settings":{}}},"order":["banner","main"]}
+{"sections":{"banner":{"type":"collection-banner","settings":{}},"categories":{"type":"monte-collection-filter","settings":{"collections":["zestawy","maski","poszewki","czepki","gumki"]}},"main":{"type":"main-collection","settings":{}}},"order":["banner","categories","main"]}

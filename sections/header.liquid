@@ -282,7 +282,7 @@ the underlying logic of the menu.
           {%- if shop.customer_accounts_enabled -%}
             <li>
               {%- if monte_header -%}
-                <a class="tap-area monte-header-button link-faded-reverse" href="{{ routes.account_url }}">
+                <a class="tap-area monte-header-button link-faded-reverse" href="{{ routes.account_url }}" data-no-instant {% if request.design_mode %}target="_blank" rel="noopener"{% endif %}>
                   <span class="sr-only">{{ 'header.general.login' | t }}</span>
                   {%- render 'monte-header-icon', name: 'account', section: section -%}
                 </a>
@@ -469,9 +469,9 @@ the underlying logic of the menu.
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Menu",
+      "label": "Shop menu (Sklep)",
       "default": "main-menu",
-      "info": "Used for the shop dropdown and mobile navigation in the Monte layout."
+      "info": "Choose the menu shown under Sklep and in mobile navigation."
     },
     {
       "type": "link_list",
@@ -481,14 +481,15 @@ the underlying logic of the menu.
     {
       "type": "link_list",
       "id": "secondary_menu",
-      "label": "Secondary menu",
-      "info": "Used for the contact dropdown and secondary mobile navigation in the Monte layout."
+      "label": "Contact menu (Kontakt)",
+      "info": "Choose the menu shown under Kontakt and in secondary mobile navigation. If empty, only the contact fallback link is shown."
     },
     {
       "type": "link_list",
       "id": "customer_account_menu",
       "label": "Customer account menu",
-      "default": "customer-account-main-menu"
+      "default": "customer-account-main-menu",
+      "info": "Used by the account component in standard Impact layouts. In the Monte layout, the profile icon opens the account or login page directly."
     },
     {
       "type": "select",

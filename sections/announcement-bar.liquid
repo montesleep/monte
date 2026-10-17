@@ -89,7 +89,13 @@
     #shopify-section-{{ section.id }} .monte-announcement__inner { gap: 8px; }
   }
   @media (min-width: 700px) {
-    #shopify-section-{{ section.id }} .monte-announcement { padding-block: 8px; }
+    #shopify-section-{{ section.id }} .monte-announcement {
+      display: grid;
+      align-items: center;
+      box-sizing: border-box;
+      height: 40px;
+      padding-block: 8px;
+    }
     #shopify-section-{{ section.id }} .monte-announcement__inner { justify-content: center; gap: 24px; }
     #shopify-section-{{ section.id }} .monte-announcement__desktop { display: inline; }
     #shopify-section-{{ section.id }} .monte-announcement__mobile { display: none; }
@@ -119,7 +125,7 @@
         {%- if section.settings.countdown_enabled -%}
           <div class="monte-announcement__timer" role="timer" aria-live="off" aria-label="{{ section.settings.countdown_label | escape }}">
             <span class="monte-announcement__unit"><span data-countdown-days>00</span>D</span>
-            <span class="monte-announcement__unit"><span data-countdown-hours>00</span>H</span>
+            <span class="monte-announcement__unit"><span data-countdown-hours>00</span>G</span>
             <span class="monte-announcement__unit"><span data-countdown-minutes>00</span>M</span>
             <span class="monte-announcement__unit"><span data-countdown-seconds>00</span>S</span>
           </div>
@@ -150,7 +156,7 @@
     { "type": "image_picker", "id": "icon_image", "label": "Custom icon", "info": "Optional. Replaces the emoji. Use a square image with a transparent background.", "visible_if": "{{ section.settings.show_icon }}" },
     { "type": "header", "content": "Countdown" },
     { "type": "checkbox", "id": "countdown_enabled", "label": "Show countdown", "default": false },
-    { "type": "paragraph", "content": "The countdown ends exactly 72 hours after the campaign start, at the same moment for every visitor. Before the start it shows 03D 00H 00M 00S. After expiry it stays at zero. Turning it off only hides it; change the start date and time to reset it." },
+    { "type": "paragraph", "content": "The countdown ends exactly 72 hours after the campaign start, at the same moment for every visitor. Before the start it shows 03D 00G 00M 00S. After expiry it stays at zero. Turning it off only hides it; change the start date and time to reset it." },
     { "type": "text", "id": "countdown_start_date", "label": "Start date", "info": "Format: YYYY-MM-DD, for example 2026-10-17.", "visible_if": "{{ section.settings.countdown_enabled }}" },
     { "type": "text", "id": "countdown_start_time", "label": "Start time", "default": "00:00", "info": "24-hour format: HH:MM.", "visible_if": "{{ section.settings.countdown_enabled }}" },
     { "type": "text", "id": "countdown_utc_offset", "label": "Time zone (UTC offset)", "default": "+02:00", "info": "Use the offset for the start date: +02:00 for summer time in Poland, +01:00 for winter time. Format: +HH:MM or -HH:MM.", "visible_if": "{{ section.settings.countdown_enabled }}" },

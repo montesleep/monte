@@ -38,7 +38,8 @@
   .monte-reviews__content { flex: 0 0 720px; max-width: 60%; height: 100%; }
   .monte-reviews__carousel { display: block; height: 100%; margin: 0; padding: 0; overflow: hidden; scroll-snap-type: none; }
   .monte-reviews__columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; height: 100%; }
-  .monte-reviews__column { display: block; min-width: 0; height: 100%; overflow: hidden; }
+  .monte-reviews__column { display: block; min-width: 0; height: 100%; overflow-y: auto; overscroll-behavior-y: contain; }
+  .monte-reviews__column:has(.is-ready) { overflow: hidden; }
   .monte-reviews__track { display: flex; flex-direction: column; will-change: transform; }
   .monte-reviews__group, .monte-reviews [data-review-copy] { display: flex; flex-direction: column; gap: 16px; padding-bottom: 16px; flex-shrink: 0; }
   .monte-reviews__track.is-ready { animation: monte-reviews-up var(--reviews-duration) linear infinite; animation-delay: calc(var(--reviews-duration) * -.2); }
@@ -56,5 +57,5 @@
 @media (min-width: 1000px) and (prefers-reduced-motion: reduce) {
   .monte-reviews__track.is-ready { animation: none; transform: none; will-change: auto; }
   .monte-reviews [data-review-copy] { display: none; }
-  .monte-reviews__column { overflow-y: auto; overscroll-behavior-y: contain; }
+  .monte-reviews__column:has(.is-ready) { overflow-y: auto; overscroll-behavior-y: contain; }
 }

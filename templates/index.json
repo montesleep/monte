@@ -868,8 +868,7 @@
         "card_color": "#fdfbf9",
         "mobile_card_color": "#ffffff",
         "star_color": "#d9a17d"
-      },
-      "disabled": false
+      }
     }
   },
   "order": [

@@ -1,0 +1,42 @@
+{{- 'monte-faq.css' | asset_url | stylesheet_tag -}}
+<script type="module" src="{{ 'monte-faq.js' | asset_url }}"></script>
+<style>
+  #shopify-section-{{ section.id }} { padding: 0; background: transparent; }
+</style>
+<monte-faq class="monte-faq" style="--mf-primary: {{ section.settings.monte_primary }}; --mf-secondary: {{ section.settings.monte_secondary }}; --mf-border: {{ section.settings.monte_border }}; --mf-top-mobile: {{ section.settings.padding_top_mobile }}px; --mf-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px; --mf-top-desktop: {{ section.settings.padding_top_desktop }}px; --mf-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;">
+  <reveal-items class="monte-faq__reveal" margin="0px">
+    <div class="monte-faq__layout">
+      <div class="monte-faq__intro">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="monte-faq__heading">{{ section.settings.heading | remove: '**' | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="monte-faq__description">{{ section.settings.subheading | escape | newline_to_br }}</p>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+          <div class="monte-faq__button">
+            {%- render 'button', content: section.settings.button_label, href: section.settings.button_link, style: 'outline' -%}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="monte-faq__list">
+        {%- for block in section.blocks -%}
+          {%- assign initially_open = false -%}
+          {%- if forloop.first and section.settings.open_first -%}{%- assign initially_open = true -%}{%- endif -%}
+          <details is="monte-faq-disclosure" class="monte-faq__item" aria-expanded="{{ initially_open }}" {% if initially_open %}open{% endif %} {{ block.shopify_attributes }}>
+            <summary class="monte-faq__question" aria-controls="FAQ-{{ section.id }}-{{ block.id }}">
+              <span class="monte-faq__question-row">
+                <span>{{ block.settings.question | escape }}</span>
+                <span class="monte-faq__icon" aria-hidden="true">
+                  <img class="monte-faq__plus" src="{{ 'monte-faq-plus.svg' | asset_url }}" width="24" height="24" alt="">
+                  <img class="monte-faq__close" src="{{ 'monte-faq-close.svg' | asset_url }}" width="24" height="24" alt="">
+                </span>
+              </span>
+            </summary>
+            <div class="monte-faq__answer prose" id="FAQ-{{ section.id }}-{{ block.id }}">{{ block.settings.answer }}</div>
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </reveal-items>
+</monte-faq>

@@ -860,14 +860,19 @@
       ],
       "settings": {
         "tagline": "CZĘSTO ZADAWANE PYTANIA",
-        "heading": "Wiemy, o czym **myślisz**",
+        "heading": "Wiemy, o czym myślisz",
         "background_color": "#fdfbf9",
         "heading_color": "#182153",
         "body_color": "#182153bf",
-        "padding_top_desktop": 40,
-        "padding_bottom_desktop": 40,
-        "padding_top_mobile": 32,
-        "padding_bottom_mobile": 32
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "monte_layout": true,
+        "subheading": "Nie możesz znaleźć tego, czego szukasz? Chętnie pomożemy.",
+        "button_label": "Skontaktuj się z nami",
+        "button_link": "/pages/contact",
+        "open_first": true
       }
     },
     "monte_spotlight": {
@@ -884,12 +889,12 @@
     "section-5",
     "monte_reviews",
     "monte_spotlight",
+    "faq_accordion_GirgW4",
     "section-6",
     "section-15",
     "stats_social_proof_i9KQdr",
     "stats_social_proof_TgFgh4",
     "testimonials_fAAqzD",
-    "blog_posts_pRx46J",
-    "faq_accordion_GirgW4"
+    "blog_posts_pRx46J"
   ]
 }

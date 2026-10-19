@@ -25,11 +25,67 @@ const filled = [
 const blocked = ':disabled, [disabled], [aria-disabled="true"], [aria-busy="true"], [loading]';
 const prepared = new WeakSet();
 const outlineSelector = '.button--outline, .mb-button--outline, .monte-cart-button--outline';
-// Size the circle to reach the top corners, including resized or newly revealed controls.
+const fillOrigins = new WeakMap();
+function sizeFill(element) {
+  const { x, y } = fillOrigins.get(element) || { x: .5, y: 1 };
+  const radius = Math.hypot(Math.max(x, 1 - x) * element.offsetWidth,
+    Math.max(y, 1 - y) * element.offsetHeight) + 1;
+  element.style.setProperty('--monte-fill-radius', `${radius}px`);
+}
 const fillResize = new ResizeObserver(entries => {
-  for (const { target } of entries) {
-    target.style.setProperty('--monte-fill-radius', `${Math.hypot(target.offsetWidth / 2, target.offsetHeight) + 1}px`);
+  for (const { target } of entries) sizeFill(target);
+});
+
+// Find the entry edge along the pointer's path, including fast diagonal movement.
+function getFillOrigin(rect, point, previous) {
+  const x = point.x - rect.left, y = point.y - rect.top;
+  const w = rect.width, h = rect.height;
+  if (!w || !h) return { x: .5, y: 1 };
+  if (previous) {
+    const px = previous.x - rect.left, py = previous.y - rect.top;
+    const dx = x - px, dy = y - py;
+    if (px < 0 || px > w || py < 0 || py > h) {
+      const hits = [];
+      for (const edge of [0, w]) {
+        const t = (edge - px) / dx, ey = py + t * dy;
+        if (Number.isFinite(t) && t >= 0 && t <= 1 && ey >= 0 && ey <= h)
+          hits.push({ t, x: edge / w, y: ey / h });
+      }
+      for (const edge of [0, h]) {
+        const t = (edge - py) / dy, ex = px + t * dx;
+        if (Number.isFinite(t) && t >= 0 && t <= 1 && ex >= 0 && ex <= w)
+          hits.push({ t, x: ex / w, y: edge / h });
+      }
+      if (hits.length) return hits.sort((a, b) => a.t - b.t)[0];
+    }
   }
+  const cx = Math.max(0, Math.min(w, x)), cy = Math.max(0, Math.min(h, y));
+  return [
+    { distance: cx, x: 0, y: cy / h },
+    { distance: w - cx, x: 1, y: cy / h },
+    { distance: cy, x: cx / w, y: 0 },
+    { distance: h - cy, x: cx / w, y: 1 }
+  ].sort((a, b) => a.distance - b.distance)[0];
+}
+
+let previousPointer;
+document.addEventListener('pointermove', event => {
+  if (event.pointerType !== 'touch') previousPointer = { x: event.clientX, y: event.clientY };
+}, { passive: true });
+document.addEventListener('pointerover', event => {
+  if (event.pointerType === 'touch') return;
+  const element = event.target.closest?.(outlineSelector);
+  if (!element || !prepared.has(element) || element.matches(blocked) ||
+      (event.relatedTarget instanceof Node && element.contains(event.relatedTarget))) return;
+  const origin = getFillOrigin(element.getBoundingClientRect(),
+    { x: event.clientX, y: event.clientY }, previousPointer);
+  fillOrigins.set(element, origin);
+  element.style.setProperty('--monte-fill-x', `${origin.x * 100}%`);
+  element.style.setProperty('--monte-fill-y', `${origin.y * 100}%`);
+  sizeFill(element);
+});
+document.addEventListener('pointerout', event => {
+  if (!event.relatedTarget) previousPointer = undefined;
 });
 
 function prepare(element) {
@@ -47,7 +103,7 @@ function prepare(element) {
   if (element.matches(outlineSelector)) {
     element.style.setProperty('--monte-outline-shadow', style.boxShadow === 'none'
       ? 'inset 0 0 0 0 #232e71' : style.boxShadow);
-    element.style.setProperty('--monte-fill-radius', `${Math.hypot(element.offsetWidth / 2, element.offsetHeight) + 1}px`);
+    sizeFill(element);
     fillResize.observe(element);
   }
   element.dataset.monteMotion = isText ? 'text' : 'button';

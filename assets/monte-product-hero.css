@@ -172,6 +172,7 @@
  .mp-sticky [data-sticky-discount] { display:block; height:24px; }
  .mp-sticky .mp-atc { width:100%; padding-inline:32px; }
  .mp-sticky-basket { display:block; position:relative; width:20px; height:20px; flex:none; }
+ .mp-sticky--choose-color .mp-sticky-basket { display:none; }
  .mp-sticky-basket img { position:absolute; right:.625px; bottom:.625px; max-width:none; }
 }
 @media(prefers-reduced-motion:reduce) { .mp-sticky.product-quick-add { transition:none; } }

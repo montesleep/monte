@@ -39,6 +39,7 @@ class MonteProductHero extends HTMLElement {
         button.disabled = bundle.button.disabled;
         button.setAttribute('aria-busy', String(Boolean(bundle.busy)));
         sticky.querySelector('[data-sticky-label]').textContent = bundle.querySelector('[data-atc-label]').textContent;
+        sticky.classList.toggle('mp-sticky--choose-color', bundle.count === 2 && bundle.slots.some(item => !item));
         sticky.querySelector('[data-sticky-price]').textContent = money(price);
         const crossed = sticky.querySelector('[data-sticky-compare]');
         const discount = sticky.querySelector('[data-sticky-discount]');

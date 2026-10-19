@@ -12,3 +12,5 @@ body:has(monte-builder-dialog[open]) shopify-chat::part(activator){visibility:hi
 @media(max-width:374px){.mb-sticky .mb-button{padding-inline:12px;gap:8px}.mb-sticky-toggle{gap:8px}.mb-sticky-toggle .mb-circle{width:36px;height:36px}}
 
 @media(max-width:999px){.mb-summary-dialog .mb-dialog-panel{padding:12px 20px calc(12px + env(safe-area-inset-bottom))}.mb-summary-close{margin:0 0 8px}.mb-summary-content,.mb-goals{gap:20px}.mb-line{gap:12px;padding:12px;border-radius:16px}.mb-line-title{gap:0}.mb-remove{right:12px}.mb-totals{font-size:14px}.mb-total{font-size:16px}.mb-quick-footer>.mb-button img{width:20px;height:20px}}
+
+@media(max-width:374px){.mb-sticky-toggle [data-total]{font-size:18px}.mb-sticky-toggle [data-total][data-long-total]{font-size:16px}}

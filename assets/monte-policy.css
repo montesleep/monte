@@ -45,3 +45,7 @@
 }
 @media (hover: hover) { .monte-policy-content .rte a:hover { opacity: .75; } }
 @media (prefers-reduced-motion: reduce) { .monte-policy-content .rte a { transition: none; } }
+
+@media (max-width: 699px) {
+  .monte-policy-content .rte table :is(th, td) { min-width: 180px; overflow-wrap: normal; }
+}

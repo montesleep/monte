@@ -13,7 +13,7 @@
   <monte-builder-dialog class="mb-dialog mb-quickview" data-quickview tabindex="-1" aria-labelledby="BuilderQuickTitle-{{ section.id }}" inert><div class="mb-overlay" data-dialog-close></div><div class="mb-dialog-panel"><header class="mb-quick-header"><h2 id="BuilderQuickTitle-{{ section.id }}" data-quick-title></h2><button type="button" data-dialog-close aria-label="Zamknij podgląd">{% render 'icon', icon: 'close', width: 20 %}</button></header><div class="mb-quick-content" data-quick-content></div><footer class="mb-quick-footer"><button type="button" class="mb-button" data-quick-add disabled>Dodaj do zestawu<img src="{{ 'monte-cart-checkout.svg' | asset_url }}" width="24" height="24" alt=""></button></footer></div></monte-builder-dialog>
 </monte-bundle-builder>
 {% schema %}
-{"name":"Monté Bundle Builder","tag":"section","class":"shopify-section--monte-bundle-builder","enabled_on":{"templates":["page"]},"settings":[
+{"name":"Monté Bundle Builder","tag":"section","class":"shopify-section--monte-bundle-builder","enabled_on":{"templates":["page"],"groups":["custom.bundle-builder"]},"settings":[
 {"type":"header","content":"Discount thresholds"},
 {"type":"paragraph","content":"Extra discounts of 5%, 10%, and 15% apply to current product prices. Keep these thresholds in sync with Every Possible Discount. The app applies the real checkout discount."},
 {"type":"number","id":"threshold_1","label":"5% threshold (PLN)","default":350},

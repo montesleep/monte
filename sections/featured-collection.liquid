@@ -319,6 +319,105 @@
           "label": "Products",
           "limit": 50,
           "info": "Choose at least four products for a complete mobile grid. The first four appear on mobile; all selected products appear in the desktop carousel."
+        },
+        {
+          "type": "header",
+          "content": "Bundle promotion"
+        },
+        {
+          "type": "checkbox",
+          "id": "bundle_promo_enabled",
+          "label": "Show bundle promotion",
+          "default": false,
+          "info": "Shown after the first product on desktop and after the first two on mobile."
+        },
+        {
+          "type": "image_picker",
+          "id": "bundle_image",
+          "label": "Desktop image",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "video",
+          "id": "bundle_video",
+          "label": "Desktop video",
+          "info": "Replaces the image. Autoplays muted and loops without controls.",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "bundle_mobile_image",
+          "label": "Mobile image",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "video",
+          "id": "bundle_mobile_video",
+          "label": "Mobile video",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "bundle_default_image",
+          "label": "Use default campaign image when media is empty",
+          "default": true,
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "text",
+          "id": "bundle_heading",
+          "label": "Heading",
+          "default": "Połącz produkty, oszczędź więcej",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "textarea",
+          "id": "bundle_body",
+          "label": "Description",
+          "default": "Wybierz dowolne produkty Monté i otrzymaj dodatkowe 15% rabatu na cały zestaw.",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "text",
+          "id": "bundle_button",
+          "label": "Button label",
+          "default": "Stwórz swój zestaw",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "url",
+          "id": "bundle_link",
+          "label": "Button link",
+          "info": "Defaults to /pages/bundle-builder when empty.",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "color",
+          "id": "bundle_text",
+          "label": "Promotion text",
+          "default": "#FDFBF9",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "color",
+          "id": "bundle_button_bg",
+          "label": "Button background",
+          "default": "#FDFBF9",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "color",
+          "id": "bundle_button_text",
+          "label": "Button text and border",
+          "default": "#232E71",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
+        },
+        {
+          "type": "color",
+          "id": "bundle_button_hover",
+          "label": "Button hover background",
+          "default": "#EEE7E0",
+          "visible_if": "{{ block.settings.bundle_promo_enabled }}"
         }
       ]
     }

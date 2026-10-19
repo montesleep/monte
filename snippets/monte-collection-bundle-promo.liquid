@@ -1,29 +1,30 @@
 {%- liquid
+  assign promo_settings = promo_settings | default: section.settings
   assign default_image = ''
-  if section.settings.bundle_default_image
+  if promo_settings.bundle_default_image
     assign default_image = 'monte-nav-bundles-promo.png'
   endif
-  assign mobile_image = section.settings.bundle_mobile_image
-  assign mobile_video = section.settings.bundle_mobile_video
+  assign mobile_image = promo_settings.bundle_mobile_image
+  assign mobile_video = promo_settings.bundle_mobile_video
   if mobile_image == blank and mobile_video == blank
-    assign mobile_image = section.settings.bundle_image
-    assign mobile_video = section.settings.bundle_video
+    assign mobile_image = promo_settings.bundle_image
+    assign mobile_video = promo_settings.bundle_video
   endif
 -%}
-<article class="monte-catalog-promo" style="--promo-text: {{ section.settings.bundle_text }}; --promo-button: {{ section.settings.bundle_button_bg }}; --promo-button-text: {{ section.settings.bundle_button_text }}; --promo-button-hover: {{ section.settings.bundle_button_hover }};">
-  <div class="monte-catalog-promo__media monte-catalog-promo__media--desktop{% if section.settings.bundle_image == blank and section.settings.bundle_video == blank %} monte-catalog-promo__media--default{% endif %}">
-    {%- render 'monte-navigation-media', image: section.settings.bundle_image, video: section.settings.bundle_video, placeholder: default_image, sizes: '(min-width: 700px) 25vw, 100vw', width: 2327, height: 1080 -%}
+<article class="monte-catalog-promo" style="--promo-text: {{ promo_settings.bundle_text }}; --promo-button: {{ promo_settings.bundle_button_bg }}; --promo-button-text: {{ promo_settings.bundle_button_text }}; --promo-button-hover: {{ promo_settings.bundle_button_hover }};">
+  <div class="monte-catalog-promo__media monte-catalog-promo__media--desktop{% if promo_settings.bundle_image == blank and promo_settings.bundle_video == blank %} monte-catalog-promo__media--default{% endif %}">
+    {%- render 'monte-navigation-media', image: promo_settings.bundle_image, video: promo_settings.bundle_video, placeholder: default_image, sizes: '(min-width: 700px) 25vw, 100vw', width: 2327, height: 1080 -%}
   </div>
   <div class="monte-catalog-promo__media monte-catalog-promo__media--mobile">
     {%- render 'monte-navigation-media', image: mobile_image, video: mobile_video, placeholder: default_image, sizes: '100vw', width: 2327, height: 1080 -%}
   </div>
   <div class="monte-catalog-promo__content">
     <div class="monte-catalog-promo__copy">
-      {%- if section.settings.bundle_heading != blank -%}<h2>{{ section.settings.bundle_heading | escape }}</h2>{%- endif -%}
-      {%- if section.settings.bundle_body != blank -%}<p>{{ section.settings.bundle_body | escape }}</p>{%- endif -%}
+      {%- if promo_settings.bundle_heading != blank -%}<h2>{{ promo_settings.bundle_heading | escape }}</h2>{%- endif -%}
+      {%- if promo_settings.bundle_body != blank -%}<p>{{ promo_settings.bundle_body | escape }}</p>{%- endif -%}
     </div>
-    {%- if section.settings.bundle_button != blank -%}
-      <a class="button monte-catalog-promo__button" href="{{ section.settings.bundle_link | default: '/pages/bundle-builder' }}">{{ section.settings.bundle_button | escape }}</a>
+    {%- if promo_settings.bundle_button != blank -%}
+      <a class="button monte-catalog-promo__button" href="{{ promo_settings.bundle_link | default: '/pages/bundle-builder' }}">{{ promo_settings.bundle_button | escape }}</a>
     {%- endif -%}
   </div>
 </article>

@@ -1,4 +1,5 @@
 <style>#shopify-section-{{ section.id }} { background: transparent; }</style>
+{{ 'monte-bundle-promo.css' | asset_url | stylesheet_tag }}
 {{ 'monte-product-tabs.css' | asset_url | stylesheet_tag }}
 <script type="module" src="{{ 'monte-product-tabs.js' | asset_url }}"></script>
 <monte-product-tabs class="monte-products" style="--mp-primary: {{ section.settings.monte_primary }}; --mp-secondary: {{ section.settings.monte_secondary }}; --mp-card: {{ section.settings.monte_card_background }};">
@@ -13,11 +14,19 @@
         {%- for block in section.blocks -%}
           {%- assign scroll_id = 'ProductTrack-' | append: section.id | append: '-' | append: block.id -%}
           <div class="monte-products__panel" id="ProductPanel-{{ section.id }}-{{ block.id }}" role="tabpanel" aria-labelledby="ProductTab-{{ section.id }}-{{ block.id }}" data-block-id="{{ block.id }}" {% unless forloop.first %}hidden{% endunless %} {{ block.shopify_attributes }}>
-            {%- if block.settings.products.size > 0 -%}
-              <div class="monte-products__track" id="{{ scroll_id }}" tabindex="0" role="region" aria-label="{{ block.settings.title | escape }}">
+            {%- if block.settings.products.size > 0 or block.settings.bundle_promo_enabled -%}
+              <div class="monte-products__track{% if block.settings.products.size == 0 %} monte-products__track--empty{% endif %}" id="{{ scroll_id }}" tabindex="0" role="region" aria-label="{{ block.settings.title | escape }}">
                 {%- for product in block.settings.products -%}
-                  {%- render 'monte-product-card', product: product, tab_id: block.id -%}
+                  {%- assign mobile_hidden = false -%}
+                  {%- if forloop.index > 4 -%}{%- assign mobile_hidden = true -%}{%- endif -%}
+                  {%- render 'monte-product-card', product: product, tab_id: block.id, mobile_hidden: mobile_hidden -%}
+                  {%- if forloop.first and block.settings.bundle_promo_enabled -%}
+                    {%- render 'monte-collection-bundle-promo', promo_settings: block.settings -%}
+                  {%- endif -%}
                 {%- endfor -%}
+                {%- if block.settings.products.size == 0 and block.settings.bundle_promo_enabled -%}
+                  {%- render 'monte-collection-bundle-promo', promo_settings: block.settings -%}
+                {%- endif -%}
               </div>
               <scroll-progress class="monte-products__progress scrollbar__progress" hidden observes="{{ scroll_id }}" aria-hidden="true" style="--scroll-progress: 1;"></scroll-progress>
             {%- else -%}

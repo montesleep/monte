@@ -116,7 +116,17 @@
             "products": [
               "rose-noir-silk-sleep-mask",
               "midnight-blue-silk-sleep-mask"
-            ]
+            ],
+            "bundle_promo_enabled": true,
+            "bundle_default_image": true,
+            "bundle_heading": "Połącz produkty, oszczędź więcej",
+            "bundle_body": "Wybierz dowolne produkty Monté i otrzymaj dodatkowe 15% rabatu na cały zestaw.",
+            "bundle_button": "Stwórz swój zestaw",
+            "bundle_text": "#FDFBF9",
+            "bundle_button_bg": "#FDFBF9",
+            "bundle_button_text": "#232E71",
+            "bundle_button_hover": "#EEE7E0",
+            "bundle_link": "/pages/bundle-builder"
           }
         }
       },

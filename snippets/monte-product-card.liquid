@@ -40,7 +40,7 @@
     {{- product.title | escape -}}
   {%- endif -%}
 {%- endcapture -%}
-<article class="monte-product-card">
+<article class="monte-product-card{% if mobile_hidden %} monte-product-card--mobile-hidden{% endif %}">
   <a class="monte-product-card__link" href="{{ product.url }}" aria-label="{{ card_title }}" draggable="false"></a>
   <div class="monte-product-card__media">
     {%- if product.featured_media -%}

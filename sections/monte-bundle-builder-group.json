@@ -33,6 +33,6 @@
     "categories",
     "builder"
   ],
-  "type": "custom.bundle-builder",
+  "type": "custom.bundlebuilder",
   "name": "Monté Bundle Builder Page"
 }

@@ -1,0 +1,39 @@
+{{ 'monte-faq-page.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'monte-faq-page.js' | asset_url }}"></script>
+<style>#shopify-section-{{ section.id }} { padding: 0; margin: 0; background: transparent; }</style>
+<monte-faq-navigation class="monte-faq-nav" style="--faq-nav-text: {{ section.settings.text_color }}; --faq-nav-bg: {{ section.settings.button_background }}; --faq-nav-hover: {{ section.settings.button_hover }}; --faq-nav-border: {{ section.settings.border_color }};">
+  <reveal-items class="monte-faq-nav__reveal" margin="0px">
+    {%- if section.settings.heading != blank -%}<p class="monte-faq-nav__heading">{{ section.settings.heading | escape }}</p>{%- endif -%}
+    <nav class="monte-faq-nav__track" aria-label="{{ section.settings.heading | default: 'FAQ' | escape }}">
+      {%- for block in section.blocks -%}
+        <a class="monte-faq-nav__link" href="#main" {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</a>
+      {%- endfor -%}
+    </nav>
+    <div class="monte-faq-nav__progress" hidden aria-hidden="true"><span></span></div>
+  </reveal-items>
+</monte-faq-navigation>
+{% schema %}
+{
+  "name": "Monté FAQ Navigation",
+  "tag": "section",
+  "class": "shopify-section--faq-navigation",
+  "disabled_on": { "groups": ["header", "footer", "custom.overlay"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Przejdź szybko do pytań o..." },
+    { "type": "paragraph", "content": "Buttons link automatically to the following Monté FAQ sections in order. Add one button per FAQ section. Reordering the sections updates their destinations." },
+    { "type": "color", "id": "text_color", "label": "Text and progress", "default": "#232E71" },
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "#EEE7E0" },
+    { "type": "color", "id": "button_hover", "label": "Button hover background", "default": "#DCD6CF" },
+    { "type": "color", "id": "border_color", "label": "Button border and progress track", "default": "#DCD6CF" }
+  ],
+  "blocks": [{ "type": "category", "name": "FAQ category", "settings": [{ "type": "text", "id": "label", "label": "Button label", "default": "Pytania" }] }],
+  "max_blocks": 10,
+  "presets": [{ "name": "Monté FAQ Navigation", "blocks": [
+    { "type": "category", "settings": { "label": "Ogólne pytania" } },
+    { "type": "category", "settings": { "label": "Produkty i materiały" } },
+    { "type": "category", "settings": { "label": "Dostawa" } },
+    { "type": "category", "settings": { "label": "Zwroty i gwarancja" } },
+    { "type": "category", "settings": { "label": "Pielęgnacja" } }
+  ] }]
+}
+{% endschema %}

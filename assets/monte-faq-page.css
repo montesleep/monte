@@ -1,0 +1,38 @@
+.monte-faq-nav { display: block; padding: 20px; color: var(--faq-nav-text, #232e71); font-family: var(--text-font-family); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
+.monte-faq-nav__reveal { display: grid; gap: 16px; opacity: 1; }
+.monte-faq-nav__heading { margin: 0; text-align: center; font: 600 16px/1.5 var(--text-font-family); }
+.monte-faq-nav__track { display: flex; gap: 8px; margin-inline: -20px; padding-inline: 20px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; }
+.monte-faq-nav__track::-webkit-scrollbar { display: none; }
+.monte-faq-nav__link { display: flex; flex: 0 0 auto; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px; border: 1px solid var(--faq-nav-border, #dcd6cf); border-radius: 999px; background: var(--faq-nav-bg, #eee7e0); color: inherit; font: 600 14px/1.5 var(--text-font-family); text-align: center; text-decoration: none; transition: background-color .2s ease-in-out; }
+.monte-faq-nav__link[hidden] { display: none; }
+.monte-faq-nav__progress { height: 4px; margin-top: 4px; overflow: hidden; border-radius: 99px; background: var(--faq-nav-bg, #eee7e0); }
+.monte-faq-nav__progress span { display: block; width: var(--faq-progress, 0%); height: 100%; background: var(--faq-nav-text, #232e71); border-radius: inherit; }
+.monte-contact__form { display: flex; flex-direction: column; gap: 40px; min-width: 0; width: 100%; }
+.monte-contact__fields { display: flex; flex-direction: column; gap: 16px; }
+.monte-contact__input { display: block; box-sizing: border-box; width: 100%; min-width: 0; height: 44px; margin: 0; padding: 10px 20px; border: 1px solid var(--contact-border, #dcd6cf); border-radius: 999px; background: var(--contact-field, #eee7e0); color: var(--mf-primary, #232e71); font: 400 14px/1.5 var(--text-font-family); box-shadow: none; transition: border-color .2s ease-in-out; }
+.monte-contact__input::placeholder { color: var(--contact-placeholder, #9ba0b5); opacity: 1; }
+.monte-contact__message { min-height: 120px; height: 120px; padding-block: 16px; border-radius: 16px; resize: vertical; }
+.monte-contact__privacy { display: flex; align-items: center; gap: 12px; color: var(--mf-secondary, #52597e); font: 400 12px/1.5 var(--text-font-family); }
+.monte-contact__privacy .checkbox { flex: 0 0 20px; width: 20px; height: 20px; border-radius: 4px; border: 1px solid var(--contact-border, #dcd6cf); background-color: var(--contact-field, #eee7e0); }
+.monte-contact__privacy .checkbox:checked { background-color: var(--mf-primary, #232e71); border-color: var(--mf-primary, #232e71); }
+.monte-contact__privacy a { text-decoration: underline; text-underline-offset: 3px; transition: opacity .2s ease-in-out; }
+.monte-contact__submit .button { min-height: 44px; padding: 10px 24px; border-radius: 100px; border: 1px solid transparent; background: rgb(var(--button-background)); color: rgb(var(--button-text-color)); box-shadow: none; font: 600 14px/1.5 var(--text-font-family); letter-spacing: 0; text-transform: none; transition: background-color .2s ease-in-out, opacity .2s ease-in-out; }
+.monte-contact__submit .button:disabled { opacity: .2; cursor: not-allowed; }
+.monte-contact :is(input, textarea, a, button):focus-visible, .monte-faq-nav__link:focus-visible { outline: 2px solid #232e71; outline-offset: 3px; }
+@media (min-width: 1000px) {
+  .monte-faq-nav { padding: 24px 40px; }
+  .monte-faq-nav__reveal { gap: 24px; }
+  .monte-faq-nav__track { gap: 16px; margin: 0; padding: 0; overflow: visible; flex-wrap: wrap; }
+  .monte-faq-nav__link { flex: 1 1 160px; }
+  .monte-faq-nav__progress { display: none; }
+  .monte-contact__input { height: 66px; padding: 20px 24px; font-size: 16px; }
+  .monte-contact__message { height: 120px; }
+  .monte-contact__privacy { font-size: 14px; }
+  .monte-contact__submit .button { min-height: 56px; padding: 15px 32px; font-size: 16px; }
+}
+@media (hover: hover) {
+  .monte-faq-nav__link:hover { background: var(--faq-nav-hover, #dcd6cf); }
+  .monte-contact__submit .button:not(:disabled):hover { background: #182153; }
+  .monte-contact__privacy a:hover { opacity: .75; }
+}
+@media (prefers-reduced-motion: reduce) { .monte-faq-nav *, .monte-contact * { transition: none !important; } }

@@ -1,5 +1,19 @@
 {{ 'monte-collection-hero.css' | asset_url | stylesheet_tag }}
 {%- liquid
+  assign default_desktop = 'monte-collection-hero-desktop.png'
+  assign default_mobile = 'monte-collection-hero-mobile.png'
+  assign default_desktop_width = 1746
+  assign default_desktop_height = 810
+  assign default_mobile_width = 932
+  assign default_mobile_height = 1308
+  if section.settings.design_images == 'faq'
+    assign default_desktop = 'monte-faq-hero-desktop.png'
+    assign default_mobile = 'monte-faq-hero-mobile.png'
+    assign default_desktop_width = 2327
+    assign default_desktop_height = 1080
+    assign default_mobile_width = 2327
+    assign default_mobile_height = 1080
+  endif
   assign desktop_image = section.settings.image
   assign desktop_video = section.settings.video
   assign mobile_image = section.settings.mobile_image
@@ -14,7 +28,7 @@
 <style>
   #shopify-section-{{ section.id }} { background: transparent; margin: 0; padding: 0; }
 </style>
-<reveal-items class="monte-collection-hero" selector=".monte-collection-hero__content" margin="0px" style="--mch-height-desktop: {{ section.settings.desktop_height }}px; --mch-height-mobile: {{ section.settings.mobile_height }}px; --mch-heading: {{ section.settings.heading_color }}; --mch-body: {{ section.settings.body_color }}; --mch-rating: {{ section.settings.rating_color }}; --mch-overlay: {{ section.settings.overlay_color }}; --mch-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --mch-image-position: {{ desktop_image.presentation.focal_point | default: '50% 50%' }}; --mch-mobile-image-position: {{ mobile_image.presentation.focal_point | default: '50% 50%' }};">
+<reveal-items class="monte-collection-hero" selector=".monte-collection-hero__content" margin="0px" style="--mch-gradient-opacity: {% if section.settings.design_images == 'faq' %}.7{% else %}.8{% endif %}; --mch-height-desktop: {{ section.settings.desktop_height }}px; --mch-height-mobile: {{ section.settings.mobile_height }}px; --mch-heading: {{ section.settings.heading_color }}; --mch-body: {{ section.settings.body_color }}; --mch-rating: {{ section.settings.rating_color }}; --mch-overlay: {{ section.settings.overlay_color }}; --mch-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --mch-image-position: {{ desktop_image.presentation.focal_point | default: '50% 50%' }}; --mch-mobile-image-position: {{ mobile_image.presentation.focal_point | default: '50% 50%' }};">
   <div class="monte-collection-hero__frame{% if section.settings.mobile_gradient %} monte-collection-hero__frame--gradient{% endif %}">
     <div class="monte-collection-hero__media" aria-hidden="true">
       {%- if desktop_video == blank and mobile_video == blank -%}
@@ -22,12 +36,12 @@
           {%- if mobile_image != blank -%}
             <source media="(max-width: 699px)" srcset="{{ mobile_image | image_url: width: 400 }} 400w, {{ mobile_image | image_url: width: 600 }} 600w, {{ mobile_image | image_url: width: 800 }} 800w, {{ mobile_image | image_url: width: 1200 }} 1200w" sizes="calc(100vw - 8px)" width="{{ mobile_image.width }}" height="{{ mobile_image.height }}">
           {%- elsif section.settings.show_default_images -%}
-            <source media="(max-width: 699px)" srcset="{{ 'monte-collection-hero-mobile.png' | asset_url }}" width="932" height="1308">
+            <source media="(max-width: 699px)" srcset="{{ default_mobile | asset_url }}" width="{{ default_mobile_width }}" height="{{ default_mobile_height }}">
           {%- endif -%}
           {%- if desktop_image != blank -%}
             {{- desktop_image | image_url: width: 3200 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400,600,800,1000,1200,1600,2000,2400,3200', sizes: '(min-width: 700px) calc(100vw - 16px), calc(100vw - 8px)', alt: '' -}}
           {%- elsif section.settings.show_default_images -%}
-            <img src="{{ 'monte-collection-hero-desktop.png' | asset_url }}" width="1746" height="810" loading="eager" fetchpriority="high" alt="">
+            <img src="{{ default_desktop | asset_url }}" width="{{ default_desktop_width }}" height="{{ default_desktop_height }}" loading="eager" fetchpriority="high" alt="">
           {%- elsif mobile_image != blank -%}
             {{- mobile_image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400,600,800,1200,1600', sizes: '100vw', alt: '' -}}
           {%- endif -%}
@@ -38,16 +52,16 @@
             assign device_class = 'desktop'
             assign hero_video = desktop_video
             assign hero_image = desktop_image
-            assign default_image = 'monte-collection-hero-desktop.png'
-            assign image_width = 1746
-            assign image_height = 810
+            assign default_image = default_desktop
+            assign image_width = default_desktop_width
+            assign image_height = default_desktop_height
             if device == 2
               assign device_class = 'mobile'
               assign hero_video = mobile_video
               assign hero_image = mobile_image
-              assign default_image = 'monte-collection-hero-mobile.png'
-              assign image_width = 932
-              assign image_height = 1308
+              assign default_image = default_mobile
+              assign image_width = default_mobile_width
+              assign image_height = default_mobile_height
             endif
           -%}
           <div class="monte-collection-hero__{{ device_class }}">
@@ -88,6 +102,7 @@
   "settings": [
     { "type": "paragraph", "content": "Shared by every collection using this template. Images, copy and colors are edited here. The rating is shared with the homepage." },
     { "type": "header", "content": "Media" },
+    { "type": "select", "id": "design_images", "label": "Default design images", "options": [{ "value": "collection", "label": "Collection" }, { "value": "faq", "label": "FAQ" }], "default": "collection" },
     { "type": "image_picker", "id": "image", "label": "Desktop image" },
     { "type": "video", "id": "video", "label": "Desktop video", "info": "Replaces the desktop image. Plays automatically, muted, looping and without controls." },
     { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },

@@ -1,284 +1,456 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "hero": {
+      "type": "collection-banner",
+      "name": "Monté FAQ Hero",
       "settings": {
-        "content_width": "80ch"
+        "design_images": "faq",
+        "heading": "Najczęściej\nzadawane pytania",
+        "subheading": "Wszystko, co warto wiedzieć przed zakupem. Jeśli nie znajdziesz odpowiedzi, napisz do nas na hello@montesleep.com",
+        "show_rating": false,
+        "show_default_images": true,
+        "mobile_gradient": true,
+        "desktop_height": 460,
+        "mobile_height": 420,
+        "overlay_opacity": 20
       }
     },
-    "faq_accordion_RwWMcF": {
-      "type": "faq-accordion",
+    "navigation": {
+      "type": "monte-faq-navigation",
+      "name": "Monté FAQ Navigation",
       "blocks": {
-        "faq_item_6KJqRH": {
-          "type": "faq_item",
+        "category1": {
+          "type": "category",
           "settings": {
-            "question": "Czy maska naprawdę blokuje światło w 100%?",
-            "answer": "<p>Tak. Monté ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. 94% klientów w ankiecie po zakupie oceniło blackout jako całkowity.</p>"
+            "label": "Ogólne pytania"
           }
         },
-        "faq_item_87UeQA": {
-          "type": "faq_item",
+        "category2": {
+          "type": "category",
           "settings": {
-            "question": "Czy maska będzie uciskać moje oczy?",
-            "answer": "<p>Nie. Jedwab morwowy 22 momme jest wyjątkowo miękki w dotyku, więc maska leży na twarzy jak nic. Jeśli chcesz jeszcze mniejszy kontakt, wystarczy poluzować rzep o jedno oczko i gotowe.</p>"
+            "label": "Produkty i materiały"
           }
         },
-        "faq_item_RB7iaT": {
-          "type": "faq_item",
+        "category3": {
+          "type": "category",
           "settings": {
-            "question": "Czy maska jest odpowiednia dla osób śpiących na boku?",
-            "answer": "<p>Tak. Regulowany rzep dopasowujesz raz pod swój obwód głowy. Maska trzyma się pewnie nawet podczas snu na boku i nie zostawia śladów na skórze rano.</p>"
+            "label": "Dostawa"
           }
         },
-        "faq_item_wbawLm": {
-          "type": "faq_item",
+        "category4": {
+          "type": "category",
           "settings": {
-            "question": "Czy jedwab wchłania kosmetyki?",
-            "answer": "<p>Nie. Jedwab morwowy 22 momme nie wchłania kosmetyków, więc krem nałożony wieczorem zostaje na skórze, nie na masce.</p>"
+            "label": "Zwroty i gwarancja"
           }
         },
-        "faq_item_xU4fET": {
-          "type": "faq_item",
+        "category5": {
+          "type": "category",
           "settings": {
-            "question": "Czy maska jest hipoalergiczna?",
-            "answer": "<p>Tak. Jedwab morwowy to naturalne włókno o właściwościach hipoalergicznych. Maska posiada certyfikat OEKO-TEX Standard 100, który potwierdza brak szkodliwych substancji chemicznych w tkaninie i wypełnieniu.</p>"
-          }
-        },
-        "faq_item_fmaxBh": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Czy maska nadaje się do podróży?",
-            "answer": "<p>Tak. Monté jest lekka i dostarczana w eleganckim pudełku, które bez problemu zmieści się w torbie podręcznej. Działa równie dobrze w samolocie, pociągu i hotelu.</p>"
-          }
-        },
-        "faq_item_t8pqAE": {
-          "type": "faq_item",
-          "settings": {
-            "question": "W jakich kolorach dostępna jest maska?",
-            "answer": "<p>Maska dostępna jest w czterech kolorach: Midnight Blue, Classic Black, Rose Noir oraz Champagne Gold.</p>"
+            "label": "Pielęgnacja"
           }
         }
       },
       "block_order": [
-        "faq_item_6KJqRH",
-        "faq_item_87UeQA",
-        "faq_item_RB7iaT",
-        "faq_item_wbawLm",
-        "faq_item_xU4fET",
-        "faq_item_fmaxBh",
-        "faq_item_t8pqAE"
+        "category1",
+        "category2",
+        "category3",
+        "category4",
+        "category5"
       ],
-      "name": "FAQ Accordion",
+      "settings": {}
+    },
+    "faq1": {
+      "type": "faq-accordion",
+      "name": "Ogólne pytania",
+      "blocks": {
+        "question1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czym jest Monté?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Skąd pochodzi jedwab używany w produktach Monté?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy Monté sprzedaje tylko w Polsce?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Jak mogę się z Wami skontaktować?",
+            "answer": "<p>Napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a> lub przez czat dostępny w prawym dolnym rogu strony. Odpowiadamy w ciągu 24 godzin w dni robocze.</p>"
+          }
+        },
+        "question5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy wystawiacie fakturę?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Jakie metody płatności akceptujecie?",
+            "answer": "<p>Przyjmujemy płatności przez BLIK oraz wszystkie metody dostępne w systemie Przelewy24, w tym karty płatnicze i przelewy bankowe.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question1",
+        "question2",
+        "question3",
+        "question4",
+        "question5",
+        "question6"
+      ],
       "settings": {
-        "tagline": "O PRODUKCIE",
-        "heading": "Najczęściej zadawane pytania o maskę",
-        "background_color": "#fdfbf9",
-        "heading_color": "#182153",
-        "body_color": "#182153",
-        "padding_top_desktop": 40,
-        "padding_bottom_desktop": 40,
-        "padding_top_mobile": 32,
-        "padding_bottom_mobile": 32
+        "monte_layout": true,
+        "heading": "Ogólne pytania",
+        "subheading": "",
+        "button_label": "",
+        "button_link": "",
+        "open_first": false,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf"
       }
     },
-    "faq_accordion_QNqDwR": {
+    "faq2": {
       "type": "faq-accordion",
+      "name": "Produkty i materiały",
       "blocks": {
-        "faq_item_4Q3dGH": {
+        "question1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Co oznacza \"jedwab morwowy 22 momme\"?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czym różni się jedwab morwowy od satyny?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy maska naprawdę blokuje 100% światła?",
+            "answer": "<p>Tak. Monté ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. 94% klientów w ankiecie po zakupie oceniło blackout jako całkowity.</p>"
+          }
+        },
+        "question4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy maska nie uciska oczu i rzęs?",
+            "answer": "<p>Nie. Jedwab morwowy 22 momme jest wyjątkowo miękki w dotyku, więc maska leży na twarzy jak nic. Jeśli chcesz jeszcze mniejszy kontakt, wystarczy poluzować rzep o jedno oczko i gotowe.</p>"
+          }
+        },
+        "question5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Jak działa zapięcie na rzep?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy rzep nie czepia się o włosy?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy produkty Monté są hipoalergiczne?",
+            "answer": "<p>Tak. Jedwab morwowy to naturalne włókno o właściwościach hipoalergicznych. Maska posiada certyfikat OEKO-TEX Standard 100, który potwierdza brak szkodliwych substancji chemicznych w tkaninie i wypełnieniu.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question1",
+        "question2",
+        "question3",
+        "question4",
+        "question5",
+        "question6",
+        "question7"
+      ],
+      "settings": {
+        "monte_layout": true,
+        "heading": "Produkty i\nmateriały",
+        "subheading": "",
+        "button_label": "",
+        "button_link": "",
+        "open_first": false,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf"
+      }
+    },
+    "faq3": {
+      "type": "faq-accordion",
+      "name": "Dostawa",
+      "blocks": {
+        "question1": {
           "type": "faq_item",
           "settings": {
             "question": "Ile kosztuje dostawa?",
             "answer": "<p>Dostawa jest bezpłatna przy zamówieniach od 250 zł. Poniżej tej kwoty koszt dostawy wynosi 11,99 zł. Wysyłamy wyłącznie kurierem InPost.</p>"
           }
         },
-        "faq_item_VtDBeP": {
+        "question2": {
           "type": "faq_item",
           "settings": {
-            "question": "Jaki sposób dostawy oferujecie?",
-            "answer": "<p>Wysyłamy wyłącznie kurierem InPost pod adres wskazany przy składaniu zamówienia.</p>"
-          }
-        },
-        "faq_item_cGaijB": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Jak szybko wyślecie moje zamówienie?",
+            "question": "Ile trwa realizacja zamówienia?",
             "answer": "<p>Zamówienia złożone do 18:00 w dni robocze wysyłamy tego samego dnia. Zamówienia złożone po 18:00 wysyłamy następnego dnia roboczego.</p>"
           }
         },
-        "faq_item_iCmikH": {
+        "question3": {
           "type": "faq_item",
           "settings": {
-            "question": "Kiedy otrzymam zamówienie?",
-            "answer": "<p>Czas dostawy wynosi 1-2 dni robocze od momentu wysyłki.</p>"
-          }
-        },
-        "faq_item_rtzU7m": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Jak mogę śledzić moje zamówienie?",
+            "question": "Jak mogę śledzić swoją przesyłkę?",
             "answer": "<p>Po nadaniu paczki InPost wyśle Ci powiadomienie z informacją o statusie przesyłki. Możesz ją śledzić w aplikacji InPost na telefonie lub na stronie inpost.pl. W dniu dostawy kurier skontaktuje się z Tobą, dzięki czemu możesz ustalić dogodną godzinę lub miejsce odbioru, jeśli nie będziesz w domu.</p>"
           }
-        }
-      },
-      "block_order": [
-        "faq_item_4Q3dGH",
-        "faq_item_VtDBeP",
-        "faq_item_cGaijB",
-        "faq_item_iCmikH",
-        "faq_item_rtzU7m"
-      ],
-      "name": "FAQ Accordion",
-      "settings": {
-        "tagline": "DOSTAWA",
-        "heading": "Wszystko o wysyłce i czasie dostawy",
-        "background_color": "#fdfbf9",
-        "heading_color": "#182153",
-        "body_color": "#182153",
-        "padding_top_desktop": 40,
-        "padding_bottom_desktop": 40,
-        "padding_top_mobile": 32,
-        "padding_bottom_mobile": 32
-      }
-    },
-    "faq_accordion_DLGxrB": {
-      "type": "faq-accordion",
-      "blocks": {
-        "faq_item_4Lr4gN": {
+        },
+        "question4": {
           "type": "faq_item",
           "settings": {
-            "question": "Jakie metody płatności akceptujecie?",
-            "answer": "<p>Przyjmujemy płatności przez BLIK oraz wszystkie metody dostępne w systemie Przelewy24, w tym karty płatnicze i przelewy bankowe.</p>"
+            "question": "Czy wysyłacie za granicę?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
           }
         },
-        "faq_item_4t4D6E": {
+        "question5": {
           "type": "faq_item",
           "settings": {
-            "question": "Czy mogę zmienić lub anulować zamówienie po złożeniu?",
-            "answer": "<p>Tak, możesz zmienić lub anulować zamówienie w ciągu godziny od dokonania płatności. Napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a> lub skontaktuj się przez czat w prawym dolnym rogu strony. Po upływie tego czasu zamówienie trafia do realizacji i nie możemy wprowadzić zmian.</p>"
+            "question": "Co jeśli nie będzie mnie w domu podczas dostawy?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
           }
         },
-        "faq_item_fWBkiD": {
+        "question6": {
           "type": "faq_item",
           "settings": {
-            "question": "Nie otrzymałem potwierdzenia zamówienia. Co robić?",
-            "answer": "<p>Sprawdź folder spam lub oferty w swojej skrzynce. Jeśli wiadomości tam nie ma, napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a>, a sprawdzimy status Twojego zamówienia.</p>"
-          }
-        },
-        "faq_item_D7jY6W": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Mam pytanie dotyczące zamówienia. Jak się z wami skontaktować?",
-            "answer": "<p>Napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a> lub przez czat dostępny w prawym dolnym rogu strony. Odpowiadamy w ciągu 24 godzin w dni robocze.</p>"
+            "question": "Czy mogę zmienić adres dostawy po złożeniu zamówienia?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
           }
         }
       },
       "block_order": [
-        "faq_item_4Lr4gN",
-        "faq_item_4t4D6E",
-        "faq_item_fWBkiD",
-        "faq_item_D7jY6W"
+        "question1",
+        "question2",
+        "question3",
+        "question4",
+        "question5",
+        "question6"
       ],
-      "name": "FAQ Accordion",
       "settings": {
-        "tagline": "ZAMÓWIENIA I PŁATNOŚCI",
-        "heading": "Pytania o składanie zamówień i metody płatności",
-        "background_color": "#fdfbf9",
-        "heading_color": "#182153",
-        "body_color": "#182153",
-        "padding_top_desktop": 40,
-        "padding_bottom_desktop": 40,
-        "padding_top_mobile": 32,
-        "padding_bottom_mobile": 32
+        "monte_layout": true,
+        "heading": "Dostawa",
+        "subheading": "",
+        "button_label": "",
+        "button_link": "",
+        "open_first": false,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf"
       }
     },
-    "faq_accordion_WQHQFd": {
+    "faq4": {
       "type": "faq-accordion",
+      "name": "Zwroty i gwarancja",
       "blocks": {
-        "faq_item_DEeG8n": {
+        "question1": {
           "type": "faq_item",
           "settings": {
-            "question": "Jaka jest wasza polityka zwrotów?",
+            "question": "Jaka jest polityka zwrotów Monté?",
             "answer": "<p>Oferujemy 30-nocną gwarancję zwrotu pieniędzy. Jeśli maska nie spełni Twoich oczekiwań, możesz ją zwrócić w ciągu 30 nocy od zakupu, pod warunkiem że jest w stanie nieużywanym, nieprananym, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p>"
           }
         },
-        "faq_item_Ybkh4L": {
+        "question2": {
           "type": "faq_item",
           "settings": {
-            "question": "Jak złożyć zwrot?",
+            "question": "Ile mam czasu na zwrot?",
+            "answer": "<p>Oferujemy 30-nocną gwarancję zwrotu pieniędzy. Jeśli maska nie spełni Twoich oczekiwań, możesz ją zwrócić w ciągu 30 nocy od zakupu, pod warunkiem że jest w stanie nieużywanym, nieprananym, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p>"
+          }
+        },
+        "question3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy zwrot jest bezpłatny?",
             "answer": "<p>Przed odesłaniem maski napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a>, opisując stan produktu i powód zwrotu. Po weryfikacji wyślemy Ci kod do nadania paczki przez InPost. Koszty zwrotu pokrywamy po naszej stronie.</p>"
           }
         },
-        "faq_item_WYL7UJ": {
+        "question4": {
           "type": "faq_item",
           "settings": {
-            "question": "Ile czasu zajmie zwrot pieniędzy?",
+            "question": "Jak wygląda proces zwrotu krok po kroku?",
+            "answer": "<p>Przed odesłaniem maski napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a>, opisując stan produktu i powód zwrotu. Po weryfikacji wyślemy Ci kod do nadania paczki przez InPost. Koszty zwrotu pokrywamy po naszej stronie.</p>"
+          }
+        },
+        "question5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Kiedy otrzymam zwrot pieniędzy?",
             "answer": "<p>Po otrzymaniu i weryfikacji zwróconego produktu, środki zostaną zwrócone na Twoje konto w ciągu 5-7 dni roboczych, tą samą metodą płatności, którą użyto przy zakupie.</p>"
           }
         },
-        "faq_item_ra6eqW": {
+        "question6": {
           "type": "faq_item",
           "settings": {
-            "question": "Co jeśli paczka dotarła uszkodzona?",
+            "question": "Co jeśli mój produkt przyszedł uszkodzony?",
             "answer": "<p>Każda maska przed wysyłką przechodzi ręczną kontrolę jakości, więc uszkodzenia produktu po naszej stronie są wykluczone. W rzadkich przypadkach może dojść do uszkodzenia opakowania przez kuriera podczas transportu. Jeśli paczka dotarła do Ciebie w złym stanie, zrób zdjęcia opakowania i produktu zaraz po odbiorze i napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a> w ciągu 48 godzin. Zgłosimy reklamację do InPost, a Tobie wyślemy nową maskę od razu, bez czekania na rozstrzygnięcie sprawy z kurierem.</p>"
+          }
+        },
+        "question7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy mogę zwrócić produkt, jeśli go używałem?",
+            "answer": "<p>Oferujemy 30-nocną gwarancję zwrotu pieniędzy. Jeśli maska nie spełni Twoich oczekiwań, możesz ją zwrócić w ciągu 30 nocy od zakupu, pod warunkiem że jest w stanie nieużywanym, nieprananym, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p>"
           }
         }
       },
       "block_order": [
-        "faq_item_DEeG8n",
-        "faq_item_Ybkh4L",
-        "faq_item_WYL7UJ",
-        "faq_item_ra6eqW"
+        "question1",
+        "question2",
+        "question3",
+        "question4",
+        "question5",
+        "question6",
+        "question7"
       ],
-      "name": "FAQ Accordion",
       "settings": {
-        "tagline": "ZWROTY I REKLAMACJE",
-        "heading": "Pytania o zwroty, wymianę i reklamacje",
-        "background_color": "#fdfbf9",
-        "heading_color": "#182153",
-        "body_color": "#182153",
-        "padding_top_desktop": 40,
-        "padding_bottom_desktop": 40,
-        "padding_top_mobile": 32,
-        "padding_bottom_mobile": 32
+        "monte_layout": true,
+        "heading": "Zwroty i\ngwarancja",
+        "subheading": "",
+        "button_label": "",
+        "button_link": "",
+        "open_first": false,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf"
       }
     },
-    "contact_T4b3Nq": {
-      "type": "contact",
-      "name": "Contact form",
+    "faq5": {
+      "type": "faq-accordion",
+      "name": "Pielęgnacja",
+      "blocks": {
+        "question1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Jak prać produkty jedwabne Monté?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy mogę prać jedwab w pralce?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Jak suszyć produkty z jedwabiu?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy mogę prasować maskę jedwabną?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Jak często powinienem prać maskę do spania?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        },
+        "question6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Jak przechowywać produkty jedwabne?",
+            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question1",
+        "question2",
+        "question3",
+        "question4",
+        "question5",
+        "question6"
+      ],
       "settings": {
-        "full_width": true,
-        "subheading": "KONTAKT",
-        "title": "Masz pytanie? Napisz do nas",
-        "content": "",
-        "text_position": "center",
-        "contact_form_size": "large",
-        "background": "#fdfbf9",
-        "background_gradient": "",
-        "text_color": "#182153",
-        "heading_color": "#182153",
-        "heading_gradient": "",
-        "contact_background": "#fbf7f3",
-        "contact_text_color": "",
+        "monte_layout": true,
+        "heading": "Pielęgnacja",
+        "subheading": "",
+        "button_label": "",
+        "button_link": "",
+        "open_first": false,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf"
+      }
+    },
+    "contact": {
+      "type": "contact",
+      "name": "Monté Contact Form",
+      "settings": {
+        "monte_layout": true,
+        "title": "Nie znalazłeś odpowiedzi?",
+        "content": "<p>Odpowiadamy na każdą wiadomość w ciągu 24 godzin.</p>",
+        "subheading": "",
         "button_background": "#232e71",
         "button_text_color": "#fdfbf9"
       }
     }
   },
   "order": [
-    "main",
-    "faq_accordion_RwWMcF",
-    "faq_accordion_QNqDwR",
-    "faq_accordion_DLGxrB",
-    "faq_accordion_WQHQFd",
-    "contact_T4b3Nq"
+    "hero",
+    "navigation",
+    "faq1",
+    "faq2",
+    "faq3",
+    "faq4",
+    "faq5",
+    "contact"
   ]
 }

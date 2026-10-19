@@ -1,0 +1,45 @@
+{{ 'monte-faq.css' | asset_url | stylesheet_tag }}
+{{ 'monte-faq-page.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'monte-faq-page.js' | asset_url }}"></script>
+<style>#shopify-section-{{ section.id }} { padding: 0; margin: 0; background: transparent; }</style>
+{%- liquid
+  assign contact_form_id = 'MonteContact-' | append: section.id
+  assign privacy_url = section.settings.privacy_link | default: shop.privacy_policy.url
+-%}
+<monte-contact class="monte-contact monte-faq" style="--mf-primary: {{ section.settings.monte_primary }}; --mf-secondary: {{ section.settings.monte_secondary }}; --contact-field: {{ section.settings.monte_field }}; --contact-border: {{ section.settings.monte_border }}; --contact-placeholder: {{ section.settings.monte_placeholder }};">
+  <reveal-items class="monte-faq__reveal" margin="0px">
+    <div class="monte-faq__layout">
+      <div class="monte-faq__intro">
+        {%- if section.settings.title != blank -%}<h2 class="monte-faq__heading">{{ section.settings.title | escape }}</h2>{%- endif -%}
+        {%- if section.settings.content != blank -%}<div class="monte-faq__description prose">{{ section.settings.content }}</div>{%- endif -%}
+      </div>
+      {%- form 'contact', id: contact_form_id, class: 'monte-contact__form' -%}
+        {%- if form.posted_successfully? -%}
+          <div role="status" tabindex="-1" data-contact-status>
+            {%- assign success_message = 'contact.form.success_message' | t -%}
+            {%- render 'banner', status: 'success', content: success_message -%}
+          </div>
+        {%- else -%}
+          {%- if form.errors -%}
+            <div role="alert" tabindex="-1" data-contact-status>{{ form.errors | default_errors }}</div>
+          {%- endif -%}
+          <div class="monte-contact__fields">
+            <label class="sr-only" for="{{ contact_form_id }}-name">{{ section.settings.name_placeholder | escape }}</label>
+            <input class="monte-contact__input" id="{{ contact_form_id }}-name" type="text" name="contact[name]" value="{{ form.name | default: customer.name | escape }}" placeholder="{{ section.settings.name_placeholder | escape }}" autocomplete="name" required>
+            <label class="sr-only" for="{{ contact_form_id }}-email">{{ section.settings.email_placeholder | escape }}</label>
+            <input class="monte-contact__input" id="{{ contact_form_id }}-email" type="email" name="contact[email]" value="{{ form.email | default: customer.email | escape }}" placeholder="{{ section.settings.email_placeholder | escape }}" autocomplete="email" inputmode="email" autocapitalize="off" required {% if form.errors contains 'email' %}aria-invalid="true"{% endif %}>
+            <label class="sr-only" for="{{ contact_form_id }}-message">{{ section.settings.message_placeholder | escape }}</label>
+            <textarea class="monte-contact__input monte-contact__message" id="{{ contact_form_id }}-message" name="contact[body]" placeholder="{{ section.settings.message_placeholder | escape }}" rows="4" required>{{ form.body | escape }}</textarea>
+            <div class="monte-contact__privacy">
+              <input class="checkbox" id="{{ contact_form_id }}-privacy" type="checkbox" name="contact[Privacy consent]" value="Accepted" aria-labelledby="{{ contact_form_id }}-privacy-text" required>
+              <span id="{{ contact_form_id }}-privacy-text">{{ section.settings.privacy_prefix | escape }} <a href="{{ privacy_url }}">{{ section.settings.privacy_label | escape }}</a>.</span>
+            </div>
+          </div>
+          <div class="monte-contact__submit">
+            {%- render 'button', content: section.settings.submit_label, type: 'submit', stretch: true, disabled: true, background: section.settings.button_background, text_color: section.settings.button_text_color -%}
+          </div>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </reveal-items>
+</monte-contact>

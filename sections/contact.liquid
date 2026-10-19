@@ -1,3 +1,6 @@
+{%- if section.settings.monte_layout -%}
+  {%- render 'monte-contact', section: section -%}
+{%- else -%}
 {%- render 'section-spacing-collapsing' -%}
 
 {%- assign text_position = section.settings.text_position -%}
@@ -102,15 +105,107 @@
   </div>
 </div>
 
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Contact",
   "class": "shopify-section--contact",
   "tag": "section",
   "disabled_on": {
-    "groups": ["header", "custom.overlay"]
+    "groups": [
+      "header",
+      "custom.overlay"
+    ]
   },
   "settings": [
+    {
+      "type": "header",
+      "content": "Monté layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "monte_layout",
+      "label": "Use Monté layout",
+      "default": false,
+      "info": "Two-column form with privacy consent and validation. Other contact sections keep their original layout."
+    },
+    {
+      "type": "paragraph",
+      "content": "Uses Shopify contact delivery. The recipient is configured in Shopify, not in this section."
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "Name placeholder",
+      "default": "Imię"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "E-mail"
+    },
+    {
+      "type": "text",
+      "id": "message_placeholder",
+      "label": "Message placeholder",
+      "default": "Twoja wiadomość..."
+    },
+    {
+      "type": "text",
+      "id": "privacy_prefix",
+      "label": "Privacy text before link",
+      "default": "Akceptuję"
+    },
+    {
+      "type": "text",
+      "id": "privacy_label",
+      "label": "Privacy link label",
+      "default": "politykę prywatności"
+    },
+    {
+      "type": "url",
+      "id": "privacy_link",
+      "label": "Privacy policy link",
+      "info": "Uses the store privacy policy when empty."
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Wyślij wiadomość"
+    },
+    {
+      "type": "color",
+      "id": "monte_primary",
+      "label": "Monté heading and input text",
+      "default": "#232E71"
+    },
+    {
+      "type": "color",
+      "id": "monte_secondary",
+      "label": "Monté description and privacy text",
+      "default": "#52597E"
+    },
+    {
+      "type": "color",
+      "id": "monte_field",
+      "label": "Monté field background",
+      "default": "#EEE7E0"
+    },
+    {
+      "type": "color",
+      "id": "monte_border",
+      "label": "Monté field border",
+      "default": "#DCD6CF"
+    },
+    {
+      "type": "color",
+      "id": "monte_placeholder",
+      "label": "Monté placeholder text",
+      "default": "#9BA0B5"
+    },
     {
       "type": "checkbox",
       "id": "full_width",

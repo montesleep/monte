@@ -683,7 +683,7 @@
         "monte_layout": true,
         "subheading": "Nie możesz znaleźć tego, czego szukasz? Chętnie pomożemy.",
         "button_label": "Skontaktuj się z nami",
-        "button_link": "",
+        "button_link": "shopify://pages/contact",
         "open_first": true,
         "monte_primary": "#232E71",
         "monte_secondary": "#52597E",

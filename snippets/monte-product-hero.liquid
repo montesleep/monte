@@ -59,7 +59,7 @@
       {%- if description != blank or benefit_count > 0 or specification != blank -%}
         <reveal-items class="mp-tabs-reveal" margin="0px">
           <x-tabs class="mp-tabs">
-            <template><style>:host{display:block} .titles{display:flex;border-bottom:1px solid #DCD6CF}::slotted([slot=title]){flex:1}::slotted([hidden]){display:none!important}</style><div class="titles" role="tablist"><slot name="title"></slot></div><slot name="content"></slot></template>
+            <template><style>:host{display:block} .titles{display:flex;gap:16px;border-bottom:1px solid #DCD6CF}slot[name=title]{display:contents}::slotted([slot=title]){flex:1}::slotted([hidden]){display:none!important}</style><div class="titles" role="tablist"><slot name="title"></slot></div><slot name="content"></slot></template>
             {%- if description != blank or benefit_count > 0 -%}
               <button type="button" slot="title">Zalety</button>
               <div slot="content" class="mp-tab-panel">

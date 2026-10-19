@@ -35,7 +35,7 @@
         "use_brand_logo": true,
         "shop_label": "Sklep",
         "bundles_label": "Zestawy",
-        "bundles_link": "/collections",
+        "bundles_link": "/collections/zestawy",
         "contact_label": "Kontakt",
         "contact_link": "shopify://pages/contact",
         "enable_sticky": true,

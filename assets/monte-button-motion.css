@@ -1,0 +1,54 @@
+/* Individual scale preserves component transforms and does not change layout. */
+html body [data-monte-motion]:not([data-monte-motion="off"]) {
+  --monte-hover-scale: .98;
+  --monte-press-scale: .96;
+  --monte-motion-duration: 200ms;
+  scale: 1;
+  transition: var(--monte-button-transition, color 200ms ease),
+    scale var(--monte-motion-duration) cubic-bezier(.25, .46, .45, .94) !important;
+}
+html body [data-monte-motion="text"]:not([data-monte-motion="off"]) {
+  --monte-hover-scale: .99;
+  --monte-press-scale: .97;
+}
+[data-monte-motion-inline] { display: inline-block; }
+[data-monte-motion-relative] { position: relative; }
+[data-monte-motion-hit]::after {
+  content: "";
+  position: absolute;
+  inset: -2.1%;
+  border-radius: inherit;
+}
+@media (hover: hover) and (pointer: fine) {
+  html body [data-monte-motion]:not([data-monte-motion="off"]):not(:disabled, [disabled], [aria-disabled="true"], [aria-busy="true"], [loading]):hover {
+    scale: var(--monte-hover-scale);
+  }
+}
+html body [data-monte-motion]:not([data-monte-motion="off"]):not(:disabled, [disabled], [aria-disabled="true"], [aria-busy="true"], [loading]):is(:active, [data-monte-pressed]) {
+  --monte-motion-duration: 100ms;
+  scale: var(--monte-press-scale);
+}
+/* Outline CTAs share the existing Monté fill, on pointer hover and touch press. */
+@media (hover: hover) and (pointer: fine) {
+  html body :is(.button--outline, .mb-button--outline, .monte-cart-button--outline)[data-monte-motion]:not(:disabled, [disabled], [aria-disabled="true"], [aria-busy="true"]):hover {
+    background: #232e71;
+    color: #fdfbf9;
+    border-color: #232e71;
+    box-shadow: none;
+  }
+}
+html body :is(.button--outline, .mb-button--outline, .monte-cart-button--outline)[data-monte-motion]:not(:disabled, [disabled], [aria-disabled="true"], [aria-busy="true"]):is(:active, [data-monte-pressed]) {
+  background: #232e71;
+  color: #fdfbf9;
+  border-color: #232e71;
+  box-shadow: none;
+}
+html body :is(.mb-button--outline, .monte-cart-button--outline)[data-monte-motion]:is(:active, [data-monte-pressed]) img {
+  filter: brightness(0) invert(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  html body [data-monte-motion]:not([data-monte-motion="off"]) {
+    scale: none !important;
+    transition: none !important;
+  }
+}

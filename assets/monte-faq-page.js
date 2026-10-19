@@ -20,7 +20,19 @@ class MonteFaqNavigation extends HTMLElement {
       heading.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
       history.replaceState(null, '', link.hash);
     }, { signal });
-    this.resizeObserver = new ResizeObserver(() => this.updateProgress());
+    const scheduleVisibility = () => {
+      cancelAnimationFrame(this.visibilityFrame);
+      this.visibilityFrame = requestAnimationFrame(() => this.updateVisibility());
+    };
+    window.addEventListener('scroll', scheduleVisibility, { passive: true, signal });
+    window.addEventListener('resize', scheduleVisibility, { passive: true, signal });
+    window.addEventListener('pageshow', scheduleVisibility, { signal });
+    this.resizeObserver = new ResizeObserver(() => {
+      this.updateProgress();
+      this.updateAnchorOffsets();
+      this.updateVisibility();
+    });
+    this.resizeObserver.observe(this);
     this.resizeObserver.observe(this.track);
     this.links.forEach(link => this.resizeObserver.observe(link));
     ['shopify:section:load', 'shopify:section:unload', 'shopify:section:reorder'].forEach(type => {
@@ -29,14 +41,37 @@ class MonteFaqNavigation extends HTMLElement {
   }
 
   bindTargets() {
+    this.targets?.forEach(target => target.style.removeProperty('--faq-navigation-height'));
     const targets = [...(this.closest('main') || document).querySelectorAll('monte-faq')]
       .filter(faq => this.compareDocumentPosition(faq) & Node.DOCUMENT_POSITION_FOLLOWING);
+    this.targets = targets;
+    this.contact = [...(this.closest('main') || document).querySelectorAll('monte-contact')]
+      .find(contact => this.compareDocumentPosition(contact) & Node.DOCUMENT_POSITION_FOLLOWING);
     this.links.forEach((link, index) => {
       const section = targets[index]?.closest('.shopify-section');
       link.hidden = !section;
       if (section) link.href = `#${section.id}`;
     });
     this.updateProgress();
+    this.updateAnchorOffsets();
+    this.updateVisibility();
+    this.contactObserver?.disconnect();
+    this.contactObserver = new IntersectionObserver(() => this.updateVisibility());
+    if (this.contact) this.contactObserver.observe(this.contact);
+  }
+
+  updateAnchorOffsets() {
+    const height = `${this.getBoundingClientRect().height}px`;
+    this.targets?.forEach(target => target.style.setProperty('--faq-navigation-height', height));
+  }
+
+  updateVisibility() {
+    // Keep the navigation hidden after reaching the form, including below it.
+    const hidden = Boolean(this.contact && this.contact.getBoundingClientRect().top < window.innerHeight);
+    this.toggleAttribute('data-contact-reached', hidden);
+    this.inert = hidden;
+    if (hidden) this.setAttribute('aria-hidden', 'true');
+    else this.removeAttribute('aria-hidden');
   }
 
   updateProgress() {
@@ -49,6 +84,9 @@ class MonteFaqNavigation extends HTMLElement {
   disconnectedCallback() {
     this.controller?.abort();
     this.resizeObserver?.disconnect();
+    this.contactObserver?.disconnect();
+    cancelAnimationFrame(this.visibilityFrame);
+    this.targets?.forEach(target => target.style.removeProperty('--faq-navigation-height'));
   }
 }
 

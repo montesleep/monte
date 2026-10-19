@@ -1,4 +1,7 @@
-.monte-faq-nav { display: block; padding: 20px; color: var(--faq-nav-text, #232e71); font-family: var(--text-font-family); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
+.shopify-section--faq-navigation { position: sticky; top: var(--sticky-area-height, 0px); z-index: 4; }
+.monte-faq-nav { display: block; padding: 20px; background: #f8f1e9; color: var(--faq-nav-text, #232e71); font-family: var(--text-font-family); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; transition: opacity .2s ease-in-out, visibility .2s ease-in-out; }
+.monte-faq-nav[data-contact-reached] { opacity: 0; visibility: hidden; pointer-events: none; }
+monte-faq .monte-faq__heading { scroll-margin-top: var(--faq-navigation-height, 0px); }
 .monte-faq-nav__reveal { display: grid; gap: 16px; opacity: 1; }
 .monte-faq-nav__heading { margin: 0; text-align: center; font: 600 16px/1.5 var(--text-font-family); }
 .monte-faq-nav__track { display: flex; gap: 8px; margin-inline: -20px; padding-inline: 20px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; }
@@ -35,4 +38,4 @@
   .monte-contact__submit .button:not(:disabled):hover { background: #182153; }
   .monte-contact__privacy a:hover { opacity: .75; }
 }
-@media (prefers-reduced-motion: reduce) { .monte-faq-nav *, .monte-contact * { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { .monte-faq-nav, .monte-faq-nav *, .monte-contact * { transition: none !important; } }

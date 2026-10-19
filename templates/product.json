@@ -43,7 +43,6 @@
             "popup_title": "Wybierz produkt",
             "popup_choose_label": "Wybierz",
             "choose_color_label": "Wybierz kolor maski",
-            "popup_products": [],
             "limited_product": "classic-black-silk-sleep-mask",
             "limited_label": "Limitowany kolor",
             "monte_bundle_description": "Dodatkowe 20% rabatu na drugą maskę",
@@ -111,6 +110,15 @@
             "row_3_icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_6.svg",
             "row_3_content": "<p><strong>Dostawa</strong><br/><br/>Wysyłamy wyłącznie <strong>kurierem InPost.</strong> Zamówienia złożone do 18:00 w dni robocze wysyłamy tego samego dnia. Czas dostawy: 1-2 dni robocze. Darmowa dostawa od 250 zł.</p><p><strong>Zwroty</strong><br/><br/><strong>Oferujemy 30-nocną gwarancję satysfakcji.</strong> Jeśli po otrzymaniu maski zmienisz zdanie, masz 30 nocy na jej odesłanie w oryginalnym stanie: nieużywaną, nieprananą, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p><p>Ze względu na higieniczny charakter produktu, nie przyjmujemy zwrotów masek noszących ślady użytkowania. Jeśli masz jakiekolwiek pytania przed zakupem, napisz do nas przed złożeniem zamówienia, chętnie pomożemy w wyborze.</p>"
           }
+        },
+        "monte_promotion": {
+          "type": "monte_promotion",
+          "settings": {
+            "monte_promo_title": "Letnia Wyprzedaż",
+            "monte_promo_text": "Oferta ograniczona czasowo: -30% na wszystkie produkty Monté.",
+            "monte_promo_bg": "#f8f1e9",
+            "monte_promo_color": "#232e71"
+          }
         }
       },
       "block_order": [
@@ -118,6 +126,7 @@
         "monte_highlight_2",
         "monte_highlight_3",
         "monte_highlight_4",
+        "monte_promotion",
         "monte_bundle",
         "monte_trust",
         "monte_tabs",
@@ -128,11 +137,6 @@
         "monte_product_design": true,
         "monte_gallery_rotate": true,
         "monte_show_rating": true,
-        "monte_show_promo": true,
-        "monte_promo_title": "Letnia Wyprzedaż",
-        "monte_promo_text": "Oferta ograniczona czasowo: -30% na wszystkie produkty Monté.",
-        "monte_promo_bg": "#f8f1e9",
-        "monte_promo_color": "#232e71",
         "full_width": true,
         "show_fixed_add_to_cart": true,
         "desktop_media_width": 65,

@@ -37,13 +37,11 @@
         <h1 class="mp-title">{% render 'monte-product-display-title', product: product %}</h1>
         {%- if highlights.size > 0 -%}<ul class="mp-benefits">{%- for block in highlights -%}<li {{ block.shopify_attributes }}>{% render 'monte-product-check' %}<span>{{ block.settings.text }}</span></li>{%- endfor -%}</ul>{%- endif -%}
         <div class="mp-price" data-main-price><strong>{{ variant.price | money }}</strong>{%- if variant.compare_at_price > variant.price -%}<s>{{ variant.compare_at_price | money }}</s><span class="mp-saving">−{{ variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round }}%</span>{%- endif -%}</div>
-        {%- if section.settings.monte_show_promo -%}<div class="mp-promo" style="--promo-bg:{{ section.settings.monte_promo_bg }};--promo-color:{{ section.settings.monte_promo_color }}">
-          <span class="mp-promo-icon">{%- if section.settings.monte_promo_icon != blank -%}{{ section.settings.monte_promo_icon | image_url: width: 40 | image_tag: width: 20, height: 20 }}{%- else -%}<img src="{{ 'monte-pdp-discount.svg' | asset_url }}" width="18.6875" height="18.6875" alt="">{%- endif -%}</span>
-          <div><strong>{{ section.settings.monte_promo_title | escape }}</strong><p>{{ section.settings.monte_promo_text | escape }}</p></div><img class="mp-promo-mark" src="{{ 'monte-pdp-promo-logo.svg' | asset_url }}" width="99" height="99" alt="">
-        </div>{%- endif -%}
+
       </reveal-items>
       {%- for block in section.blocks -%}
         {%- case block.type -%}
+          {%- when 'monte_promotion' -%}{% render 'monte-product-promotion', block: block %}
           {%- when 'monte_bundle' -%}{% render 'monte-product-bundle', product: product, block: block, section: section %}
           {%- when 'monte_trust' -%}{% render 'monte-product-trust', product: product, block: block, section: section %}
           {%- when 'monte_tabs' -%}{% render 'monte-product-tabs', product: product, block: block, section: section %}

@@ -1,0 +1,14 @@
+<reveal-items class="mp-promotion" margin="0px" {{ block.shopify_attributes }}>
+  <div class="mp-promo" style="--promo-bg:{{ block.settings.monte_promo_bg }};--promo-color:{{ block.settings.monte_promo_color }}">
+    <span class="mp-promo-icon">
+      {%- if block.settings.monte_promo_icon != blank -%}
+        {{ block.settings.monte_promo_icon | image_url: width: 80 | image_tag: width: 20, height: 20, loading: 'lazy', alt: '' }}
+      {%- else -%}<img src="{{ 'monte-pdp-discount.svg' | asset_url }}" width="18.6875" height="18.6875" alt="">{%- endif -%}
+    </span>
+    <div>
+      {%- if block.settings.monte_promo_title != blank -%}<strong>{{ block.settings.monte_promo_title | escape }}</strong>{%- endif -%}
+      {%- if block.settings.monte_promo_text != blank -%}<p>{{ block.settings.monte_promo_text | escape | newline_to_br }}</p>{%- endif -%}
+    </div>
+    <img class="mp-promo-mark" src="{{ 'monte-pdp-promo-logo.svg' | asset_url }}" width="99" height="99" alt="">
+  </div>
+</reveal-items>

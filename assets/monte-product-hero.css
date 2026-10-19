@@ -18,9 +18,10 @@
 .mp-price s,.mp-choice-price s { color:#8a2f3a; font-size:14px; }
 .mp-saving { font:500 12px/1.5 'PP Neue Montreal Mono',monospace; letter-spacing:-.12px; text-transform:uppercase; padding:3px 8px; border-radius:4px; color:#2f6b57; background:#d9e8e1; white-space:nowrap; }
 .mp-promo { display:flex; align-items:start; gap:12px; padding:16px; position:relative; overflow:hidden; border:1px solid #dcd6cf; border-radius:16px; background:var(--promo-bg); color:var(--promo-color); font-size:14px; }
-.mp-promo>div { max-width:300px; position:relative; z-index:1; }
+.mp-promo>div { min-width:0; max-width:300px; position:relative; z-index:1; overflow-wrap:anywhere; }
 .mp-promo p { margin-top:4px; color:#52597e; }
 .mp-promo-icon { display:grid; place-items:center; width:20px; height:20px; flex:none; }
+.mp-promo-icon img { object-fit:contain; }
 .mp-promo-mark { position:absolute; right:-1px; top:-1px; max-width:none; }
 .mp-gallery { display:block; min-width:0; align-self:start; }
 .mp-gallery-main { position:relative; min-width:0; overflow:hidden; border-radius:16px; background:#eee7e0; }
@@ -158,6 +159,7 @@
  .mp-layout { grid-template-columns:minmax(0,760fr) minmax(0,520fr); gap:80px; }
  .mp-info { padding:40px 0; gap:32px; }
  .mp-intro { gap:24px; }
+ .mp-intro+.mp-promotion { margin-top:-8px; }
  .mp-title { font-size:40px; }
  .mp-rating { font-size:14px; }
  .mp-promo { font-size:14px; }

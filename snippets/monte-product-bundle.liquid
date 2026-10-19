@@ -1,7 +1,7 @@
 {%- liquid
   assign options = block.settings
-  assign colors = product.metafields.custom.color_group.value | default: options.color_products
-  assign picker = options.popup_products | default: options.color_products | default: colors
+  assign colors = options.color_products
+  assign picker = colors
   assign limited = options.limited_product
   assign variant = product.selected_or_first_available_variant
   assign drawer_id = 'MonteProductPicker-' | append: section.id

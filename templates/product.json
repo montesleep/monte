@@ -476,91 +476,90 @@
         "star_color": "#d9a17d"
       }
     },
-    "faq_accordion_Xmc94w": {
+    "faq_accordion_FcUyKU": {
       "type": "faq-accordion",
       "blocks": {
-        "faq_item_m4ywzT": {
+        "faq_item_FzhTL7": {
           "type": "faq_item",
           "settings": {
-            "question": "Will it actually block light?",
-            "answer": "<p>Yes. The Monté sleep mask is designed with a contoured shape and blackout-grade fabric that blocks 100% of light — even in bright rooms or on early-morning flights.</p>"
+            "question": "Czy naprawdę blokuje światło?",
+            "answer": "<p>Tak. Monté ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. 94% klientów w ankiecie po zakupie oceniło blackout jako całkowity.</p>"
           }
         },
-        "faq_item_UEDN3E": {
+        "faq_item_JeVKXX": {
           "type": "faq_item",
           "settings": {
-            "question": "I hate tight masks. Will this press on my eyes?",
-            "answer": "<p>No. The mask uses a 3D contoured shell that sits away from your eyelids entirely, so there's no pressure on your eyes — even if you're a side sleeper.</p>"
+            "question": "Nienawidzę masek, które uciskają oczy. Czy ta też tak działa?",
+            "answer": "<p>Nie. Monté jest zaprojektowana z myślą o osobach, które rezygnowały z masek właśnie z powodu ucisku. Jedwabne wypełnienie unosi tkaninę nad powierzchnią oczu, więc nie ma żadnego kontaktu z gałką oczną ani rzęsami.</p>"
           }
         },
-        "faq_item_96eT9K": {
+        "faq_item_BpCmWH": {
           "type": "faq_item",
           "settings": {
-            "question": "Will it stay in place if I move at night?",
-            "answer": "<p>Yes. The adjustable elastic band is designed to hold the mask comfortably in place through the night, whether you sleep on your back, side, or stomach.</p>"
+            "question": "Czy utrzyma się na miejscu, jeśli ruszam się podczas snu?",
+            "answer": "<p>Tak. Rzep dopasowujesz raz pod swój obwód głowy i maska trzyma się przez całą noc, nawet jeśli śpisz na boku. 91% klientów potwierdziło, że nie zsunęła się ani razu.</p>"
           }
         },
-        "faq_item_gX4T6F": {
+        "faq_item_xFdD6h": {
           "type": "faq_item",
           "settings": {
-            "question": "What does \"22-momme silk\" mean, and why does it matter?",
-            "answer": "<p>Momme (mm) is the weight and density measure for silk. 22mm is considered premium — it's heavier, more durable, and feels noticeably softer than lower-grade silks used in most sleep masks.</p>"
+            "question": "Co oznacza \"jedwab 22 momme\" i dlaczego to ważne?",
+            "answer": "<p>Momme to jednostka gęstości tkaniny jedwabnej. Im wyższa wartość, tym jedwab jest grubszy, trwalszy i bardziej miękki w dotyku. 22 momme to standard premium. Tańsze maski zazwyczaj mają 16-19 momme, co oznacza cieńszą i mniej trwałą tkaninę.</p>"
           }
         },
-        "faq_item_qTakJz": {
+        "faq_item_Nab37X": {
           "type": "faq_item",
           "settings": {
-            "question": "Is Monté a medical product or does it \"treat\" sleep issues?",
-            "answer": "<p>Monté is not a medical device. It's a sleep accessory designed to improve the conditions for rest. If you have a sleep disorder, please consult a healthcare professional.</p>"
+            "question": "Czy Monté to produkt medyczny albo \"leczy\" problemy ze snem?",
+            "answer": "<p>Monté nie jest produktem medycznym i nie leczy bezsenności. To luksusowy akcesoria do snu, który pomaga stworzyć lepsze warunki do zasypiania, eliminując rozpraszające światło. Jeśli masz poważne problemy ze snem, skonsultuj się z lekarzem.</p>"
           }
         },
-        "faq_item_xhaMtz": {
+        "faq_item_azPmpc": {
           "type": "faq_item",
           "settings": {
-            "question": "Is it good for travel and naps?",
-            "answer": "<p>Yes — it's one of the best travel companions you can pack. Lightweight, compact, and effective in any lighting environment. Works just as well on a plane, train, or couch.</p>"
+            "question": "Czy nadaje się do podróży i drzemek?",
+            "answer": "<p>Tak. Monté jest lekka i mieści się w eleganckim pudełku, które łatwo zmieści się w torbie podręcznej. Działa równie dobrze w samolocie, pociągu, hotelu czy podczas drzemki w ciągu dnia.</p>"
           }
         },
-        "faq_item_4RnRjU": {
+        "faq_item_JmGcMF": {
           "type": "faq_item",
           "settings": {
-            "question": "How do I care for it?",
-            "answer": "<p>Hand wash in cool water with a gentle detergent. Lay flat to dry. Avoid machine washing or wringing to preserve the silk and shape.</p>"
+            "question": "Jak ją pielęgnować?",
+            "answer": "<p>Pranie ręczne w zimnej wodzie (maks. 30°C) z delikatnym detergentem do jedwabiu. Susz na płasko, z dala od słońca. Po wysuszeniu możesz przywrócić puszystość żelazkiem w trybie pary od wewnętrznej strony tkaniny.</p>"
           }
         },
-        "faq_item_hq4pgp": {
+        "faq_item_aCF3xp": {
           "type": "faq_item",
           "settings": {
-            "question": "What if it's not right for me?",
-            "answer": "<p>We offer a 30-day return policy. If it doesn't work for you, reach out to our team and we'll sort it out — no questions asked.</p>"
+            "question": "Co jeśli maska mi nie odpowiada?",
+            "answer": "<p>Oferujemy 30-nocną gwarancję zwrotu pieniędzy. Jeśli maska nie spełni twoich oczekiwań, odeślij ją w oryginalnym, nieużywanym stanie w ciągu 30 nocy od zakupu, a zwrócimy ci pełną kwotę. Bez pytań.</p>"
           }
         }
       },
       "block_order": [
-        "faq_item_m4ywzT",
-        "faq_item_UEDN3E",
-        "faq_item_96eT9K",
-        "faq_item_gX4T6F",
-        "faq_item_qTakJz",
-        "faq_item_xhaMtz",
-        "faq_item_4RnRjU",
-        "faq_item_hq4pgp"
+        "faq_item_FzhTL7",
+        "faq_item_JeVKXX",
+        "faq_item_BpCmWH",
+        "faq_item_xFdD6h",
+        "faq_item_Nab37X",
+        "faq_item_azPmpc",
+        "faq_item_JmGcMF",
+        "faq_item_aCF3xp"
       ],
-      "name": "FAQ Accordion",
       "settings": {
         "monte_layout": true,
         "subheading": "Nie możesz znaleźć tego, czego szukasz? Chętnie pomożemy.",
         "button_label": "Skontaktuj się z nami",
-        "button_link": "shopify://pages/contact",
+        "button_link": "/pages/contact",
         "open_first": true,
         "monte_primary": "#232e71",
         "monte_secondary": "#52597e",
         "monte_border": "#dcd6cf",
-        "tagline": "FAQ",
+        "tagline": "CZĘSTO ZADAWANE PYTANIA",
         "heading": "Wiemy,\no czym myślisz",
         "background_color": "#fdfbf9",
         "heading_color": "#182153",
-        "body_color": "#182153",
+        "body_color": "#182153bf",
         "padding_top_desktop": 80,
         "padding_bottom_desktop": 80,
         "padding_top_mobile": 40,
@@ -573,6 +572,6 @@
     "monte_product_details",
     "monte_product_features",
     "monte_reviews_i8MLb9",
-    "faq_accordion_Xmc94w"
+    "faq_accordion_FcUyKU"
   ]
 }

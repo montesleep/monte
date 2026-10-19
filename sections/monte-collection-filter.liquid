@@ -19,14 +19,14 @@
     assign all_image = collections.all.image | default: collections.all.products.first.featured_image
   endif
   assign all_active = false
-  if collection.handle == 'all'
+  if collection.handle == 'all' or section.settings.bundle_builder
     assign all_active = true
   endif
   assign current_in_list = false
 -%}
 
 <reveal-items class="monte-categories-reveal" selector=".monte-categories" margin="0px">
-  <monte-collection-filter class="monte-categories" style="--category-color: {{ section.settings.text_color }}; --category-ring: {{ section.settings.active_color }}; --category-border: {{ section.settings.border_color }}; --category-surface: {{ section.settings.icon_background }};">
+  <monte-collection-filter class="monte-categories" {% if section.settings.bundle_builder %}data-bundle-filter{% endif %} style="--category-color: {{ section.settings.text_color }}; --category-ring: {{ section.settings.active_color }}; --category-border: {{ section.settings.border_color }}; --category-surface: {{ section.settings.icon_background }};">
     <nav aria-label="{{ section.settings.accessibility_label | escape }}">
       <div class="monte-categories__track" tabindex="0" aria-label="{{ section.settings.accessibility_label | escape }}">
         {%- render 'monte-collection-category', title: section.settings.all_label, url: routes.all_products_collection_url, image: all_image, active: all_active -%}
@@ -56,8 +56,9 @@
   "name": "Monté Collection Filter",
   "tag": "section",
   "class": "shopify-section--monte-collection-filter",
-  "enabled_on": { "templates": ["collection"] },
+  "enabled_on": { "templates": ["collection", "page"] },
   "settings": [
+    { "type": "checkbox", "id": "bundle_builder", "label": "Filter the bundle builder on this page", "default": false },
     { "type": "collection_list", "id": "collections", "label": "Collections", "limit": 20, "info": "Choose and reorder categories. Names and images come from each collection. If empty, all available collections are shown. Links open the selected collection and activate its category automatically." },
     { "type": "text", "id": "all_label", "label": "All products label", "default": "Wszystko" },
     { "type": "image_picker", "id": "all_image", "label": "All products image", "info": "Optional. Defaults to the first category or all-products image, then the first product image. Other category images are managed in Shopify collection settings." },

@@ -13,6 +13,13 @@ class MonteCollectionFilter extends HTMLElement {
       this.style.setProperty('--category-progress', Math.min(1, (Math.abs(scrollLeft) + clientWidth) / Math.max(1, scrollWidth)));
       this.track.tabIndex = mobile && scrollWidth > clientWidth + 1 ? 0 : -1;
     };
+    if (this.hasAttribute('data-bundle-filter')) {
+      this.querySelectorAll('.monte-categories__item').forEach(link => {
+        const category = new URL(link.href).pathname.split('/').filter(Boolean).pop();
+        link.dataset.category = category;
+        link.href = location.pathname + '?category=' + encodeURIComponent(category);
+      });
+    }
     this.track.addEventListener('scroll', this.update, { passive: true, signal });
     this.track.addEventListener('keydown', event => {
       if (event.target !== this.track || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;

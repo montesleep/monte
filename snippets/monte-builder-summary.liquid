@@ -1,0 +1,12 @@
+<div class="mb-summary-content">
+  <div class="mb-goals"><h2 data-goal-title>{{ section.settings.progress_text | replace: '[amount]', section.settings.threshold_1 | replace: '[percent]', '5' }}</h2>{% render 'monte-builder-progress', section: section %}</div>
+  <div class="mb-empty" data-builder-empty>
+    {% if section.settings.empty_image != blank %}{{ section.settings.empty_image | image_url: width: 400 | image_tag: width: 160, height: 180, loading: 'lazy' }}{% else %}<img src="{{ 'monte-cart-empty.png' | asset_url }}" width="160" height="180" loading="lazy" alt="">{% endif %}
+    <h3>{{ section.settings.empty_title | escape }}</h3><p>{{ section.settings.empty_text | escape }}</p>
+  </div>
+  <div class="mb-lines" data-builder-lines hidden></div>
+  <div class="mb-summary-bottom">
+    <div class="mb-totals"><div><span>{{ section.settings.subtotal_label | escape }}</span><span data-subtotal>0 zł</span></div><div class="mb-savings"><span>{{ section.settings.savings_label | escape }}</span><span data-savings>0 zł</span></div><div class="mb-total"><span>{{ section.settings.total_label | escape }}</span><span data-total>0 zł</span></div></div>
+    <div class="mb-checkout-wrap"><button type="button" class="mb-button mb-checkout" data-builder-checkout disabled>{{ section.settings.checkout_label | escape }}<img src="{{ 'monte-cart-checkout.svg' | asset_url }}" width="24" height="24" alt=""></button><div class="mb-trust"><span><img src="{{ 'monte-cart-shipping.svg' | asset_url }}" width="20" height="20" alt="">{{ section.settings.shipping_text | escape }}</span><span><img src="{{ 'monte-cart-return.svg' | asset_url }}" width="20" height="20" alt="">{{ section.settings.returns_text | escape }}</span></div></div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+<div class="mb-progress" aria-label="Progi rabatowe">
+{% for i in (1..3) %}<div class="mb-tier"><span>{{ i | times: 5 }}% rabatu</span><div class="mb-tier-track" role="progressbar" aria-label="{{ i | times: 5 }}% rabatu" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span data-tier="{{ forloop.index0 }}"></span></div></div>{% endfor %}
+</div>

@@ -1,0 +1,43 @@
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign product_group = product.metafields.custom.product_group.value
+  assign current_color = nil
+  for color in product_group.colors.value
+    if color.product.value.id == product.id
+      assign current_color = color
+      break
+    endif
+  endfor
+  assign use_group = false
+  if current_color != nil
+    assign use_group = true
+  endif
+  assign subtitle = product.metafields.custom.product_subtitle.value | default: product_group.subtitle.value
+  capture title
+    render 'monte-product-display-title', product: product, group_title: product_group.title.value
+  endcapture
+  capture color_label
+    render 'monte-product-color-label', item: product, color: current_color
+  endcapture
+  assign maximum = 50
+  if variant.inventory_management != blank and variant.inventory_policy == 'deny'
+    assign maximum = variant.inventory_quantity | at_most: 50 | at_least: 0
+  endif
+-%}
+<article class="monte-product-card mb-card" data-builder-card data-id="{{ variant.id }}">
+  <button type="button" class="monte-product-card__media mb-preview" data-builder-preview aria-label="Zobacz {{ title | strip_html | escape }} — {{ color_label | escape }}">
+    {%- if product.featured_media -%}{{ product.featured_media | image_url: width: 1000 | image_tag: class: 'monte-product-card__image', loading: 'lazy', widths: '180,360,600,1000', sizes: '(min-width: 1000px) 22vw, 45vw', alt: '' }}{%- else -%}{{ 'product-1' | placeholder_svg_tag }}{%- endif -%}
+    {% render 'product-badges', product: product, variant: variant, types: 'monte_discount,monte_status', monte_status_overridden: use_group, monte_status_override: current_color.badge.value, class: 'monte-product-card__badges' %}
+  </button>
+  <div class="monte-product-card__info">
+    <div class="monte-product-card__details">
+      <div class="monte-product-card__titles"><h3><button type="button" data-builder-preview>{{ title }}</button></h3>{% if subtitle != blank %}<p class="monte-product-card__subtitle">{{ subtitle | escape }}</p>{% endif %}</div>
+      {% render 'price-list', variant: variant, hide_unit_price: true %}
+    </div>
+    <div class="mb-card-controls">
+      <div class="mb-quantity" aria-label="Ilość — {{ title | strip_html | escape }}"><button type="button" data-builder-step="-1" aria-label="Zmniejsz ilość" disabled><img src="{{ 'monte-cart-minus.svg' | asset_url }}" width="12" height="12" alt=""></button><output data-builder-quantity>1</output><button type="button" data-builder-step="1" aria-label="Zwiększ ilość" {% if maximum <= 1 %}disabled{% endif %}><img src="{{ 'monte-cart-plus.svg' | asset_url }}" width="12" height="12" alt=""></button></div>
+      <button type="button" class="mb-button mb-card-add" data-builder-add {% unless variant.available %}disabled{% endunless %}><span data-add-label>{% if variant.available %}Dodaj{% else %}Wyprzedane{% endif %}</span><span data-add-icon aria-hidden="true">+</span></button>
+    </div>
+  </div>
+  <script type="application/json" data-builder-product>{"id":{{ variant.id | json }},"productId":{{ product.id | json }},"url":{{ product.url | json }},"title":{{ title | strip_html | json }},"color":{{ color_label | strip | json }},"price":{{ variant.price | json }},"compare":{{ variant.compare_at_price | default: 0 | json }},"available":{{ variant.available | json }},"maximum":{{ maximum | json }},"image":{% if product.featured_image %}{{ product.featured_image | image_url: width: 160 | json }}{% else %}""{% endif %}}</script>
+</article>

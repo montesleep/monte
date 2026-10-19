@@ -1,0 +1,42 @@
+{{ 'monte-product-tabs.css' | asset_url | stylesheet_tag }}
+{{ 'monte-product-hero.css' | asset_url | stylesheet_tag }}
+{{ 'monte-bundle-builder.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'monte-product-hero.js' | asset_url }}"></script>
+<script type="module" src="{{ 'monte-faq.js' | asset_url }}"></script>
+<script type="module" src="{{ 'monte-bundle-builder.js' | asset_url }}"></script>
+<monte-bundle-builder class="mb" data-section="{{ section.id }}" style="--mp-primary:{{ section.settings.primary_color }};--mp-secondary:{{ section.settings.secondary_color }};--mp-card:{{ section.settings.card_color }};">
+  <script type="application/json" data-builder-config>{"thresholds":[{{ section.settings.threshold_1 | times: 100 }},{{ section.settings.threshold_2 | times: 100 }},{{ section.settings.threshold_3 | times: 100 }}],"progressText":{{ section.settings.progress_text | json }},"successText":{{ section.settings.success_text | json }},"errorText":{{ section.settings.error_text | json }},"discountCode":{{ section.settings.discount_code | json }},"checkoutLabel":{{ section.settings.checkout_label | json }},"trash":{{ 'monte-cart-trash.svg' | asset_url | json }},"minus":{{ 'monte-cart-minus.svg' | asset_url | json }},"plus":{{ 'monte-cart-plus.svg' | asset_url | json }}}</script>
+  <div class="mb-layout"><div class="mb-catalog" data-catalog-container>{% render 'monte-builder-catalog', collection: collections.all %}</div><aside class="mb-summary-desktop" aria-label="Podsumowanie zestawu">{% render 'monte-builder-summary', section: section %}</aside></div>
+  <p class="mb-error" data-builder-error role="alert" hidden></p><p class="sr-only" data-builder-status role="status" aria-live="polite"></p>
+  <div class="mb-sticky" data-builder-sticky><div class="mb-sticky-top"><button type="button" class="mb-sticky-toggle" data-summary-open aria-expanded="false" aria-controls="BuilderSummary-{{ section.id }}"><span class="mb-circle">{% render 'icon', icon: 'chevron-top', width: 14 %}</span><span data-total>0 zł</span><span class="sr-only">Pokaż podsumowanie zestawu</span></button><button type="button" class="mb-button" data-builder-checkout disabled>{{ section.settings.checkout_label | escape }}<img src="{{ 'monte-cart-checkout-mobile.svg' | asset_url }}" width="20" height="20" alt=""></button></div>{% render 'monte-builder-progress', section: section %}</div>
+  <monte-builder-dialog id="BuilderSummary-{{ section.id }}" class="mb-dialog mb-summary-dialog" data-summary-dialog tabindex="-1" aria-label="Podsumowanie zestawu" inert><div class="mb-overlay" data-dialog-close></div><div class="mb-dialog-panel"><button type="button" class="mb-circle mb-summary-close" data-dialog-close aria-label="Zwiń podsumowanie">{% render 'icon', icon: 'chevron-bottom', width: 14 %}</button>{% render 'monte-builder-summary', section: section %}</div></monte-builder-dialog>
+  <monte-builder-dialog class="mb-dialog mb-quickview" data-quickview tabindex="-1" aria-labelledby="BuilderQuickTitle-{{ section.id }}" inert><div class="mb-overlay" data-dialog-close></div><div class="mb-dialog-panel"><header class="mb-quick-header"><h2 id="BuilderQuickTitle-{{ section.id }}" data-quick-title></h2><button type="button" data-dialog-close aria-label="Zamknij podgląd">{% render 'icon', icon: 'close', width: 20 %}</button></header><div class="mb-quick-content" data-quick-content></div><footer class="mb-quick-footer"><button type="button" class="mb-button" data-quick-add disabled>Dodaj do zestawu<img src="{{ 'monte-cart-checkout.svg' | asset_url }}" width="24" height="24" alt=""></button></footer></div></monte-builder-dialog>
+</monte-bundle-builder>
+{% schema %}
+{"name":"Monté Bundle Builder","tag":"section","class":"shopify-section--monte-bundle-builder","enabled_on":{"templates":["page"]},"settings":[
+{"type":"header","content":"Discount thresholds"},
+{"type":"paragraph","content":"Extra discounts of 5%, 10%, and 15% apply to current product prices. Keep these thresholds in sync with Every Possible Discount. The app applies the real checkout discount."},
+{"type":"number","id":"threshold_1","label":"5% threshold (PLN)","default":350},
+{"type":"number","id":"threshold_2","label":"10% threshold (PLN)","default":550},
+{"type":"number","id":"threshold_3","label":"15% threshold (PLN)","default":750},
+{"type":"text","id":"discount_code","label":"Checkout discount code","info":"Only needed if the matching app rule uses a discount code. Leave empty for an automatic discount."},
+{"type":"textarea","id":"progress_text","label":"Progress message","default":"Dodaj jeszcze za [amount], aby uzyskać [percent]% rabatu","info":"[amount] includes the currency; [percent] is the next discount tier."},
+{"type":"text","id":"success_text","label":"Maximum discount message","default":"Twój zestaw z dodatkowym rabatem 15%!"},
+{"type":"header","content":"Empty summary"},
+{"type":"image_picker","id":"empty_image","label":"Empty illustration"},
+{"type":"text","id":"empty_title","label":"Empty heading","default":"Twój zestaw jest pusty"},
+{"type":"text","id":"empty_text","label":"Empty description","default":"Dodaj produkty klikając „Dodaj +”"},
+{"type":"header","content":"Summary labels"},
+{"type":"text","id":"subtotal_label","label":"Subtotal","default":"Razem:"},
+{"type":"text","id":"savings_label","label":"Savings","default":"Oszczędzasz:"},
+{"type":"text","id":"total_label","label":"Bundle total","default":"Cena zestawu:"},
+{"type":"text","id":"checkout_label","label":"Checkout button","default":"Przejdź do kasy"},
+{"type":"text","id":"shipping_text","label":"Shipping text","default":"Wysyłka tego samego dnia"},
+{"type":"text","id":"returns_text","label":"Returns text","default":"30 dni na zwrot"},
+{"type":"text","id":"error_text","label":"Error message","default":"Nie udało się wykonać tej operacji. Spróbuj ponownie."},
+{"type":"header","content":"Colors"},
+{"type":"color","id":"primary_color","label":"Primary text and buttons","default":"#232E71"},
+{"type":"color","id":"secondary_color","label":"Secondary text","default":"#52597E"},
+{"type":"color","id":"card_color","label":"Card surface","default":"#EEE7E0"}
+],"presets":[{"name":"Monté Bundle Builder"}]}
+{% endschema %}

@@ -28,3 +28,5 @@
 @media (min-width: 700px) {
   .monte-collection-hero--about .monte-collection-hero__media::after { content: ''; display: block; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgb(0 0 0 / .7) 94.91%); }
 }
+
+.monte-collection-hero__badge { display:inline-flex; align-items:center; min-height:24px; padding:3px 8px; border-radius:4px; font:500 12px/1.5 "PP Neue Montreal Mono",monospace; letter-spacing:-.12px; text-transform:uppercase; }

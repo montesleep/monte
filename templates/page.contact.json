@@ -18,21 +18,10 @@
     },
     "contact_pyMPNU": {
       "type": "contact",
-      "name": "Contact form",
+      "name": "Monté Contact Form",
       "settings": {
-        "full_width": true,
-        "subheading": "KONTAKT",
         "title": "Jesteśmy tu dla Ciebie",
         "content": "<p>Masz pytanie dotyczące zamówienia, produktu lub po prostu chcesz się przywitać? Napisz do nas, odpowiadamy w ciągu 24 godzin w dni robocze.</p><p>Wolisz pisać bezpośrednio? <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a><br/></p><p><strong>Dane firmy:</strong><br/>Władysław Kisielewski<br/>ul. Rybacka 15/5, 75-228 Koszalin, Polska<br/>NIP: 6692577114<br/>REGON: 527339957<br/>E-mail: <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a></p>",
-        "text_position": "center",
-        "contact_form_size": "large",
-        "background": "#fdfbf9",
-        "background_gradient": "",
-        "text_color": "#182153",
-        "heading_color": "#182153",
-        "heading_gradient": "",
-        "contact_background": "#fbf7f3",
-        "contact_text_color": "",
         "button_background": "#232e71",
         "button_text_color": "#fdfbf9"
       }

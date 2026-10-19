@@ -434,10 +434,8 @@
       "type": "contact",
       "name": "Monté Contact Form",
       "settings": {
-        "monte_layout": true,
         "title": "Nie znalazłeś odpowiedzi?",
         "content": "<p>Odpowiadamy na każdą wiadomość w ciągu 24 godzin.</p>",
-        "subheading": "",
         "button_background": "#232e71",
         "button_text_color": "#fdfbf9"
       }

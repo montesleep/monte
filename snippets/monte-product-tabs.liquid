@@ -1,31 +1,32 @@
-{%- liquid
-  assign description = product.metafields.custom.zalety_description
-  assign specification = product.metafields.custom.specyfikacja
-  assign benefit_count = 0
-  for i in (1..10)
-    assign key = 'benefit_' | append: i
-    if block.settings[key] != blank
-      assign benefit_count = benefit_count | plus: 1
-    endif
-  endfor
--%}
-{%- if description != blank or benefit_count > 0 or specification != blank -%}
-  <reveal-items class="mp-tabs-reveal" margin="0px" {{ block.shopify_attributes }}>
-    <monte-product-tabs class="mp-tabs">
-      <template><style>:host{display:block}.titles{display:flex;gap:16px;border-bottom:1px solid #DCD6CF}slot[name=title]{display:contents}::slotted([slot=title]){flex:1}::slotted([hidden]){display:none!important}</style><div class="titles" role="tablist"><slot name="title"></slot></div><slot name="content"></slot></template>
-      {%- if description != blank or benefit_count > 0 -%}
-        <button type="button" slot="title">{{ block.settings.benefits_label | escape }}</button>
-        <div slot="content" class="mp-tab-panel">
-          {%- if description != blank -%}
-            <div>
-              <div class="mp-description mp-description--collapsed prose" id="PdpDescription-{{ section.id }}-{{ block.id }}" data-description>{%- if description.type == 'rich_text_field' -%}{{ description | metafield_tag }}{%- else -%}{{ description.value | escape | newline_to_br }}{%- endif -%}</div>
-              <button type="button" class="mp-expand" data-expand data-expand-label="{{ block.settings.expand_label | escape }}" data-collapse-label="{{ block.settings.collapse_label | escape }}" aria-expanded="false" aria-controls="PdpDescription-{{ section.id }}-{{ block.id }}" hidden><span>{{ block.settings.expand_label | escape }}</span>{% render 'icon', icon: 'chevron-bottom', width: 10 %}</button>
-            </div>
-          {%- endif -%}
-          {%- if benefit_count > 0 -%}<ul class="mp-benefits mp-benefits--tab">{%- for i in (1..10) -%}{%- assign key = 'benefit_' | append: i -%}{%- if block.settings[key] != blank -%}<li>{% render 'monte-product-check' %}<span>{{ block.settings[key] | escape }}</span></li>{%- endif -%}{%- endfor -%}</ul>{%- endif -%}
-        </div>
-      {%- endif -%}
-      {%- if specification != blank -%}<button type="button" slot="title">{{ block.settings.specification_label | escape }}</button><div slot="content" class="mp-tab-panel mp-specification prose">{%- if specification.type == 'rich_text_field' -%}{{ specification | metafield_tag }}{%- else -%}{{ specification.value | escape | newline_to_br }}{%- endif -%}</div>{%- endif -%}
-    </monte-product-tabs>
+<style>#shopify-section-{{ section.id }} { background: transparent; }</style>
+{{ 'monte-product-tabs.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'monte-product-tabs.js' | asset_url }}"></script>
+<monte-product-tabs class="monte-products" style="--mp-primary: {{ section.settings.monte_primary }}; --mp-secondary: {{ section.settings.monte_secondary }}; --mp-card: {{ section.settings.monte_card_background }};">
+  <reveal-items class="monte-products__reveal" margin="0px">
+    <div class="monte-products__layout">
+      <div class="monte-products__tabs" role="tablist" aria-label="{{ section.settings.monte_tabs_label | escape }}">
+        {%- for block in section.blocks -%}
+          <button type="button" role="tab" id="ProductTab-{{ section.id }}-{{ block.id }}" aria-controls="ProductPanel-{{ section.id }}-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">{{ block.settings.title | escape }}</button>
+        {%- endfor -%}
+      </div>
+      <div class="monte-products__panels">
+        {%- for block in section.blocks -%}
+          {%- assign scroll_id = 'ProductTrack-' | append: section.id | append: '-' | append: block.id -%}
+          <div class="monte-products__panel" id="ProductPanel-{{ section.id }}-{{ block.id }}" role="tabpanel" aria-labelledby="ProductTab-{{ section.id }}-{{ block.id }}" data-block-id="{{ block.id }}" {% unless forloop.first %}hidden{% endunless %} {{ block.shopify_attributes }}>
+            {%- if block.settings.products.size > 0 -%}
+              <div class="monte-products__track" id="{{ scroll_id }}" tabindex="0" role="region" aria-label="{{ block.settings.title | escape }}">
+                {%- for product in block.settings.products -%}
+                  {%- render 'monte-product-card', product: product, tab_id: block.id -%}
+                {%- endfor -%}
+              </div>
+              <scroll-progress class="monte-products__progress scrollbar__progress" hidden observes="{{ scroll_id }}" aria-hidden="true" style="--scroll-progress: 1;"></scroll-progress>
+            {%- else -%}
+              <p class="monte-products__empty">{% if request.design_mode %}Select products in this tab's settings. The first four are shown on mobile.{% else %}{{ section.settings.monte_empty_text | escape }}{% endif %}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="monte-products__all">{%- render 'button', content: section.settings.monte_button_label, href: routes.collections_url, style: 'outline' -%}</div>
+    </div>
   </reveal-items>
-{%- endif -%}
+</monte-product-tabs>

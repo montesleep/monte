@@ -51,7 +51,7 @@ class MonteProductHero extends HTMLElement {
   disconnectedCallback() { this.abort?.abort(); this.descriptionAnimation?.cancel(); this.resize?.disconnect(); this.atcObserver?.disconnect(); this.stickyObserver?.disconnect(); }
 }
 
-class MonteProductTabs extends Tabs {
+class MontePdpTabs extends Tabs {
   async _transition(fromPanel, toPanel) {
     this.nextPanel = toPanel;
     if (this.switching) return;
@@ -362,6 +362,6 @@ class MonteProductMedia extends HTMLElement {
   }
 }
 
-for (const [name, component] of [['monte-product-tabs', MonteProductTabs], ['monte-product-picker', MonteProductPicker], ['monte-product-bundle', MonteProductBundle], ['monte-product-media', MonteProductMedia], ['monte-product-hero', MonteProductHero]]) {
+for (const [name, component] of [['monte-pdp-tabs', MontePdpTabs], ['monte-product-picker', MonteProductPicker], ['monte-product-bundle', MonteProductBundle], ['monte-product-media', MonteProductMedia], ['monte-product-hero', MonteProductHero]]) {
   if (!customElements.get(name)) customElements.define(name, component);
 }

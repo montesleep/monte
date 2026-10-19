@@ -1,13 +1,13 @@
 import { DialogElement } from './theme.js';
 
-const money = value => new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN', minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(value / 100);
+const money = value => new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN', minimumFractionDigits: value % 100 ? 2 : 0, maximumFractionDigits: 2 }).format(value / 100);
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 class MonteBuilderDialog extends DialogElement {
   get shouldLock() { return true; }
   connectedCallback() {
     super.connectedCallback();
-    this.setAttribute('aria-modal','true');
+    this.setAttribute('aria-modal','true'); this.setAttribute('role','dialog');
     this.addEventListener('click', event => { if (event.target.closest('[data-dialog-close]')) this.hide(); }, { signal: this._abortController.signal });
   }
   disconnectedCallback() { this.unlock(); super.disconnectedCallback(); }
@@ -100,7 +100,7 @@ class MonteBundleBuilder extends HTMLElement {
     const {subtotal,compare,total,tier}=this.totals();
     this.querySelectorAll('[data-subtotal]').forEach(el=>el.textContent=money(subtotal));
     this.querySelectorAll('[data-savings]').forEach(el=>el.textContent=money(compare-total));
-    this.querySelectorAll('[data-total]').forEach(el=>el.textContent=money(total));
+    this.querySelectorAll('[data-total]').forEach(el=>{el.textContent=money(total);el.toggleAttribute('data-long-total',el.textContent.length>9);});
     this.querySelectorAll('[data-goal-title]').forEach(el=>el.textContent=tier===3?this.config.successText:this.config.progressText.replace('[amount]',money(this.config.thresholds[tier]-subtotal)).replace('[percent]',(tier+1)*5));
     this.querySelectorAll('[data-tier]').forEach(el=>{
       const index=Number(el.dataset.tier),start=this.config.thresholds[index-1]||0,end=this.config.thresholds[index];

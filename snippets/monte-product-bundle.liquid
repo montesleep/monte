@@ -26,7 +26,7 @@
   <script type="application/json" data-bundle-data>{"current":{% render 'monte-bundle-product-json', item: product, color: current_color, group_title: product_group.title.value %},"products":[{%- assign separator = '' -%}{%- for color in colors -%}{%- assign item = color.product.value -%}{%- if item != blank -%}{{ separator }}{% render 'monte-bundle-product-json', item: item, color: color, group_title: product_group.title.value %}{%- assign separator = ',' -%}{%- endif -%}{%- endfor -%}],"variants":{{ product.variants | json }}}</script>
   {%- if regular_count > 0 -%}
     <div class="mp-colors">
-      <p class="mp-label"><strong>Kolor:</strong> {% capture color_label %}{% render 'monte-product-color-label', item: product, color: current_color %}{% endcapture %}{{ color_label | escape }}</p>
+      <p class="mp-label"><strong>Kolor:</strong> {% if current_color.limited_color.value == true %}Wybierz kolor{% else %}{% capture color_label %}{% render 'monte-product-color-label', item: product, color: current_color %}{% endcapture %}{{ color_label | escape }}{% endif %}</p>
       <div class="mp-swatches">
         {%- for color in colors -%}
           {%- if color.product.value != blank and color.limited_color.value != true -%}

@@ -6,3 +6,5 @@
 @media(prefers-reduced-motion:reduce){.mb *{scroll-behavior:auto!important;transition:none!important}}
 body:has(monte-builder-dialog[open]) shopify-chat::part(activator){visibility:hidden}
 @media(max-width:999px){body:has(monte-bundle-builder) shopify-chat::part(activator){translate:0 calc(-111px - env(safe-area-inset-bottom));transition:translate .4s cubic-bezier(.25,1,.5,1)}}
+
+.mb-sticky-toggle .mb-circle svg{transform:rotate(180deg)}

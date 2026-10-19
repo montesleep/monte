@@ -388,7 +388,7 @@ class MonteProductMedia extends HTMLElement {
     if (!this._photoswipe) {
       // Reuse Impact's PhotoSwipe instance, UI, zoom controls and pagination.
       Object.getOwnPropertyDescriptor(ProductGallery.prototype, 'photoswipe').get.call(this);
-      this._photoswipe.on('beforeOpen', () => { this.lightboxOpen = true; this.syncVideos(); });
+      this._photoswipe.on('beforeOpen', () => { this.lightboxOpen = true; this.closest('monte-builder-dialog')?.focusTrap.pause(); this.syncVideos(); });
       const play = ({ content }) => {
         const video = content.element?.querySelector('video');
         if (video && content.slide?.isActive) video.play().catch(() => { video.muted = true; video.play().catch(() => {}); });
@@ -397,7 +397,7 @@ class MonteProductMedia extends HTMLElement {
       this._photoswipe.on('contentAppend', play);
       this._photoswipe.on('contentDeactivate', ({ content }) => content.element?.querySelector('video')?.pause());
       this._photoswipe.on('close', () => { this._photoswipe.pswp?.element?.querySelectorAll('video').forEach(video => video.pause()); });
-      this._photoswipe.on('destroy', () => { this.lightboxOpen = false; this.pauseUntil = performance.now() + 10000; this.syncVideos(); });
+      this._photoswipe.on('destroy', () => { this.lightboxOpen = false; const dialog=this.closest('monte-builder-dialog'); if(dialog?.open)dialog.focusTrap.unpause(); this.pauseUntil = performance.now() + 10000; this.syncVideos(); });
     }
     const source = this.items.map(item => {
       const video = item.querySelector('video'), image = item.querySelector('img');

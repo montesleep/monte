@@ -12,6 +12,13 @@
   assign sort_id = 'monte-sort-' | append: section.id
 -%}
 {%- paginate collection.products by 12 -%}
+  {%- liquid
+    assign show_bundle_promo = false
+    assign bundle_collection = section.settings.bundle_collection.handle | default: 'zestawy'
+    if section.settings.bundle_promo_enabled and collection.handle == bundle_collection and paginate.current_page == 1
+      assign show_bundle_promo = true
+    endif
+  -%}
   <monte-collection-grid class="monte-catalog" data-section-id="{{ section.id }}" data-default-sort="{{ collection.default_sort_by }}" data-total="{{ collection.products_count }}" data-error="{{ section.settings.error_text | escape }}" style="--mp-primary: {{ section.settings.text_color }}; --mp-secondary: {{ section.settings.secondary_color }}; --mp-card: {{ section.settings.card_color }}; --mc-muted: {{ section.settings.muted_color }};">
     <div class="monte-catalog__toolbar">
       <p class="monte-catalog__count">{{ 'collection.products_count' | t: count: collection.products_count }}</p>
@@ -42,7 +49,7 @@
       </facet-sort-by>
     </div>
     <div class="monte-catalog__results" aria-busy="false">
-      {%- if collection.products_count == 0 -%}
+      {%- if collection.products_count == 0 and show_bundle_promo == false -%}
         <div class="empty-state">
           <div class="empty-state__icon-wrapper">
             {%- render 'icon' with 'picto-stop', width: 32, height: 32, stroke_width: 1 -%}
@@ -55,11 +62,17 @@
           </div>
         </div>
       {%- else -%}
-        <reveal-items class="monte-catalog__batch" selector=".monte-product-card" margin="0px">
-          <div class="monte-catalog__grid">
+        <reveal-items class="monte-catalog__batch" selector=".monte-product-card, .monte-catalog-promo" margin="0px">
+          <div class="monte-catalog__grid{% if collection.products_count == 0 %} monte-catalog__grid--empty{% endif %}">
             {%- for product in collection.products -%}
               {%- render 'monte-product-card', product: product, tab_id: 'catalog' -%}
+              {%- if forloop.first and show_bundle_promo -%}
+                {%- render 'monte-collection-bundle-promo', section: section -%}
+              {%- endif -%}
             {%- endfor -%}
+            {%- if collection.products_count == 0 and show_bundle_promo -%}
+              {%- render 'monte-collection-bundle-promo', section: section -%}
+            {%- endif -%}
           </div>
         </reveal-items>
       {%- endif -%}
@@ -82,6 +95,23 @@
   "class": "shopify-section--main-collection",
   "tag": "section",
   "settings": [
+    { "type": "header", "content": "Bundle builder promotion" },
+    { "type": "checkbox", "id": "bundle_promo_enabled", "label": "Show bundle promotion", "default": true },
+    { "type": "collection", "id": "bundle_collection", "label": "Promotion collection", "info": "Defaults to Zestawy. The promotion appears once, on the first page, and is not included in product counts." },
+    { "type": "image_picker", "id": "bundle_image", "label": "Desktop image" },
+    { "type": "video", "id": "bundle_video", "label": "Desktop video", "info": "Replaces the image. Autoplays muted and loops without controls." },
+    { "type": "image_picker", "id": "bundle_mobile_image", "label": "Mobile image" },
+    { "type": "video", "id": "bundle_mobile_video", "label": "Mobile video" },
+    { "type": "checkbox", "id": "bundle_default_image", "label": "Use default campaign image when media is empty", "default": true },
+    { "type": "text", "id": "bundle_heading", "label": "Heading", "default": "Połącz produkty, oszczędź więcej" },
+    { "type": "textarea", "id": "bundle_body", "label": "Description", "default": "Wybierz dowolne produkty Monté i otrzymaj dodatkowe 15% rabatu na cały zestaw." },
+    { "type": "text", "id": "bundle_button", "label": "Button label", "default": "Stwórz swój zestaw" },
+    { "type": "url", "id": "bundle_link", "label": "Button link", "default": "/pages/bundle-builder" },
+    { "type": "color", "id": "bundle_text", "label": "Promotion text", "default": "#FDFBF9" },
+    { "type": "color", "id": "bundle_button_bg", "label": "Button background", "default": "#FDFBF9" },
+    { "type": "color", "id": "bundle_button_text", "label": "Button text and border", "default": "#232E71" },
+    { "type": "color", "id": "bundle_button_hover", "label": "Button hover background", "default": "#EEE7E0" },
+    { "type": "header", "content": "Product grid" },
     { "type": "paragraph", "content": "Products come from the active collection. Desktop shows four columns, mobile shows two. Each load adds 12 products. Product details use the same cards as the homepage." },
     { "type": "text", "id": "sort_label", "label": "Sort label", "default": "Sortuj według" },
     { "type": "text", "id": "best_selling_label", "label": "Best-selling label", "default": "Bestsellery" },

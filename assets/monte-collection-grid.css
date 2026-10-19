@@ -11,6 +11,30 @@
 .monte-catalog__batch { display: block; opacity: 1; min-width: 0; }
 .monte-catalog__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; }
 .monte-catalog .monte-product-card { display: block; }
+.monte-catalog-promo { grid-column: 1 / -1; grid-row: 2; position: relative; isolation: isolate; display: flex; align-items: flex-start; min-height: 198px; padding: 20px 16px; overflow: hidden; border-radius: 16px; color: var(--promo-text); background: #182153; }
+.monte-catalog-promo__media { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.monte-catalog-promo__media--desktop { display: none; }
+.monte-catalog-promo__media :is(img, video) { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.monte-catalog-promo__content { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; width: 180px; max-width: 100%; }
+.monte-catalog-promo__copy { display: grid; gap: 4px; }
+.monte-catalog-promo h2 { margin: 0; font: 500 24px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
+.monte-catalog-promo p { margin: 0; font: 400 12px/1.5 var(--text-font-family); opacity: .8; }
+.monte-catalog-promo .monte-catalog-promo__button { min-height: 32px; padding: 7px 16px; border: 0; border-radius: 100px; background: var(--promo-button); color: var(--promo-button-text); box-shadow: none; font: 600 12px/18px var(--text-font-family); letter-spacing: 0; text-transform: none; transition: background-color .2s ease-in-out; }
+.monte-catalog__grid--empty .monte-catalog-promo { grid-row: 1; }
+@media (min-width: 700px) {
+  .monte-catalog-promo { grid-column: 2; grid-row: 1; align-items: flex-end; min-height: 478px; }
+  .monte-catalog__grid--empty .monte-catalog-promo { grid-column: 1; }
+  .monte-catalog-promo__media--mobile { display: none; }
+  .monte-catalog-promo__media--desktop { display: block; }
+  .monte-catalog-promo__media--default img { object-position: 78.37% center; }
+  .monte-catalog-promo__media--desktop::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180.13deg, transparent 32.646%, rgb(0 0 0 / .7) 93.074%); }
+  .monte-catalog-promo__content { width: 100%; }
+  .monte-catalog-promo__copy { gap: 8px; }
+  .monte-catalog-promo h2 { font-size: 32px; }
+  .monte-catalog-promo p { font-size: 14px; }
+  .monte-catalog-promo .monte-catalog-promo__button { width: 100%; min-height: 56px; padding: 15px 16px; border: 1px solid var(--promo-button-text); font-size: 16px; line-height: 24px; }
+}
+@media (hover: hover) { .monte-catalog-promo .monte-catalog-promo__button:hover { background: var(--promo-button-hover); } }
 .monte-catalog__more { display: grid; justify-items: center; gap: 20px; width: 220px; max-width: 100%; margin: 20px auto 0; }
 .monte-catalog__more[hidden] { display: none; }
 .monte-catalog__more .button, .monte-catalog .empty-state .button { border: 1px solid var(--mp-primary); box-shadow: none; border-radius: 100px; background: transparent; color: var(--mp-primary); min-height: 44px; padding: 10px 24px; font: 600 14px/1.5 var(--text-font-family); letter-spacing: 0; text-transform: none; transition: background-color .2s ease-in-out, color .2s ease-in-out; }

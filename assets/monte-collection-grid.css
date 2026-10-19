@@ -45,6 +45,7 @@
 .monte-sort::part(outside-close-button) { display: none; }
 .monte-sort::part(overlay) { min-height: 0; background: rgb(0 0 0 / .6); backdrop-filter: blur(17px); -webkit-backdrop-filter: blur(17px); touch-action: none; }
 .monte-sort__heading { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 16px; color: var(--ms-muted); }
+.monte-sort__heading > span { font: 500 24px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; color: var(--ms-primary); }
 .monte-sort__close { display: grid; place-items: center; width: 32px; height: 32px; flex: none; padding: 8px; border-radius: 8px; transition: background-color .2s ease-in-out; }
 .monte-sort__close img { width: auto; height: auto; max-width: none; }
 .monte-sort__divider { position: absolute; inset: auto 0 0; width: 100%; height: 1px; }

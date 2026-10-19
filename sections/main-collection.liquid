@@ -23,7 +23,7 @@
         </button>
         <x-popover id="{{ sort_id }}" class="popover monte-sort" style="--ms-primary: {{ section.settings.text_color }}; --ms-secondary: {{ section.settings.secondary_color }}; --ms-muted: {{ section.settings.muted_color }};" close-on-listbox-select anchor-horizontal="end" anchor-vertical="end">
           <div slot="title" class="monte-sort__heading">
-            <span>{{ section.settings.sort_label | escape }}:</span>
+            <span>{{ section.settings.sort_label | escape }}</span>
             <button type="button" is="close-button" class="monte-sort__close" aria-label="{{ 'general.accessibility.close' | t | escape }}">
               <img src="{{ 'monte-search-close.svg' | asset_url }}" width="13.5607" height="13.5607" alt="">
             </button>

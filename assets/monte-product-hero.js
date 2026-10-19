@@ -1,4 +1,4 @@
-import { Drawer, ProductGallery } from 'theme';
+import { Drawer, ProductGallery, Tabs } from 'theme';
 import { timeline } from 'vendor';
 
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -23,18 +23,66 @@ class MonteProductHero extends HTMLElement {
     }
     const text = this.querySelector('[data-description]'), button = this.querySelector('[data-expand]');
     if (text && button) {
-      const measure = () => { if (text.clientHeight) button.hidden = button.getAttribute('aria-expanded') !== 'true' && text.scrollHeight <= text.clientHeight + 1; };
+      const measure = () => { if (text.clientHeight && !this.descriptionAnimation) button.hidden = button.getAttribute('aria-expanded') !== 'true' && text.scrollHeight <= text.clientHeight + 1; };
       button.addEventListener('click', () => {
         const expanded = button.getAttribute('aria-expanded') !== 'true';
+        const startHeight = text.getBoundingClientRect().height;
+        this.descriptionAnimation?.cancel();
         button.setAttribute('aria-expanded', String(expanded));
-        button.querySelector('span').textContent = expanded ? 'Zwiń' : 'Rozwiń';
-        text.classList.toggle('mp-description--collapsed', !expanded);
+        button.querySelector('span').textContent = expanded ? button.dataset.collapseLabel || 'Zwiń' : button.dataset.expandLabel || 'Rozwiń';
+        text.classList.remove('mp-description--collapsed');
+        const fullHeight = text.scrollHeight;
+        const endHeight = expanded ? fullHeight : Math.min(fullHeight, parseFloat(getComputedStyle(text).lineHeight) * 2);
+        if (reduced()) { text.classList.toggle('mp-description--collapsed', !expanded); this.descriptionAnimation = null; return; }
+        // Match Impact's accordion timing while keeping the text visible during collapse.
+        text.style.overflow = 'hidden';
+        const animation = text.animate({ height: [`${startHeight}px`, `${endHeight}px`] }, { duration: 250, easing: 'ease' });
+        this.descriptionAnimation = animation;
+        animation.finished.then(() => {
+          if (this.descriptionAnimation !== animation) return;
+          text.classList.toggle('mp-description--collapsed', !expanded);
+          text.style.removeProperty('overflow'); this.descriptionAnimation = null; measure();
+        }).catch(() => {});
       }, { signal });
       this.resize = new ResizeObserver(measure); this.resize.observe(text);
       document.fonts.ready.then(() => { if (this.isConnected) measure(); });
     }
   }
-  disconnectedCallback() { this.abort?.abort(); this.resize?.disconnect(); this.atcObserver?.disconnect(); this.stickyObserver?.disconnect(); }
+  disconnectedCallback() { this.abort?.abort(); this.descriptionAnimation?.cancel(); this.resize?.disconnect(); this.atcObserver?.disconnect(); this.stickyObserver?.disconnect(); }
+}
+
+class MonteProductTabs extends Tabs {
+  async _transition(fromPanel, toPanel) {
+    this.nextPanel = toPanel;
+    if (this.switching) return;
+    this.switching = true;
+    try {
+      while (this.nextPanel && this.isConnected) {
+        const target = this.nextPanel; this.nextPanel = null;
+        const current = this.panels.find(panel => !panel.hidden);
+        if (current === target) continue;
+        const before = this.getBoundingClientRect().height;
+        if (current && !reduced()) {
+          this.panelAnimation = timeline([[current, { opacity: [1, 0] }, { duration: .15 }]]);
+          await this.panelAnimation.finished;
+        }
+        this.panels.forEach(panel => { panel.hidden = panel !== target; });
+        const after = this.getBoundingClientRect().height;
+        if (!reduced()) {
+          this.style.overflow = 'hidden';
+          this.panelAnimation = timeline([
+            [this, { height: [`${before}px`, `${after}px`] }, { duration: .25, easing: 'ease', at: 0 }],
+            [target, { opacity: [0, 1], transform: ['translateY(4px)', 'translateY(0)'] }, { duration: .25, at: 0 }]
+          ]);
+          await this.panelAnimation.finished;
+          this.style.removeProperty('height'); this.style.removeProperty('overflow');
+        }
+      }
+    } catch (error) {
+      if (this.isConnected) this.panels.forEach((panel, index) => { panel.hidden = index !== this.selectedIndex; });
+    } finally { this.switching = false; this.style.removeProperty('height'); this.style.removeProperty('overflow'); }
+  }
+  disconnectedCallback() { this.panelAnimation?.cancel(); super.disconnectedCallback(); }
 }
 
 class MonteProductPicker extends Drawer {
@@ -270,6 +318,9 @@ class MonteProductMedia extends HTMLElement {
       }
     } else {
       const maximum = Math.max(0, this.track.scrollWidth - this.track.clientWidth);
+      const navigable = this.items.length > 3 && maximum > 1;
+      this.querySelector('.mp-arrows').hidden = !navigable;
+      this.querySelector('.mp-ugc-progress').hidden = !navigable;
       this.querySelector('[data-ugc-step="-1"]').disabled = this.track.scrollLeft <= 1;
       this.querySelector('[data-ugc-step="1"]').disabled = this.track.scrollLeft >= maximum - 1;
       this.style.setProperty('--ugc-progress', `${Math.min(100, 100 * (this.track.scrollLeft + this.track.clientWidth) / Math.max(1, this.track.scrollWidth))}%`);
@@ -311,6 +362,6 @@ class MonteProductMedia extends HTMLElement {
   }
 }
 
-for (const [name, component] of [['monte-product-picker', MonteProductPicker], ['monte-product-bundle', MonteProductBundle], ['monte-product-media', MonteProductMedia], ['monte-product-hero', MonteProductHero]]) {
+for (const [name, component] of [['monte-product-tabs', MonteProductTabs], ['monte-product-picker', MonteProductPicker], ['monte-product-bundle', MonteProductBundle], ['monte-product-media', MonteProductMedia], ['monte-product-hero', MonteProductHero]]) {
   if (!customElements.get(name)) customElements.define(name, component);
 }

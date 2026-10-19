@@ -41,7 +41,7 @@
 .mp-gallery-thumbs button:after { content:''; position:absolute; bottom:0; height:2px; background:#232e71; left:0; right:0; opacity:0; }
 .mp-gallery-thumbs [aria-current=true]:after { opacity:1; }
 .mp-bundle { display:flex; flex-direction:column; gap:24px; }
-.mp-label { display:flex; gap:8px; font-size:12px; color:rgb(35 46 113/.5); }
+.mp-label { display:flex; gap:8px; font-size:14px; color:rgb(35 46 113/.5); }
 .mp-colors { display:grid; gap:12px; }
 .mp-swatches { display:flex; flex-wrap:wrap; gap:8px; }
 .mp-swatch { display:block; width:56px; height:56px; border:1px solid #dcd6cf; background:#eee7e0; border-radius:50%; overflow:hidden; transition:border-color .2s; }
@@ -62,10 +62,13 @@
 .mp-choice-header--pair [data-option-title] { grid-area:1/2/3; }
 .mp-choice-header--pair .mp-choice-price { grid-area:1/3; font-size:16px; }
 .mp-choice-header--pair .mp-choice-price s { font-size:12px; }
-.mp-choice-header--pair .mp-saving { grid-area:2/3; justify-self:end; font-size:10px; padding:2px 4px; }
-.mp-choice-description { grid-area:3/1/4/-1; text-align:center; font-size:14px; }
-.mp-bundle-ribbon { position:absolute; right:12px; top:-10px; padding:3px 12px; background:#d9a17d; border-radius:0 0 8px 8px; color:#fdfbf9; font:500 12px/1.5 'PP Neue Montreal Mono',monospace; text-transform:uppercase; }
-.mp-bundle-footer { border-top:1px solid #dcd6cf; border-radius:0 0 15px 15px; background:#e3e5f0; text-align:center; font-size:12px; font-weight:600; padding:4px 16px; }
+.mp-choice-header--pair .mp-saving { grid-area:2/3; justify-self:end; font-size:12px; padding:3px 8px; min-height:24px; }
+.mp-choice-description { grid-area:3/1/4/-1; text-align:left; font-size:14px; }
+.mp-bundle-ribbon { position:absolute; right:16px; top:-12px; display:flex; align-items:flex-start; pointer-events:none; }
+.mp-bundle-ribbon>img { flex:none; max-width:none; }
+.mp-bundle-ribbon>img:last-child { transform:scaleX(-1); }
+.mp-bundle-ribbon>span { display:flex; align-items:center; min-height:24px; padding:3px 12px; background:#d9a17d; border-radius:0 0 8px 8px; color:#fdfbf9; font:500 12px/1.5 'PP Neue Montreal Mono',monospace; letter-spacing:-.12px; text-transform:uppercase; }
+.mp-bundle-footer { border-top:1px solid #dcd6cf; border-radius:0 0 15px 15px; background:#e3e5f0; text-align:center; font-size:14px; font-weight:600; padding:4px 16px; }
 .mp-bundle-slots { margin:0 16px; padding:16px 0; border-top:1px dashed #dcd6cf; display:grid; gap:12px; }
 .mp-bundle-slot { display:flex; align-items:center; gap:12px; min-width:0; }
 .mp-slot-picture { width:40px; height:40px; display:grid; place-items:center; flex:none; background:#f8f1e9; border-radius:8px; overflow:hidden; font-size:24px; }
@@ -132,15 +135,15 @@
 .mp-picker::part(body) { height:100%; padding:0; overflow:hidden; }
 .mp-picker::part(header),.mp-picker::part(footer),.mp-picker::part(outside-close-button) { display:none; }
 .mp-picker-shell { height:100%; display:flex; flex-direction:column; }
-.mp-picker header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:20px; }
+.mp-picker header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:20px 20px 8px; }
 .mp-picker h2 { font:500 24px/1.1 var(--heading-font-family); letter-spacing:0; color:inherit; }
 .mp-picker header button { width:32px; height:32px; display:grid; place-items:center; }
-.mp-picker-list { padding:0 20px 20px; overflow:auto; overscroll-behavior:contain; min-height:0; }
-.mp-picker-item { display:grid; grid-template-columns:64px minmax(0,1fr); gap:12px; padding:12px; border-radius:16px; background:#eee7e0; margin-bottom:8px; align-items:center; }
+.mp-picker-list { padding:20px; overflow:auto; overscroll-behavior:contain; min-height:0; }
+.mp-picker-item { display:grid; grid-template-columns:64px minmax(0,1fr); gap:8px 12px; padding:12px; border-radius:16px; background:#eee7e0; margin-bottom:8px; align-items:center; }
 .mp-picker-item>img { border-radius:8px; width:64px; height:64px; object-fit:cover; }
 .mp-picker-item p { font-size:12px; color:#52597e; }
 .mp-picker-item strong { font-size:14px; overflow-wrap:anywhere; }
-.mp-picker .mp-pick { grid-column:1/-1; background:transparent; color:#232e71; }
+.mp-picker .mp-pick { grid-column:1/-1; background:#232e71; color:#fdfbf9; min-height:32px; padding:6px 24px; gap:8px; }
 .mp-lightbox-video { width:100%; height:100%; object-fit:contain; }
 .mp-sticky { display:flex; align-items:center; gap:20px; background:#f8f1e9; color:#232e71; }
 .mp-sticky>span { display:none; font-size:14px; }
@@ -175,13 +178,20 @@
  .mp-picker::part(content) { border-radius:16px 0 0 16px; }
  .mp-picker h2 { font-size:32px; }
  .mp-picker-item { grid-template-columns:64px minmax(0,1fr) auto; }
- .mp-picker .mp-pick { grid-column:auto; }
+ .mp-picker .mp-pick { grid-column:auto; min-height:44px; font-size:14px; }
+ .mp-picker-item { padding:16px; gap:12px; }
+ .mp-picker-item strong { font-size:16px; }
+ .mp-picker-item p { font-size:14px; }
 }
 @media(hover:hover) {
  .mp-swatch:hover { border-color:#232e71; }
  .mp-small-primary:hover,.mp-atc:hover:not(:disabled) { background:#182153; }
- .mp-picker .mp-pick:hover:not(:disabled) { color:#fdfbf9; background:#232e71; }
+ .mp-picker .mp-pick:hover:not(:disabled) { color:#fdfbf9; background:#182153; }
  .mp-faq summary:hover,.mp-expand:hover,.mp-slot-remove:hover { opacity:.75; }
  .mp-arrows button:hover:not(:disabled) { background:#eee7e0; }
 }
 @media(prefers-reduced-motion:reduce) { .mp *, .mp-picker * { scroll-behavior:auto!important; transition:none!important; } }
+
+.mp-pick-plus { width:12px; height:12px; flex:none; display:grid; place-items:center; }
+.mp-pick-plus:before { content:""; width:10.3125px; height:10.3125px; background:currentColor; mask:url("./monte-picker-plus-mobile.svg") center / contain no-repeat; }
+@media(min-width:1000px) { .mp-pick-plus { width:14px; height:14px; } .mp-pick-plus:before { width:12.03125px; height:12.03125px; mask-image:url("./monte-picker-plus-desktop.svg"); } }

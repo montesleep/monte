@@ -1,0 +1,12 @@
+{%- liquid
+  assign display_title = product.title
+  assign parts = product.title | split: ' - '
+  if product.has_only_default_variant and parts.size == 2
+    assign display_title = parts | first
+  endif
+  if format == 'json'
+    echo display_title | json
+  else
+    echo display_title | escape
+  endif
+-%}

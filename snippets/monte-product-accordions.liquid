@@ -1,0 +1,15 @@
+{%- capture rows -%}
+  {%- for i in (1..10) -%}
+    {%- liquid
+      assign prefix = 'row_' | append: i | append: '_'
+      assign enabled_key = prefix | append: 'enabled'
+      assign title_key = prefix | append: 'title'
+      assign content_key = prefix | append: 'content'
+      assign icon_key = prefix | append: 'icon'
+    -%}
+    {%- if block.settings[enabled_key] and block.settings[title_key] != blank -%}
+      <details is="monte-faq-disclosure"><summary>{%- if block.settings[icon_key] != blank -%}{{ block.settings[icon_key] | image_url: width: 48 | image_tag: width: 24, height: 24, loading: 'lazy' }}{%- endif -%}<span>{{ block.settings[title_key] | escape }}</span><img class="mp-faq-toggle" src="{{ 'monte-detail-plus.svg' | asset_url }}" width="20" height="20" alt=""></summary><div class="mp-faq-answer prose">{{ block.settings[content_key] }}</div></details>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if rows != blank -%}<reveal-items margin="0px" {{ block.shopify_attributes }}><monte-faq class="mp-faq">{{ rows }}</monte-faq></reveal-items>{%- elsif request.design_mode -%}<div {{ block.shopify_attributes }}>Enable an accordion row in this block to show product information.</div>{%- endif -%}

@@ -1,296 +1,8 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
       "type": "main-product",
       "blocks": {
-        "judge_me_reviews_preview_badge_DFRH67": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        },
-        "maison_tagline_7wA46d": {
-          "type": "maison-tagline",
-          "settings": {
-            "text": "Jedwab morwowy 22 momme",
-            "desktop_padding_top": 0,
-            "desktop_padding_bottom": 0,
-            "desktop_margin_top": 0,
-            "desktop_margin_bottom": 0,
-            "mobile_padding_top": 0,
-            "mobile_padding_bottom": 0,
-            "mobile_margin_top": 0,
-            "mobile_margin_bottom": 0
-          }
-        },
-        "maison_product_name_3gzmYY": {
-          "type": "maison-product-name",
-          "settings": {
-            "desktop_padding_top": 0,
-            "desktop_padding_bottom": 0,
-            "desktop_margin_top": -15,
-            "desktop_margin_bottom": 0,
-            "mobile_padding_top": 0,
-            "mobile_padding_bottom": 0,
-            "mobile_margin_top": -12,
-            "mobile_margin_bottom": 0
-          }
-        },
-        "maison_rating_6TRbti": {
-          "type": "maison-rating",
-          "disabled": true,
-          "settings": {
-            "rating_text": "<p>Oceniono <strong>4.8</strong>/5 | <strong>700+</strong> zadowolonych klientów</p>",
-            "desktop_padding_top": 0,
-            "desktop_padding_bottom": 0,
-            "desktop_margin_top": -15,
-            "desktop_margin_bottom": 0,
-            "mobile_padding_top": 0,
-            "mobile_padding_bottom": 0,
-            "mobile_margin_top": -12,
-            "mobile_margin_bottom": 0
-          }
-        },
-        "maison_features_hJRyX4": {
-          "type": "maison-features",
-          "settings": {
-            "feature_1": "100% blackout dla całkowitej ciemności",
-            "feature_1_icon": "shopify://shop_images/Check-Circle--Streamline-Sharp_5.svg",
-            "feature_2": "Nie wchłania kosmetyków, zero załamów rano",
-            "feature_2_icon": "shopify://shop_images/Check-Circle--Streamline-Sharp_5.svg",
-            "feature_3": "Bez ucisku na oczy i rzęsy przez całą noc",
-            "feature_3_icon": "shopify://shop_images/Check-Circle--Streamline-Sharp_5.svg",
-            "feature_4": "Rzep zamiast gumki, nie ściska skroni",
-            "feature_4_icon": "shopify://shop_images/Check-Circle--Streamline-Sharp_5.svg",
-            "desktop_padding_top": 0,
-            "desktop_padding_bottom": 0,
-            "desktop_margin_top": 0,
-            "desktop_margin_bottom": 0,
-            "mobile_padding_top": 0,
-            "mobile_padding_bottom": 0,
-            "mobile_margin_top": 0,
-            "mobile_margin_bottom": 0
-          }
-        },
-        "maison_price_7dRbXE": {
-          "type": "maison-price",
-          "settings": {
-            "save_text": "oszczędzasz",
-            "desktop_padding_top": 0,
-            "desktop_padding_bottom": 0,
-            "desktop_margin_top": 0,
-            "desktop_margin_bottom": 0,
-            "mobile_padding_top": 0,
-            "mobile_padding_bottom": 0,
-            "mobile_margin_top": 0,
-            "mobile_margin_bottom": 0
-          }
-        },
-        "separator": {
-          "type": "separator",
-          "settings": {}
-        },
-        "maison_bundle_d9UmU6": {
-          "type": "maison-bundle",
-          "settings": {
-            "color_products": [
-              "champagne-gold-silk-sleep-mask",
-              "classic-black-silk-sleep-mask",
-              "midnight-blue-silk-sleep-mask",
-              "rose-noir-silk-sleep-mask"
-            ],
-            "color_label": "WYBIERZ KOLOR:",
-            "set_label": "WYBIERZ SWÓJ ZESTAW:",
-            "set_label_default": "1 Maska",
-            "each_label": "szt.",
-            "row1_title": "1 Maska",
-            "row1_footer": "",
-            "bundle_2_product": "rose-noir-silk-sleep-mask",
-            "row2_title": "2 Maski",
-            "row2_badge": "DODATKOWE -20%",
-            "row2_save": "Oszczędzasz 117,80 zł",
-            "row2_discount": 10,
-            "row2_tab": "NAJPOPULARNIEJSZY",
-            "row2_footer": "+ Darmowa dostawa",
-            "bundle_3_product": "",
-            "row3_title": "3 Maski",
-            "row3_badge": "DODATKOWE −20%",
-            "row3_save": "Oszczędzasz 258 zł",
-            "row3_discount": 20,
-            "row3_tab": "NAJLEPSZA CENA",
-            "row3_footer": "+ Darmowa dostawa",
-            "popup_title": "Wybierz produkt",
-            "popup_choose_label": "Wybierz",
-            "choose_color_label": "Wybierz kolor maski",
-            "show_stock_bar": false,
-            "stock_label": "Ograniczona dostępność",
-            "stock_percentage": 35,
-            "desktop_padding_top": 0,
-            "desktop_padding_bottom": 0,
-            "desktop_margin_top": 0,
-            "desktop_margin_bottom": 0,
-            "mobile_padding_top": 0,
-            "mobile_padding_bottom": 0,
-            "mobile_margin_top": 0,
-            "mobile_margin_bottom": 0,
-            "popup_products": [],
-            "limited_product": "classic-black-silk-sleep-mask",
-            "limited_label": "Limitowany kolor",
-            "monte_bundle_description": "Dodatkowe 20% rabatu na drugą maskę",
-            "monte_bundle_badge": "KORZYSTNIEJSZY"
-          }
-        },
-        "maison_pay_icons_jGDRtg": {
-          "type": "maison-pay-icons",
-          "settings": {
-            "icon_1": "shopify://shop_images/Visa.svg",
-            "icon_2": "shopify://shop_images/Mastercard.svg",
-            "icon_3": "shopify://shop_images/Przelewy24.svg",
-            "icon_4": "shopify://shop_images/Blik.svg",
-            "desktop_padding_top": 0,
-            "desktop_padding_bottom": 0,
-            "desktop_margin_top": 0,
-            "desktop_margin_bottom": 0,
-            "mobile_padding_top": 0,
-            "mobile_padding_bottom": 0,
-            "mobile_margin_top": 0,
-            "mobile_margin_bottom": 0
-          }
-        },
-        "maison_feature_list_F8icPc": {
-          "type": "maison-feature-list",
-          "settings": {
-            "feature_1_text": "Zamów do 18:00 - wysyłamy dziś",
-            "feature_1_icon": "shopify://shop_images/Package--Streamline-Sharp_2.svg",
-            "feature_2_text": "30-nocna gwarancja zwrotu pieniędzy",
-            "feature_2_icon": "shopify://shop_images/Shipment-Return--Streamline-Sharp_2.svg",
-            "feature_3_text": "Dostawa w 1–2 dni robocze",
-            "feature_3_icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_5.svg",
-            "feature_4_text": "",
-            "feature_5_text": "",
-            "feature_6_text": "",
-            "feature_7_text": "",
-            "desktop_padding_top": 0,
-            "desktop_padding_bottom": 0,
-            "desktop_margin_top": 0,
-            "desktop_margin_bottom": 0,
-            "mobile_padding_top": 0,
-            "mobile_padding_bottom": 0,
-            "mobile_margin_top": 0,
-            "mobile_margin_bottom": 0
-          }
-        },
-        "separator_t7wwf7": {
-          "type": "separator",
-          "settings": {}
-        },
-        "lumen_ugc_gkMKAb": {
-          "type": "lumen-ugc",
-          "disabled": true,
-          "settings": {
-            "title": "Zobacz jak wygląda Monté",
-            "image_1": "shopify://shop_images/UGC_2.png",
-            "image_2": "shopify://shop_images/UGC_3.png",
-            "image_3": "shopify://shop_images/UGC_4.png",
-            "image_4": "shopify://shop_images/UGC_5.png",
-            "image_5": "shopify://shop_images/UGC_1.png",
-            "desktop_padding_top": 0,
-            "desktop_padding_bottom": 0,
-            "desktop_margin_top": 0,
-            "desktop_margin_bottom": 0,
-            "mobile_padding_top": 0,
-            "mobile_padding_bottom": 0,
-            "mobile_margin_top": 0,
-            "mobile_margin_bottom": 0
-          }
-        },
-        "maison_content_card_GTNTiX": {
-          "type": "maison-content-card",
-          "settings": {
-            "title": "Zasypiaj szybciej. **Budź się wypoczęta.**",
-            "body": "Monté eliminuje rozpraszające światło i otula twarz 100% jedwabiem, dając mózgowi sygnał, że czas na głęboki sen.",
-            "feature_1": "Pełny blackout, całkowita ciemność od pierwszej nocy",
-            "feature_2": "Jedwab 22 momme który nie zostawia załamów i nie wchłania kosmetyków",
-            "feature_3": "Regulowany rzep trzyma się pewnie przez całą noc, bez ucisku na skronie",
-            "desktop_padding_top": 0,
-            "desktop_padding_bottom": 0,
-            "desktop_margin_top": 0,
-            "desktop_margin_bottom": 0,
-            "mobile_padding_top": 0,
-            "mobile_padding_bottom": 0,
-            "mobile_margin_top": 0,
-            "mobile_margin_bottom": 0
-          }
-        },
-        "lumen_faq_GBcUxh": {
-          "type": "lumen-faq",
-          "settings": {
-            "faq_1_icon": "shopify://shop_images/Information-Circle--Streamline-Sharp_1.svg",
-            "faq_1_title": "MATERIAŁY I DOPASOWANIE",
-            "faq_1_text": "<p>Maska wykonana jest w <strong>100% z jedwabiu mulberry klasy 6A, 22 momme</strong>, z jedwabnym wypełnieniem. Certyfikat OEKO-TEX Standard 100 potwierdza, że tkanina i wypełnienie zostały wyprodukowane bez użycia szkodliwych substancji chemicznych.</p><p>Jedwab naturalnie reguluje temperaturę ciała i odprowadza wilgoć, dzięki czemu maska jest komfortowa zarówno latem, jak i zimą. Hipoalergiczna struktura włókna jest przyjazna dla wrażliwej skóry, rzęs i przedłużeń.</p><p><strong>Wymiary:</strong> 12 cm wysokości x 70 cm długości. Regulowany rzep dopasowuje się do każdego obwodu głowy bez ucisku na skronie ani za uszami.</p>",
-            "faq_2_icon": "shopify://shop_images/Hotel-Laundry--Streamline-Sharp.svg",
-            "faq_2_title": "PIELĘGNACJA",
-            "faq_2_text": "<p><strong>Aby jedwab zachował swoją miękkość na lata:</strong></p><p><strong>Pranie ręczne</strong> w zimnej wodzie <strong>(maks. 30°C)</strong> z delikatnym detergentem do jedwabiu. Nie używaj wybielacza ani środków na bazie enzymów. Nie wyżymaj, delikatnie odciśnij nadmiar wody miękkim ręcznikiem. Susz na płasko, z dala od bezpośredniego słońca. Nie wkładaj do suszarki bębnowej.</p><p>Po wysuszeniu maska może stracić część swojej puszystości. Aby przywrócić jej pierwotną miękkość, przeprasuj ją żelazkiem w trybie pary od wewnętrznej strony, trzymając żelazko kilka centymetrów od tkaniny.</p>",
-            "faq_3_icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_6.svg",
-            "faq_3_title": "DOSTAWA I ZWROTY",
-            "faq_3_text": "<p><strong>Dostawa</strong><br/><br/>Wysyłamy wyłącznie <strong>kurierem InPost.</strong> Zamówienia złożone do 18:00 w dni robocze wysyłamy tego samego dnia. Czas dostawy: 1-2 dni robocze. Darmowa dostawa od 250 zł.</p><p><strong>Zwroty</strong><br/><br/><strong>Oferujemy 30-nocną gwarancję satysfakcji.</strong> Jeśli po otrzymaniu maski zmienisz zdanie, masz 30 nocy na jej odesłanie w oryginalnym stanie: nieużywaną, nieprananą, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p><p>Ze względu na higieniczny charakter produktu, nie przyjmujemy zwrotów masek noszących ślady użytkowania. Jeśli masz jakiekolwiek pytania przed zakupem, napisz do nas przed złożeniem zamówienia, chętnie pomożemy w wyborze.</p>",
-            "faq_4_title": "",
-            "faq_4_text": "",
-            "faq_5_title": "",
-            "faq_5_text": "",
-            "faq_6_title": "",
-            "faq_6_text": "",
-            "faq_7_title": "",
-            "faq_7_text": "",
-            "faq_8_title": "",
-            "faq_8_text": "",
-            "faq_9_title": "",
-            "faq_9_text": "",
-            "faq_10_title": "",
-            "faq_10_text": "",
-            "desktop_padding_top": 0,
-            "desktop_padding_bottom": 0,
-            "desktop_margin_top": 0,
-            "desktop_margin_bottom": 0,
-            "mobile_padding_top": 0,
-            "mobile_padding_bottom": 0,
-            "mobile_margin_top": 0,
-            "mobile_margin_bottom": 0
-          }
-        },
-        "lumen_stat_wmiw8K": {
-          "type": "lumen-stat",
-          "disabled": true,
-          "settings": {
-            "stat_label_1": "BLOKOWANIE ŚWIATŁA",
-            "stat_value_1": "WYSOKI BLACKOUT",
-            "stat_filled_1": 5,
-            "stat_label_2": "Komfort oczu",
-            "stat_value_2": "Bezuciskowy",
-            "stat_filled_2": 4,
-            "stat_label_3": "STABILNOŚĆ",
-            "stat_value_3": "PEWNE TRZYMANIE",
-            "stat_filled_3": 4,
-            "stat_label_4": "",
-            "stat_value_4": "",
-            "stat_filled_4": 5,
-            "stat_label_5": "",
-            "stat_value_5": "",
-            "stat_filled_5": 5,
-            "image": "{{ product.metafields.custom.silk_image.value }}",
-            "desktop_margin_top": 0,
-            "desktop_margin_bottom": 0,
-            "mobile_margin_top": 0,
-            "mobile_margin_bottom": 0
-          }
-        },
         "monte_highlight_1": {
           "type": "monte_highlight",
           "settings": {
@@ -315,112 +27,102 @@
             "text": "<strong>Rzep zamiast gumki</strong>, nie ściska skroni"
           }
         },
-        "monte_benefit_1": {
-          "type": "monte_benefit",
+        "monte_bundle": {
+          "type": "monte_bundle",
           "settings": {
-            "text": "100% jedwab morwowy oraz wypełnienie"
+            "color_products": [
+              "champagne-gold-silk-sleep-mask",
+              "classic-black-silk-sleep-mask",
+              "midnight-blue-silk-sleep-mask",
+              "rose-noir-silk-sleep-mask"
+            ],
+            "row1_title": "1 Maska",
+            "row2_title": "2 Maski",
+            "row2_discount": 10,
+            "row2_footer": "+ Darmowa dostawa",
+            "popup_title": "Wybierz produkt",
+            "popup_choose_label": "Wybierz",
+            "choose_color_label": "Wybierz kolor maski",
+            "popup_products": [],
+            "limited_product": "classic-black-silk-sleep-mask",
+            "limited_label": "Limitowany kolor",
+            "monte_bundle_description": "Dodatkowe 20% rabatu na drugą maskę",
+            "monte_bundle_badge": "KORZYSTNIEJSZY"
           }
         },
-        "monte_benefit_2": {
-          "type": "monte_benefit",
+        "monte_trust": {
+          "type": "monte_trust",
           "settings": {
-            "text": "Oddychająca, nie przegrzewa się w nocy"
+            "monte_trust_1_text": "30 dni na zwrot",
+            "monte_trust_1_icon": "shopify://shop_images/Shipment-Return--Streamline-Sharp_2.svg",
+            "monte_trust_2_text": "Dostawa w 1–2 dni robocze",
+            "monte_trust_2_icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_5.svg",
+            "monte_trust_3_text": "Polska firma",
+            "monte_payment_1": "shopify://shop_images/Visa.svg",
+            "monte_payment_2": "shopify://shop_images/Mastercard.svg",
+            "monte_payment_3": "shopify://shop_images/Przelewy24.svg",
+            "monte_payment_4": "shopify://shop_images/Blik.svg"
           }
         },
-        "monte_benefit_3": {
-          "type": "monte_benefit",
+        "monte_tabs": {
+          "type": "monte_tabs",
           "settings": {
-            "text": "Lekka i miękka w dotyku"
+            "benefit_1": "100% jedwab morwowy oraz wypełnienie",
+            "benefit_2": "Oddychająca, nie przegrzewa się w nocy",
+            "benefit_3": "Lekka i miękka w dotyku",
+            "benefit_4": "Hipoalergiczna, dla wrażliwej skóry"
           }
         },
-        "monte_benefit_4": {
-          "type": "monte_benefit",
+        "monte_ugc_carousel": {
+          "type": "monte_ugc_carousel",
           "settings": {
-            "text": "Hipoalergiczna, dla wrażliwej skóry"
+            "title": "Ty + Monté",
+            "show_play": true,
+            "item_1_enabled": true,
+            "item_1_media_type": "image",
+            "item_1_alt": "Monté — jedwabna maska do spania",
+            "item_1_play_overlay": true,
+            "item_1_design_image": "1",
+            "item_2_enabled": true,
+            "item_2_media_type": "image",
+            "item_2_alt": "Monté — jedwabna maska do spania",
+            "item_2_play_overlay": true,
+            "item_2_design_image": "2",
+            "item_3_enabled": true,
+            "item_3_media_type": "image",
+            "item_3_alt": "Monté — jedwabna maska do spania",
+            "item_3_play_overlay": true,
+            "item_3_design_image": "3"
           }
         },
-        "monte_ugc_1": {
-          "type": "monte_ugc",
+        "monte_accordions": {
+          "type": "monte_accordions",
           "settings": {
-            "media_type": "image",
-            "alt": "Monté — jedwabna maska do spania",
-            "play_overlay": true,
-            "design_image": "1"
-          }
-        },
-        "monte_ugc_2": {
-          "type": "monte_ugc",
-          "settings": {
-            "media_type": "image",
-            "alt": "Monté — jedwabna maska do spania",
-            "play_overlay": true,
-            "design_image": "2"
-          }
-        },
-        "monte_ugc_3": {
-          "type": "monte_ugc",
-          "settings": {
-            "media_type": "image",
-            "alt": "Monté — jedwabna maska do spania",
-            "play_overlay": true,
-            "design_image": "3"
-          }
-        },
-        "monte_accordion_1": {
-          "type": "monte_accordion",
-          "settings": {
-            "title": "Materiały i dopasowanie",
-            "icon": "shopify://shop_images/Information-Circle--Streamline-Sharp_1.svg",
-            "content": "<p>Maska wykonana jest w <strong>100% z jedwabiu mulberry klasy 6A, 22 momme</strong>, z jedwabnym wypełnieniem. Certyfikat OEKO-TEX Standard 100 potwierdza, że tkanina i wypełnienie zostały wyprodukowane bez użycia szkodliwych substancji chemicznych.</p><p>Jedwab naturalnie reguluje temperaturę ciała i odprowadza wilgoć, dzięki czemu maska jest komfortowa zarówno latem, jak i zimą. Hipoalergiczna struktura włókna jest przyjazna dla wrażliwej skóry, rzęs i przedłużeń.</p><p><strong>Wymiary:</strong> 12 cm wysokości x 70 cm długości. Regulowany rzep dopasowuje się do każdego obwodu głowy bez ucisku na skronie ani za uszami.</p>"
-          }
-        },
-        "monte_accordion_2": {
-          "type": "monte_accordion",
-          "settings": {
-            "title": "Pielęgnacja",
-            "icon": "shopify://shop_images/Hotel-Laundry--Streamline-Sharp.svg",
-            "content": "<p><strong>Aby jedwab zachował swoją miękkość na lata:</strong></p><p><strong>Pranie ręczne</strong> w zimnej wodzie <strong>(maks. 30°C)</strong> z delikatnym detergentem do jedwabiu. Nie używaj wybielacza ani środków na bazie enzymów. Nie wyżymaj, delikatnie odciśnij nadmiar wody miękkim ręcznikiem. Susz na płasko, z dala od bezpośredniego słońca. Nie wkładaj do suszarki bębnowej.</p><p>Po wysuszeniu maska może stracić część swojej puszystości. Aby przywrócić jej pierwotną miękkość, przeprasuj ją żelazkiem w trybie pary od wewnętrznej strony, trzymając żelazko kilka centymetrów od tkaniny.</p>"
-          }
-        },
-        "monte_accordion_3": {
-          "type": "monte_accordion",
-          "settings": {
-            "title": "Dostawa i zwroty",
-            "icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_6.svg",
-            "content": "<p><strong>Dostawa</strong><br/><br/>Wysyłamy wyłącznie <strong>kurierem InPost.</strong> Zamówienia złożone do 18:00 w dni robocze wysyłamy tego samego dnia. Czas dostawy: 1-2 dni robocze. Darmowa dostawa od 250 zł.</p><p><strong>Zwroty</strong><br/><br/><strong>Oferujemy 30-nocną gwarancję satysfakcji.</strong> Jeśli po otrzymaniu maski zmienisz zdanie, masz 30 nocy na jej odesłanie w oryginalnym stanie: nieużywaną, nieprananą, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p><p>Ze względu na higieniczny charakter produktu, nie przyjmujemy zwrotów masek noszących ślady użytkowania. Jeśli masz jakiekolwiek pytania przed zakupem, napisz do nas przed złożeniem zamówienia, chętnie pomożemy w wyborze.</p>"
+            "row_1_enabled": true,
+            "row_1_title": "Materiały i dopasowanie",
+            "row_1_icon": "shopify://shop_images/Information-Circle--Streamline-Sharp_1.svg",
+            "row_1_content": "<p>Maska wykonana jest w <strong>100% z jedwabiu mulberry klasy 6A, 22 momme</strong>, z jedwabnym wypełnieniem. Certyfikat OEKO-TEX Standard 100 potwierdza, że tkanina i wypełnienie zostały wyprodukowane bez użycia szkodliwych substancji chemicznych.</p><p>Jedwab naturalnie reguluje temperaturę ciała i odprowadza wilgoć, dzięki czemu maska jest komfortowa zarówno latem, jak i zimą. Hipoalergiczna struktura włókna jest przyjazna dla wrażliwej skóry, rzęs i przedłużeń.</p><p><strong>Wymiary:</strong> 12 cm wysokości x 70 cm długości. Regulowany rzep dopasowuje się do każdego obwodu głowy bez ucisku na skronie ani za uszami.</p>",
+            "row_2_enabled": true,
+            "row_2_title": "Pielęgnacja",
+            "row_2_icon": "shopify://shop_images/Hotel-Laundry--Streamline-Sharp.svg",
+            "row_2_content": "<p><strong>Aby jedwab zachował swoją miękkość na lata:</strong></p><p><strong>Pranie ręczne</strong> w zimnej wodzie <strong>(maks. 30°C)</strong> z delikatnym detergentem do jedwabiu. Nie używaj wybielacza ani środków na bazie enzymów. Nie wyżymaj, delikatnie odciśnij nadmiar wody miękkim ręcznikiem. Susz na płasko, z dala od bezpośredniego słońca. Nie wkładaj do suszarki bębnowej.</p><p>Po wysuszeniu maska może stracić część swojej puszystości. Aby przywrócić jej pierwotną miękkość, przeprasuj ją żelazkiem w trybie pary od wewnętrznej strony, trzymając żelazko kilka centymetrów od tkaniny.</p>",
+            "row_3_enabled": true,
+            "row_3_title": "Dostawa i zwroty",
+            "row_3_icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_6.svg",
+            "row_3_content": "<p><strong>Dostawa</strong><br/><br/>Wysyłamy wyłącznie <strong>kurierem InPost.</strong> Zamówienia złożone do 18:00 w dni robocze wysyłamy tego samego dnia. Czas dostawy: 1-2 dni robocze. Darmowa dostawa od 250 zł.</p><p><strong>Zwroty</strong><br/><br/><strong>Oferujemy 30-nocną gwarancję satysfakcji.</strong> Jeśli po otrzymaniu maski zmienisz zdanie, masz 30 nocy na jej odesłanie w oryginalnym stanie: nieużywaną, nieprananą, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p><p>Ze względu na higieniczny charakter produktu, nie przyjmujemy zwrotów masek noszących ślady użytkowania. Jeśli masz jakiekolwiek pytania przed zakupem, napisz do nas przed złożeniem zamówienia, chętnie pomożemy w wyborze.</p>"
           }
         }
       },
       "block_order": [
-        "judge_me_reviews_preview_badge_DFRH67",
-        "maison_tagline_7wA46d",
-        "maison_product_name_3gzmYY",
-        "maison_rating_6TRbti",
-        "maison_features_hJRyX4",
-        "maison_price_7dRbXE",
-        "separator",
-        "maison_bundle_d9UmU6",
-        "maison_pay_icons_jGDRtg",
-        "maison_feature_list_F8icPc",
-        "separator_t7wwf7",
-        "lumen_ugc_gkMKAb",
-        "maison_content_card_GTNTiX",
-        "lumen_faq_GBcUxh",
-        "lumen_stat_wmiw8K",
         "monte_highlight_1",
         "monte_highlight_2",
         "monte_highlight_3",
         "monte_highlight_4",
-        "monte_benefit_1",
-        "monte_benefit_2",
-        "monte_benefit_3",
-        "monte_benefit_4",
-        "monte_ugc_1",
-        "monte_ugc_2",
-        "monte_ugc_3",
-        "monte_accordion_1",
-        "monte_accordion_2",
-        "monte_accordion_3"
+        "monte_bundle",
+        "monte_trust",
+        "monte_tabs",
+        "monte_ugc_carousel",
+        "monte_accordions"
       ],
       "settings": {
         "monte_product_design": true,
@@ -431,7 +133,6 @@
         "monte_promo_text": "Oferta ograniczona czasowo: -30% na wszystkie produkty Monté.",
         "monte_promo_bg": "#f8f1e9",
         "monte_promo_color": "#232e71",
-        "monte_ugc_title": "Ty + Monté",
         "full_width": true,
         "show_fixed_add_to_cart": true,
         "desktop_media_width": 65,

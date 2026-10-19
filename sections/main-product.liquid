@@ -3975,25 +3975,432 @@ quick buy information in a template, that will be extracted in JS, but ensure it
       ]
     },
     {
-      "type": "monte_benefit",
-      "name": "Monté tab benefit",
+      "type": "monte_bundle",
+      "name": "Monté — Bundle",
+      "limit": 1,
       "settings": [
         {
+          "type": "product_list",
+          "id": "color_products",
+          "label": "Color variants",
+          "info": "Each product represents a color option. The active product is highlighted."
+        },
+        {
           "type": "text",
-          "id": "text",
-          "label": "Text",
-          "default": "Product benefit"
+          "id": "row1_title",
+          "label": "Title",
+          "default": "1 Maska"
+        },
+        {
+          "type": "text",
+          "id": "row2_title",
+          "label": "Title",
+          "default": "2 Maski"
+        },
+        {
+          "type": "range",
+          "id": "row2_discount",
+          "label": "Two-product display discount (%)",
+          "info": "Visual discount on the combined product prices. Configure the same discount in Every Possible Discount; this setting does not create a checkout discount.",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "%",
+          "default": 10
+        },
+        {
+          "type": "text",
+          "id": "row2_footer",
+          "label": "Footer text",
+          "default": "+ Darmowa dostawa"
+        },
+        {
+          "type": "text",
+          "id": "popup_title",
+          "label": "Popup title",
+          "default": "Wybierz produkt"
+        },
+        {
+          "type": "text",
+          "id": "popup_choose_label",
+          "label": "Choose button label",
+          "default": "Wybierz"
+        },
+        {
+          "type": "text",
+          "id": "choose_color_label",
+          "label": "Choose color button label",
+          "default": "Wybierz kolor maski"
+        },
+        {
+          "type": "product_list",
+          "id": "popup_products",
+          "label": "Product picker products",
+          "limit": 20,
+          "info": "Uses the color products above when empty. Unavailable variants cannot be selected."
+        },
+        {
+          "type": "product",
+          "id": "limited_product",
+          "label": "Limited color product"
+        },
+        {
+          "type": "text",
+          "id": "limited_label",
+          "label": "Limited color label",
+          "default": "Limitowany kolor"
+        },
+        {
+          "type": "text",
+          "id": "monte_bundle_description",
+          "label": "Two-product description",
+          "default": "Dodatkowe 20% rabatu na drugą maskę"
+        },
+        {
+          "type": "text",
+          "id": "monte_bundle_badge",
+          "label": "Two-product badge",
+          "default": "KORZYSTNIEJSZY"
         }
       ]
     },
     {
-      "type": "monte_ugc",
-      "name": "Monté UGC media",
-      "limit": 9,
+      "type": "monte_trust",
+      "name": "Monté — Trust & payments",
+      "limit": 1,
       "settings": [
         {
+          "type": "paragraph",
+          "content": "Edit trust badges, shipping text and payment icons for this product template. Clear an item text or image to hide it."
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_bg",
+          "label": "Badge background",
+          "default": "#E3E5F0"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_text",
+          "label": "Badge text",
+          "default": "#232E71"
+        },
+        {
+          "type": "text",
+          "id": "monte_trust_1_text",
+          "label": "Trust item 1 text",
+          "default": "30 dni na zwrot"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_trust_1_icon",
+          "label": "Trust item 1 icon"
+        },
+        {
+          "type": "text",
+          "id": "monte_trust_2_text",
+          "label": "Trust item 2 text",
+          "default": "Dostawa w 1–2 dni robocze"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_trust_2_icon",
+          "label": "Trust item 2 icon"
+        },
+        {
+          "type": "text",
+          "id": "monte_trust_3_text",
+          "label": "Trust item 3 text",
+          "default": "Polska firma"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_trust_3_icon",
+          "label": "Trust item 3 icon"
+        },
+        {
+          "type": "text",
+          "id": "monte_trust_4_text",
+          "label": "Trust item 4 text"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_trust_4_icon",
+          "label": "Trust item 4 icon"
+        },
+        {
+          "type": "text",
+          "id": "monte_trust_5_text",
+          "label": "Trust item 5 text"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_trust_5_icon",
+          "label": "Trust item 5 icon"
+        },
+        {
+          "type": "text",
+          "id": "monte_trust_6_text",
+          "label": "Trust item 6 text"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_trust_6_icon",
+          "label": "Trust item 6 icon"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "monte_shipping_text",
+          "label": "Shipping text",
+          "default": "<strong>Zamów do 18:00</strong>, wysyłamy dziś"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_shipping_icon",
+          "label": "Shipping icon"
+        },
+        {
+          "type": "color",
+          "id": "monte_shipping_color",
+          "label": "Shipping text color",
+          "default": "#232E71"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_payment_1",
+          "label": "Payment icon 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_payment_2",
+          "label": "Payment icon 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_payment_3",
+          "label": "Payment icon 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_payment_4",
+          "label": "Payment icon 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_payment_5",
+          "label": "Payment icon 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_payment_6",
+          "label": "Payment icon 6"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_payment_7",
+          "label": "Payment icon 7"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_payment_8",
+          "label": "Payment icon 8"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_payment_9",
+          "label": "Payment icon 9"
+        },
+        {
+          "type": "image_picker",
+          "id": "monte_payment_10",
+          "label": "Payment icon 10"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_1_bg",
+          "label": "Trust item 1 background override"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_1_color",
+          "label": "Trust item 1 text color override"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_2_bg",
+          "label": "Trust item 2 background override"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_2_color",
+          "label": "Trust item 2 text color override"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_3_bg",
+          "label": "Trust item 3 background override"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_3_color",
+          "label": "Trust item 3 text color override"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_4_bg",
+          "label": "Trust item 4 background override"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_4_color",
+          "label": "Trust item 4 text color override"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_5_bg",
+          "label": "Trust item 5 background override"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_5_color",
+          "label": "Trust item 5 text color override"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_6_bg",
+          "label": "Trust item 6 background override"
+        },
+        {
+          "type": "color",
+          "id": "monte_trust_6_color",
+          "label": "Trust item 6 text color override"
+        },
+        {
+          "type": "color",
+          "id": "monte_shipping_bg",
+          "label": "Shipping background"
+        }
+      ]
+    },
+    {
+      "type": "monte_tabs",
+      "name": "Monté — Product tabs",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Descriptions use product metafields custom.zalety_description and custom.specyfikacja. Fill or clear the fields below to add or remove benefit bullets."
+        },
+        {
+          "type": "text",
+          "id": "benefits_label",
+          "label": "Benefits tab label",
+          "default": "Zalety"
+        },
+        {
+          "type": "text",
+          "id": "specification_label",
+          "label": "Specification tab label",
+          "default": "Specyfikacja"
+        },
+        {
+          "type": "text",
+          "id": "expand_label",
+          "label": "Expand label",
+          "default": "Rozwiń"
+        },
+        {
+          "type": "text",
+          "id": "collapse_label",
+          "label": "Collapse label",
+          "default": "Zwiń"
+        },
+        {
+          "type": "text",
+          "id": "benefit_1",
+          "label": "Benefit 1"
+        },
+        {
+          "type": "text",
+          "id": "benefit_2",
+          "label": "Benefit 2"
+        },
+        {
+          "type": "text",
+          "id": "benefit_3",
+          "label": "Benefit 3"
+        },
+        {
+          "type": "text",
+          "id": "benefit_4",
+          "label": "Benefit 4"
+        },
+        {
+          "type": "text",
+          "id": "benefit_5",
+          "label": "Benefit 5"
+        },
+        {
+          "type": "text",
+          "id": "benefit_6",
+          "label": "Benefit 6"
+        },
+        {
+          "type": "text",
+          "id": "benefit_7",
+          "label": "Benefit 7"
+        },
+        {
+          "type": "text",
+          "id": "benefit_8",
+          "label": "Benefit 8"
+        },
+        {
+          "type": "text",
+          "id": "benefit_9",
+          "label": "Benefit 9"
+        },
+        {
+          "type": "text",
+          "id": "benefit_10",
+          "label": "Benefit 10"
+        }
+      ]
+    },
+    {
+      "type": "monte_ugc_carousel",
+      "name": "Monté — UGC carousel",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Ty + Monté"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_play",
+          "label": "Show play buttons",
+          "default": true
+        },
+        {
+          "type": "paragraph",
+          "content": "Enable up to 9 media items. Navigation hides when 3 or fewer items are shown. Each item also has its own play-button toggle."
+        },
+        {
+          "type": "header",
+          "content": "Media 1"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_1_enabled",
+          "label": "Show this media item",
+          "default": false
+        },
+        {
           "type": "select",
-          "id": "media_type",
+          "id": "item_1_media_type",
           "label": "Media type",
           "options": [
             {
@@ -4009,28 +4416,596 @@ quick buy information in a template, that will be extracted in JS, but ensure it
         },
         {
           "type": "image_picker",
-          "id": "image",
+          "id": "item_1_image",
           "label": "Image"
         },
         {
           "type": "video",
-          "id": "video",
+          "id": "item_1_video",
           "label": "Video"
         },
         {
           "type": "text",
-          "id": "alt",
+          "id": "item_1_alt",
           "label": "Accessible description"
         },
         {
           "type": "checkbox",
-          "id": "play_overlay",
+          "id": "item_1_play_overlay",
           "label": "Show play overlay",
           "default": true
         },
         {
           "type": "select",
-          "id": "design_image",
+          "id": "item_1_design_image",
+          "label": "Fallback design image",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "1",
+              "label": "Design image 1"
+            },
+            {
+              "value": "2",
+              "label": "Design image 2"
+            },
+            {
+              "value": "3",
+              "label": "Design image 3"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "header",
+          "content": "Media 2"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_2_enabled",
+          "label": "Show this media item",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "item_2_media_type",
+          "label": "Media type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_2_image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "item_2_video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "item_2_alt",
+          "label": "Accessible description"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_2_play_overlay",
+          "label": "Show play overlay",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "item_2_design_image",
+          "label": "Fallback design image",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "1",
+              "label": "Design image 1"
+            },
+            {
+              "value": "2",
+              "label": "Design image 2"
+            },
+            {
+              "value": "3",
+              "label": "Design image 3"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "header",
+          "content": "Media 3"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_3_enabled",
+          "label": "Show this media item",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "item_3_media_type",
+          "label": "Media type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_3_image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "item_3_video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "item_3_alt",
+          "label": "Accessible description"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_3_play_overlay",
+          "label": "Show play overlay",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "item_3_design_image",
+          "label": "Fallback design image",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "1",
+              "label": "Design image 1"
+            },
+            {
+              "value": "2",
+              "label": "Design image 2"
+            },
+            {
+              "value": "3",
+              "label": "Design image 3"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "header",
+          "content": "Media 4"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_4_enabled",
+          "label": "Show this media item",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "item_4_media_type",
+          "label": "Media type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_4_image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "item_4_video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "item_4_alt",
+          "label": "Accessible description"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_4_play_overlay",
+          "label": "Show play overlay",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "item_4_design_image",
+          "label": "Fallback design image",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "1",
+              "label": "Design image 1"
+            },
+            {
+              "value": "2",
+              "label": "Design image 2"
+            },
+            {
+              "value": "3",
+              "label": "Design image 3"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "header",
+          "content": "Media 5"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_5_enabled",
+          "label": "Show this media item",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "item_5_media_type",
+          "label": "Media type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_5_image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "item_5_video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "item_5_alt",
+          "label": "Accessible description"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_5_play_overlay",
+          "label": "Show play overlay",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "item_5_design_image",
+          "label": "Fallback design image",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "1",
+              "label": "Design image 1"
+            },
+            {
+              "value": "2",
+              "label": "Design image 2"
+            },
+            {
+              "value": "3",
+              "label": "Design image 3"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "header",
+          "content": "Media 6"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_6_enabled",
+          "label": "Show this media item",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "item_6_media_type",
+          "label": "Media type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_6_image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "item_6_video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "item_6_alt",
+          "label": "Accessible description"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_6_play_overlay",
+          "label": "Show play overlay",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "item_6_design_image",
+          "label": "Fallback design image",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "1",
+              "label": "Design image 1"
+            },
+            {
+              "value": "2",
+              "label": "Design image 2"
+            },
+            {
+              "value": "3",
+              "label": "Design image 3"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "header",
+          "content": "Media 7"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_7_enabled",
+          "label": "Show this media item",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "item_7_media_type",
+          "label": "Media type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_7_image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "item_7_video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "item_7_alt",
+          "label": "Accessible description"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_7_play_overlay",
+          "label": "Show play overlay",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "item_7_design_image",
+          "label": "Fallback design image",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "1",
+              "label": "Design image 1"
+            },
+            {
+              "value": "2",
+              "label": "Design image 2"
+            },
+            {
+              "value": "3",
+              "label": "Design image 3"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "header",
+          "content": "Media 8"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_8_enabled",
+          "label": "Show this media item",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "item_8_media_type",
+          "label": "Media type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_8_image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "item_8_video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "item_8_alt",
+          "label": "Accessible description"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_8_play_overlay",
+          "label": "Show play overlay",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "item_8_design_image",
+          "label": "Fallback design image",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "1",
+              "label": "Design image 1"
+            },
+            {
+              "value": "2",
+              "label": "Design image 2"
+            },
+            {
+              "value": "3",
+              "label": "Design image 3"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "header",
+          "content": "Media 9"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_9_enabled",
+          "label": "Show this media item",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "item_9_media_type",
+          "label": "Media type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_9_image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "item_9_video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "item_9_alt",
+          "label": "Accessible description"
+        },
+        {
+          "type": "checkbox",
+          "id": "item_9_play_overlay",
+          "label": "Show play overlay",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "item_9_design_image",
           "label": "Fallback design image",
           "options": [
             {
@@ -4055,23 +5030,272 @@ quick buy information in a template, that will be extracted in JS, but ensure it
       ]
     },
     {
-      "type": "monte_accordion",
-      "name": "Monté bottom accordion",
+      "type": "monte_accordions",
+      "name": "Monté — Accordions",
+      "limit": 1,
       "settings": [
         {
+          "type": "paragraph",
+          "content": "Enable rows to add them and disable rows to remove them. All rows start collapsed; opening a row closes the previous one."
+        },
+        {
+          "type": "header",
+          "content": "Accordion 1"
+        },
+        {
+          "type": "checkbox",
+          "id": "row_1_enabled",
+          "label": "Show this accordion",
+          "default": false
+        },
+        {
           "type": "text",
-          "id": "title",
+          "id": "row_1_title",
           "label": "Title",
           "default": "Product information"
         },
         {
           "type": "image_picker",
-          "id": "icon",
+          "id": "row_1_icon",
           "label": "Leading icon"
         },
         {
           "type": "richtext",
-          "id": "content",
+          "id": "row_1_content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Accordion 2"
+        },
+        {
+          "type": "checkbox",
+          "id": "row_2_enabled",
+          "label": "Show this accordion",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "row_2_title",
+          "label": "Title",
+          "default": "Product information"
+        },
+        {
+          "type": "image_picker",
+          "id": "row_2_icon",
+          "label": "Leading icon"
+        },
+        {
+          "type": "richtext",
+          "id": "row_2_content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Accordion 3"
+        },
+        {
+          "type": "checkbox",
+          "id": "row_3_enabled",
+          "label": "Show this accordion",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "row_3_title",
+          "label": "Title",
+          "default": "Product information"
+        },
+        {
+          "type": "image_picker",
+          "id": "row_3_icon",
+          "label": "Leading icon"
+        },
+        {
+          "type": "richtext",
+          "id": "row_3_content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Accordion 4"
+        },
+        {
+          "type": "checkbox",
+          "id": "row_4_enabled",
+          "label": "Show this accordion",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "row_4_title",
+          "label": "Title",
+          "default": "Product information"
+        },
+        {
+          "type": "image_picker",
+          "id": "row_4_icon",
+          "label": "Leading icon"
+        },
+        {
+          "type": "richtext",
+          "id": "row_4_content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Accordion 5"
+        },
+        {
+          "type": "checkbox",
+          "id": "row_5_enabled",
+          "label": "Show this accordion",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "row_5_title",
+          "label": "Title",
+          "default": "Product information"
+        },
+        {
+          "type": "image_picker",
+          "id": "row_5_icon",
+          "label": "Leading icon"
+        },
+        {
+          "type": "richtext",
+          "id": "row_5_content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Accordion 6"
+        },
+        {
+          "type": "checkbox",
+          "id": "row_6_enabled",
+          "label": "Show this accordion",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "row_6_title",
+          "label": "Title",
+          "default": "Product information"
+        },
+        {
+          "type": "image_picker",
+          "id": "row_6_icon",
+          "label": "Leading icon"
+        },
+        {
+          "type": "richtext",
+          "id": "row_6_content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Accordion 7"
+        },
+        {
+          "type": "checkbox",
+          "id": "row_7_enabled",
+          "label": "Show this accordion",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "row_7_title",
+          "label": "Title",
+          "default": "Product information"
+        },
+        {
+          "type": "image_picker",
+          "id": "row_7_icon",
+          "label": "Leading icon"
+        },
+        {
+          "type": "richtext",
+          "id": "row_7_content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Accordion 8"
+        },
+        {
+          "type": "checkbox",
+          "id": "row_8_enabled",
+          "label": "Show this accordion",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "row_8_title",
+          "label": "Title",
+          "default": "Product information"
+        },
+        {
+          "type": "image_picker",
+          "id": "row_8_icon",
+          "label": "Leading icon"
+        },
+        {
+          "type": "richtext",
+          "id": "row_8_content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Accordion 9"
+        },
+        {
+          "type": "checkbox",
+          "id": "row_9_enabled",
+          "label": "Show this accordion",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "row_9_title",
+          "label": "Title",
+          "default": "Product information"
+        },
+        {
+          "type": "image_picker",
+          "id": "row_9_icon",
+          "label": "Leading icon"
+        },
+        {
+          "type": "richtext",
+          "id": "row_9_content",
+          "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Accordion 10"
+        },
+        {
+          "type": "checkbox",
+          "id": "row_10_enabled",
+          "label": "Show this accordion",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "row_10_title",
+          "label": "Title",
+          "default": "Product information"
+        },
+        {
+          "type": "image_picker",
+          "id": "row_10_icon",
+          "label": "Leading icon"
+        },
+        {
+          "type": "richtext",
+          "id": "row_10_content",
           "label": "Content"
         }
       ]
@@ -4086,7 +5310,7 @@ quick buy information in a template, that will be extracted in JS, but ensure it
     },
     {
       "type": "paragraph",
-      "content": "Monté layout uses the blocks named Monté below. Trust badges and payments are shared in Theme settings > Monté product trust. Product media comes from the Shopify product."
+      "content": "Edit the bundle, product tabs, trust badges, UGC carousel and accordions in their separate Monté blocks. Product media comes from the Shopify product."
     },
     {
       "type": "checkbox",
@@ -4134,12 +5358,6 @@ quick buy information in a template, that will be extracted in JS, but ensure it
       "id": "monte_promo_color",
       "label": "Promotion text",
       "default": "#232E71"
-    },
-    {
-      "type": "text",
-      "id": "monte_ugc_title",
-      "label": "UGC heading",
-      "default": "Ty + Monté"
     },
     {
       "type": "checkbox",

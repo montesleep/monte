@@ -3,19 +3,7 @@
 <script type="module" src="{{ 'monte-faq.js' | asset_url }}"></script>
 {%- liquid
   assign variant = product.selected_or_first_available_variant
-  assign bundle = section.blocks | where: 'type', 'maison-bundle' | first
   assign highlights = section.blocks | where: 'type', 'monte_highlight'
-  assign benefits = section.blocks | where: 'type', 'monte_benefit'
-  assign benefit_count = 0
-  for benefit in benefits
-    if benefit.settings.text != blank
-      assign benefit_count = benefit_count | plus: 1
-    endif
-  endfor
-  assign ugc = section.blocks | where: 'type', 'monte_ugc'
-  assign questions = section.blocks | where: 'type', 'monte_accordion'
-  assign description = product.metafields.custom.zalety_description
-  assign specification = product.metafields.custom.specyfikacja
 -%}
 <monte-product-hero class="mp" data-product-id="{{ product.id }}" data-section="{{ section.id }}">
   <div class="mp-layout">
@@ -46,7 +34,7 @@
     <div class="mp-info">
       <reveal-items class="mp-intro" margin="0px">
         {%- if section.settings.monte_show_rating -%}<div class="mp-rating">{% render 'monte-social-rating', rating: settings.monte_social_rating %}{%- if shop.metafields.custom.rating_text_social != blank -%}<span>{{ shop.metafields.custom.rating_text_social.value | escape }}</span>{%- endif -%}</div>{%- endif -%}
-        <h1 class="mp-title">{{ product.title | escape }}</h1>
+        <h1 class="mp-title">{% render 'monte-product-display-title', product: product %}</h1>
         {%- if highlights.size > 0 -%}<ul class="mp-benefits">{%- for block in highlights -%}<li {{ block.shopify_attributes }}>{% render 'monte-product-check' %}<span>{{ block.settings.text }}</span></li>{%- endfor -%}</ul>{%- endif -%}
         <div class="mp-price" data-main-price><strong>{{ variant.price | money }}</strong>{%- if variant.compare_at_price > variant.price -%}<s>{{ variant.compare_at_price | money }}</s><span class="mp-saving">−{{ variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round }}%</span>{%- endif -%}</div>
         {%- if section.settings.monte_show_promo -%}<div class="mp-promo" style="--promo-bg:{{ section.settings.monte_promo_bg }};--promo-color:{{ section.settings.monte_promo_color }}">
@@ -54,50 +42,16 @@
           <div><strong>{{ section.settings.monte_promo_title | escape }}</strong><p>{{ section.settings.monte_promo_text | escape }}</p></div><img class="mp-promo-mark" src="{{ 'monte-pdp-promo-logo.svg' | asset_url }}" width="99" height="99" alt="">
         </div>{%- endif -%}
       </reveal-items>
-      {%- render 'monte-product-bundle', product: product, block: bundle, section: section -%}
-      {%- render 'monte-product-trust' -%}
-      {%- if description != blank or benefit_count > 0 or specification != blank -%}
-        <reveal-items class="mp-tabs-reveal" margin="0px">
-          <x-tabs class="mp-tabs">
-            <template><style>:host{display:block} .titles{display:flex;gap:16px;border-bottom:1px solid #DCD6CF}slot[name=title]{display:contents}::slotted([slot=title]){flex:1}::slotted([hidden]){display:none!important}</style><div class="titles" role="tablist"><slot name="title"></slot></div><slot name="content"></slot></template>
-            {%- if description != blank or benefit_count > 0 -%}
-              <button type="button" slot="title">Zalety</button>
-              <div slot="content" class="mp-tab-panel">
-                {%- if description != blank -%}<div><div class="mp-description mp-description--collapsed prose" id="PdpDescription-{{ section.id }}" data-description>{%- if description.type == 'rich_text_field' -%}{{ description | metafield_tag }}{%- else -%}{{ description.value | escape | newline_to_br }}{%- endif -%}</div><button type="button" class="mp-expand" data-expand aria-expanded="false" aria-controls="PdpDescription-{{ section.id }}" hidden><span>Rozwiń</span>{% render 'icon', icon: 'chevron-bottom', width: 10 %}</button></div>{%- endif -%}
-                {%- if benefit_count > 0 -%}<ul class="mp-benefits mp-benefits--tab">{%- for block in benefits -%}{%- if block.settings.text == blank -%}{%- continue -%}{%- endif -%}<li {{ block.shopify_attributes }}>{% render 'monte-product-check' %}<span>{{ block.settings.text | escape }}</span></li>{%- endfor -%}</ul>{%- endif -%}
-              </div>
-            {%- endif -%}
-            {%- if specification != blank -%}<button type="button" slot="title">Specyfikacja</button><div slot="content" class="mp-tab-panel mp-specification prose">{%- if specification.type == 'rich_text_field' -%}{{ specification | metafield_tag }}{%- else -%}{{ specification.value | escape | newline_to_br }}{%- endif -%}</div>{%- endif -%}
-          </x-tabs>
-        </reveal-items>
-      {%- endif -%}
-      {%- if ugc.size > 0 -%}
-        <reveal-items margin="0px"><monte-product-media class="mp-ugc">
-          <div class="mp-ugc-header"><h2>{{ section.settings.monte_ugc_title | escape }}</h2><div class="mp-arrows"><button type="button" data-ugc-step="-1" aria-label="Poprzednie materiały" disabled>{% render 'icon', icon: 'chevron-left', width: 16 %}</button><button type="button" data-ugc-step="1" aria-label="Następne materiały">{% render 'icon', icon: 'chevron-right', width: 16 %}</button></div></div>
-          <div class="mp-ugc-track" data-media-track tabindex="0" aria-label="{{ section.settings.monte_ugc_title | escape }}">
-            {%- for block in ugc -%}
-              {%- liquid
-                assign media = block.settings.image
-                assign video = nil
-                if block.settings.media_type == 'video'
-                  assign video = block.settings.video
-                endif
-                assign fallback = block.settings.design_image
-              -%}
-              {%- if media != blank or video != blank or fallback != 'none' and fallback != blank -%}
-                <button type="button" class="mp-ugc-item" data-lightbox-item aria-label="{{ block.settings.alt | default: section.settings.monte_ugc_title | escape }} — {{ forloop.index }}" {{ block.shopify_attributes }}>
-                  {%- if block.settings.media_type == 'video' and video != blank -%}{{ video | video_tag: autoplay: false, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', image_size: '600x' }}
-                  {%- elsif media -%}{{ media | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '240,480,800,1200', sizes: '(min-width: 1000px) 15vw, 30vw' }}
-                  {%- else -%}<img src="{{ 'monte-pdp-ugc-' | append: fallback | append: '.jpg' | asset_url }}" width="896" height="1200" loading="lazy" alt="{{ block.settings.alt | escape }}">{%- endif -%}
-                  {%- if block.settings.play_overlay -%}<span class="mp-play"><img src="{{ 'monte-pdp-play.svg' | asset_url }}" width="24" height="24" alt=""></span>{%- endif -%}
-                </button>
-              {%- endif -%}
-            {%- endfor -%}
-          </div><div class="mp-ugc-progress" aria-hidden="true"><span></span></div>
-        </monte-product-media></reveal-items>
-      {%- endif -%}
-      {%- if questions.size > 0 -%}<reveal-items margin="0px"><monte-faq class="mp-faq">{%- for block in questions -%}<details is="monte-faq-disclosure" {{ block.shopify_attributes }}><summary>{%- if block.settings.icon != blank -%}{{ block.settings.icon | image_url: width: 48 | image_tag: width: 24, height: 24, loading: 'lazy' }}{%- endif -%}<span>{{ block.settings.title | escape }}</span><img class="mp-faq-toggle" src="{{ 'monte-detail-plus.svg' | asset_url }}" width="20" height="20" alt=""></summary><div class="mp-faq-answer prose">{{ block.settings.content }}</div></details>{%- endfor -%}</monte-faq></reveal-items>{%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'monte_bundle' -%}{% render 'monte-product-bundle', product: product, block: block, section: section %}
+          {%- when 'monte_trust' -%}{% render 'monte-product-trust', product: product, block: block, section: section %}
+          {%- when 'monte_tabs' -%}{% render 'monte-product-tabs', product: product, block: block, section: section %}
+          {%- when 'monte_ugc_carousel' -%}{% render 'monte-product-ugc', product: product, block: block, section: section %}
+          {%- when 'monte_accordions' -%}{% render 'monte-product-accordions', product: product, block: block, section: section %}
+        {%- endcase -%}
+      {%- endfor -%}
     </div>
   </div>
-  {%- if section.settings.show_fixed_add_to_cart -%}<div class="product-quick-add mp-sticky" aria-hidden="true"><span>{{ product.title | escape }}</span><button type="button" class="mp-atc" data-sticky-atc tabindex="-1">{{ 'product.general.add_to_cart_button' | t }}</button></div>{%- endif -%}
+  {%- if section.settings.show_fixed_add_to_cart -%}<div class="product-quick-add mp-sticky" aria-hidden="true"><span>{% render 'monte-product-display-title', product: product %}</span><button type="button" class="mp-atc" data-sticky-atc tabindex="-1">{{ 'product.general.add_to_cart_button' | t }}</button></div>{%- endif -%}
 </monte-product-hero>

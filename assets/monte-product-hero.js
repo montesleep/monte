@@ -8,6 +8,19 @@ class MonteProductHero extends HTMLElement {
   connectedCallback() {
     this.abort = new AbortController();
     const signal = this.abort.signal;
+    const sticky = this.querySelector('.mp-sticky'), atc = this.querySelector('[data-bundle-atc]');
+    if (sticky && atc) {
+      const proxy = sticky.querySelector('button');
+      proxy.addEventListener('click', () => atc.click(), { signal });
+      const sync = () => { proxy.textContent = atc.querySelector('[data-atc-label]').textContent; proxy.disabled = atc.disabled; };
+      this.atcObserver = new MutationObserver(sync); this.atcObserver.observe(atc, { attributes: true, childList: true, subtree: true }); sync();
+      let passed = false, footerVisible = false; const footer = document.querySelector('.footer');
+      this.stickyObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.target === atc) passed = entry.boundingClientRect.bottom < 0; else footerVisible = entry.isIntersecting; });
+        const visible = passed && !footerVisible; sticky.classList.toggle('is-visible', visible); sticky.setAttribute('aria-hidden', String(!visible)); proxy.tabIndex = visible ? 0 : -1;
+      });
+      this.stickyObserver.observe(atc); if (footer) this.stickyObserver.observe(footer);
+    }
     const text = this.querySelector('[data-description]'), button = this.querySelector('[data-expand]');
     if (text && button) {
       const measure = () => { if (text.clientHeight) button.hidden = button.getAttribute('aria-expanded') !== 'true' && text.scrollHeight <= text.clientHeight + 1; };
@@ -21,7 +34,7 @@ class MonteProductHero extends HTMLElement {
       document.fonts.ready.then(() => { if (this.isConnected) measure(); });
     }
   }
-  disconnectedCallback() { this.abort?.abort(); this.resize?.disconnect(); }
+  disconnectedCallback() { this.abort?.abort(); this.resize?.disconnect(); this.atcObserver?.disconnect(); this.stickyObserver?.disconnect(); }
 }
 
 class MonteProductPicker extends Drawer {
@@ -276,7 +289,12 @@ class MonteProductMedia extends HTMLElement {
       // Reuse Impact's PhotoSwipe instance, UI, zoom controls and pagination.
       Object.getOwnPropertyDescriptor(ProductGallery.prototype, 'photoswipe').get.call(this);
       this._photoswipe.on('beforeOpen', () => { this.lightboxOpen = true; this.syncVideos(); });
-      this._photoswipe.on('contentActivate', ({ content }) => { content.element?.querySelector('video')?.play().catch(() => {}); });
+      const play = ({ content }) => {
+        const video = content.element?.querySelector('video');
+        if (video && content.slide?.isActive) video.play().catch(() => { video.muted = true; video.play().catch(() => {}); });
+      };
+      this._photoswipe.on('contentActivate', play);
+      this._photoswipe.on('contentAppend', play);
       this._photoswipe.on('contentDeactivate', ({ content }) => content.element?.querySelector('video')?.pause());
       this._photoswipe.on('close', () => { this._photoswipe.pswp?.element?.querySelectorAll('video').forEach(video => video.pause()); });
       this._photoswipe.on('destroy', () => { this.lightboxOpen = false; this.pauseUntil = performance.now() + 10000; this.syncVideos(); });

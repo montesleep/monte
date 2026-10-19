@@ -99,4 +99,5 @@
       {%- if questions.size > 0 -%}<reveal-items margin="0px"><monte-faq class="mp-faq">{%- for block in questions -%}<details is="monte-faq-disclosure" {{ block.shopify_attributes }}><summary>{%- if block.settings.icon != blank -%}{{ block.settings.icon | image_url: width: 48 | image_tag: width: 24, height: 24, loading: 'lazy' }}{%- endif -%}<span>{{ block.settings.title | escape }}</span><img class="mp-faq-toggle" src="{{ 'monte-detail-plus.svg' | asset_url }}" width="20" height="20" alt=""></summary><div class="mp-faq-answer prose">{{ block.settings.content }}</div></details>{%- endfor -%}</monte-faq></reveal-items>{%- endif -%}
     </div>
   </div>
+  {%- if section.settings.show_fixed_add_to_cart -%}<div class="product-quick-add mp-sticky" aria-hidden="true"><span>{{ product.title | escape }}</span><button type="button" class="mp-atc" data-sticky-atc tabindex="-1">{{ 'product.general.add_to_cart_button' | t }}</button></div>{%- endif -%}
 </monte-product-hero>

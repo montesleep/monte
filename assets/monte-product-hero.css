@@ -139,6 +139,10 @@
 .mp-picker-item strong { font-size:14px; overflow-wrap:anywhere; }
 .mp-picker .mp-pick { grid-column:1/-1; background:transparent; color:#232e71; }
 .mp-lightbox-video { width:100%; height:100%; object-fit:contain; }
+@media(max-width:999px) {
+ .mp-trust-pills>span:nth-child(2) { order:3; }
+ .mp-trust-pills>span:nth-child(n+4) { order:4; }
+}
 @media(min-width:1000px) {
  .mp { padding:0 40px 80px; font-size:16px; }
  .mp-layout { grid-template-columns:minmax(0,760fr) minmax(0,520fr); gap:80px; }

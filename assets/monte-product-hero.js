@@ -80,7 +80,10 @@ class MonteProductBundle extends HTMLElement {
     this.drawer = document.getElementById(this.dataset.drawer);
     this.button = this.querySelector('[data-bundle-atc]'); this.error = this.querySelector('.mp-bundle-error');
     this.addEventListener('change', event => {
-      if (event.target.matches('input[type=radio]')) { this.count = Number(event.target.value); this.render(); }
+      if (event.target.matches('input[type=radio]')) {
+        const previous = this.count; this.count = Number(event.target.value); this.render();
+        if (previous !== this.count) this.animateSlots();
+      }
       if (event.target.matches('[data-current-variant]')) {
         const v = this.data.variants.find(v => v.id === Number(event.target.value));
         const previousId = this.current.id;
@@ -115,9 +118,19 @@ class MonteProductBundle extends HTMLElement {
   }
   disconnectedCallback() {
     this.abort?.abort();
+    this.slotAnimation?.cancel();
     if (this.drawer?.parentElement === document.body) this.drawer.remove();
   }
   pick(index) { this.activeSlot = index; this.drawer.show(); }
+  animateSlots() {
+    const slots = this.querySelector('.mp-bundle-slots'); if (!slots || reduced()) return;
+    this.slotAnimation?.cancel();
+    const expanded = this.count === 2;
+    slots.hidden = false; slots.style.overflow = 'hidden';
+    const height = `${slots.offsetHeight}px`;
+    this.slotAnimation = slots.animate({ height: expanded ? ['0px', height] : [height, '0px'], opacity: expanded ? [0, 1] : [1, 0] }, { duration: 250, easing: 'ease' });
+    this.slotAnimation.finished.then(() => { slots.hidden = this.count !== 2; slots.style.removeProperty('overflow'); }).catch(() => {});
+  }
   updatePrice() {
     const price = this.closest('monte-product-hero').querySelector('[data-main-price]');
     price.replaceChildren(); const current = document.createElement('strong'); current.textContent = money(this.current.price); price.append(current);
@@ -213,7 +226,7 @@ class MonteProductMedia extends HTMLElement {
     document.addEventListener('visibilitychange', () => { this.lastTick = performance.now(); this.syncVideos(); }, { signal });
     this.addEventListener('shopify:block:select', event => { const item = event.target.closest('[data-lightbox-item]'); if (item) this.track.scrollTo({ left: item.offsetLeft - this.track.offsetLeft, behavior: 'smooth' }); }, { signal });
     this.resize = new ResizeObserver(() => this.update()); this.resize.observe(this.track);
-    this.update(); this.tick();
+    this.update(); if (this.gallery && this.hasAttribute('data-rotate')) this.tick();
   }
   disconnectedCallback() {
     this.abort?.abort(); this.resize?.disconnect(); this.visibility?.disconnect(); cancelAnimationFrame(this.frame);

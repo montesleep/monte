@@ -1,0 +1,7 @@
+{%- liquid
+  assign label = item.metafields.custom.color_label.value
+  if label == blank and item.title contains ' - '
+    assign label = item.title | split: ' - ' | last
+  endif
+  echo label
+-%}

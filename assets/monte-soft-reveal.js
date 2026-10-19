@@ -8,7 +8,7 @@ const atomic = [
   '.mp-ugc-track', '.mp-rating', '.mp-price', '.monte-reviews__rating',
   '.monte-collection-hero__rating', '.mfooter__wordmark', '.mfooter__socials',
   '.mfooter__payments', '.monte-story__media', '.monte-details__media',
-  'details', 'form', '[data-monte-reveal]'
+  'monte-pdp-tabs', 'details', 'form', '[data-monte-reveal]'
 ].join(',');
 const candidates = [
   atomic, 'h1', 'h2', 'h3', 'h4', 'p', 'ul', 'ol', 'blockquote',
@@ -21,7 +21,7 @@ const excluded = [
   'x-slideshow', '[reveal-js]', '[reveal-on-scroll="true"]',
   '.drawer', '.popover', 'dialog', '[role="dialog"]', '.mb-dialog', '.pswp',
   '.mp-sticky', '.product-quick-add', '.mb-sticky', '.mb-summary-desktop',
-  '.monte-mission__motion', '[data-reveal-item]'
+  '.monte-mission__motion', '[data-reveal-item]', '.mp-bundle-slots'
 ].join(',');
 const watched = new Set();
 const revealed = new WeakSet();
@@ -34,35 +34,44 @@ function finish(element) {
   active.delete(element);
 }
 
-function reveal(element, delay) {
+function settle(element, state = 'visible') {
   watched.delete(element);
   observer.unobserve(element);
   revealed.add(element);
-  element.dataset.monteRevealed = '';
+  element.dataset.monteRevealed = state;
+}
+
+function reveal(element) {
+  if (revealed.has(element) || active.has(element)) return;
+  settle(element);
+  const rect = element.getBoundingClientRect();
   const style = getComputedStyle(element);
-  if (reducedMotion.matches || window.Shopify?.designMode || style.opacity === '0' ||
-      style.display === 'contents' || element.contains(document.activeElement)) return;
-  // Individual translate leaves card zoom, button scale, and component transforms intact.
+  // Start below the viewport. Never hide content the visitor can already see,
+  // including fast-scroll arrivals, restored scroll positions, and AJAX updates.
+  if (rect.top < window.innerHeight || reducedMotion.matches || window.Shopify?.designMode ||
+      style.opacity === '0' || style.display === 'contents' ||
+      element.contains(document.activeElement)) return;
+  element.dataset.monteRevealed = 'animated';
+  // Individual translate leaves button scale and card hover transforms intact.
   const animation = element.animate([
-    { opacity: 0, translate: '0 12px' },
+    { opacity: 0, translate: '0 8px' },
     { opacity: style.opacity, translate: style.translate === 'none' ? '0 0' : style.translate }
-  ], { duration: 600, delay, easing: 'cubic-bezier(.22, 1, .36, 1)', fill: 'backwards' });
+  ], { duration: 500, easing: 'cubic-bezier(.22, 1, .36, 1)' });
   active.set(element, animation);
-  animation.finished.then(() => finish(element), () => active.delete(element));
+  const release = () => {
+    if (active.get(element) === animation) active.delete(element);
+  };
+  animation.finished.then(release, release);
 }
 
 const observer = new IntersectionObserver(entries => {
-  const groups = new Map();
   for (const entry of entries) {
-    if (!entry.isIntersecting) continue;
     const element = entry.target;
-    if (!element.isConnected || !element.getClientRects().length) continue;
-    const section = element.closest('.shopify-section') || element.parentElement;
-    const index = groups.get(section) || 0;
-    groups.set(section, index + 1);
-    reveal(element, Math.min(index * 50, 150));
+    if (!entry.isIntersecting || revealed.has(element) || !element.isConnected ||
+        !element.getClientRects().length) continue;
+    reveal(element);
   }
-}, { threshold: 0, rootMargin: '0px 0px -16px 0px' });
+}, { threshold: 0, rootMargin: '0px 0px 96px 0px' });
 
 function register(element) {
   if (revealed.has(element) || watched.has(element) || !element.closest('#main') ||
@@ -72,6 +81,12 @@ function register(element) {
   if (element.matches('picture, img, video')) {
     const rect = element.getBoundingClientRect();
     if (rect.width < 100 || rect.height < 80) return;
+  }
+  const rect = element.getBoundingClientRect();
+  // Hidden panels keep their own transition. Already-visible content stays visible.
+  if (!element.getClientRects().length || rect.top < window.innerHeight) {
+    settle(element);
+    return;
   }
   watched.add(element);
   observer.observe(element);

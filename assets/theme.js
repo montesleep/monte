@@ -473,6 +473,8 @@ var RevealItems = class extends HTMLElement {
 _RevealItems_instances = new WeakSet();
 reveal_fn = function() {
   this.style.opacity = "1";
+  // Recheck after insertion: AJAX fragments can be constructed outside #main.
+  if (window.Shopify?.designMode || (document.documentElement.hasAttribute("data-monte-soft-reveal") && this.closest("#main") && !this.closest(".drawer, .popover, dialog, .mb-dialog"))) return;
   animate2(
     this.hasAttribute("selector") ? this.querySelectorAll(this.getAttribute("selector")) : this.children,
     { opacity: [0, 1], transform: ["translateY(15px)", "translateY(0)"] },

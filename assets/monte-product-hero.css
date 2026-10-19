@@ -164,7 +164,7 @@
  .mp-gallery-thumbs button { flex:0 0 auto; }
  .mp-gallery-thumbs img { width:64px; height:64px; }
  .mp-gallery-navigation { left:auto; right:20px; bottom:20px; transform:none; }
- .mp-choice-header--pair { grid-template-columns:16px auto minmax(0,1fr) auto; gap:4px 12px; }
+ .mp-choice-header--pair { grid-template-columns:16px auto minmax(0,1fr) auto; gap:4px 8px; }
  .mp-choice-header--pair input { grid-area:1/1; }
  .mp-choice-header--pair [data-option-title] { grid-area:1/2; }
  .mp-choice-header--pair .mp-saving { grid-area:1/3; justify-self:start; max-width:100%; white-space:normal; overflow-wrap:anywhere; font-size:12px; padding:3px 8px; }

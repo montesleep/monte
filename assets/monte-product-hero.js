@@ -11,7 +11,8 @@ class MonteProductHero extends HTMLElement {
     const sticky = this.querySelector('.mp-sticky'), atc = this.querySelector('[data-bundle-atc]');
     if (sticky && atc) {
       const button = sticky.querySelector('[data-sticky-atc]');
-      const bundle = this.querySelector('monte-product-bundle');
+      const variants = JSON.parse(sticky.querySelector('[data-sticky-variants]').textContent);
+      const form = sticky.querySelector('form');
       const error = sticky.querySelector('.mp-sticky-error');
       const desktop = matchMedia('(min-width: 1000px)');
       const updateVisibility = () => {
@@ -20,43 +21,34 @@ class MonteProductHero extends HTMLElement {
         sticky.classList.toggle('is-visible', visible);
         sticky.setAttribute('aria-hidden', String(!visible));
         sticky.inert = !visible;
-        const root = document.documentElement;
-        root.classList.toggle('monte-sticky-mobile-visible', visible && !desktop.matches);
-        root.style.setProperty('--monte-sticky-height', `${sticky.getBoundingClientRect().height}px`);
       };
       this.stickyObserver = new IntersectionObserver(updateVisibility);
       this.stickyObserver.observe(atc);
       this.stickyObserver.observe(this);
       this.stickyResize = new ResizeObserver(updateVisibility);
       this.stickyResize.observe(this);
-      this.stickyResize.observe(sticky);
       desktop.addEventListener('change', updateVisibility, { signal });
       window.addEventListener('resize', updateVisibility, { signal });
       updateVisibility();
-      const syncSelection = () => {
-        if (!bundle?.current) return;
-        const { price, compare } = bundle.selectionPrices;
-        button.disabled = bundle.button.disabled;
-        button.setAttribute('aria-busy', String(Boolean(bundle.busy)));
-        sticky.querySelector('[data-sticky-label]').textContent = bundle.querySelector('[data-atc-label]').textContent;
-        sticky.querySelector('[data-sticky-price]').textContent = money(price);
-        const crossed = sticky.querySelector('[data-sticky-compare]');
+      this.addEventListener('change', event => {
+        if (!event.target.matches('[data-current-variant]')) return;
+        const variant = variants.find(item => item.id === Number(event.target.value));
+        if (!variant) return;
+        form.elements.namedItem('id').value = variant.id;
+        button.disabled = !variant.available;
+        sticky.querySelector('[data-sticky-label]').textContent = variant.available ? button.dataset.addLabel : button.dataset.soldOutLabel;
+        sticky.querySelector('[data-sticky-price]').textContent = money(variant.price);
+        const compare = sticky.querySelector('[data-sticky-compare]');
         const discount = sticky.querySelector('[data-sticky-discount]');
-        const onSale = compare > price;
-        crossed.hidden = discount.hidden = !onSale;
-        crossed.textContent = money(compare);
-        discount.textContent = onSale ? `−${Math.round((compare - price) * 100 / compare)}%` : '';
-        const selected = bundle.count === 2 ? bundle.slots.filter(Boolean) : [bundle.current];
-        const color = sticky.querySelector('.mp-sticky-color');
-        if (color) color.textContent = `Kolor: ${selected.map(item => item.color).filter(Boolean).join(' + ')}`;
+        const onSale = variant.compare_at_price > variant.price;
+        compare.hidden = discount.hidden = !onSale;
+        compare.textContent = money(variant.compare_at_price || 0);
+        discount.textContent = onSale ? `−${Math.round((variant.compare_at_price - variant.price) * 100 / variant.compare_at_price)}%` : '';
         const image = sticky.querySelector('.mp-sticky-image');
-        if (image && selected[0]?.image) { image.src = selected[0].image; image.removeAttribute('srcset'); }
-        error.textContent = bundle.error.textContent;
-        error.hidden = bundle.error.hidden;
-      };
-      this.addEventListener('monte:bundle-change', syncSelection, { signal });
-      button.addEventListener('click', () => bundle.addToCart(), { signal });
-      syncSelection();
+        if (image && variant.featured_image?.src) { image.src = variant.featured_image.src; image.removeAttribute('srcset'); }
+      }, { signal });
+      form.addEventListener('submit', () => { error.hidden = true; }, { signal });
+      form.addEventListener('cart:error', event => { error.textContent = event.detail.error; error.hidden = false; }, { signal });
     }
     const text = this.querySelector('[data-description]'), button = this.querySelector('[data-expand]');
     if (text && button) {
@@ -85,7 +77,7 @@ class MonteProductHero extends HTMLElement {
       document.fonts.ready.then(() => { if (this.isConnected) measure(); });
     }
   }
-  disconnectedCallback() { this.abort?.abort(); this.descriptionAnimation?.cancel(); this.resize?.disconnect(); this.stickyObserver?.disconnect(); this.stickyResize?.disconnect(); document.documentElement.classList.remove('monte-sticky-mobile-visible'); document.documentElement.style.removeProperty('--monte-sticky-height'); }
+  disconnectedCallback() { this.abort?.abort(); this.descriptionAnimation?.cancel(); this.resize?.disconnect(); this.stickyObserver?.disconnect(); this.stickyResize?.disconnect(); }
 }
 
 class MontePdpTabs extends Tabs {
@@ -229,14 +221,6 @@ class MonteProductBundle extends HTMLElement {
     this.slotAnimation = slots.animate({ height: expanded ? ['0px', height] : [height, '0px'], opacity: expanded ? [0, 1] : [1, 0] }, { duration: 250, easing: 'ease' });
     this.slotAnimation.finished.then(() => { slots.hidden = this.count !== 2; slots.style.removeProperty('overflow'); }).catch(() => {});
   }
-  get selectionPrices() {
-    if (this.count === 1) return { price: this.current.price, compare: this.current.compare };
-    // Match the main bundle estimate while an unfilled slot awaits selection.
-    const compare = this.slots.reduce((sum, item) => sum + (item?.price ?? this.current.price), 0);
-    const discount = Math.min(100, Math.max(0, Number(this.dataset.discount) || 0));
-    return { price: Math.round(compare * (1 - discount / 100)), compare };
-  }
-  notifySelection() { this.dispatchEvent(new CustomEvent('monte:bundle-change', { bubbles: true })); }
   updatePrice() {
     const price = this.closest('monte-product-hero').querySelector('[data-main-price]');
     price.replaceChildren(); const current = document.createElement('strong'); current.textContent = money(this.current.price); price.append(current);
@@ -274,13 +258,11 @@ class MonteProductBundle extends HTMLElement {
     this.querySelector('[data-atc-label]').textContent = unavailable ? 'Wyprzedane' : incomplete ? this.querySelector('[data-pick-slot]').textContent : 'Dodaj do koszyka';
     this.querySelector('.mp-basket').hidden = incomplete || unavailable;
     this.button.disabled = unavailable || Boolean(this.busy); this.error.hidden = true;
-    this.notifySelection();
   }
   async addToCart() {
     if (this.busy || this.button.disabled) return;
     if (this.count === 2 && this.slots.some(item => !item)) { this.pick(this.slots.findIndex(item => !item)); return; }
     this.busy = true; this.button.disabled = true; this.button.setAttribute('aria-busy', 'true'); this.error.hidden = true;
-    this.notifySelection();
     let added = false;
     try {
       const sections = ['variant-added'];
@@ -301,7 +283,7 @@ class MonteProductBundle extends HTMLElement {
       this.error.textContent = added ? 'Produkty zostały dodane. Otwórz koszyk, aby sprawdzić jego zawartość.' : error.message;
       this.error.hidden = false;
       if (added) document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
-    } finally { this.busy = false; this.button.disabled = false; this.button.removeAttribute('aria-busy'); this.notifySelection(); }
+    } finally { this.busy = false; this.button.disabled = false; this.button.removeAttribute('aria-busy'); }
   }
 }
 

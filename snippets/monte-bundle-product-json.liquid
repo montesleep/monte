@@ -1,0 +1,2 @@
+{%- assign v = item.selected_or_first_available_variant -%}
+{"id":{{ v.id | json }},"productId":{{ item.id | json }},"title":{{ item.title | json }},"price":{{ v.price | json }},"compare":{{ v.compare_at_price | default: 0 | json }},"available":{{ v.available | json }},"image":{{ item.featured_image | image_url: width: 160 | json }},"color":{{ item.metafields.custom.color_label.value | default: v.title | replace: 'Default Title', '' | json }},"url":{{ item.url | json }}}

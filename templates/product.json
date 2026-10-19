@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -285,6 +276,105 @@
             "mobile_margin_top": 0,
             "mobile_margin_bottom": 0
           }
+        },
+        "monte_highlight_1": {
+          "type": "monte_highlight",
+          "settings": {
+            "text": "<strong>100% blackout</strong> dla całkowitej ciemności"
+          }
+        },
+        "monte_highlight_2": {
+          "type": "monte_highlight",
+          "settings": {
+            "text": "<strong>Nie wchłania kosmetyków</strong>, zero załamów rano"
+          }
+        },
+        "monte_highlight_3": {
+          "type": "monte_highlight",
+          "settings": {
+            "text": "<strong>Bez ucisku na oczy</strong> i rzęsy przez całą noc"
+          }
+        },
+        "monte_highlight_4": {
+          "type": "monte_highlight",
+          "settings": {
+            "text": "<strong>Rzep zamiast gumki</strong>, nie ściska skroni"
+          }
+        },
+        "monte_benefit_1": {
+          "type": "monte_benefit",
+          "settings": {
+            "text": "100% jedwab morwowy oraz wypełnienie"
+          }
+        },
+        "monte_benefit_2": {
+          "type": "monte_benefit",
+          "settings": {
+            "text": "Oddychająca, nie przegrzewa się w nocy"
+          }
+        },
+        "monte_benefit_3": {
+          "type": "monte_benefit",
+          "settings": {
+            "text": "Lekka i miękka w dotyku"
+          }
+        },
+        "monte_benefit_4": {
+          "type": "monte_benefit",
+          "settings": {
+            "text": "Hipoalergiczna, dla wrażliwej skóry"
+          }
+        },
+        "monte_ugc_1": {
+          "type": "monte_ugc",
+          "settings": {
+            "media_type": "image",
+            "play_overlay": true,
+            "design_image": "1",
+            "alt": "Monté — jedwabna maska do spania"
+          }
+        },
+        "monte_ugc_2": {
+          "type": "monte_ugc",
+          "settings": {
+            "media_type": "image",
+            "play_overlay": true,
+            "design_image": "2",
+            "alt": "Monté — jedwabna maska do spania"
+          }
+        },
+        "monte_ugc_3": {
+          "type": "monte_ugc",
+          "settings": {
+            "media_type": "image",
+            "play_overlay": true,
+            "design_image": "3",
+            "alt": "Monté — jedwabna maska do spania"
+          }
+        },
+        "monte_accordion_1": {
+          "type": "monte_accordion",
+          "settings": {
+            "title": "Materiały i dopasowanie",
+            "content": "<p>Maska wykonana jest w <strong>100% z jedwabiu mulberry klasy 6A, 22 momme</strong>, z jedwabnym wypełnieniem. Certyfikat OEKO-TEX Standard 100 potwierdza, że tkanina i wypełnienie zostały wyprodukowane bez użycia szkodliwych substancji chemicznych.</p><p>Jedwab naturalnie reguluje temperaturę ciała i odprowadza wilgoć, dzięki czemu maska jest komfortowa zarówno latem, jak i zimą. Hipoalergiczna struktura włókna jest przyjazna dla wrażliwej skóry, rzęs i przedłużeń.</p><p><strong>Wymiary:</strong> 12 cm wysokości x 70 cm długości. Regulowany rzep dopasowuje się do każdego obwodu głowy bez ucisku na skronie ani za uszami.</p>",
+            "icon": "shopify://shop_images/Information-Circle--Streamline-Sharp_1.svg"
+          }
+        },
+        "monte_accordion_2": {
+          "type": "monte_accordion",
+          "settings": {
+            "title": "Pielęgnacja",
+            "content": "<p><strong>Aby jedwab zachował swoją miękkość na lata:</strong></p><p><strong>Pranie ręczne</strong> w zimnej wodzie <strong>(maks. 30°C)</strong> z delikatnym detergentem do jedwabiu. Nie używaj wybielacza ani środków na bazie enzymów. Nie wyżymaj, delikatnie odciśnij nadmiar wody miękkim ręcznikiem. Susz na płasko, z dala od bezpośredniego słońca. Nie wkładaj do suszarki bębnowej.</p><p>Po wysuszeniu maska może stracić część swojej puszystości. Aby przywrócić jej pierwotną miękkość, przeprasuj ją żelazkiem w trybie pary od wewnętrznej strony, trzymając żelazko kilka centymetrów od tkaniny.</p>",
+            "icon": "shopify://shop_images/Hotel-Laundry--Streamline-Sharp.svg"
+          }
+        },
+        "monte_accordion_3": {
+          "type": "monte_accordion",
+          "settings": {
+            "title": "Dostawa i zwroty",
+            "content": "<p><strong>Dostawa</strong><br/><br/>Wysyłamy wyłącznie <strong>kurierem InPost.</strong> Zamówienia złożone do 18:00 w dni robocze wysyłamy tego samego dnia. Czas dostawy: 1-2 dni robocze. Darmowa dostawa od 250 zł.</p><p><strong>Zwroty</strong><br/><br/><strong>Oferujemy 30-nocną gwarancję satysfakcji.</strong> Jeśli po otrzymaniu maski zmienisz zdanie, masz 30 nocy na jej odesłanie w oryginalnym stanie: nieużywaną, nieprananą, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p><p>Ze względu na higieniczny charakter produktu, nie przyjmujemy zwrotów masek noszących ślady użytkowania. Jeśli masz jakiekolwiek pytania przed zakupem, napisz do nas przed złożeniem zamówienia, chętnie pomożemy w wyborze.</p>",
+            "icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_6.svg"
+          }
         }
       },
       "block_order": [
@@ -302,10 +392,21 @@
         "lumen_ugc_gkMKAb",
         "maison_content_card_GTNTiX",
         "lumen_faq_GBcUxh",
-        "lumen_stat_wmiw8K"
-      ],
-      "custom_css": [
-        "product-quick-add {transform: translateY(0) !important; opacity: 1 !important; bottom: 0 !important;}"
+        "lumen_stat_wmiw8K",
+        "monte_highlight_1",
+        "monte_highlight_2",
+        "monte_highlight_3",
+        "monte_highlight_4",
+        "monte_benefit_1",
+        "monte_benefit_2",
+        "monte_benefit_3",
+        "monte_benefit_4",
+        "monte_ugc_1",
+        "monte_ugc_2",
+        "monte_ugc_3",
+        "monte_accordion_1",
+        "monte_accordion_2",
+        "monte_accordion_3"
       ],
       "settings": {
         "full_width": true,
@@ -322,7 +423,8 @@
         "background_gradient": "",
         "text_color": "#182153",
         "input_background": "rgba(0,0,0,0)",
-        "input_text_color": ""
+        "input_text_color": "",
+        "monte_product_design": true
       }
     },
     "monte_product_details": {

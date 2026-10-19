@@ -1,3 +1,6 @@
+{%- if section.settings.monte_product_design -%}
+  {%- render 'monte-product-hero', product: product, section: section -%}
+{%- else -%}
 {%- render 'section-spacing-collapsing' -%}
 
 <style>
@@ -219,6 +222,7 @@ is however only possible by rendering the whole product page, and extracting the
 quick buy information in a template, that will be extracted in JS, but ensure it is not visible in the main product page
 {%- endcomment -%}
 
+{%- endif -%}
 {%- render 'product-quick-buy', product: product -%}
 
 {% schema %}
@@ -2232,46 +2236,196 @@ quick buy information in a template, that will be extracted in JS, but ensure it
       "name": "Lumen: FAQ",
       "limit": 1,
       "settings": [
-        { "type": "header", "content": "Item 1" },
-        { "type": "image_picker", "id": "faq_1_icon", "label": "Icon" },
-        { "type": "text", "id": "faq_1_title", "label": "Title" },
-        { "type": "richtext", "id": "faq_1_text", "label": "Answer" },
-        { "type": "header", "content": "Item 2" },
-        { "type": "image_picker", "id": "faq_2_icon", "label": "Icon" },
-        { "type": "text", "id": "faq_2_title", "label": "Title" },
-        { "type": "richtext", "id": "faq_2_text", "label": "Answer" },
-        { "type": "header", "content": "Item 3" },
-        { "type": "image_picker", "id": "faq_3_icon", "label": "Icon" },
-        { "type": "text", "id": "faq_3_title", "label": "Title" },
-        { "type": "richtext", "id": "faq_3_text", "label": "Answer" },
-        { "type": "header", "content": "Item 4" },
-        { "type": "image_picker", "id": "faq_4_icon", "label": "Icon" },
-        { "type": "text", "id": "faq_4_title", "label": "Title" },
-        { "type": "richtext", "id": "faq_4_text", "label": "Answer" },
-        { "type": "header", "content": "Item 5" },
-        { "type": "image_picker", "id": "faq_5_icon", "label": "Icon" },
-        { "type": "text", "id": "faq_5_title", "label": "Title" },
-        { "type": "richtext", "id": "faq_5_text", "label": "Answer" },
-        { "type": "header", "content": "Item 6" },
-        { "type": "image_picker", "id": "faq_6_icon", "label": "Icon" },
-        { "type": "text", "id": "faq_6_title", "label": "Title" },
-        { "type": "richtext", "id": "faq_6_text", "label": "Answer" },
-        { "type": "header", "content": "Item 7" },
-        { "type": "image_picker", "id": "faq_7_icon", "label": "Icon" },
-        { "type": "text", "id": "faq_7_title", "label": "Title" },
-        { "type": "richtext", "id": "faq_7_text", "label": "Answer" },
-        { "type": "header", "content": "Item 8" },
-        { "type": "image_picker", "id": "faq_8_icon", "label": "Icon" },
-        { "type": "text", "id": "faq_8_title", "label": "Title" },
-        { "type": "richtext", "id": "faq_8_text", "label": "Answer" },
-        { "type": "header", "content": "Item 9" },
-        { "type": "image_picker", "id": "faq_9_icon", "label": "Icon" },
-        { "type": "text", "id": "faq_9_title", "label": "Title" },
-        { "type": "richtext", "id": "faq_9_text", "label": "Answer" },
-        { "type": "header", "content": "Item 10" },
-        { "type": "image_picker", "id": "faq_10_icon", "label": "Icon" },
-        { "type": "text", "id": "faq_10_title", "label": "Title" },
-        { "type": "richtext", "id": "faq_10_text", "label": "Answer" },
+        {
+          "type": "header",
+          "content": "Item 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "faq_1_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "faq_1_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_1_text",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Item 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "faq_2_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "faq_2_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_2_text",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Item 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "faq_3_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "faq_3_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_3_text",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Item 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "faq_4_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "faq_4_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_4_text",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Item 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "faq_5_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "faq_5_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_5_text",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Item 6"
+        },
+        {
+          "type": "image_picker",
+          "id": "faq_6_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "faq_6_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_6_text",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Item 7"
+        },
+        {
+          "type": "image_picker",
+          "id": "faq_7_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "faq_7_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_7_text",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Item 8"
+        },
+        {
+          "type": "image_picker",
+          "id": "faq_8_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "faq_8_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_8_text",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Item 9"
+        },
+        {
+          "type": "image_picker",
+          "id": "faq_9_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "faq_9_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_9_text",
+          "label": "Answer"
+        },
+        {
+          "type": "header",
+          "content": "Item 10"
+        },
+        {
+          "type": "image_picker",
+          "id": "faq_10_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "faq_10_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_10_text",
+          "label": "Answer"
+        },
         {
           "type": "header",
           "content": "Desktop spacing"
@@ -2509,7 +2663,7 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "type": "text",
           "id": "title",
           "label": "Heading",
-          "default": "A nightly ritual, <em>in real life<\/em>"
+          "default": "A nightly ritual, <em>in real life</em>"
         },
         {
           "type": "paragraph",
@@ -3460,8 +3614,8 @@ quick buy information in a template, that will be extracted in JS, but ensure it
         {
           "type": "range",
           "id": "row2_discount",
-          "label": "Discount %",
-          "info": "Applied to the total price of all items in this row.",
+          "label": "Two-product display discount (%)",
+          "info": "Visual discount on the combined product prices. Configure the same discount in Every Possible Discount; this setting does not create a checkout discount.",
           "min": 0,
           "max": 50,
           "step": 1,
@@ -3665,6 +3819,40 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "step": 1,
           "unit": "px",
           "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Monté product layout"
+        },
+        {
+          "type": "product_list",
+          "id": "popup_products",
+          "label": "Product picker products",
+          "limit": 20,
+          "info": "Uses the color products above when empty. Unavailable variants cannot be selected."
+        },
+        {
+          "type": "product",
+          "id": "limited_product",
+          "label": "Limited color product"
+        },
+        {
+          "type": "text",
+          "id": "limited_label",
+          "label": "Limited color label",
+          "default": "Limitowany kolor"
+        },
+        {
+          "type": "text",
+          "id": "monte_bundle_description",
+          "label": "Two-product description",
+          "default": "Dodatkowe 20% rabatu na drugą maskę"
+        },
+        {
+          "type": "text",
+          "id": "monte_bundle_badge",
+          "label": "Two-product badge",
+          "default": "KORZYSTNIEJSZY"
         }
       ]
     },
@@ -3773,9 +3961,186 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "default": 0
         }
       ]
+    },
+    {
+      "type": "monte_highlight",
+      "name": "Monté top benefit",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "Product benefit"
+        }
+      ]
+    },
+    {
+      "type": "monte_benefit",
+      "name": "Monté tab benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Product benefit"
+        }
+      ]
+    },
+    {
+      "type": "monte_ugc",
+      "name": "Monté UGC media",
+      "limit": 9,
+      "settings": [
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Accessible description"
+        },
+        {
+          "type": "checkbox",
+          "id": "play_overlay",
+          "label": "Show play overlay",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "design_image",
+          "label": "Fallback design image",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "1",
+              "label": "Design image 1"
+            },
+            {
+              "value": "2",
+              "label": "Design image 2"
+            },
+            {
+              "value": "3",
+              "label": "Design image 3"
+            }
+          ],
+          "default": "none"
+        }
+      ]
+    },
+    {
+      "type": "monte_accordion",
+      "name": "Monté bottom accordion",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Product information"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Leading icon"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
     }
   ],
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "monte_product_design",
+      "label": "Use Monté product layout",
+      "default": false
+    },
+    {
+      "type": "paragraph",
+      "content": "Monté layout uses the blocks named Monté below. Trust badges and payments are shared in Theme settings > Monté product trust. Product media comes from the Shopify product."
+    },
+    {
+      "type": "checkbox",
+      "id": "monte_gallery_rotate",
+      "label": "Auto-rotate gallery every 13 seconds",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "monte_show_rating",
+      "label": "Show shared social rating",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "monte_show_promo",
+      "label": "Show promotion",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "monte_promo_icon",
+      "label": "Promotion icon"
+    },
+    {
+      "type": "text",
+      "id": "monte_promo_title",
+      "label": "Promotion heading",
+      "default": "Letnia Wyprzedaż"
+    },
+    {
+      "type": "textarea",
+      "id": "monte_promo_text",
+      "label": "Promotion description",
+      "default": "Oferta ograniczona czasowo: -30% na wszystkie produkty Monté."
+    },
+    {
+      "type": "color",
+      "id": "monte_promo_bg",
+      "label": "Promotion background",
+      "default": "#F8F1E9"
+    },
+    {
+      "type": "color",
+      "id": "monte_promo_color",
+      "label": "Promotion text",
+      "default": "#232E71"
+    },
+    {
+      "type": "text",
+      "id": "monte_ugc_title",
+      "label": "UGC heading",
+      "default": "Ty + Monté"
+    },
     {
       "type": "checkbox",
       "id": "full_width",
@@ -3835,7 +4200,7 @@ quick buy information in a template, that will be extracted in JS, but ensure it
       "default": "carousel_thumbnails_left"
     },
     {
-      "type":"select",
+      "type": "select",
       "id": "mobile_media_size",
       "label": "Mobile media size",
       "options": [

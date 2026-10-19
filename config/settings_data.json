@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "current": {
     "page_width": 1440,
@@ -128,7 +119,16 @@
           "agent_border_radius": 16
         }
       }
-    }
+    },
+    "monte_trust_1_text": "30 dni na zwrot",
+    "monte_trust_1_icon": "shopify://shop_images/Shipment-Return--Streamline-Sharp_2.svg",
+    "monte_trust_2_text": "Dostawa w 1–2 dni robocze",
+    "monte_trust_2_icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_5.svg",
+    "monte_trust_3_text": "Polska firma",
+    "monte_payment_1": "shopify://shop_images/Visa.svg",
+    "monte_payment_2": "shopify://shop_images/Mastercard.svg",
+    "monte_payment_3": "shopify://shop_images/Przelewy24.svg",
+    "monte_payment_4": "shopify://shop_images/Blik.svg"
   },
   "installed_preset_name": "Impact",
   "presets": {

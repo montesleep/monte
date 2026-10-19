@@ -973,5 +973,221 @@
         "content": "Edit the shared rating text in Settings → Metafields and metaobjects → Store → custom.rating_text_social."
       }
     ]
+  },
+  {
+    "name": "Monté product trust",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Shared across product templates. Clear an item text to remove a pill; add an image to show a payment icon."
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_bg",
+        "label": "Badge background",
+        "default": "#E3E5F0"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_text",
+        "label": "Badge text",
+        "default": "#232E71"
+      },
+      {
+        "type": "text",
+        "id": "monte_trust_1_text",
+        "label": "Trust item 1 text",
+        "default": "30 dni na zwrot"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_trust_1_icon",
+        "label": "Trust item 1 icon"
+      },
+      {
+        "type": "text",
+        "id": "monte_trust_2_text",
+        "label": "Trust item 2 text",
+        "default": "Dostawa w 1–2 dni robocze"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_trust_2_icon",
+        "label": "Trust item 2 icon"
+      },
+      {
+        "type": "text",
+        "id": "monte_trust_3_text",
+        "label": "Trust item 3 text",
+        "default": "Polska firma"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_trust_3_icon",
+        "label": "Trust item 3 icon"
+      },
+      {
+        "type": "text",
+        "id": "monte_trust_4_text",
+        "label": "Trust item 4 text"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_trust_4_icon",
+        "label": "Trust item 4 icon"
+      },
+      {
+        "type": "text",
+        "id": "monte_trust_5_text",
+        "label": "Trust item 5 text"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_trust_5_icon",
+        "label": "Trust item 5 icon"
+      },
+      {
+        "type": "text",
+        "id": "monte_trust_6_text",
+        "label": "Trust item 6 text"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_trust_6_icon",
+        "label": "Trust item 6 icon"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "monte_shipping_text",
+        "label": "Shipping text",
+        "default": "<strong>Zamów do 18:00</strong>, wysyłamy dziś"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_shipping_icon",
+        "label": "Shipping icon"
+      },
+      {
+        "type": "color",
+        "id": "monte_shipping_color",
+        "label": "Shipping text color",
+        "default": "#232E71"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_payment_1",
+        "label": "Payment icon 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_payment_2",
+        "label": "Payment icon 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_payment_3",
+        "label": "Payment icon 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_payment_4",
+        "label": "Payment icon 4"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_payment_5",
+        "label": "Payment icon 5"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_payment_6",
+        "label": "Payment icon 6"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_payment_7",
+        "label": "Payment icon 7"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_payment_8",
+        "label": "Payment icon 8"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_payment_9",
+        "label": "Payment icon 9"
+      },
+      {
+        "type": "image_picker",
+        "id": "monte_payment_10",
+        "label": "Payment icon 10"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_1_bg",
+        "label": "Trust item 1 background override"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_1_color",
+        "label": "Trust item 1 text color override"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_2_bg",
+        "label": "Trust item 2 background override"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_2_color",
+        "label": "Trust item 2 text color override"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_3_bg",
+        "label": "Trust item 3 background override"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_3_color",
+        "label": "Trust item 3 text color override"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_4_bg",
+        "label": "Trust item 4 background override"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_4_color",
+        "label": "Trust item 4 text color override"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_5_bg",
+        "label": "Trust item 5 background override"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_5_color",
+        "label": "Trust item 5 text color override"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_6_bg",
+        "label": "Trust item 6 background override"
+      },
+      {
+        "type": "color",
+        "id": "monte_trust_6_color",
+        "label": "Trust item 6 text color override"
+      },
+      {
+        "type": "color",
+        "id": "monte_shipping_bg",
+        "label": "Shipping background"
+      }
+    ]
   }
 ]

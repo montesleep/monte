@@ -1,0 +1,183 @@
+{% liquid
+  assign policy_handle = request.path | split: '/' | last
+  assign hero_heading = page_title
+  assign hero_subheading = ''
+  case policy_handle
+    when 'terms-of-service'
+      assign hero_heading = section.settings.terms_heading | default: page_title
+      assign hero_subheading = section.settings.terms_subheading
+    when 'privacy-policy'
+      assign hero_heading = section.settings.privacy_heading | default: page_title
+      assign hero_subheading = section.settings.privacy_subheading
+    when 'shipping-policy'
+      assign hero_heading = section.settings.shipping_heading | default: page_title
+      assign hero_subheading = section.settings.shipping_subheading
+    when 'refund-policy'
+      assign hero_heading = section.settings.refund_heading | default: page_title
+      assign hero_subheading = section.settings.refund_subheading
+  endcase
+%}
+{%- render 'monte-page-hero', section: section, design_images: 'policy', hero_heading: hero_heading, hero_subheading: hero_subheading -%}
+<style>@media (min-width: 700px) { #shopify-section-{{ section.id }} .monte-collection-hero__subheading br { display: none; } }</style>
+
+{% schema %}
+{
+  "name": "Monté Policy Hero",
+  "tag": "section",
+  "class": "shopify-section--policy-hero",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shared hero for Shopify system policy URLs. Edit policy text in Settings > Policies. Empty heading fields use the policy title. Subheadings are optional and independent for each policy."
+    },
+    {
+      "type": "header",
+      "content": "Shared media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Desktop video",
+      "info": "Replaces the desktop image. Plays automatically, muted, looping and without controls."
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile video",
+      "info": "Replaces the mobile image. If both mobile fields are empty, selected desktop media is used."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_default_images",
+      "label": "Show design images when no media is selected",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop minimum height",
+      "min": 300,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "default": 460
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Mobile minimum height",
+      "min": 300,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "default": 420
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#FDFBF9"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Subheading",
+      "default": "#FDFBF9"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Image overlay",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Image overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_gradient",
+      "label": "Add mobile bottom gradient",
+      "info": "Adds the design's dark gradient behind the content. Text and rating remain unaffected.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Terms of service"
+    },
+    {
+      "type": "text",
+      "id": "terms_heading",
+      "label": "Heading",
+      "default": "Regulamin sklepu"
+    },
+    {
+      "type": "textarea",
+      "id": "terms_subheading",
+      "label": "Subheading",
+      "default": "Wersja obowiązująca od dnia:\n10 maja 2026 r."
+    },
+    {
+      "type": "header",
+      "content": "Privacy policy"
+    },
+    {
+      "type": "text",
+      "id": "privacy_heading",
+      "label": "Heading",
+      "default": "Polityka prywatności"
+    },
+    {
+      "type": "textarea",
+      "id": "privacy_subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "header",
+      "content": "Shipping policy"
+    },
+    {
+      "type": "text",
+      "id": "shipping_heading",
+      "label": "Heading",
+      "default": "Polityka wysyłki"
+    },
+    {
+      "type": "textarea",
+      "id": "shipping_subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "header",
+      "content": "Refund policy"
+    },
+    {
+      "type": "text",
+      "id": "refund_heading",
+      "label": "Heading",
+      "default": "Polityka zwrotów"
+    },
+    {
+      "type": "textarea",
+      "id": "refund_subheading",
+      "label": "Subheading"
+    }
+  ]
+}
+{% endschema %}

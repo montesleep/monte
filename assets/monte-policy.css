@@ -1,0 +1,47 @@
+.monte-policy-content {
+  display: block;
+  padding: 40px 20px;
+  background: transparent;
+  color: #52597e;
+  font: 400 16px/1.5 var(--text-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  opacity: 1;
+}
+.monte-policy-content .shopify-policy__container {
+  display: block !important;
+  width: 100%;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+.monte-policy-content .shopify-policy__title { display: none; }
+.monte-policy-content .shopify-policy__body { min-width: 0; overflow-wrap: anywhere; }
+.monte-policy-content .rte { color: inherit; font: inherit; text-align: start; }
+.monte-policy-content .rte :is(h1, h2, h3, h4, h5, h6) {
+  margin: 64px 0 32px;
+  color: #232e71;
+  font: 500 24px/1.1 var(--heading-font-family);
+  letter-spacing: 0;
+  text-transform: none;
+}
+.monte-policy-content .rte :is(p, ul, ol, blockquote, table) { margin: 0 0 24px; }
+.monte-policy-content .rte :is(ul, ol) { padding-inline-start: 1.5em; }
+.monte-policy-content .rte li { padding-inline-start: .2em; }
+.monte-policy-content .rte li + li { margin-top: 24px; }
+.monte-policy-content .rte li > p:last-child { margin-bottom: 0; }
+.monte-policy-content .rte :is(strong, b) { font-weight: 600; }
+.monte-policy-content .rte > :first-child { margin-top: 0; }
+.monte-policy-content .rte > :last-child { margin-bottom: 0; }
+.monte-policy-content .rte a { color: #232e71; text-underline-offset: 3px; transition: opacity .2s ease-in-out; }
+.monte-policy-content .rte a:focus-visible { outline: 2px solid #232e71; outline-offset: 3px; }
+.monte-policy-content .rte :is(img, video, iframe) { max-width: 100%; }
+.monte-policy-content .rte table { display: block; max-width: 100%; overflow-x: auto; }
+.monte-policy-content .rte pre { white-space: pre-wrap; }
+@media (min-width: 700px) {
+  .monte-policy-content { padding: 80px; }
+  .monte-policy-content .rte :is(h1, h2, h3, h4, h5, h6) { font-size: 32px; margin-top: 72px; }
+}
+@media (hover: hover) { .monte-policy-content .rte a:hover { opacity: .75; } }
+@media (prefers-reduced-motion: reduce) { .monte-policy-content .rte a { transition: none; } }

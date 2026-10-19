@@ -1,8 +1,8 @@
 <div class="mb-summary-content">
   <div class="mb-goals"><h2 data-goal-title>{{ section.settings.progress_text | replace: '[amount]', section.settings.threshold_1 | replace: '[percent]', '5' }}</h2>{% render 'monte-builder-progress', section: section %}</div>
   <div class="mb-empty" data-builder-empty>
-    {% if section.settings.empty_image != blank %}{{ section.settings.empty_image | image_url: width: 400 | image_tag: width: 160, height: 180, loading: 'lazy' }}{% else %}<img src="{{ 'monte-cart-empty.png' | asset_url }}" width="160" height="180" loading="lazy" alt="">{% endif %}
-    <h3>{{ section.settings.empty_title | escape }}</h3><p>{{ section.settings.empty_text | escape }}</p>
+    <div class="mb-empty-media{% if section.settings.empty_image == blank %} mb-empty-media--default{% endif %}">{% if section.settings.empty_image != blank %}{{ section.settings.empty_image | image_url: width: 440 | image_tag: loading: 'lazy' }}{% else %}<img src="{{ 'monte-cart-empty.png' | asset_url }}" width="220" height="220" loading="lazy" alt="">{% endif %}</div>
+    <div class="mb-empty-copy"><h3>{{ section.settings.empty_title | escape }}</h3><p>{{ section.settings.empty_text | escape }}</p></div>
   </div>
   <div class="mb-lines" data-builder-lines hidden></div>
   <div class="mb-summary-bottom">

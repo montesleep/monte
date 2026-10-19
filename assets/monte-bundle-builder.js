@@ -1,6 +1,6 @@
 import { DialogElement } from './theme.js';
 
-const money = value => new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN' }).format(value / 100);
+const money = value => new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN', minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(value / 100);
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 class MonteBuilderDialog extends DialogElement {
@@ -131,7 +131,7 @@ class MonteBundleBuilder extends HTMLElement {
       row.querySelector('[data-builder-step="-1"]').disabled=qty<=1;
       row.querySelector('[data-builder-step="1"]').disabled=qty>=p.maximum;
       const button=row.querySelector('[data-builder-add]');
-      if(button){const selected=this.selected.has(id);button.classList.toggle('mb-button--outline',selected);button.querySelector('[data-add-label]').textContent=!p.available?'Wyprzedane':selected?'Usuń':'Dodaj';button.querySelector('[data-add-icon]').innerHTML=selected?`<img src="${escapeHTML(this.config.trash)}" width="16" height="16" alt="">`:'+';}
+      if(button){const selected=this.selected.has(id);button.classList.toggle('mb-button--outline',selected);button.querySelector('[data-add-label]').textContent=!p.available?'Wyprzedane':selected?'Usuń':'Dodaj';button.querySelector('[data-add-icon]').innerHTML=selected?`<img src="${escapeHTML(this.config.trash)}" width="16" height="16" alt="">`:`<img src="${escapeHTML(this.config.plus)}" width="12" height="12" alt="">`;}
     });
     this.querySelector('[data-builder-status]').textContent=`W zestawie: ${[...this.selected.values()].reduce((a,b)=>a+b,0)}. ${money(total)}`;
   }

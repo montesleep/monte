@@ -36,7 +36,7 @@
     </div>
     <div class="mb-card-controls">
       <div class="mb-quantity" aria-label="Ilość — {{ title | strip_html | escape }}"><button type="button" data-builder-step="-1" aria-label="Zmniejsz ilość" disabled><img src="{{ 'monte-cart-minus.svg' | asset_url }}" width="12" height="12" alt=""></button><output data-builder-quantity>1</output><button type="button" data-builder-step="1" aria-label="Zwiększ ilość" {% if maximum <= 1 %}disabled{% endif %}><img src="{{ 'monte-cart-plus.svg' | asset_url }}" width="12" height="12" alt=""></button></div>
-      <button type="button" class="mb-button mb-card-add" data-builder-add {% unless variant.available %}disabled{% endunless %}><span data-add-label>{% if variant.available %}Dodaj{% else %}Wyprzedane{% endif %}</span><span data-add-icon aria-hidden="true">+</span></button>
+      <button type="button" class="mb-button mb-card-add" data-builder-add {% unless variant.available %}disabled{% endunless %}><span data-add-label>{% if variant.available %}Dodaj{% else %}Wyprzedane{% endif %}</span><span data-add-icon aria-hidden="true"><img src="{{ 'monte-cart-plus.svg' | asset_url }}" width="12" height="12" alt=""></span></button>
     </div>
   </div>
   <script type="application/json" data-builder-product>{"id":{{ variant.id | json }},"productId":{{ product.id | json }},"url":{{ product.url | json }},"title":{{ title | strip_html | json }},"color":{{ color_label | strip | json }},"price":{{ variant.price | json }},"compare":{{ variant.compare_at_price | default: 0 | json }},"available":{{ variant.available | json }},"maximum":{{ maximum | json }},"image":{% if product.featured_image %}{{ product.featured_image | image_url: width: 160 | json }}{% else %}""{% endif %}}</script>

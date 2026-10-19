@@ -48,12 +48,6 @@
         "monte_bundle": {
           "type": "monte_bundle",
           "settings": {
-            "color_products": [
-              "champagne-gold-silk-sleep-mask",
-              "classic-black-silk-sleep-mask",
-              "midnight-blue-silk-sleep-mask",
-              "rose-noir-silk-sleep-mask"
-            ],
             "row1_title": "1 Maska",
             "row2_title": "2 Maski",
             "row2_discount": 10,
@@ -61,7 +55,6 @@
             "popup_title": "Wybierz produkt",
             "popup_choose_label": "Wybierz",
             "choose_color_label": "Wybierz kolor maski",
-            "limited_product": "classic-black-silk-sleep-mask",
             "limited_label": "Limitowany kolor",
             "monte_bundle_description": "Dodatkowe 20% rabatu na drugą maskę",
             "monte_bundle_badge": "KORZYSTNIEJSZY"

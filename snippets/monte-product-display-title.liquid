@@ -4,6 +4,9 @@
   if product.has_only_default_variant and parts.size == 2
     assign display_title = parts | first
   endif
+  if group_title != blank
+    assign display_title = group_title
+  endif
   if format == 'json'
     echo display_title | json
   else

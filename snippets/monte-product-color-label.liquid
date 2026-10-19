@@ -1,5 +1,17 @@
 {%- liquid
-  assign label = item.metafields.custom.color_label.value
+  assign label = color.color_name.value
+  if label == blank
+    assign group = item.metafields.custom.product_group.value
+    for entry in group.colors.value
+      if entry.product.value.id == item.id
+        assign label = entry.color_name.value
+        break
+      endif
+    endfor
+  endif
+  if label == blank
+    assign label = item.metafields.custom.color_label.value
+  endif
   if label == blank and item.title contains ' - '
     assign label = item.title | split: ' - ' | last
   endif

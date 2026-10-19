@@ -1,20 +1,58 @@
 {%- liquid
   assign options = block.settings
-  assign colors = options.color_products
-  assign picker = colors
-  assign limited = options.limited_product
+  assign product_group = product.metafields.custom.product_group.value
+  assign colors = product_group.colors.value
+  assign picker_count = 0
+  assign regular_count = 0
+  assign limited_count = 0
+  assign current_color = nil
+  for color in colors
+    if color.product.value != blank
+      assign picker_count = picker_count | plus: 1
+      if color.limited_color.value == true
+        assign limited_count = limited_count | plus: 1
+      else
+        assign regular_count = regular_count | plus: 1
+      endif
+      if color.product.value.id == product.id
+        assign current_color = color
+      endif
+    endif
+  endfor
   assign variant = product.selected_or_first_available_variant
   assign drawer_id = 'MonteProductPicker-' | append: section.id
 -%}
 <monte-product-bundle class="mp-bundle" data-drawer="{{ drawer_id }}" data-discount="{{ options.row2_discount | default: 10 }}" {{ block.shopify_attributes }}>
-  <script type="application/json" data-bundle-data>{"current":{% render 'monte-bundle-product-json', item: product %},"products":[{%- for item in picker -%}{% render 'monte-bundle-product-json', item: item %}{% unless forloop.last %},{% endunless %}{%- endfor -%}],"variants":{{ product.variants | json }}}</script>
-  {%- if colors != blank -%}<div class="mp-colors"><p class="mp-label"><strong>Kolor:</strong> {%- capture color_label -%}{% render 'monte-product-color-label', item: product %}{%- endcapture -%}{{ color_label | escape }}</p><div class="mp-swatches">{%- for item in colors -%}<a href="{{ item.url }}" class="mp-swatch" {% if item.id == product.id %}data-current-color aria-current="true"{% endif %} aria-label="{{ item.metafields.custom.color_label.value | default: item.title | escape }}">{{ item.featured_image | image_url: width: 112 | image_tag: width: 56, height: 56, loading: 'lazy' }}</a>{%- endfor -%}</div></div>{%- endif -%}
-  {%- if limited != blank -%}<div class="mp-colors"><p class="mp-label"><strong>Kolor:</strong> {% if limited.id == product.id %}{%- capture limited_color -%}{% render 'monte-product-color-label', item: limited %}{%- endcapture -%}{{ limited_color | escape }}{% else %}{{ options.limited_label | escape }}{% endif %}</p><div class="mp-swatches"><a href="{{ limited.url }}" class="mp-swatch" {% if limited.id == product.id %}data-current-color aria-current="true"{% endif %} aria-label="{{ limited.title | escape }}">{{ limited.featured_image | image_url: width: 112 | image_tag: width: 56, height: 56, loading: 'lazy' }}</a></div></div>{%- endif -%}
+  <script type="application/json" data-bundle-data>{"current":{% render 'monte-bundle-product-json', item: product, color: current_color, group_title: product_group.title.value %},"products":[{%- assign separator = '' -%}{%- for color in colors -%}{%- assign item = color.product.value -%}{%- if item != blank -%}{{ separator }}{% render 'monte-bundle-product-json', item: item, color: color, group_title: product_group.title.value %}{%- assign separator = ',' -%}{%- endif -%}{%- endfor -%}],"variants":{{ product.variants | json }}}</script>
+  {%- if regular_count > 0 -%}
+    <div class="mp-colors">
+      <p class="mp-label"><strong>Kolor:</strong> {% capture color_label %}{% render 'monte-product-color-label', item: product, color: current_color %}{% endcapture %}{{ color_label | escape }}</p>
+      <div class="mp-swatches">
+        {%- for color in colors -%}
+          {%- if color.product.value != blank and color.limited_color.value != true -%}
+            {% render 'monte-bundle-color-thumbnail', color: color, current_product: product %}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+  {%- if limited_count > 0 -%}
+    <div class="mp-colors">
+      <p class="mp-label"><strong>Kolor:</strong> {% if current_color.limited_color.value == true %}{{ current_color.color_name.value | escape }}{% else %}{{ options.limited_label | escape }}{% endif %}</p>
+      <div class="mp-swatches">
+        {%- for color in colors -%}
+          {%- if color.product.value != blank and color.limited_color.value == true -%}
+            {% render 'monte-bundle-color-thumbnail', color: color, current_product: product %}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
   {%- unless product.has_only_default_variant -%}<label class="mp-variant-label">{{ product.options | join: ' / ' | escape }}<select data-current-variant>{%- for item in product.variants -%}<option value="{{ item.id }}" {% if item.id == variant.id %}selected{% endif %}>{{ item.title | escape }} — {{ item.price | money }}{% unless item.available %} — Wyprzedane{% endunless %}</option>{%- endfor -%}</select></label>{%- endunless -%}
   <div class="mp-bundle-options">
     <p class="mp-label"><strong>Zestaw:</strong> <span data-selected-label>{{ options.row1_title | default: '1 Maska' | escape }}</span></p>
     <div class="mp-bundle-choice" data-choice="1" data-selected="true"><label class="mp-choice-header"><input type="radio" name="Bundle-{{ section.id }}" value="1" checked><strong data-option-title>{{ options.row1_title | default: '1 Maska' | escape }}</strong><strong class="mp-choice-price" data-single-price>{{ variant.price | money }}</strong></label></div>
-    {%- if picker.size > 0 -%}
+    {%- if picker_count > 0 -%}
       <div class="mp-bundle-choice" data-choice="2" data-selected="false">
         <span class="mp-bundle-ribbon"><img src="{{ 'monte-bundle-ribbon-left.svg' | asset_url }}" width="12" height="12" alt=""><span>{{ options.monte_bundle_badge | default: 'KORZYSTNIEJSZY' | escape }}</span><img src="{{ 'monte-bundle-ribbon-right.svg' | asset_url }}" width="12" height="12" alt=""></span>
         <label class="mp-choice-header mp-choice-header--pair"><input type="radio" name="Bundle-{{ section.id }}" value="2"><strong data-option-title>{{ options.row2_title | default: '2 Maski' | escape }}</strong><span class="mp-saving" data-pair-saving></span><span class="mp-choice-price"><strong data-pair-price></strong><s data-pair-compare></s></span><span class="mp-choice-description">{{ options.monte_bundle_description | default: 'Dodatkowe 20% rabatu na drugą maskę' | escape }}</span></label>
@@ -28,9 +66,9 @@
   <noscript><form action="{{ routes.cart_add_url }}" method="post"><input type="hidden" name="id" value="{{ variant.id }}"><button class="mp-atc" type="submit" {% unless variant.available %}disabled{% endunless %}>{{ 'product.general.add_to_cart_button' | t }}</button></form></noscript>
   <monte-product-picker id="{{ drawer_id }}" class="drawer mp-picker" aria-labelledby="{{ drawer_id }}-title" tabindex="-1">
     <div class="mp-picker-shell"><header><h2 id="{{ drawer_id }}-title">{{ options.popup_title | default: 'Wybierz produkt' | escape }}</h2><button type="button" data-picker-close aria-label="Zamknij">{% render 'icon', icon: 'close', width: 16 %}</button></header>
-      <div class="mp-picker-list">{%- for item in picker -%}{%- assign item_variant = item.selected_or_first_available_variant -%}<div class="mp-picker-item">
-        {{ item.featured_image | image_url: width: 160 | image_tag: width: 64, height: 64, loading: 'lazy' }}
-        <div><strong>{% render 'monte-product-display-title', product: item %}</strong>{%- capture item_color -%}{% render 'monte-product-color-label', item: item %}{%- endcapture -%}{%- if item_color != blank -%}<p>Kolor: {{ item_color | escape }}</p>{%- endif -%}
+      <div class="mp-picker-list">{%- for color in colors -%}{%- assign item = color.product.value -%}{%- if item == blank -%}{%- continue -%}{%- endif -%}{%- assign item_variant = item.selected_or_first_available_variant -%}<div class="mp-picker-item">
+        {% if item.featured_image != blank %}{{ item.featured_image | image_url: width: 160 | image_tag: width: 64, height: 64, loading: 'lazy' }}{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endif %}
+        <div><strong>{% render 'monte-product-display-title', product: item, group_title: product_group.title.value %}</strong>{%- capture item_color -%}{% render 'monte-product-color-label', item: item, color: color %}{%- endcapture -%}{%- if item_color != blank -%}<p>Kolor: {{ item_color | escape }}</p>{%- endif -%}
           {%- unless item.has_only_default_variant -%}<select data-picker-variant data-product-id="{{ item.id }}" aria-label="Wariant {{ item.title | escape }}">{%- for v in item.variants -%}<option value="{{ v.id }}" data-price="{{ v.price }}" data-available="{{ v.available }}" {% if v.id == item_variant.id %}selected{% endif %}>{{ v.title | escape }}{% unless v.available %} — Wyprzedane{% endunless %}</option>{%- endfor -%}</select>{%- endunless -%}
         </div><button type="button" class="mp-pick" data-pick-product="{{ item.id }}" {% unless item_variant.available %}disabled{% endunless %}><span>{{ options.popup_choose_label | default: 'Wybierz' | escape }}</span><span class="mp-pick-plus" aria-hidden="true"></span></button>
       </div>{%- endfor -%}</div>

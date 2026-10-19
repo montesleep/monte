@@ -1,0 +1,8 @@
+{%- assign color_product = color.product.value -%}
+<a href="{{ color_product.url }}" class="mp-swatch" {% if color_product.id == current_product.id %}data-current-color aria-current="true"{% endif %} aria-label="{{ color.color_name.value | default: color_product.title | escape }}">
+  {%- if color_product.featured_image != blank -%}
+    {{- color_product.featured_image | image_url: width: 112 | image_tag: width: 56, height: 56, loading: 'lazy' -}}
+  {%- else -%}
+    {{- 'product-1' | placeholder_svg_tag -}}
+  {%- endif -%}
+</a>

@@ -9,7 +9,7 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
 
 <!doctype html>
 
-<html lang="{{ request.locale.iso_code }}" dir="{% render 'direction' %}">
+<html lang="{{ request.locale.iso_code }}" dir="{% render 'direction' %}" {% unless template.suffix contains 'listicle' %}data-monte-soft-reveal{% endunless %}>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=1.0">
@@ -74,6 +74,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
     {{- 'monte-button-motion.css' | asset_url | stylesheet_tag -}}
+    {{- 'monte-soft-reveal.css' | asset_url | stylesheet_tag -}}
+    <script type="module" src="{{ 'monte-soft-reveal.js' | asset_url }}"></script>
     <script type="module" src="{{ 'monte-button-motion.js' | asset_url }}"></script>
     {%- if request.page_type == 'policy' -%}
       {{- 'monte-policy.css' | asset_url | stylesheet_tag -}}

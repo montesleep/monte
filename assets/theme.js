@@ -463,6 +463,8 @@ var RevealItems = class extends HTMLElement {
   constructor() {
     super();
     __privateAdd(this, _RevealItems_instances);
+    // Monté owns page reveals to avoid animating a container and its children twice.
+    if (window.Shopify?.designMode || (document.documentElement.hasAttribute("data-monte-soft-reveal") && this.closest("#main") && !this.closest(".drawer, .popover, dialog, .mb-dialog"))) return;
     if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches && window.themeVariables.settings.staggerProductsApparition) {
       inView(this, __privateMethod(this, _RevealItems_instances, reveal_fn).bind(this), { margin: this.getAttribute("margin") ?? "-50px 0px" });
     }

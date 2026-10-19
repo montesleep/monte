@@ -1,0 +1,10 @@
+/* Content is visible by default, even if JavaScript fails or the editor reloads a section. */
+html[data-monte-soft-reveal] #main reveal-items {
+  opacity: 1 !important;
+}
+@media print {
+  html[data-monte-soft-reveal] #main [data-monte-revealed] {
+    opacity: 1 !important;
+    translate: none !important;
+  }
+}

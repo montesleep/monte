@@ -27,7 +27,7 @@
   text-transform: none;
 }
 .monte-policy-content .rte :is(p, ul, ol, blockquote, table) { margin: 0 0 24px; }
-.monte-policy-content .rte :is(ul, ol) { padding-inline-start: 1.5em; }
+.monte-policy-content .rte :is(ul, ol) { display: block; padding-inline-start: 1.5em; list-style-position: outside; }
 .monte-policy-content .rte li { padding-inline-start: .2em; }
 .monte-policy-content .rte li + li { margin-top: 24px; }
 .monte-policy-content .rte li > p:last-child { margin-bottom: 0; }

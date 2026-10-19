@@ -125,7 +125,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {%- endif -%}
 
     <main role="main" id="main" class="anchor">
-      {%- if request.page_type == 'policy' -%}
+      {%- if request.page_type == 'page' and page.handle == 'o-marce' -%}
+        {%- comment -%}Keep About settings separate from other pages using the default template.{%- endcomment -%}
+        {%- sections 'monte-about-group' -%}
+      {%- elsif request.page_type == 'policy' -%}
         {%- section 'monte-policy-hero' -%}
         <reveal-items class="monte-policy-content" selector=".shopify-policy__body" margin="0px">
           {{ content_for_layout }}

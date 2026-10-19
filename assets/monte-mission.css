@@ -1,0 +1,48 @@
+.shopify-section--monte-mission { margin: 0; padding: 0; background: transparent; }
+.monte-mission { position: relative; display: block; overflow: clip; padding: 40px 20px; color: var(--mm-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
+.monte-mission__content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 32px; }
+.monte-mission__copy { display: grid; gap: 16px; opacity: 1; }
+.monte-mission h2 { margin: 0; color: var(--mm-heading); font: 500 32px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
+.monte-mission__body { color: var(--mm-body); font: 400 14px/1.5 var(--text-font-family); overflow-wrap: anywhere; }
+.monte-mission__body p { margin: 0; }
+.monte-mission__body p + p { margin-top: 1.5em; }
+.monte-mission .button { align-self: flex-start; border: 1px solid var(--mm-button); border-radius: 100px; min-height: 44px; padding: 10px 24px; background: var(--mm-button); color: var(--mm-button-text); box-shadow: none; font: 600 14px/1.5 var(--text-font-family); letter-spacing: 0; text-transform: none; white-space: normal; text-align: center; transition: background-color .2s ease, border-color .2s ease; }
+.monte-mission .button:focus-visible { outline: 2px solid var(--mm-button); outline-offset: 4px; }
+.monte-mission__side { display: none; }
+.monte-mission__mobile { position: relative; height: 230px; margin-top: 32px; }
+.monte-mission__mobile-item, .monte-mission__item { position: absolute; transform: rotate(var(--mm-angle)); }
+.monte-mission__motion { height: 100%; width: 100%; overflow: hidden; border-radius: 16px; box-shadow: 0 4px 4px rgb(0 0 0 / .25); }
+.monte-mission__motion :is(img, video) { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.monte-mission__mobile-item--1 { width: 141.602px; height: 141.602px; left: calc(50% - 196.35px); top: 42.355px; --mm-angle: -30deg; --mm-entry: -160px; }
+.monte-mission__mobile-item--2 { width: 171.636px; height: 171.636px; left: calc(50% - 64.712px); top: 35.118px; --mm-angle: -8.8deg; --mm-entry: 100px; }
+.monte-mission__mobile-item--3 { width: 156.133px; height: 156.133px; left: calc(50% + 102.045px); top: 25.545px; --mm-angle: 15deg; --mm-entry: 160px; }
+.monte-mission[data-animate]:not([data-revealed]) .monte-mission__motion { opacity: 0; transform: translateX(var(--mm-entry)); }
+.monte-mission[data-animate] .monte-mission__motion { transition: opacity .8s ease, transform 1s cubic-bezier(.22,1,.36,1); }
+@media (hover: hover) { .monte-mission .button:hover { background: var(--mm-button-hover); border-color: var(--mm-button-hover); } }
+@media (min-width: 1000px) {
+  .monte-mission { display: flex; align-items: center; justify-content: center; min-height: 800px; padding: 96px 40px 80px; }
+  .monte-mission__content { width: 520px; max-width: calc(100% - 400px); gap: 40px; align-items: center; }
+  .monte-mission__copy { gap: 20px; text-align: center; }
+  .monte-mission h2 { font-size: 48px; }
+  .monte-mission__body { font-size: 16px; }
+  .monte-mission .button { align-self: center; min-height: 56px; padding: 15px 32px; font-size: 16px; }
+  .monte-mission__mobile { display: none; }
+  .monte-mission__side { display: block; position: absolute; top: 0; bottom: 0; width: 364px; pointer-events: none; }
+  .monte-mission__side--1 { left: 0; --mm-entry: -240px; }
+  .monte-mission__side--2 { right: 0; --mm-entry: 240px; }
+  .monte-mission__item--1 { width: 289.266px; height: 289.266px; left: -58.579px; top: calc(50% - 289.573px); --mm-angle: -8.8deg; }
+  .monte-mission__item--2 { width: 234.299px; height: 234.299px; left: 39.332px; top: calc(50% + 65.331px); --mm-angle: 15deg; }
+  .monte-mission__item--3 { width: 186.127px; height: 186.127px; left: -26.941px; top: calc(50% - 58.934px); --mm-angle: -30deg; }
+  .monte-mission__item--4 { width: 313.796px; height: 313.796px; right: -133.946px; top: calc(50% - 373.848px); --mm-angle: -8.8deg; }
+  .monte-mission__item--5 { width: 313.796px; height: 313.796px; right: -83.058px; top: calc(50% + 16.262px); --mm-angle: 15deg; }
+  .monte-mission__item--6 { width: 258.358px; height: 258.358px; right: 41.643px; top: calc(50% - 194px); --mm-angle: 10.82deg; }
+}
+@media (min-width: 1000px) and (max-width: 1250px) {
+  .monte-mission__side--1 { transform: scale(.75); transform-origin: left center; }
+  .monte-mission__side--2 { transform: scale(.75); transform-origin: right center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .monte-mission[data-animate] .monte-mission__motion, .monte-mission .button { transition: none; }
+  .monte-mission[data-animate]:not([data-revealed]) .monte-mission__motion { opacity: 1; transform: none; }
+}
+

@@ -24,3 +24,7 @@
   .monte-collection-hero__heading { font-size: 56px; }
   .monte-collection-hero__subheading { font-size: 20px; }
 }
+
+@media (min-width: 700px) {
+  .monte-collection-hero--about .monte-collection-hero__media::after { content: ''; display: block; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgb(0 0 0 / .7) 94.91%); }
+}

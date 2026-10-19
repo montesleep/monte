@@ -1,0 +1,148 @@
+{
+  "type": "custom.about",
+  "name": "Monté About Page",
+  "sections": {
+    "about_hero": {
+      "type": "collection-banner",
+      "name": "Monté About Hero",
+      "settings": {
+        "design_images": "about",
+        "show_default_images": true,
+        "desktop_height": 460,
+        "mobile_height": 420,
+        "heading": "O Monté",
+        "subheading": "Jedwab morwowy 22 momme. Produkty stworzone z myślą o lepszym śnie i lepszej skórze każdej nocy.",
+        "show_rating": false,
+        "heading_color": "#FDFBF9",
+        "body_color": "#FDFBF9",
+        "rating_color": "#FDFBF9",
+        "overlay_color": "#000000",
+        "overlay_opacity": 20,
+        "mobile_gradient": true
+      }
+    },
+    "about_story": {
+      "type": "monte-brand-story",
+      "name": "Monté About Story",
+      "settings": {
+        "show_default_image": true,
+        "image_zoom": false,
+        "heading": "Nasza historia",
+        "body": "",
+        "button_label": "",
+        "heading_color": "#232E71",
+        "body_color": "#52597E",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40,
+        "body_richtext": "<p>Monté powstało z prostego przekonania: to, w czym śpisz, ma znaczenie. Szukaliśmy jedwabnych produktów, które naprawdę spełniają obietnice. Większość albo rozczarowywała jakością, albo kosztowała więcej niż powinna.</p><p>Postanowiliśmy to zmienić. Wybraliśmy jedwab morwowy 22 momme, zaprojektowaliśmy produkty od zera i postawiliśmy na prostotę, która działa. Bez zbędnych ozdobników, bez marketingowych obietnic, których nie da się sprawdzić.</p><p>Dziś Monté to rosnąca kolekcja jedwabnych produktów na noc, które łączą jakość z uczciwą ceną. Każdy z nich powstaje z tego samego materiału i z tą samą zasadą: rób mniej, ale rób to dobrze.</p>",
+        "button_link": ""
+      }
+    },
+    "about_mission": {
+      "type": "monte-mission",
+      "name": "Monté Mission",
+      "settings": {
+        "heading": "Nasza misja",
+        "button_label": "Odkryj nasze produkty",
+        "button_link": "/collections",
+        "show_design_images": true,
+        "heading_color": "#232E71",
+        "body_color": "#52597E",
+        "button_background": "#232E71",
+        "button_hover": "#182153",
+        "button_text": "#FDFBF9",
+        "body": "<p>Wierzymy, że nocna pielęgnacja nie kończy się na kremie i serum. To, w czym śpisz i na czym śpisz, ma znaczenie dla Twojej skóry, włosów i jakości snu.</p><p>Dlatego każdy produkt Monté powstaje z jedwabiu morwowego 22 momme. Bez kompromisów w materiale, bez sztucznych dodatków. Prosty, przemyślany design, który robi dokładnie to, co obiecuje.</p><p>Naszym celem jest sprawić, żeby prawdziwy jedwab morwowy był dostępny bez przepłacania za nazwę. Uczciwa jakość, uczciwa cena.</p>"
+      }
+    },
+    "about_values": {
+      "type": "monte-product-features",
+      "name": "Monté About Values",
+      "settings": {
+        "heading": "Co nas napędza\nkażdego dnia",
+        "accessibility_label": "Wartości Monté",
+        "show_numbers": true,
+        "heading_color": "#232E71",
+        "body_color": "#52597E",
+        "surface_color": "#EEE7E0",
+        "badge_color": "#D9A17D",
+        "badge_text_color": "#FDFBF9",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      },
+      "blocks": {
+        "value_1": {
+          "type": "feature",
+          "settings": {
+            "title": "Jakość",
+            "description": "<p>Każdy produkt powstaje z jedwabiu morwowego 22 momme. Nie szukamy tańszych zamienników i nie idziemy na skróty.</p>",
+            "design_image": "about-1"
+          }
+        },
+        "value_2": {
+          "type": "feature",
+          "settings": {
+            "title": "Uczciwość",
+            "description": "<p>Piszemy dokładnie to, co jest. Prawdziwy skład, prawdziwe zdjęcia, prawdziwe opinie. Bez marketingowych sztuczek.</p>",
+            "design_image": "about-2"
+          }
+        },
+        "value_3": {
+          "type": "feature",
+          "settings": {
+            "title": "Ludzie",
+            "description": "<p>Tworzymy produkty dla prawdziwych ludzi, nie dla katalogów. Każda opinia, każde pytanie i każdy zwrot uczą nas robić to lepiej.</p>",
+            "design_image": "about-3"
+          }
+        }
+      },
+      "block_order": [
+        "value_1",
+        "value_2",
+        "value_3"
+      ]
+    },
+    "about_spotlight": {
+      "type": "monte-spotlight",
+      "name": "Monté Product Spotlight",
+      "settings": {
+        "card_1_show_default_image": true,
+        "card_1_badge": "Bestseller",
+        "card_1_badge_background": "#232e71",
+        "card_1_badge_color": "#fdfbf9",
+        "card_1_heading": "Jedwabne maski do spania",
+        "card_1_body": "Pełny blackout i jedwab morwowy 22 momme, który chroni skórę przez całą noc.",
+        "card_1_button_label": "Zobacz maski",
+        "card_1_link": "/collections/maski",
+        "card_1_text_color": "#fdfbf9",
+        "card_1_button_background": "#fdfbf9",
+        "card_1_button_text_color": "#232e71",
+        "card_1_button_hover": "#eee7e0",
+        "card_2_show_default_image": true,
+        "card_2_badge": "Nowość",
+        "card_2_badge_background": "#f8f1e9",
+        "card_2_badge_color": "#232e71",
+        "card_2_heading": "Jedwabne poszewki na poduszkę",
+        "card_2_body": "Mniej załamów na skórze rano i włosy, które nie plączą się w nocy.",
+        "card_2_button_label": "Zobacz poszewki",
+        "card_2_link": "/collections/poszewki",
+        "card_2_text_color": "#fdfbf9",
+        "card_2_button_background": "#fdfbf9",
+        "card_2_button_text_color": "#232e71",
+        "card_2_button_hover": "#eee7e0",
+        "overlay_style": "gradient",
+        "padding_bottom_desktop": 80
+      }
+    }
+  },
+  "order": [
+    "about_hero",
+    "about_story",
+    "about_mission",
+    "about_values",
+    "about_spotlight"
+  ]
+}

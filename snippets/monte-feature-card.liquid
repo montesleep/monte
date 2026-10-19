@@ -8,6 +8,11 @@
       assign image_width = 1048
     endif
   endif
+  if block.settings.design_image contains 'about-'
+    assign fallback = block.settings.design_image | replace: 'about-', 'monte-about-value' | append: '.jpg'
+    assign image_width = 1600
+    assign image_height = 1600
+  endif
   assign mobile_image = block.settings.mobile_image
   assign mobile_video = block.settings.mobile_video
   if mobile_image == blank and mobile_video == blank

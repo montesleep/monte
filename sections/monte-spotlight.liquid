@@ -1,6 +1,6 @@
 {{ 'monte-spotlight.css' | asset_url | stylesheet_tag }}
 <style>#shopify-section-{{ section.id }} { background: transparent; }</style>
-<reveal-items class="monte-spotlight" margin="0px">
+<reveal-items class="monte-spotlight{% if section.settings.overlay_style == 'gradient' %} monte-spotlight--gradient{% endif %}" style="--spotlight-bottom: {{ section.settings.padding_bottom_desktop }}px;" margin="0px">
   {%- for number in (1..2) -%}
     {%- render 'monte-spotlight-card', number: number, section: section -%}
   {%- endfor -%}
@@ -214,6 +214,32 @@
       "id": "card_2_button_hover",
       "label": "Button hover background",
       "default": "#eee7e0"
+    },
+    {
+      "type": "select",
+      "id": "overlay_style",
+      "label": "Image overlay style",
+      "default": "solid",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Black 20%"
+        },
+        {
+          "value": "gradient",
+          "label": "Bottom gradient"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Desktop bottom spacing",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
     }
   ],
   "presets": [

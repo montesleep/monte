@@ -32,3 +32,6 @@
   .monte-story .button, .monte-story__media > div { transition: none; }
   .monte-story__media--zoom:hover > div { transform: none; }
 }
+
+.monte-story__body--rich p { margin: 0; }
+.monte-story__body--rich p + p { margin-top: 1.5em; }

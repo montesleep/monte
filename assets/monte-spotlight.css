@@ -14,7 +14,7 @@
 .monte-spotlight .button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 @media (hover: hover) { .monte-spotlight .button:hover { background: var(--spotlight-button-hover); color: rgb(var(--button-text-color)); } }
 @media (min-width: 700px) {
-  .monte-spotlight { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding: 80px 40px 40px; }
+  .monte-spotlight { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding: 80px 40px var(--spotlight-bottom, 40px); }
   .monte-spotlight__card { min-height: 500px; padding: 32px; }
   .monte-spotlight__media-desktop { display: block; }
   .monte-spotlight__media-mobile { display: none; }
@@ -32,3 +32,5 @@
   .monte-spotlight__media > div, .monte-spotlight .button { transition: none; }
   .monte-spotlight__card:hover .monte-spotlight__media > div { transform: none; }
 }
+
+.monte-spotlight--gradient .monte-spotlight__media::after { background: linear-gradient(180deg, transparent 30%, rgb(0 0 0 / .6) 100%); }

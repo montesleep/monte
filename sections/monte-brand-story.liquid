@@ -36,7 +36,7 @@
     <div class="monte-story__content">
       <div class="monte-story__copy">
         {%- if section.settings.heading != blank -%}<h2 class="monte-story__heading">{{ section.settings.heading | escape | newline_to_br }}</h2>{%- endif -%}
-        {%- if section.settings.body != blank -%}<p class="monte-story__body">{{ section.settings.body | escape | newline_to_br }}</p>{%- endif -%}
+        {%- if section.settings.body_richtext != blank -%}<div class="monte-story__body monte-story__body--rich">{{ section.settings.body_richtext }}</div>{%- elsif section.settings.body != blank -%}<p class="monte-story__body">{{ section.settings.body | escape | newline_to_br }}</p>{%- endif -%}
       </div>
       {%- if button_label != blank and section.settings.button_link != blank -%}
         {%- render 'button', content: button_label, href: section.settings.button_link, style: 'outline' -%}
@@ -111,6 +111,12 @@
       "id": "body",
       "label": "Subheading",
       "default": "Jedwab morwowy 22 momme, uczciwa jakość i produkty stworzone z myślą o Twojej nocnej rutynie."
+    },
+    {
+      "type": "richtext",
+      "id": "body_richtext",
+      "label": "Story body",
+      "info": "Optional formatted body. Replaces the subheading when filled."
     },
     {
       "type": "text",

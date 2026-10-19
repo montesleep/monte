@@ -1,7 +1,9 @@
 {%- liquid
   assign promo_type = 'monte_promo'
+  assign default_promo_link = routes.collections_url
   if kind == 'bundle'
     assign promo_type = 'monte_bundle_promo'
+    assign default_promo_link = '/pages/bundle-builder'
   endif
   assign promo = section.blocks | where: 'type', promo_type | first
   assign media_image = promo.settings.mobile_image
@@ -27,7 +29,7 @@
       {%- if promo.settings.badge != blank -%}<span class="monte-promo-badge">{{ promo.settings.badge | escape }}</span>{%- endif -%}
       {%- if promo.settings.heading != blank -%}<p class="monte-promo-heading">{{ promo.settings.heading | escape }}</p>{%- endif -%}
       {%- if promo.settings.body != blank -%}<p class="monte-promo-body">{{ promo.settings.body | escape }}</p>{%- endif -%}
-      {%- if promo.settings.button_label != blank -%}<a class="button monte-promo-button" href="{{ promo.settings.link | default: routes.collections_url }}"><span>{{ promo.settings.button_label | escape }}</span></a>{%- endif -%}
+      {%- if promo.settings.button_label != blank -%}<a class="button monte-promo-button" href="{{ promo.settings.link | default: default_promo_link }}"><span>{{ promo.settings.button_label | escape }}</span></a>{%- endif -%}
     </div>
   </div>
 {%- endif -%}

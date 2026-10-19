@@ -25,13 +25,23 @@ class MonteBuilderDialog extends DialogElement {
   async transition(open, animate = true) {
     this.animations?.forEach(animation => animation.cancel());
     const panel = this.querySelector('.mb-dialog-panel'), overlay = this.querySelector('.mb-overlay');
-    const mobile = matchMedia('(max-width:999px)').matches;
-    const transform = this.hasAttribute('data-summary-dialog') ? 'translateY(100%)' : mobile ? 'translateX(100%)' : 'translateY(24px)';
-    const duration = animate && !matchMedia('(prefers-reduced-motion:reduce)').matches ? 400 : 0;
-    const frames = open ? [{transform,opacity:0},{transform:'translate(0)',opacity:1}] : [{transform:'translate(0)',opacity:1},{transform,opacity:0}];
-    this.animations = [panel.animate(frames,{duration,easing:'cubic-bezier(.25,1,.5,1)',fill:'both'}),overlay.animate(open ? [{opacity:0},{opacity:1}] : [{opacity:1},{opacity:0}],{duration,fill:'both'})];
-    await Promise.all(this.animations.map(animation => animation.finished.catch(() => {})));
-    if (!open && !this.open) { this.style.display = 'none'; this.unlock(); }
+    const reduced = !animate || matchMedia('(prefers-reduced-motion:reduce)').matches || window.themeVariables?.settings?.reduceDrawerAnimation;
+    const radius = getComputedStyle(panel).borderRadius;
+    const closed = this.hasAttribute('data-summary-dialog') ? `inset(100% 0 0 0 round ${radius})` : `inset(0 0 0 100% round ${radius})`;
+    const expanded = `inset(0 0 0 0 round ${radius})`;
+    const overlayFrames = [
+      {backgroundColor:'rgba(0,0,0,0)',backdropFilter:'blur(0px)',webkitBackdropFilter:'blur(0px)'},
+      {backgroundColor:'rgba(0,0,0,.6)',backdropFilter:'blur(17px)',webkitBackdropFilter:'blur(17px)'}
+    ];
+    // Match the cart reveal without fading a backdrop ancestor, which delays blur.
+    const animations = [
+      overlay.animate(open ? overlayFrames : [...overlayFrames].reverse(), {duration:reduced ? 0 : 300,fill:'both'}),
+      panel.animate({clipPath:open ? [closed,expanded] : [expanded,closed]}, {duration:reduced ? 0 : 400,delay:reduced ? 0 : 150,easing:'cubic-bezier(.86,0,.07,1)',fill:'both'}),
+      ...Array.from(panel.children, child => child.animate({opacity:open ? [0,1] : [1,0]}, {duration:reduced ? 0 : 150,delay:open && !reduced ? 550 : 0,fill:'both'}))
+    ];
+    this.animations = animations;
+    await Promise.all(animations.map(animation => animation.finished.catch(() => {})));
+    if (this.animations === animations && !open && !this.open) { this.style.display = 'none'; this.unlock(); }
   }
   _showTransition(animate) { this.lock(); this.style.display = this.hasAttribute('data-summary-dialog') ? 'flex' : 'block'; return this.transition(true,animate); }
   _hideTransition() { return this.transition(false); }

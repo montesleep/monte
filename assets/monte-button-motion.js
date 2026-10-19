@@ -25,10 +25,10 @@ const filled = [
 const blocked = ':disabled, [disabled], [aria-disabled="true"], [aria-busy="true"], [loading]';
 const prepared = new WeakSet();
 const outlineSelector = '.button--outline, .mb-button--outline, .monte-cart-button--outline';
-// Match the inward fill to the actual height, including resized or newly revealed controls.
+// Size the circle to reach the top corners, including resized or newly revealed controls.
 const fillResize = new ResizeObserver(entries => {
   for (const { target } of entries) {
-    target.style.setProperty('--monte-fill-depth', `${target.offsetHeight / 2 + 1}px`);
+    target.style.setProperty('--monte-fill-radius', `${Math.hypot(target.offsetWidth / 2, target.offsetHeight) + 1}px`);
   }
 });
 
@@ -47,7 +47,7 @@ function prepare(element) {
   if (element.matches(outlineSelector)) {
     element.style.setProperty('--monte-outline-shadow', style.boxShadow === 'none'
       ? 'inset 0 0 0 0 #232e71' : style.boxShadow);
-    element.style.setProperty('--monte-fill-depth', `${element.offsetHeight / 2 + 1}px`);
+    element.style.setProperty('--monte-fill-radius', `${Math.hypot(element.offsetWidth / 2, element.offsetHeight) + 1}px`);
     fillResize.observe(element);
   }
   element.dataset.monteMotion = isText ? 'text' : 'button';

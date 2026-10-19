@@ -28,29 +28,42 @@ html body [data-monte-motion]:not([data-monte-motion="off"]):not(:disabled, [dis
   --monte-motion-duration: 100ms;
   scale: var(--monte-press-scale);
 }
-/* Inset fill grows from the edges inward, behind the label, and reverses on leave. */
+/* A circular wave rises from the bottom center, behind the label. */
 html body :is(.button--outline, .mb-button--outline, .monte-cart-button--outline)[data-monte-motion] {
-  --monte-button-transition: box-shadow 360ms cubic-bezier(.25, .46, .45, .94),
-    color 300ms ease, border-color 300ms ease !important;
+  --monte-button-transition: color 300ms ease, border-color 300ms ease !important;
+  isolation: isolate;
   background: transparent;
-  box-shadow: var(--monte-outline-shadow, inset 0 0 0 0 #232e71),
-    inset 0 0 0 0 #232e71;
+  box-shadow: var(--monte-outline-shadow, inset 0 0 0 0 #232e71);
+}
+html body :is(.button--outline, .mb-button--outline, .monte-cart-button--outline)[data-monte-motion]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: #232e71;
+  clip-path: var(--monte-fill-clip, circle(0px at 50% 100%));
+  transition: clip-path 420ms cubic-bezier(.25, .46, .45, .94);
+}
+@media (prefers-reduced-motion: reduce) {
+  html body :is(.button--outline, .mb-button--outline, .monte-cart-button--outline)[data-monte-motion]::before {
+    transition: none;
+  }
 }
 @media (hover: hover) and (pointer: fine) {
   html body :is(.button--outline, .mb-button--outline, .monte-cart-button--outline)[data-monte-motion]:not(:disabled, [disabled], [aria-disabled="true"], [aria-busy="true"], [loading]):hover {
     background: transparent;
     color: #fdfbf9;
     border-color: #232e71;
-    box-shadow: var(--monte-outline-shadow, inset 0 0 0 0 #232e71),
-      inset 0 0 0 var(--monte-fill-depth, 32px) #232e71;
+    --monte-fill-clip: circle(var(--monte-fill-radius, 300px) at 50% 100%);
   }
 }
 html body :is(.button--outline, .mb-button--outline, .monte-cart-button--outline)[data-monte-motion]:not(:disabled, [disabled], [aria-disabled="true"], [aria-busy="true"], [loading]):is(:active, [data-monte-pressed]) {
   background: transparent;
   color: #fdfbf9;
   border-color: #232e71;
-  box-shadow: var(--monte-outline-shadow, inset 0 0 0 0 #232e71),
-    inset 0 0 0 var(--monte-fill-depth, 32px) #232e71;
+  --monte-fill-clip: circle(var(--monte-fill-radius, 300px) at 50% 100%);
 }
 html body :is(.mb-button--outline, .monte-cart-button--outline)[data-monte-motion] img {
   transition: filter 300ms ease;

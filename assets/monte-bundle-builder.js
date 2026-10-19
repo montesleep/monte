@@ -186,9 +186,22 @@ class MonteBundleBuilder extends HTMLElement {
     this.checkingOut=true;this.error('');this.render();
     try {
       const root=window.Shopify?.routes?.root||'/';
-      const items=[...this.selected].map(([id,quantity])=>({id:Number(id),quantity,properties:{_monte_bundle_builder:'true'}}));
-      const response=await fetch(`${root}cart/add.js`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items})});
-      const result=await response.json();if(!response.ok)throw new Error(result.description||this.config.errorText);
+      const cartResponse=await fetch(`${root}cart.js`);if(!cartResponse.ok)throw new Error(this.config.errorText);
+      const cart=await cartResponse.json(),remaining=new Map(this.selected),updates={};
+      // Reconcile only this builder's lines, preserving unrelated cart items.
+      for(const line of cart.items){
+        if(line.properties?._monte_bundle_builder!=='true')continue;
+        const id=String(line.variant_id);updates[line.key]=remaining.get(id)||0;remaining.delete(id);
+      }
+      if(Object.keys(updates).length){
+        const response=await fetch(`${root}cart/update.js`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({updates})});
+        const result=await response.json();if(!response.ok)throw new Error(result.description||this.config.errorText);
+      }
+      if(remaining.size){
+        const items=[...remaining].map(([id,quantity])=>({id:Number(id),quantity,properties:{_monte_bundle_builder:'true'}}));
+        const response=await fetch(`${root}cart/add.js`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items})});
+        const result=await response.json();if(!response.ok)throw new Error(result.description||this.config.errorText);
+      }
       location.assign(this.config.discountCode?`${root}discount/${encodeURIComponent(this.config.discountCode)}?redirect=/checkout`:`${root}checkout`);
     }catch(error){this.error(error.message||this.config.errorText);this.checkingOut=false;this.render();}
   }

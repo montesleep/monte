@@ -6,6 +6,7 @@
   </div>
   <div class="mb-lines" data-builder-lines hidden></div>
   <div class="mb-summary-bottom">
+    <p class="mb-error" data-builder-error role="alert" hidden></p>
     <div class="mb-totals"><div><span>{{ section.settings.subtotal_label | escape }}</span><span data-subtotal>0 zł</span></div><div class="mb-savings"><span>{{ section.settings.savings_label | escape }}</span><span data-savings>0 zł</span></div><div class="mb-total"><span>{{ section.settings.total_label | escape }}</span><span data-total>0 zł</span></div></div>
     <div class="mb-checkout-wrap"><button type="button" class="mb-button mb-checkout" data-builder-checkout disabled>{{ section.settings.checkout_label | escape }}<img src="{{ 'monte-cart-checkout.svg' | asset_url }}" width="24" height="24" alt=""></button><div class="mb-trust"><span><img src="{{ 'monte-cart-shipping.svg' | asset_url }}" width="20" height="20" alt="">{{ section.settings.shipping_text | escape }}</span><span><img src="{{ 'monte-cart-return.svg' | asset_url }}" width="20" height="20" alt="">{{ section.settings.returns_text | escape }}</span></div></div>
   </div>

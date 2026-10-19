@@ -15,9 +15,11 @@ class MonteCollectionFilter extends HTMLElement {
     };
     if (this.hasAttribute('data-bundle-filter')) {
       this.querySelectorAll('.monte-categories__item').forEach(link => {
-        const category = new URL(link.href).pathname.split('/').filter(Boolean).pop();
+        const category = link.dataset.category || new URL(link.href).pathname.split('/').filter(Boolean).pop();
         link.dataset.category = category;
-        link.href = location.pathname + '?category=' + encodeURIComponent(category);
+        const address = new URL(location.href);
+        address.searchParams.set('category',category);
+        link.href = address.href;
       });
     }
     this.track.addEventListener('scroll', this.update, { passive: true, signal });

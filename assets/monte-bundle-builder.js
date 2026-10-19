@@ -7,6 +7,7 @@ class MonteBuilderDialog extends DialogElement {
   get shouldLock() { return true; }
   connectedCallback() {
     super.connectedCallback();
+    this.setAttribute('aria-modal','true');
     this.addEventListener('click', event => { if (event.target.closest('[data-dialog-close]')) this.hide(); }, { signal: this._abortController.signal });
   }
   disconnectedCallback() { this.unlock(); super.disconnectedCallback(); }
@@ -49,6 +50,7 @@ class MonteBundleBuilder extends HTMLElement {
       event.preventDefault(); this.changeCategory(link.dataset.category || new URL(link.href).pathname.split('/').pop(), true);
     }, {signal:this.abort.signal});
     window.addEventListener('popstate', () => this.changeCategory(new URL(location.href).searchParams.get('category') || 'all'),{signal:this.abort.signal});
+    window.addEventListener('pageshow', () => { this.checkingOut=false; this.render(); },{signal:this.abort.signal});
     const category = new URL(location.href).searchParams.get('category') || 'all';
     if (category !== 'all') this.changeCategory(category); else this.markCategory(category);
   }
@@ -129,7 +131,7 @@ class MonteBundleBuilder extends HTMLElement {
       row.querySelector('[data-builder-step="-1"]').disabled=qty<=1;
       row.querySelector('[data-builder-step="1"]').disabled=qty>=p.maximum;
       const button=row.querySelector('[data-builder-add]');
-      if(button){const selected=this.selected.has(id);button.classList.toggle('mb-button--outline',selected);button.querySelector('[data-add-label]').textContent=!p.available?'Wyprzedane':selected?'Usuń':'Dodaj';button.querySelector('[data-add-icon]').textContent=selected?'−':'+';}
+      if(button){const selected=this.selected.has(id);button.classList.toggle('mb-button--outline',selected);button.querySelector('[data-add-label]').textContent=!p.available?'Wyprzedane':selected?'Usuń':'Dodaj';button.querySelector('[data-add-icon]').innerHTML=selected?`<img src="${escapeHTML(this.config.trash)}" width="16" height="16" alt="">`:'+';}
     });
     this.querySelector('[data-builder-status]').textContent=`W zestawie: ${[...this.selected.values()].reduce((a,b)=>a+b,0)}. ${money(total)}`;
   }
@@ -157,7 +159,7 @@ class MonteBundleBuilder extends HTMLElement {
     }catch(error){if(error.name!=='AbortError')this.error(this.config.errorText);}
     finally{if(this.catalogRequest===request)this.catalog.removeAttribute('aria-busy');}
   }
-  error(message){const el=this.querySelector('[data-builder-error]');el.textContent=message;el.hidden=!message;}
+  error(message){this.querySelectorAll('[data-builder-error]').forEach(el=>{el.textContent=message;el.hidden=!message;});}
   async openQuick(id) {
     const product=this.products.get(id);this.quickId=id;this.quickRequest?.abort();const request=this.quickRequest=new AbortController();
     this.querySelector('[data-quick-title]').textContent=product.title;

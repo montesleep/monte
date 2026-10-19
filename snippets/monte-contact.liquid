@@ -6,6 +6,13 @@
   assign contact_form_id = 'MonteContact-' | append: section.id
   assign privacy_url = section.settings.privacy_link | default: shop.privacy_policy.url
 -%}
+{%- if section.settings.content_style == 'company' -%}
+  <style>
+    @font-face { font-family: 'PP Mori Extrabold'; src: url('https://cdn.shopify.com/s/files/1/1018/4258/3886/files/PPMori-Extrabold.ttf?v=1788241598') format('truetype'); font-weight: 800; font-style: normal; font-display: swap; }
+    #shopify-section-{{ section.id }} .monte-faq__description { max-width: 320px; }
+    #shopify-section-{{ section.id }} .monte-faq__description :is(strong, b) { font-family: 'PP Mori Extrabold', var(--text-font-family); font-weight: 800; }
+  </style>
+{%- endif -%}
 <monte-contact class="monte-contact monte-faq" style="--mf-primary: {{ section.settings.monte_primary }}; --mf-secondary: {{ section.settings.monte_secondary }}; --contact-field: {{ section.settings.monte_field }}; --contact-border: {{ section.settings.monte_border }}; --contact-placeholder: {{ section.settings.monte_placeholder }};">
   <reveal-items class="monte-faq__reveal" margin="0px">
     <div class="monte-faq__layout">

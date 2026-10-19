@@ -13,6 +13,17 @@
     assign default_desktop_height = 1080
     assign default_mobile_width = 2327
     assign default_mobile_height = 1080
+  elsif section.settings.design_images == 'contact'
+    assign default_desktop = 'monte-contact-hero.png'
+    assign default_mobile = 'monte-contact-hero.png'
+    assign default_desktop_width = 1800
+    assign default_desktop_height = 540
+    assign default_mobile_width = 1800
+    assign default_mobile_height = 540
+  endif
+  assign mobile_default_position = '50% 50%'
+  if section.settings.design_images == 'contact' and section.settings.mobile_image == blank and section.settings.image == blank
+    assign mobile_default_position = '65.49% 50%'
   endif
   assign desktop_image = section.settings.image
   assign desktop_video = section.settings.video
@@ -28,7 +39,7 @@
 <style>
   #shopify-section-{{ section.id }} { background: transparent; margin: 0; padding: 0; }
 </style>
-<reveal-items class="monte-collection-hero" selector=".monte-collection-hero__content" margin="0px" style="--mch-gradient-opacity: {% if section.settings.design_images == 'faq' %}.7{% else %}.8{% endif %}; --mch-height-desktop: {{ section.settings.desktop_height }}px; --mch-height-mobile: {{ section.settings.mobile_height }}px; --mch-heading: {{ section.settings.heading_color }}; --mch-body: {{ section.settings.body_color }}; --mch-rating: {{ section.settings.rating_color }}; --mch-overlay: {{ section.settings.overlay_color }}; --mch-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --mch-image-position: {{ desktop_image.presentation.focal_point | default: '50% 50%' }}; --mch-mobile-image-position: {{ mobile_image.presentation.focal_point | default: '50% 50%' }};">
+<reveal-items class="monte-collection-hero" selector=".monte-collection-hero__content" margin="0px" style="--mch-gradient-opacity: {% if section.settings.design_images == 'faq' or section.settings.design_images == 'contact' %}.7{% else %}.8{% endif %}; --mch-height-desktop: {{ section.settings.desktop_height }}px; --mch-height-mobile: {{ section.settings.mobile_height }}px; --mch-heading: {{ section.settings.heading_color }}; --mch-body: {{ section.settings.body_color }}; --mch-rating: {{ section.settings.rating_color }}; --mch-overlay: {{ section.settings.overlay_color }}; --mch-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --mch-image-position: {{ desktop_image.presentation.focal_point | default: '50% 50%' }}; --mch-mobile-image-position: {{ mobile_image.presentation.focal_point | default: mobile_default_position }};">
   <div class="monte-collection-hero__frame{% if section.settings.mobile_gradient %} monte-collection-hero__frame--gradient{% endif %}">
     <div class="monte-collection-hero__media" aria-hidden="true">
       {%- if desktop_video == blank and mobile_video == blank -%}
@@ -102,7 +113,7 @@
   "settings": [
     { "type": "paragraph", "content": "Shared by every collection using this template. Images, copy and colors are edited here. The rating is shared with the homepage." },
     { "type": "header", "content": "Media" },
-    { "type": "select", "id": "design_images", "label": "Default design images", "options": [{ "value": "collection", "label": "Collection" }, { "value": "faq", "label": "FAQ" }], "default": "collection" },
+    { "type": "select", "id": "design_images", "label": "Default design images", "options": [{ "value": "collection", "label": "Collection" }, { "value": "faq", "label": "FAQ" }, { "value": "contact", "label": "Contact" }], "default": "collection" },
     { "type": "image_picker", "id": "image", "label": "Desktop image" },
     { "type": "video", "id": "video", "label": "Desktop video", "info": "Replaces the desktop image. Plays automatically, muted, looping and without controls." },
     { "type": "image_picker", "id": "mobile_image", "label": "Mobile image" },

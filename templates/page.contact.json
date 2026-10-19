@@ -20,15 +20,32 @@
       "type": "contact",
       "name": "Monté Contact Form",
       "settings": {
-        "title": "Jesteśmy tu dla Ciebie",
-        "content": "<p>Masz pytanie dotyczące zamówienia, produktu lub po prostu chcesz się przywitać? Napisz do nas, odpowiadamy w ciągu 24 godzin w dni robocze.</p><p>Wolisz pisać bezpośrednio? <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a><br/></p><p><strong>Dane firmy:</strong><br/>Władysław Kisielewski<br/>ul. Rybacka 15/5, 75-228 Koszalin, Polska<br/>NIP: 6692577114<br/>REGON: 527339957<br/>E-mail: <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a></p>",
+        "title": "Napisz do nas",
+        "content": "<p><strong>Dane firmy:</strong><br/>Władysław Kisielewski<br/>ul. Rybacka 15/5, 75-228 Koszalin, Polska<br/>NIP: 6692577114<br/>REGON: 527339957<br/>E-mail: hello@montesleep.com</p>",
         "button_background": "#232e71",
-        "button_text_color": "#fdfbf9"
+        "button_text_color": "#fdfbf9",
+        "content_style": "company"
+      }
+    },
+    "hero": {
+      "type": "collection-banner",
+      "name": "Monté Contact Hero",
+      "settings": {
+        "design_images": "contact",
+        "heading": "Jesteśmy tu dla Ciebie",
+        "subheading": "Masz pytanie o zamówienie, produkt lub potrzebujesz pomocy? Napisz do nas, odpowiadamy w ciągu 24 godzin.",
+        "show_rating": false,
+        "show_default_images": true,
+        "mobile_gradient": true,
+        "desktop_height": 460,
+        "mobile_height": 420,
+        "overlay_opacity": 20
       }
     }
   },
   "order": [
     "main",
+    "hero",
     "contact_pyMPNU"
   ]
 }

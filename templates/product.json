@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -130,7 +139,12 @@
             "mobile_padding_top": 0,
             "mobile_padding_bottom": 0,
             "mobile_margin_top": 0,
-            "mobile_margin_bottom": 0
+            "mobile_margin_bottom": 0,
+            "popup_products": [],
+            "limited_product": "classic-black-silk-sleep-mask",
+            "limited_label": "Limitowany kolor",
+            "monte_bundle_description": "Dodatkowe 20% rabatu na drugą maskę",
+            "monte_bundle_badge": "KORZYSTNIEJSZY"
           }
         },
         "maison_pay_icons_jGDRtg": {
@@ -329,51 +343,51 @@
           "type": "monte_ugc",
           "settings": {
             "media_type": "image",
+            "alt": "Monté — jedwabna maska do spania",
             "play_overlay": true,
-            "design_image": "1",
-            "alt": "Monté — jedwabna maska do spania"
+            "design_image": "1"
           }
         },
         "monte_ugc_2": {
           "type": "monte_ugc",
           "settings": {
             "media_type": "image",
+            "alt": "Monté — jedwabna maska do spania",
             "play_overlay": true,
-            "design_image": "2",
-            "alt": "Monté — jedwabna maska do spania"
+            "design_image": "2"
           }
         },
         "monte_ugc_3": {
           "type": "monte_ugc",
           "settings": {
             "media_type": "image",
+            "alt": "Monté — jedwabna maska do spania",
             "play_overlay": true,
-            "design_image": "3",
-            "alt": "Monté — jedwabna maska do spania"
+            "design_image": "3"
           }
         },
         "monte_accordion_1": {
           "type": "monte_accordion",
           "settings": {
             "title": "Materiały i dopasowanie",
-            "content": "<p>Maska wykonana jest w <strong>100% z jedwabiu mulberry klasy 6A, 22 momme</strong>, z jedwabnym wypełnieniem. Certyfikat OEKO-TEX Standard 100 potwierdza, że tkanina i wypełnienie zostały wyprodukowane bez użycia szkodliwych substancji chemicznych.</p><p>Jedwab naturalnie reguluje temperaturę ciała i odprowadza wilgoć, dzięki czemu maska jest komfortowa zarówno latem, jak i zimą. Hipoalergiczna struktura włókna jest przyjazna dla wrażliwej skóry, rzęs i przedłużeń.</p><p><strong>Wymiary:</strong> 12 cm wysokości x 70 cm długości. Regulowany rzep dopasowuje się do każdego obwodu głowy bez ucisku na skronie ani za uszami.</p>",
-            "icon": "shopify://shop_images/Information-Circle--Streamline-Sharp_1.svg"
+            "icon": "shopify://shop_images/Information-Circle--Streamline-Sharp_1.svg",
+            "content": "<p>Maska wykonana jest w <strong>100% z jedwabiu mulberry klasy 6A, 22 momme</strong>, z jedwabnym wypełnieniem. Certyfikat OEKO-TEX Standard 100 potwierdza, że tkanina i wypełnienie zostały wyprodukowane bez użycia szkodliwych substancji chemicznych.</p><p>Jedwab naturalnie reguluje temperaturę ciała i odprowadza wilgoć, dzięki czemu maska jest komfortowa zarówno latem, jak i zimą. Hipoalergiczna struktura włókna jest przyjazna dla wrażliwej skóry, rzęs i przedłużeń.</p><p><strong>Wymiary:</strong> 12 cm wysokości x 70 cm długości. Regulowany rzep dopasowuje się do każdego obwodu głowy bez ucisku na skronie ani za uszami.</p>"
           }
         },
         "monte_accordion_2": {
           "type": "monte_accordion",
           "settings": {
             "title": "Pielęgnacja",
-            "content": "<p><strong>Aby jedwab zachował swoją miękkość na lata:</strong></p><p><strong>Pranie ręczne</strong> w zimnej wodzie <strong>(maks. 30°C)</strong> z delikatnym detergentem do jedwabiu. Nie używaj wybielacza ani środków na bazie enzymów. Nie wyżymaj, delikatnie odciśnij nadmiar wody miękkim ręcznikiem. Susz na płasko, z dala od bezpośredniego słońca. Nie wkładaj do suszarki bębnowej.</p><p>Po wysuszeniu maska może stracić część swojej puszystości. Aby przywrócić jej pierwotną miękkość, przeprasuj ją żelazkiem w trybie pary od wewnętrznej strony, trzymając żelazko kilka centymetrów od tkaniny.</p>",
-            "icon": "shopify://shop_images/Hotel-Laundry--Streamline-Sharp.svg"
+            "icon": "shopify://shop_images/Hotel-Laundry--Streamline-Sharp.svg",
+            "content": "<p><strong>Aby jedwab zachował swoją miękkość na lata:</strong></p><p><strong>Pranie ręczne</strong> w zimnej wodzie <strong>(maks. 30°C)</strong> z delikatnym detergentem do jedwabiu. Nie używaj wybielacza ani środków na bazie enzymów. Nie wyżymaj, delikatnie odciśnij nadmiar wody miękkim ręcznikiem. Susz na płasko, z dala od bezpośredniego słońca. Nie wkładaj do suszarki bębnowej.</p><p>Po wysuszeniu maska może stracić część swojej puszystości. Aby przywrócić jej pierwotną miękkość, przeprasuj ją żelazkiem w trybie pary od wewnętrznej strony, trzymając żelazko kilka centymetrów od tkaniny.</p>"
           }
         },
         "monte_accordion_3": {
           "type": "monte_accordion",
           "settings": {
             "title": "Dostawa i zwroty",
-            "content": "<p><strong>Dostawa</strong><br/><br/>Wysyłamy wyłącznie <strong>kurierem InPost.</strong> Zamówienia złożone do 18:00 w dni robocze wysyłamy tego samego dnia. Czas dostawy: 1-2 dni robocze. Darmowa dostawa od 250 zł.</p><p><strong>Zwroty</strong><br/><br/><strong>Oferujemy 30-nocną gwarancję satysfakcji.</strong> Jeśli po otrzymaniu maski zmienisz zdanie, masz 30 nocy na jej odesłanie w oryginalnym stanie: nieużywaną, nieprananą, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p><p>Ze względu na higieniczny charakter produktu, nie przyjmujemy zwrotów masek noszących ślady użytkowania. Jeśli masz jakiekolwiek pytania przed zakupem, napisz do nas przed złożeniem zamówienia, chętnie pomożemy w wyborze.</p>",
-            "icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_6.svg"
+            "icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_6.svg",
+            "content": "<p><strong>Dostawa</strong><br/><br/>Wysyłamy wyłącznie <strong>kurierem InPost.</strong> Zamówienia złożone do 18:00 w dni robocze wysyłamy tego samego dnia. Czas dostawy: 1-2 dni robocze. Darmowa dostawa od 250 zł.</p><p><strong>Zwroty</strong><br/><br/><strong>Oferujemy 30-nocną gwarancję satysfakcji.</strong> Jeśli po otrzymaniu maski zmienisz zdanie, masz 30 nocy na jej odesłanie w oryginalnym stanie: nieużywaną, nieprananą, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p><p>Ze względu na higieniczny charakter produktu, nie przyjmujemy zwrotów masek noszących ślady użytkowania. Jeśli masz jakiekolwiek pytania przed zakupem, napisz do nas przed złożeniem zamówienia, chętnie pomożemy w wyborze.</p>"
           }
         }
       },
@@ -409,6 +423,15 @@
         "monte_accordion_3"
       ],
       "settings": {
+        "monte_product_design": true,
+        "monte_gallery_rotate": true,
+        "monte_show_rating": true,
+        "monte_show_promo": true,
+        "monte_promo_title": "Letnia Wyprzedaż",
+        "monte_promo_text": "Oferta ograniczona czasowo: -30% na wszystkie produkty Monté.",
+        "monte_promo_bg": "#f8f1e9",
+        "monte_promo_color": "#232e71",
+        "monte_ugc_title": "Ty + Monté",
         "full_width": true,
         "show_fixed_add_to_cart": true,
         "desktop_media_width": 65,
@@ -423,8 +446,7 @@
         "background_gradient": "",
         "text_color": "#182153",
         "input_background": "rgba(0,0,0,0)",
-        "input_text_color": "",
-        "monte_product_design": true
+        "input_text_color": ""
       }
     },
     "monte_product_details": {
@@ -475,6 +497,57 @@
         "body_color": "#52597e",
         "border_color": "#dcd6cf",
         "padding_top_desktop": 20,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "monte_product_features": {
+      "type": "monte-product-features",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "title": "Chłodny latem, przyjemny zimą",
+            "description": "<p>Naturalna regulacja temperatury każdej nocy.</p>",
+            "number": "",
+            "design_image": "1"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "title": "Rzep, który się dopasowuje",
+            "description": "<p>Bez ucisku na skronie, nie czepia się o włosy.</p>",
+            "number": "",
+            "design_image": "2"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "title": "Budzisz się bardziej wypoczęta",
+            "description": "<p>Głęboki sen w pełnej ciemności.</p>",
+            "number": "",
+            "design_image": "3"
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3"
+      ],
+      "settings": {
+        "heading": "Małe detale, które\nzmieniają jakość snu",
+        "accessibility_label": "Małe detale Monté",
+        "show_numbers": true,
+        "heading_color": "#232e71",
+        "body_color": "#52597e",
+        "surface_color": "#eee7e0",
+        "badge_color": "#d9a17d",
+        "badge_text_color": "#fdfbf9",
+        "padding_top_desktop": 80,
         "padding_bottom_desktop": 80,
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
@@ -685,9 +758,9 @@
         "button_label": "Skontaktuj się z nami",
         "button_link": "shopify://pages/contact",
         "open_first": true,
-        "monte_primary": "#232E71",
-        "monte_secondary": "#52597E",
-        "monte_border": "#DCD6CF",
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf",
         "tagline": "FAQ",
         "heading": "Wiemy,\no czym myślisz",
         "background_color": "#fdfbf9",
@@ -697,43 +770,6 @@
         "padding_bottom_desktop": 80,
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
-      }
-    },
-    "monte_product_features": {
-      "type": "monte-product-features",
-      "blocks": {
-        "feature_1": {
-          "type": "feature",
-          "settings": {
-            "title": "Chłodny latem, przyjemny zimą",
-            "description": "<p>Naturalna regulacja temperatury każdej nocy.</p>",
-            "design_image": "1"
-          }
-        },
-        "feature_2": {
-          "type": "feature",
-          "settings": {
-            "title": "Rzep, który się dopasowuje",
-            "description": "<p>Bez ucisku na skronie, nie czepia się o włosy.</p>",
-            "design_image": "2"
-          }
-        },
-        "feature_3": {
-          "type": "feature",
-          "settings": {
-            "title": "Budzisz się bardziej wypoczęta",
-            "description": "<p>Głęboki sen w pełnej ciemności.</p>",
-            "design_image": "3"
-          }
-        }
-      },
-      "block_order": [
-        "feature_1",
-        "feature_2",
-        "feature_3"
-      ],
-      "settings": {
-        "heading": "Małe detale, które\nzmieniają jakość snu"
       }
     }
   },

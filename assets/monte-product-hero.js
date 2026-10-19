@@ -22,6 +22,7 @@ class MonteProductHero extends HTMLElement {
         sticky.inert = !visible;
         const root = document.documentElement;
         root.classList.toggle('monte-sticky-mobile-visible', visible && !desktop.matches);
+        root.classList.toggle('monte-sticky-desktop-visible', visible && desktop.matches);
         root.style.setProperty('--monte-sticky-height', `${sticky.getBoundingClientRect().height}px`);
       };
       this.stickyObserver = new IntersectionObserver(updateVisibility);
@@ -86,7 +87,7 @@ class MonteProductHero extends HTMLElement {
       document.fonts.ready.then(() => { if (this.isConnected) measure(); });
     }
   }
-  disconnectedCallback() { this.abort?.abort(); this.descriptionAnimation?.cancel(); this.resize?.disconnect(); this.stickyObserver?.disconnect(); this.stickyResize?.disconnect(); document.documentElement.classList.remove('monte-sticky-mobile-visible'); document.documentElement.style.removeProperty('--monte-sticky-height'); }
+  disconnectedCallback() { this.abort?.abort(); this.descriptionAnimation?.cancel(); this.resize?.disconnect(); this.stickyObserver?.disconnect(); this.stickyResize?.disconnect(); document.documentElement.classList.remove('monte-sticky-mobile-visible', 'monte-sticky-desktop-visible'); document.documentElement.style.removeProperty('--monte-sticky-height'); }
 }
 
 class MontePdpTabs extends Tabs {

@@ -229,3 +229,6 @@
  .mp-sticky .mp-atc { white-space:normal; }
  .mp-sticky-form { min-width:0; flex-shrink:1; }
 }
+@media(min-width:1000px) {
+ html.monte-sticky-desktop-visible shopify-chat::part(activator) { translate:0 calc(-1 * (var(--monte-sticky-height, 196px) + 24px)); }
+}

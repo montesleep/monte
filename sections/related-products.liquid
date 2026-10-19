@@ -1,3 +1,25 @@
+{%- if section.settings.monte_layout -%}
+  {{- 'monte-product-tabs.css' | asset_url | stylesheet_tag -}}
+  {{- 'monte-related-products.css' | asset_url | stylesheet_tag -}}
+  <style>
+    #shopify-section-{{ section.id }} { margin: 0; background: transparent; }
+    #shopify-section-{{ section.id }} .monte-related {
+      --mp-primary: {{ section.settings.product_card_text_color | default: '#232e71' }};
+      --mp-secondary: {{ section.settings.text_color | default: '#52597e' }};
+      --mp-card: {{ section.settings.product_card_background | default: '#eee7e0' }};
+      --mr-heading: {{ section.settings.heading_color | default: '#232e71' }};
+    }
+  </style>
+  {%- if section.settings.products.count > 0 -%}
+    {%- render 'monte-related-products', products: section.settings.products -%}
+  {%- else -%}
+    <product-recommendations product="{{ product.id }}" limit="4" intent="related" class="contents">
+      {%- if recommendations.performed and recommendations.products_count > 0 -%}
+        {%- render 'monte-related-products', products: recommendations.products -%}
+      {%- endif -%}
+    </product-recommendations>
+  {%- endif -%}
+{%- else -%}
 {%- render 'section-spacing-collapsing' -%}
 
 {%- comment -%}
@@ -106,15 +128,26 @@ LIQUID
   </div>
 </div>
 
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Related products",
   "class": "shopify-section--product-recommendations",
   "tag": "section",
   "enabled_on": {
-    "templates": ["product"]
+    "templates": [
+      "product"
+    ]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "monte_layout",
+      "label": "Use Monté layout",
+      "default": false,
+      "info": "Four products on desktop and a two-column grid on mobile."
+    },
     {
       "type": "paragraph",
       "content": "Dynamic recommendations change and improve with time. Create manual product recommendations using the Shopify Search & Discovery app. [Learn more](https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations)."
@@ -125,33 +158,36 @@ LIQUID
       "min": 2,
       "max": 10,
       "label": "Dynamic recommendations count",
-      "default": 6
+      "default": 6,
+      "visible_if": "{{ section.settings.monte_layout == false }}"
     },
     {
       "type": "product_list",
       "id": "products",
       "limit": 20,
       "label": "Manual recommendations",
-      "info": "Replaces automatic recommendations when selected."
+      "info": "Replaces automatic recommendations when selected. Monté layout displays the first four products."
     },
     {
       "type": "checkbox",
       "id": "full_width",
       "label": "Full width",
-      "default": true
+      "default": true,
+      "visible_if": "{{ section.settings.monte_layout == false }}"
     },
     {
       "type": "checkbox",
       "id": "stack_products",
       "label": "Stack products",
-      "default": true
+      "default": true,
+      "visible_if": "{{ section.settings.monte_layout == false }}"
     },
     {
       "type": "checkbox",
       "id": "show_progress_bar",
       "label": "Show carousel progress bar",
       "default": false,
-      "visible_if": "{{ section.settings.stack_products == false }}"
+      "visible_if": "{{ section.settings.stack_products == false and section.settings.monte_layout == false }}"
     },
     {
       "type": "select",
@@ -167,7 +203,8 @@ LIQUID
           "label": "2"
         }
       ],
-      "default": "1"
+      "default": "1",
+      "visible_if": "{{ section.settings.monte_layout == false }}"
     },
     {
       "type": "range",
@@ -175,12 +212,14 @@ LIQUID
       "min": 2,
       "max": 5,
       "label": "Products per row (desktop)",
-      "default": 3
+      "default": 3,
+      "visible_if": "{{ section.settings.monte_layout == false }}"
     },
     {
       "type": "text",
       "id": "subheading",
-      "label": "Subheading"
+      "label": "Subheading",
+      "visible_if": "{{ section.settings.monte_layout == false }}"
     },
     {
       "type": "text",
@@ -191,7 +230,8 @@ LIQUID
     {
       "type": "richtext",
       "id": "content",
-      "label": "Content"
+      "label": "Content",
+      "visible_if": "{{ section.settings.monte_layout == false }}"
     },
     {
       "type": "header",
@@ -201,12 +241,14 @@ LIQUID
     {
       "type": "color",
       "id": "background",
-      "label": "Background"
+      "label": "Background",
+      "visible_if": "{{ section.settings.monte_layout == false }}"
     },
     {
       "type": "color_background",
       "id": "background_gradient",
-      "label": "Background gradient"
+      "label": "Background gradient",
+      "visible_if": "{{ section.settings.monte_layout == false }}"
     },
     {
       "type": "color",
@@ -221,7 +263,8 @@ LIQUID
     {
       "type": "color_background",
       "id": "heading_gradient",
-      "label": "Heading gradient"
+      "label": "Heading gradient",
+      "visible_if": "{{ section.settings.monte_layout == false }}"
     },
     {
       "type": "color",
@@ -238,6 +281,14 @@ LIQUID
     {
       "name": "Related products",
       "category": "Products"
+    },
+    {
+      "name": "Monté Related products",
+      "category": "Products",
+      "settings": {
+        "monte_layout": true,
+        "title": "Może Ci się spodobać"
+      }
     }
   ]
 }

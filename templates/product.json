@@ -565,6 +565,19 @@
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
       }
+    },
+    "monte_related_products": {
+      "type": "related-products",
+      "settings": {
+        "monte_layout": true,
+        "title": "Może Ci się spodobać",
+        "products": [
+          "midnight-blue-silk-sleep-mask",
+          "classic-black-silk-sleep-mask",
+          "rose-noir-silk-sleep-mask",
+          "champagne-gold-silk-sleep-mask"
+        ]
+      }
     }
   },
   "order": [
@@ -572,6 +585,7 @@
     "monte_product_details",
     "monte_product_features",
     "monte_reviews_i8MLb9",
-    "faq_accordion_FcUyKU"
+    "faq_accordion_FcUyKU",
+    "monte_related_products"
   ]
 }

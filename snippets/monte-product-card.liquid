@@ -11,8 +11,15 @@
     endif
   endfor
 -%}
+{%- capture card_title -%}
+  {%- if hide_color_suffix -%}
+    {%- render 'monte-product-display-title', product: product -%}
+  {%- else -%}
+    {{- product.title | escape -}}
+  {%- endif -%}
+{%- endcapture -%}
 <article class="monte-product-card">
-  <a class="monte-product-card__link" href="{{ product.url }}" aria-label="{{ product.title | escape }}" draggable="false"></a>
+  <a class="monte-product-card__link" href="{{ product.url }}" aria-label="{{ card_title }}" draggable="false"></a>
   <div class="monte-product-card__media">
     {%- if product.featured_media -%}
       {{- product.featured_media | image_url: width: 1200 | image_tag: class: 'monte-product-card__image', loading: 'lazy', widths: '180,260,360,500,650,850,1200', sizes: '(min-width: 1000px) calc((100vw - 140px) / 4), (min-width: 700px) calc((100vw - 100px) / 2), calc((100vw - 48px) / 2)', alt: '', draggable: 'false' -}}
@@ -34,7 +41,7 @@
     {%- endif -%}
     <div class="monte-product-card__details">
       <div class="monte-product-card__titles">
-        <h3>{{ product.title | escape }}</h3>
+        <h3>{{ card_title }}</h3>
         {%- if product.metafields.custom.product_subtitle.value != blank -%}<p class="monte-product-card__subtitle">{{ product.metafields.custom.product_subtitle.value | escape }}</p>{%- endif -%}
       </div>
       {%- render 'price-list', variant: variant, hide_unit_price: true -%}

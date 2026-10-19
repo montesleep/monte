@@ -1,0 +1,10 @@
+<reveal-items class="monte-related" selector=".monte-related__heading, .monte-product-card" margin="0px">
+  {%- if section.settings.title != blank -%}
+    <h2 class="monte-related__heading">{{ section.settings.title | escape }}</h2>
+  {%- endif -%}
+  <div class="monte-related__grid">
+    {%- for recommended_product in products limit: 4 -%}
+      {%- render 'monte-product-card', product: recommended_product, tab_id: 'related', hide_color_suffix: true -%}
+    {%- endfor -%}
+  </div>
+</reveal-items>

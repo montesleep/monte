@@ -16,30 +16,46 @@
         "content_width": "80ch"
       }
     },
+    "hero": {
+      "type": "collection-banner",
+      "name": "Monté Contact Hero",
+      "settings": {
+        "design_images": "contact",
+        "show_default_images": true,
+        "desktop_height": 460,
+        "mobile_height": 420,
+        "heading": "Jesteśmy tu dla Ciebie",
+        "subheading": "Masz pytanie o zamówienie, produkt lub potrzebujesz pomocy? Napisz do nas, odpowiadamy w ciągu 24 godzin.",
+        "show_rating": false,
+        "heading_color": "#fdfbf9",
+        "body_color": "#fdfbf9",
+        "rating_color": "#fdfbf9",
+        "overlay_color": "#000000",
+        "overlay_opacity": 20,
+        "mobile_gradient": true
+      }
+    },
     "contact_pyMPNU": {
       "type": "contact",
       "name": "Monté Contact Form",
       "settings": {
         "title": "Napisz do nas",
         "content": "<p><strong>Dane firmy:</strong><br/>Władysław Kisielewski<br/>ul. Rybacka 15/5, 75-228 Koszalin, Polska<br/>NIP: 6692577114<br/>REGON: 527339957<br/>E-mail: hello@montesleep.com</p>",
+        "content_style": "company",
+        "name_placeholder": "Imię",
+        "email_placeholder": "E-mail",
+        "message_placeholder": "Twoja wiadomość...",
+        "privacy_prefix": "Akceptuję",
+        "privacy_label": "politykę prywatności",
+        "privacy_link": "shopify://policies/privacy-policy",
+        "submit_label": "Wyślij wiadomość",
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_field": "#eee7e0",
+        "monte_border": "#dcd6cf",
+        "monte_placeholder": "#9ba0b5",
         "button_background": "#232e71",
-        "button_text_color": "#fdfbf9",
-        "content_style": "company"
-      }
-    },
-    "hero": {
-      "type": "collection-banner",
-      "name": "Monté Contact Hero",
-      "settings": {
-        "design_images": "contact",
-        "heading": "Jesteśmy tu dla Ciebie",
-        "subheading": "Masz pytanie o zamówienie, produkt lub potrzebujesz pomocy? Napisz do nas, odpowiadamy w ciągu 24 godzin.",
-        "show_rating": false,
-        "show_default_images": true,
-        "mobile_gradient": true,
-        "desktop_height": 460,
-        "mobile_height": 420,
-        "overlay_opacity": 20
+        "button_text_color": "#fdfbf9"
       }
     }
   },

@@ -10,16 +10,45 @@ class MonteProductHero extends HTMLElement {
     const signal = this.abort.signal;
     const sticky = this.querySelector('.mp-sticky'), atc = this.querySelector('[data-bundle-atc]');
     if (sticky && atc) {
-      const proxy = sticky.querySelector('button');
-      proxy.addEventListener('click', () => atc.click(), { signal });
-      const sync = () => { proxy.textContent = atc.querySelector('[data-atc-label]').textContent; proxy.disabled = atc.disabled; };
-      this.atcObserver = new MutationObserver(sync); this.atcObserver.observe(atc, { attributes: true, childList: true, subtree: true }); sync();
-      let passed = false, footerVisible = false; const footer = document.querySelector('.footer');
-      this.stickyObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => { if (entry.target === atc) passed = entry.boundingClientRect.bottom < 0; else footerVisible = entry.isIntersecting; });
-        const visible = passed && !footerVisible; sticky.classList.toggle('is-visible', visible); sticky.setAttribute('aria-hidden', String(!visible)); proxy.tabIndex = visible ? 0 : -1;
-      });
-      this.stickyObserver.observe(atc); if (footer) this.stickyObserver.observe(footer);
+      const button = sticky.querySelector('[data-sticky-atc]');
+      const variants = JSON.parse(sticky.querySelector('[data-sticky-variants]').textContent);
+      const form = sticky.querySelector('form');
+      const error = sticky.querySelector('.mp-sticky-error');
+      const desktop = matchMedia('(min-width: 1000px)');
+      const updateVisibility = () => {
+        const trigger = desktop.matches ? this : atc;
+        const visible = trigger.getBoundingClientRect().bottom <= 0;
+        sticky.classList.toggle('is-visible', visible);
+        sticky.setAttribute('aria-hidden', String(!visible));
+        sticky.inert = !visible;
+      };
+      this.stickyObserver = new IntersectionObserver(updateVisibility);
+      this.stickyObserver.observe(atc);
+      this.stickyObserver.observe(this);
+      this.stickyResize = new ResizeObserver(updateVisibility);
+      this.stickyResize.observe(this);
+      desktop.addEventListener('change', updateVisibility, { signal });
+      window.addEventListener('resize', updateVisibility, { signal });
+      updateVisibility();
+      this.addEventListener('change', event => {
+        if (!event.target.matches('[data-current-variant]')) return;
+        const variant = variants.find(item => item.id === Number(event.target.value));
+        if (!variant) return;
+        form.elements.namedItem('id').value = variant.id;
+        button.disabled = !variant.available;
+        sticky.querySelector('[data-sticky-label]').textContent = variant.available ? button.dataset.addLabel : button.dataset.soldOutLabel;
+        sticky.querySelector('[data-sticky-price]').textContent = money(variant.price);
+        const compare = sticky.querySelector('[data-sticky-compare]');
+        const discount = sticky.querySelector('[data-sticky-discount]');
+        const onSale = variant.compare_at_price > variant.price;
+        compare.hidden = discount.hidden = !onSale;
+        compare.textContent = money(variant.compare_at_price || 0);
+        discount.textContent = onSale ? `−${Math.round((variant.compare_at_price - variant.price) * 100 / variant.compare_at_price)}%` : '';
+        const image = sticky.querySelector('.mp-sticky-image');
+        if (image && variant.featured_image?.src) { image.src = variant.featured_image.src; image.removeAttribute('srcset'); }
+      }, { signal });
+      form.addEventListener('submit', () => { error.hidden = true; }, { signal });
+      form.addEventListener('cart:error', event => { error.textContent = event.detail.error; error.hidden = false; }, { signal });
     }
     const text = this.querySelector('[data-description]'), button = this.querySelector('[data-expand]');
     if (text && button) {
@@ -48,7 +77,7 @@ class MonteProductHero extends HTMLElement {
       document.fonts.ready.then(() => { if (this.isConnected) measure(); });
     }
   }
-  disconnectedCallback() { this.abort?.abort(); this.descriptionAnimation?.cancel(); this.resize?.disconnect(); this.atcObserver?.disconnect(); this.stickyObserver?.disconnect(); }
+  disconnectedCallback() { this.abort?.abort(); this.descriptionAnimation?.cancel(); this.resize?.disconnect(); this.stickyObserver?.disconnect(); this.stickyResize?.disconnect(); }
 }
 
 class MontePdpTabs extends Tabs {

@@ -51,5 +51,7 @@
       {%- endfor -%}
     </div>
   </div>
-  {%- if section.settings.show_fixed_add_to_cart -%}<div class="product-quick-add mp-sticky" aria-hidden="true"><span>{% render 'monte-product-display-title', product: product %}</span><button type="button" class="mp-atc" data-sticky-atc tabindex="-1">{{ 'product.general.add_to_cart_button' | t }}</button></div>{%- endif -%}
+  {%- if section.settings.show_fixed_add_to_cart -%}
+    {% render 'monte-product-sticky-atc', product: product, section: section %}
+  {%- endif -%}
 </monte-product-hero>

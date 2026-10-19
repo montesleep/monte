@@ -1,0 +1,33 @@
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign product_group = product.metafields.custom.product_group.value
+  assign sticky_form_id = 'MonteStickyForm-' | append: section.id
+  assign sticky_image = variant.featured_image | default: product.featured_image
+-%}
+<div class="product-quick-add mp-sticky" aria-hidden="true" inert>
+  <script type="application/json" data-sticky-variants>{{ product.variants | json }}</script>
+  <div class="mp-sticky-summary">
+    {%- if sticky_image != blank -%}
+      {{ sticky_image | image_url: width: 160 | image_tag: class: 'mp-sticky-image', width: 80, height: 80, loading: 'lazy' }}
+    {%- endif -%}
+    <div class="mp-sticky-details">
+      <strong class="mp-sticky-title">{% render 'monte-product-display-title', product: product, group_title: product_group.title.value %}</strong>
+      {%- capture color_label -%}{% render 'monte-product-color-label', item: product %}{%- endcapture -%}
+      {%- if color_label != blank -%}<p class="mp-sticky-color">Kolor: {{ color_label | escape }}</p>{%- endif -%}
+      <div class="mp-sticky-price">
+        <strong data-sticky-price>{{ variant.price | money }}</strong>
+        <s data-sticky-compare {% unless variant.compare_at_price > variant.price %}hidden{% endunless %}>{{ variant.compare_at_price | money }}</s>
+        <span class="mp-saving" data-sticky-discount {% unless variant.compare_at_price > variant.price %}hidden{% endunless %}>{% if variant.compare_at_price > variant.price %}−{{ variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round }}%{% endif %}</span>
+      </div>
+    </div>
+  </div>
+  {%- form 'product', product, is: 'product-form', id: sticky_form_id, class: 'mp-sticky-form' -%}
+    <input type="hidden" name="id" value="{{ variant.id }}">
+    <input type="hidden" name="quantity" value="1">
+    <button type="submit" class="mp-atc" data-sticky-atc data-add-label="{{ 'product.general.add_to_cart_button' | t | escape }}" data-sold-out-label="{{ 'product.general.sold_out_button' | t | escape }}" {% unless variant.available %}disabled{% endunless %}>
+      <span data-sticky-label>{% if variant.available %}{{ 'product.general.add_to_cart_button' | t }}{% else %}{{ 'product.general.sold_out_button' | t }}{% endif %}</span>
+      <span class="mp-sticky-basket" aria-hidden="true"><img src="{{ 'monte-sticky-basket.svg' | asset_url }}" width="18.5177" height="18.715" alt=""></span>
+    </button>
+    <p class="mp-sticky-error" role="alert" hidden></p>
+  {%- endform -%}
+</div>

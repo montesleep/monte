@@ -1,6 +1,7 @@
 // Shared button feedback, including controls inserted by drawers and the theme editor.
 const candidates = [
   'button', 'summary', 'a.button', 'a.btn', 'a[role="button"]',
+  'a[class*="button"]', 'a[class*="btn"]', 'a[class*="cta"]',
   'a.link', 'a.link-faded', 'a.link-faded-reverse', 'a.reversed-link',
   '.mb-button', '.monte-search-tag', '.monte-header-link',
   '.monte-faq-nav__link', '.dropdown-menu__item', '.monte-contact-links a'
@@ -13,10 +14,11 @@ const excluded = [
   '[class*="overlay"]', '[class*="backdrop"]'
 ].join(',');
 const filled = [
-  '.button', '.btn', '.mb-button', '.mp-atc', '.mp-pick', '.mp-small-primary',
+  '.button', '.btn', 'a[class*="button"]', 'a[class*="btn"]', 'a[class*="cta"]',
+  '.mb-button', '.mp-atc', '.mp-pick', '.mp-small-primary',
   '.monte-cart-button', '.monte-search-tag', '.monte-faq-nav__link',
   '.monte-catalog__sort-button', '.mfooter__submit-btn', '.circle-button',
-  '.back-button'
+  '.back-button', '.tap-area', '.monte-header-button', '[is="close-button"]'
 ].join(',');
 const blocked = ':disabled, [disabled], [aria-disabled="true"], [aria-busy="true"], [loading]';
 const prepared = new WeakSet();

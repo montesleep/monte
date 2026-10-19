@@ -52,3 +52,22 @@ html body :is(.mb-button--outline, .monte-cart-button--outline)[data-monte-motio
     transition: none !important;
   }
 }
+
+/* Impact exposes its shadow-root close controls as CSS parts. */
+html body ::part(close-button), html body ::part(outside-close-button) {
+  scale: 1;
+  transition: scale 200ms cubic-bezier(.25, .46, .45, .94);
+}
+@media (hover: hover) and (pointer: fine) {
+  html body ::part(close-button):hover, html body ::part(outside-close-button):hover { scale: .98; }
+}
+html body ::part(close-button):active, html body ::part(outside-close-button):active {
+  scale: .96;
+  transition-duration: 100ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  html body ::part(close-button), html body ::part(outside-close-button) {
+    scale: none !important;
+    transition: none !important;
+  }
+}

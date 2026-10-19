@@ -1,0 +1,6 @@
+<a class="monte-product-card__color{% if selected %} is-selected{% endif %}{% unless color.product.value.available %} is-unavailable{% endunless %}"
+  href="{{ color.product.value.url }}" aria-label="{{ color.color_name.value | escape }}{% unless color.product.value.available %} — {{ 'product.general.sold_out_badge' | t | escape }}{% endunless %}"
+  title="{{ color.color_name.value | escape }}" {% if selected %}aria-current="true"{% endif %}
+  style="--monte-swatch: {{ color.swatch.value | escape }};" draggable="false">
+  <span aria-hidden="true"></span>
+</a>

@@ -1,5 +1,25 @@
 {%- liquid
   assign variant = product.selected_or_first_available_variant
+  assign product_group = product.metafields.custom.product_group.value
+  assign group_colors = product_group.colors.value
+  assign current_color = nil
+  assign color_count = 0
+  for color in group_colors
+    if color.product.value != blank and color.swatch.value != blank
+      assign color_count = color_count | plus: 1
+      if color.product.value.id == product.id
+        assign current_color = color
+      endif
+    endif
+  endfor
+  assign use_group = false
+  if current_color != nil
+    assign use_group = true
+  endif
+  assign card_subtitle = product.metafields.custom.product_subtitle.value
+  if use_group and product_group.subtitle.value != blank
+    assign card_subtitle = product_group.subtitle.value
+  endif
   assign color_option = nil
   assign color_labels = 'general.label.color' | t | append: ',color,colour,kolor,couleur,farbe' | downcase | split: ','
   for option in product.options_with_values
@@ -12,7 +32,9 @@
   endfor
 -%}
 {%- capture card_title -%}
-  {%- if hide_color_suffix -%}
+  {%- if use_group and product_group.title.value != blank -%}
+    {{- product_group.title.value | escape -}}
+  {%- elsif hide_color_suffix or product.has_only_default_variant -%}
     {%- render 'monte-product-display-title', product: product -%}
   {%- else -%}
     {{- product.title | escape -}}
@@ -24,10 +46,25 @@
     {%- if product.featured_media -%}
       {{- product.featured_media | image_url: width: 1200 | image_tag: class: 'monte-product-card__image', loading: 'lazy', widths: '180,260,360,500,650,850,1200', sizes: '(min-width: 1000px) calc((100vw - 140px) / 4), (min-width: 700px) calc((100vw - 100px) / 2), calc((100vw - 48px) / 2)', alt: '', draggable: 'false' -}}
     {%- else -%}{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}{%- endif -%}
-    {%- render 'product-badges', product: product, variant: variant, types: 'monte_discount,monte_status', class: 'monte-product-card__badges' -%}
+    {%- render 'product-badges', product: product, variant: variant, types: 'monte_discount,monte_status', monte_status_overridden: use_group, monte_status_override: current_color.badge.value, class: 'monte-product-card__badges' -%}
   </div>
   <div class="monte-product-card__info">
-    {%- if color_option != nil -%}
+    {%- if use_group -%}
+      <div class="monte-product-card__swatches" aria-label="Kolory">
+        {%- render 'monte-product-color-swatch', color: current_color, selected: true -%}
+        {%- assign visible_colors = 1 -%}
+        {%- for color in group_colors -%}
+          {%- if color.product.value != blank and color.swatch.value != blank and color.product.value.id != product.id -%}
+            {%- render 'monte-product-color-swatch', color: color, selected: false -%}
+            {%- assign visible_colors = visible_colors | plus: 1 -%}
+            {%- if visible_colors == 3 -%}{%- break -%}{%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if color_count > visible_colors -%}
+          <a class="monte-product-card__more" href="{{ product.url }}" aria-label="Zobacz pozostałe kolory: {{ color_count | minus: visible_colors }}">+{{ color_count | minus: visible_colors }}</a>
+        {%- endif -%}
+      </div>
+    {%- elsif color_option != nil -%}
       <div class="monte-product-card__swatches" aria-label="{{ color_option.name | escape }}">
         {%- capture param_name -%}monte-{{ section.id }}-{{ tab_id }}-{{ product.id }}{%- endcapture -%}
         {%- for option_value in color_option.values limit: 3 -%}
@@ -42,7 +79,7 @@
     <div class="monte-product-card__details">
       <div class="monte-product-card__titles">
         <h3>{{ card_title }}</h3>
-        {%- if product.metafields.custom.product_subtitle.value != blank -%}<p class="monte-product-card__subtitle">{{ product.metafields.custom.product_subtitle.value | escape }}</p>{%- endif -%}
+        {%- if card_subtitle != blank -%}<p class="monte-product-card__subtitle">{{ card_subtitle | escape }}</p>{%- endif -%}
       </div>
       {%- render 'price-list', variant: variant, hide_unit_price: true -%}
     </div>

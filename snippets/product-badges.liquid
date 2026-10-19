@@ -25,8 +25,10 @@ Supported variables
 
     {%- case stripped_badge_type -%}
       {%- when 'monte_status' -%}
-        {%- if product.metafields.custom.product_badge.value != blank -%}
-          <span class="badge badge--primary monte-status-badge">{{ product.metafields.custom.product_badge.value | escape }}</span>
+        {%- assign monte_status = product.metafields.custom.product_badge.value -%}
+        {%- if monte_status_overridden -%}{%- assign monte_status = monte_status_override -%}{%- endif -%}
+        {%- if monte_status != blank -%}
+          <span class="badge badge--primary monte-status-badge">{{ monte_status | escape }}</span>
         {%- endif -%}
       {%- when 'monte_discount' -%}
         {%- if variant.compare_at_price > variant.price -%}

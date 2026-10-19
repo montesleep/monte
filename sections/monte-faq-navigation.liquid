@@ -1,6 +1,6 @@
 {{ 'monte-faq-page.css' | asset_url | stylesheet_tag }}
 <script type="module" src="{{ 'monte-faq-page.js' | asset_url }}"></script>
-<style>#shopify-section-{{ section.id }} { padding: 0; margin: 0; background: transparent; }</style>
+<style>#shopify-section-{{ section.id }} { position: sticky; top: var(--sticky-area-height, 0px); z-index: 4; padding: 0; margin: 0; background: transparent; }</style>
 <monte-faq-navigation class="monte-faq-nav" style="--faq-nav-text: {{ section.settings.text_color }}; --faq-nav-bg: {{ section.settings.button_background }}; --faq-nav-hover: {{ section.settings.button_hover }}; --faq-nav-border: {{ section.settings.border_color }};">
   <reveal-items class="monte-faq-nav__reveal" margin="0px">
     {%- if section.settings.heading != blank -%}<p class="monte-faq-nav__heading">{{ section.settings.heading | escape }}</p>{%- endif -%}

@@ -9,6 +9,8 @@
  */
 {
   "current": {
+    "klaviyo_public_api_key": "XEwd7K",
+    "klaviyo_list_id": "VyKNiq",
     "page_width": 1440,
     "section_vertical_spacing": "small",
     "section_boxed_horizontal_spacing": "medium",

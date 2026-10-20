@@ -1,0 +1,584 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "monte_highlight_1": {
+          "type": "monte_highlight",
+          "settings": {
+            "text": "<strong>100% blackout</strong> dla całkowitej ciemności"
+          }
+        },
+        "monte_highlight_2": {
+          "type": "monte_highlight",
+          "settings": {
+            "text": "<strong>Nie wchłania kosmetyków</strong>, zero załamów rano"
+          }
+        },
+        "monte_highlight_3": {
+          "type": "monte_highlight",
+          "settings": {
+            "text": "<strong>Bez ucisku na oczy</strong> i rzęsy przez całą noc"
+          }
+        },
+        "monte_highlight_4": {
+          "type": "monte_highlight",
+          "settings": {
+            "text": "<strong>Rzep zamiast gumki</strong>, nie ściska skroni"
+          }
+        },
+        "monte_promotion": {
+          "type": "monte_promotion",
+          "settings": {
+            "monte_promo_title": "Letnia Wyprzedaż",
+            "monte_promo_text": "Oferta ograniczona czasowo: -30% na wszystkie produkty Monté.",
+            "monte_promo_bg": "#f8f1e9",
+            "monte_promo_color": "#232e71"
+          }
+        },
+        "monte_bundle": {
+          "type": "monte_bundle",
+          "settings": {
+            "row1_title": "1 Maska",
+            "row2_title": "2 Maski",
+            "row2_discount": 10,
+            "row2_footer": "+ Darmowa dostawa",
+            "popup_title": "Wybierz produkt",
+            "popup_choose_label": "Wybierz",
+            "choose_color_label": "Wybierz kolor maski",
+            "limited_label": "Limitowany kolor",
+            "monte_bundle_description": "Dodatkowe 20% rabatu na drugą maskę",
+            "monte_bundle_badge": "KORZYSTNIEJSZY"
+          }
+        },
+        "monte_trust": {
+          "type": "monte_trust",
+          "settings": {
+            "monte_trust_bg": "#e3e5f0",
+            "monte_trust_text": "#232e71",
+            "monte_trust_1_text": "30 dni na zwrot",
+            "monte_trust_1_icon": "shopify://shop_images/Shipment-Return--Streamline-Sharp_2.svg",
+            "monte_trust_2_text": "Dostawa w 1–2 dni robocze",
+            "monte_trust_2_icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_5.svg",
+            "monte_trust_3_text": "Polska firma",
+            "monte_trust_4_text": "",
+            "monte_trust_5_text": "",
+            "monte_trust_6_text": "",
+            "monte_shipping_text": "<strong>Zamów do 18:00</strong>, wysyłamy dziś",
+            "monte_shipping_color": "#232e71",
+            "monte_payment_1": "shopify://shop_images/Visa.svg",
+            "monte_payment_2": "shopify://shop_images/Mastercard.svg",
+            "monte_payment_3": "shopify://shop_images/Przelewy24.svg",
+            "monte_payment_4": "shopify://shop_images/Blik.svg",
+            "monte_trust_1_bg": "",
+            "monte_trust_1_color": "",
+            "monte_trust_2_bg": "",
+            "monte_trust_2_color": "",
+            "monte_trust_3_bg": "",
+            "monte_trust_3_color": "",
+            "monte_trust_4_bg": "",
+            "monte_trust_4_color": "",
+            "monte_trust_5_bg": "",
+            "monte_trust_5_color": "",
+            "monte_trust_6_bg": "",
+            "monte_trust_6_color": "",
+            "monte_shipping_bg": ""
+          }
+        },
+        "monte_tabs": {
+          "type": "monte_tabs",
+          "settings": {
+            "benefits_label": "Zalety",
+            "specification_label": "Specyfikacja",
+            "expand_label": "Rozwiń",
+            "collapse_label": "Zwiń",
+            "benefit_1": "100% jedwab morwowy oraz wypełnienie",
+            "benefit_2": "Oddychająca, nie przegrzewa się w nocy",
+            "benefit_3": "Lekka i miękka w dotyku",
+            "benefit_4": "Hipoalergiczna, dla wrażliwej skóry",
+            "benefit_5": "",
+            "benefit_6": "",
+            "benefit_7": "",
+            "benefit_8": "",
+            "benefit_9": "",
+            "benefit_10": ""
+          }
+        },
+        "monte_ugc_carousel": {
+          "type": "monte_ugc_carousel",
+          "settings": {
+            "title": "Ty + Monté",
+            "show_play": false,
+            "item_1_enabled": true,
+            "item_1_media_type": "image",
+            "item_1_alt": "Monté — jedwabna maska do spania",
+            "item_1_play_overlay": true,
+            "item_1_design_image": "1",
+            "item_2_enabled": true,
+            "item_2_media_type": "image",
+            "item_2_alt": "Monté — jedwabna maska do spania",
+            "item_2_play_overlay": true,
+            "item_2_design_image": "2",
+            "item_3_enabled": true,
+            "item_3_media_type": "image",
+            "item_3_alt": "Monté — jedwabna maska do spania",
+            "item_3_play_overlay": true,
+            "item_3_design_image": "3",
+            "item_4_enabled": false,
+            "item_4_media_type": "image",
+            "item_4_alt": "",
+            "item_4_play_overlay": true,
+            "item_4_design_image": "none",
+            "item_5_enabled": false,
+            "item_5_media_type": "image",
+            "item_5_alt": "",
+            "item_5_play_overlay": true,
+            "item_5_design_image": "none",
+            "item_6_enabled": false,
+            "item_6_media_type": "image",
+            "item_6_alt": "",
+            "item_6_play_overlay": true,
+            "item_6_design_image": "none",
+            "item_7_enabled": false,
+            "item_7_media_type": "image",
+            "item_7_alt": "",
+            "item_7_play_overlay": true,
+            "item_7_design_image": "none",
+            "item_8_enabled": false,
+            "item_8_media_type": "image",
+            "item_8_alt": "",
+            "item_8_play_overlay": true,
+            "item_8_design_image": "none",
+            "item_9_enabled": false,
+            "item_9_media_type": "image",
+            "item_9_alt": "",
+            "item_9_play_overlay": true,
+            "item_9_design_image": "none"
+          }
+        },
+        "monte_accordions": {
+          "type": "monte_accordions",
+          "settings": {
+            "row_1_enabled": true,
+            "row_1_title": "Materiały i dopasowanie",
+            "row_1_icon": "shopify://shop_images/Information-Circle--Streamline-Sharp_1.svg",
+            "row_1_content": "<p>Maska wykonana jest w <strong>100% z jedwabiu mulberry klasy 6A, 22 momme</strong>, z jedwabnym wypełnieniem. Certyfikat OEKO-TEX Standard 100 potwierdza, że tkanina i wypełnienie zostały wyprodukowane bez użycia szkodliwych substancji chemicznych.</p><p>Jedwab naturalnie reguluje temperaturę ciała i odprowadza wilgoć, dzięki czemu maska jest komfortowa zarówno latem, jak i zimą. Hipoalergiczna struktura włókna jest przyjazna dla wrażliwej skóry, rzęs i przedłużeń.</p><p><strong>Wymiary:</strong> 12 cm wysokości x 70 cm długości. Regulowany rzep dopasowuje się do każdego obwodu głowy bez ucisku na skronie ani za uszami.</p>",
+            "row_2_enabled": true,
+            "row_2_title": "Pielęgnacja",
+            "row_2_icon": "shopify://shop_images/Hotel-Laundry--Streamline-Sharp.svg",
+            "row_2_content": "<p><strong>Aby jedwab zachował swoją miękkość na lata:</strong></p><p><strong>Pranie ręczne</strong> w zimnej wodzie <strong>(maks. 30°C)</strong> z delikatnym detergentem do jedwabiu. Nie używaj wybielacza ani środków na bazie enzymów. Nie wyżymaj, delikatnie odciśnij nadmiar wody miękkim ręcznikiem. Susz na płasko, z dala od bezpośredniego słońca. Nie wkładaj do suszarki bębnowej.</p><p>Po wysuszeniu maska może stracić część swojej puszystości. Aby przywrócić jej pierwotną miękkość, przeprasuj ją żelazkiem w trybie pary od wewnętrznej strony, trzymając żelazko kilka centymetrów od tkaniny.</p>",
+            "row_3_enabled": true,
+            "row_3_title": "Dostawa i zwroty",
+            "row_3_icon": "shopify://shop_images/Shipping-Transfer-Truck--Streamline-Sharp_6.svg",
+            "row_3_content": "<p><strong>Dostawa</strong><br/><br/>Wysyłamy wyłącznie <strong>kurierem InPost.</strong> Zamówienia złożone do 18:00 w dni robocze wysyłamy tego samego dnia. Czas dostawy: 1-2 dni robocze. Darmowa dostawa od 250 zł.</p><p><strong>Zwroty</strong><br/><br/><strong>Oferujemy 30-nocną gwarancję satysfakcji.</strong> Jeśli po otrzymaniu maski zmienisz zdanie, masz 30 nocy na jej odesłanie w oryginalnym stanie: nieużywaną, nieprananą, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p><p>Ze względu na higieniczny charakter produktu, nie przyjmujemy zwrotów masek noszących ślady użytkowania. Jeśli masz jakiekolwiek pytania przed zakupem, napisz do nas przed złożeniem zamówienia, chętnie pomożemy w wyborze.</p>",
+            "row_4_enabled": false,
+            "row_4_title": "Product information",
+            "row_4_content": "",
+            "row_5_enabled": false,
+            "row_5_title": "Product information",
+            "row_5_content": "",
+            "row_6_enabled": false,
+            "row_6_title": "Product information",
+            "row_6_content": "",
+            "row_7_enabled": false,
+            "row_7_title": "Product information",
+            "row_7_content": "",
+            "row_8_enabled": false,
+            "row_8_title": "Product information",
+            "row_8_content": "",
+            "row_9_enabled": false,
+            "row_9_title": "Product information",
+            "row_9_content": "",
+            "row_10_enabled": false,
+            "row_10_title": "Product information",
+            "row_10_content": ""
+          }
+        }
+      },
+      "block_order": [
+        "monte_highlight_1",
+        "monte_highlight_2",
+        "monte_highlight_3",
+        "monte_highlight_4",
+        "monte_promotion",
+        "monte_bundle",
+        "monte_trust",
+        "monte_tabs",
+        "monte_ugc_carousel",
+        "monte_accordions"
+      ],
+      "settings": {
+        "monte_product_design": true,
+        "monte_gallery_rotate": true,
+        "monte_show_rating": true,
+        "full_width": true,
+        "show_fixed_add_to_cart": true,
+        "desktop_media_width": 65,
+        "desktop_media_layout": "grid_highlight",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "thumbnails",
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "#182153",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "monte_product_details": {
+      "type": "monte-product-details",
+      "blocks": {
+        "detail_1": {
+          "type": "item",
+          "settings": {
+            "title": "100% blackout dla całkowitej ciemności",
+            "description": "<p>Tak. Monté ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. 94% klientów w ankiecie po zakupie oceniło blackout jako całkowity.</p>"
+          }
+        },
+        "detail_2": {
+          "type": "item",
+          "settings": {
+            "title": "Nie wchłania kosmetyków, zero załamów rano",
+            "description": "<p>Dobra rutyna zaczyna się od tego, co dotyka twojej skóry przez całą noc. Jedwab morwowy 22 momme jest gładki i spokojny dla twarzy, więc budzisz się wypoczęta, bez załamów i śladów na skórze.</p>"
+          }
+        },
+        "detail_3": {
+          "type": "item",
+          "settings": {
+            "title": "Bez ucisku na oczy i rzęsy przez całą noc",
+            "description": "<p>Nie. Monté jest zaprojektowana z myślą o osobach, które rezygnowały z masek właśnie z powodu ucisku. Jedwabne wypełnienie unosi tkaninę nad powierzchnią oczu, więc nie ma żadnego kontaktu z gałką oczną ani rzęsami.</p>"
+          }
+        },
+        "detail_4": {
+          "type": "item",
+          "settings": {
+            "title": "Rzep zamiast gumki, nie ściska skroni",
+            "description": "<p>Tak. Rzep dopasowujesz raz pod swój obwód głowy i maska trzyma się przez całą noc, nawet jeśli śpisz na boku. 91% klientów potwierdziło, że nie zsunęła się ani razu.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "detail_1",
+        "detail_2",
+        "detail_3",
+        "detail_4"
+      ],
+      "settings": {
+        "heading": "Jedwab, który dba\no Ciebie",
+        "subheading": "Rozpakowanie, materiał, zapięcie rzepu, zobacz to wszystko z bliska. Poniżej cztery szczegóły, które sprawiają, że różnicę czuć od razu.",
+        "video": "{{ product.metafields.custom.mask_preview.value }}",
+        "show_design_image": true,
+        "media_alt": "Rozpakowanie pudełka Monté",
+        "heading_color": "#232e71",
+        "body_color": "#52597e",
+        "border_color": "#dcd6cf",
+        "padding_top_desktop": 20,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "monte_product_features": {
+      "type": "monte-product-features",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "title": "Chłodny latem, przyjemny zimą",
+            "description": "<p>Naturalna regulacja temperatury każdej nocy.</p>",
+            "number": "",
+            "design_image": "1"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "title": "Rzep, który się dopasowuje",
+            "description": "<p>Bez ucisku na skronie, nie czepia się o włosy.</p>",
+            "number": "",
+            "design_image": "2"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "title": "Budzisz się bardziej wypoczęta",
+            "description": "<p>Głęboki sen w pełnej ciemności.</p>",
+            "number": "",
+            "design_image": "3"
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3"
+      ],
+      "settings": {
+        "heading": "Małe detale, które\nzmieniają jakość snu",
+        "accessibility_label": "Małe detale Monté",
+        "show_numbers": true,
+        "heading_color": "#232e71",
+        "body_color": "#52597e",
+        "surface_color": "#eee7e0",
+        "badge_color": "#d9a17d",
+        "badge_text_color": "#fdfbf9",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "monte_reviews_i8MLb9": {
+      "type": "monte-reviews",
+      "blocks": {
+        "review_UCfPPk": {
+          "type": "review",
+          "settings": {
+            "title": "Zupełnie inne odczucie niż tanie maski",
+            "content": "<p>Miałam wcześniej kilka masek z allegro i to jest po prostu inne. Jedwab jest miękki w sposób którego nie da się opisać. I trzyma się przez całą noc co było moim głównym problemem.</p>",
+            "author": "Marta W.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "review_WDrbaK": {
+          "type": "review",
+          "settings": {
+            "title": "Mieszkam w centrum i w końcu sypiam",
+            "content": "<p>Wczesne słońce wpadało do mojego pokoju dosłownie o 5 rano. Teraz nie wiem kiedy wschodzi bo po prostu tego nie czuję. Polecam każdemu kto ma podobny problem.</p>",
+            "author": "Karolina B.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "review_8wAY7c": {
+          "type": "review",
+          "settings": {
+            "title": "Nareszcie wysypiam się porządnie",
+            "content": "<p>Śpię z nią już trzeci tydzień. Mój krem zostaje na twarzy, zero załamów rano i w końcu nie budzi mnie poranne słońce przez zasłony.</p>",
+            "author": "Anna B.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "review_RUrcdX": {
+          "type": "review",
+          "settings": {
+            "title": "Kupiłam sobie na urodziny",
+            "content": "<p>Trochę głupio było kupować sobie samej prezent ale serio nie żałuję. Opakowanie ładne, maska miękka i teraz wieczór wygląda zupełnie inaczej.</p>",
+            "author": "Natalia S.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "review_e6abKF": {
+          "type": "review",
+          "settings": {
+            "title": "Mam przedłużenia i bałam się",
+            "content": "<p>Serio bałam się że maska zniszczy mi rzęsy. Ale jedwab jest tak gładki że w ogóle nie czuję żadnego tarcia. Po trzech tygodniach przedłużenia wyglądają normalnie.</p>",
+            "author": "Zuzanna P.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "review_AfRiVT": {
+          "type": "review",
+          "settings": {
+            "title": "Chłopak późno zasypia z telefonem",
+            "content": "<p>Mój chłopak scrolluje Instagrama kiedy ja już chcę spać. Światło od telefonu dosłownie nie pozwalało mi zasnąć. Teraz zakładam maskę i jest ciemno. Problem rozwiązany.</p>",
+            "author": "Joanna M.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "review_KkRyRC": {
+          "type": "review",
+          "settings": {
+            "title": "W końcu krem zostaje na skórze",
+            "content": "<p>Używam dużo rzeczy przed snem i zawsze zastanawiałam się czy maska to wchłania. Tu tak się nie dzieje. Skóra rano wygląda nawilżona tak jak powinna po całej tej pielęgnacji.</p>",
+            "author": "Magdalena R.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "review_rkyKxn": {
+          "type": "review",
+          "settings": {
+            "title": "Jedyna maska która nie zsuwa się",
+            "content": "<p>Próbowałam kilku i zawsze rano znajdowałam maskę gdzieś obok głowy. Rzep w tej masce naprawdę działa. Śpię na boku i rano maska jest na swoim miejscu.</p>",
+            "author": "Katarzyna N.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "review_EzVQ6i": {
+          "type": "review",
+          "settings": {
+            "title": "Zawsze mam ją w bagażu",
+            "content": "<p>Dużo podróżuję i ta maska jest teraz w moim bagażu zawsze. W samolocie szczególnie robi różnicę. Mieści się wszędzie i naprawdę pomaga zasnąć kiedy wokół jest jasno.</p>",
+            "author": "Agnieszka T.",
+            "verified": true,
+            "rating": 5
+          }
+        },
+        "review_FRakTd": {
+          "type": "review",
+          "settings": {
+            "title": "Pielęgnacja w nocy ma sens",
+            "content": "<p>Używam retinolu i peptydów na noc i zależało mi żeby maska tego nie wchłaniała. Jedwab morwowy naprawdę inaczej się zachowuje. Zero wchłoniętego kremu, zero załamów.</p>",
+            "author": "Weronika D.",
+            "verified": true,
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "review_UCfPPk",
+        "review_WDrbaK",
+        "review_8wAY7c",
+        "review_RUrcdX",
+        "review_e6abKF",
+        "review_AfRiVT",
+        "review_KkRyRC",
+        "review_rkyKxn",
+        "review_EzVQ6i",
+        "review_FRakTd"
+      ],
+      "settings": {
+        "heading": "Co mówią\nklienci o Monté",
+        "show_rating": true,
+        "scroll_speed": 25,
+        "panel_color": "#e3e5f0",
+        "text_color": "#232e71",
+        "body_color": "#52597e",
+        "card_color": "#fdfbf9",
+        "mobile_card_color": "#ffffff",
+        "star_color": "#d9a17d"
+      }
+    },
+    "faq_accordion_FcUyKU": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_item_FzhTL7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy naprawdę blokuje światło?",
+            "answer": "<p>Tak. Monté ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. 94% klientów w ankiecie po zakupie oceniło blackout jako całkowity.</p>"
+          }
+        },
+        "faq_item_JeVKXX": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Nienawidzę masek, które uciskają oczy. Czy ta też tak działa?",
+            "answer": "<p>Nie. Monté jest zaprojektowana z myślą o osobach, które rezygnowały z masek właśnie z powodu ucisku. Jedwabne wypełnienie unosi tkaninę nad powierzchnią oczu, więc nie ma żadnego kontaktu z gałką oczną ani rzęsami.</p>"
+          }
+        },
+        "faq_item_BpCmWH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy utrzyma się na miejscu, jeśli ruszam się podczas snu?",
+            "answer": "<p>Tak. Rzep dopasowujesz raz pod swój obwód głowy i maska trzyma się przez całą noc, nawet jeśli śpisz na boku. 91% klientów potwierdziło, że nie zsunęła się ani razu.</p>"
+          }
+        },
+        "faq_item_xFdD6h": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Co oznacza \"jedwab 22 momme\" i dlaczego to ważne?",
+            "answer": "<p>Momme to jednostka gęstości tkaniny jedwabnej. Im wyższa wartość, tym jedwab jest grubszy, trwalszy i bardziej miękki w dotyku. 22 momme to standard premium. Tańsze maski zazwyczaj mają 16-19 momme, co oznacza cieńszą i mniej trwałą tkaninę.</p>"
+          }
+        },
+        "faq_item_Nab37X": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy Monté to produkt medyczny albo \"leczy\" problemy ze snem?",
+            "answer": "<p>Monté nie jest produktem medycznym i nie leczy bezsenności. To luksusowy akcesoria do snu, który pomaga stworzyć lepsze warunki do zasypiania, eliminując rozpraszające światło. Jeśli masz poważne problemy ze snem, skonsultuj się z lekarzem.</p>"
+          }
+        },
+        "faq_item_azPmpc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Czy nadaje się do podróży i drzemek?",
+            "answer": "<p>Tak. Monté jest lekka i mieści się w eleganckim pudełku, które łatwo zmieści się w torbie podręcznej. Działa równie dobrze w samolocie, pociągu, hotelu czy podczas drzemki w ciągu dnia.</p>"
+          }
+        },
+        "faq_item_JmGcMF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Jak ją pielęgnować?",
+            "answer": "<p>Pranie ręczne w zimnej wodzie (maks. 30°C) z delikatnym detergentem do jedwabiu. Susz na płasko, z dala od słońca. Po wysuszeniu możesz przywrócić puszystość żelazkiem w trybie pary od wewnętrznej strony tkaniny.</p>"
+          }
+        },
+        "faq_item_aCF3xp": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Co jeśli maska mi nie odpowiada?",
+            "answer": "<p>Oferujemy 30-nocną gwarancję zwrotu pieniędzy. Jeśli maska nie spełni twoich oczekiwań, odeślij ją w oryginalnym, nieużywanym stanie w ciągu 30 nocy od zakupu, a zwrócimy ci pełną kwotę. Bez pytań.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_FzhTL7",
+        "faq_item_JeVKXX",
+        "faq_item_BpCmWH",
+        "faq_item_xFdD6h",
+        "faq_item_Nab37X",
+        "faq_item_azPmpc",
+        "faq_item_JmGcMF",
+        "faq_item_aCF3xp"
+      ],
+      "settings": {
+        "monte_layout": true,
+        "subheading": "Nie możesz znaleźć tego, czego szukasz? Chętnie pomożemy.",
+        "button_label": "Skontaktuj się z nami",
+        "button_link": "/pages/contact",
+        "open_first": true,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf",
+        "tagline": "CZĘSTO ZADAWANE PYTANIA",
+        "heading": "Wiemy,\no czym myślisz",
+        "background_color": "#fdfbf9",
+        "heading_color": "#182153",
+        "body_color": "#182153bf",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
+    },
+    "monte_related_products": {
+      "type": "related-products",
+      "settings": {
+        "monte_layout": true,
+        "title": "Może Ci się spodobać",
+        "products": [
+          "midnight-blue-silk-sleep-mask",
+          "classic-black-silk-sleep-mask",
+          "rose-noir-silk-sleep-mask",
+          "champagne-gold-silk-sleep-mask"
+        ]
+      }
+    }
+  },
+  "order": [
+    "main",
+    "monte_product_details",
+    "monte_product_features",
+    "monte_reviews_i8MLb9",
+    "faq_accordion_FcUyKU",
+    "monte_related_products"
+  ]
+}

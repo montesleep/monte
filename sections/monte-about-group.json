@@ -46,7 +46,7 @@
       "settings": {
         "heading": "Nasza misja",
         "button_label": "Odkryj nasze produkty",
-        "button_link": "/collections",
+        "button_link": "/collections/all",
         "show_design_images": true,
         "heading_color": "#232E71",
         "body_color": "#52597E",

@@ -107,7 +107,7 @@
             "enabled": true,
             "show_placeholder": true,
             "heading": "Połącz produkty, oszczędź więcej",
-            "body": "Wybierz dowolne produkty Monté i otrzymaj dodatkowe 15% rabatu na cały zestaw.",
+            "body": "Wybierz dowolne produkty Monté i otrzymaj do 15% dodatkowego rabatu na cały zestaw.",
             "button_label": "Stwórz swój zestaw",
             "link": "/pages/bundle-builder",
             "text_color": "#fdfbf9",

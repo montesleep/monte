@@ -57,35 +57,35 @@
           "type": "popular_search",
           "settings": {
             "label": "Maski do spania",
-            "link": "/collections"
+            "link": "/collections/maski"
           }
         },
         "monte_search_tag_2": {
           "type": "popular_search",
           "settings": {
             "label": "Poszewki",
-            "link": "/collections"
+            "link": "/collections/poszewki"
           }
         },
         "monte_search_tag_3": {
           "type": "popular_search",
           "settings": {
             "label": "Czepki",
-            "link": "/collections"
+            "link": "/collections/czepki"
           }
         },
         "monte_search_tag_4": {
           "type": "popular_search",
           "settings": {
             "label": "Gumki",
-            "link": "/collections"
+            "link": "/collections/gumki"
           }
         },
         "monte_search_tag_5": {
           "type": "popular_search",
           "settings": {
             "label": "Zestawy",
-            "link": "/collections"
+            "link": "/collections/zestawy"
           }
         }
       },

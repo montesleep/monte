@@ -8,6 +8,10 @@ body:has(monte-builder-dialog[open]) shopify-chat::part(activator){visibility:hi
 @media(max-width:999px){body:has(monte-bundle-builder) shopify-chat::part(activator){translate:0 calc(-121px - env(safe-area-inset-bottom));transition:translate .4s cubic-bezier(.25,1,.5,1)}}
 
 .mb-sticky-toggle .mb-circle svg{transform:rotate(180deg)}
+/* Keep the page summary out of the full-screen mobile navigation, including its transition. */
+@media(max-width:999px){
+  html.monte-mobile-menu-locked .mb-sticky{visibility:hidden;pointer-events:none}
+}
 
 @media(max-width:374px){.mb-sticky .mb-button{padding-inline:12px;gap:8px}.mb-sticky-toggle{gap:8px}.mb-sticky-toggle .mb-circle{width:36px;height:36px}}
 

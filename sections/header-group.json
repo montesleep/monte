@@ -31,6 +31,135 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "monte_collection_0": {
+          "type": "monte_collection",
+          "settings": {
+            "collection": "",
+            "label": "Wszystko",
+            "link": "/collections/all",
+            "show_placeholder": true
+          }
+        },
+        "monte_collection_1": {
+          "type": "monte_collection",
+          "settings": {
+            "collection": "zestawy",
+            "label": "Zestawy",
+            "link": "/collections/zestawy",
+            "show_placeholder": true
+          }
+        },
+        "monte_collection_2": {
+          "type": "monte_collection",
+          "settings": {
+            "collection": "maski",
+            "label": "Maski",
+            "link": "/collections/maski",
+            "show_placeholder": true
+          }
+        },
+        "monte_collection_3": {
+          "type": "monte_collection",
+          "settings": {
+            "collection": "poszewki",
+            "label": "Poszewki",
+            "link": "/collections/poszewki",
+            "show_placeholder": true
+          }
+        },
+        "monte_collection_4": {
+          "type": "monte_collection",
+          "settings": {
+            "collection": "czepki",
+            "label": "Czepki",
+            "link": "/collections/czepki",
+            "show_placeholder": true
+          }
+        },
+        "monte_collection_5": {
+          "type": "monte_collection",
+          "settings": {
+            "collection": "gumki",
+            "label": "Gumki",
+            "link": "/collections/gumki",
+            "show_placeholder": true
+          }
+        },
+        "monte_shop_promo": {
+          "type": "monte_promo",
+          "settings": {
+            "enabled": true,
+            "show_placeholder": true,
+            "badge": "Nowość",
+            "heading": "Jedwabne poszewki na poduszkę",
+            "button_label": "Zobacz poszewki",
+            "link": "shopify://collections/poszewki",
+            "text_color": "#fdfbf9",
+            "button_background": "#fdfbf9",
+            "button_text": "#232e71",
+            "button_hover": "#eee7e0"
+          }
+        },
+        "monte_bundle_promo": {
+          "type": "monte_bundle_promo",
+          "settings": {
+            "enabled": true,
+            "show_placeholder": true,
+            "heading": "Połącz produkty, oszczędź więcej",
+            "body": "Wybierz dowolne produkty Monté i otrzymaj dodatkowe 15% rabatu na cały zestaw.",
+            "button_label": "Stwórz swój zestaw",
+            "link": "/pages/bundle-builder",
+            "text_color": "#fdfbf9",
+            "button_background": "#fdfbf9",
+            "button_text": "#232e71",
+            "button_hover": "#eee7e0"
+          }
+        },
+        "monte_bundle_0": {
+          "type": "monte_bundle",
+          "settings": {
+            "product": "",
+            "label": "Nazwa zestawu",
+            "description": "Krótki opis",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        },
+        "monte_bundle_1": {
+          "type": "monte_bundle",
+          "settings": {
+            "product": "",
+            "label": "Nazwa zestawu",
+            "description": "Krótki opis",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        },
+        "monte_bundle_2": {
+          "type": "monte_bundle",
+          "settings": {
+            "product": "",
+            "label": "Nazwa zestawu",
+            "description": "Krótki opis",
+            "link": "/collections",
+            "show_placeholder": true
+          }
+        }
+      },
+      "block_order": [
+        "monte_collection_0",
+        "monte_collection_1",
+        "monte_collection_2",
+        "monte_collection_3",
+        "monte_collection_4",
+        "monte_collection_5",
+        "monte_shop_promo",
+        "monte_bundle_promo",
+        "monte_bundle_0",
+        "monte_bundle_1",
+        "monte_bundle_2"
+      ],
       "settings": {
         "use_brand_logo": true,
         "shop_label": "Sklep",
@@ -58,125 +187,11 @@
         "transparent_header_text_color": "#ffffff",
         "reduce_padding": false,
         "background_opacity": 100,
-        "background_blur_radius": 0
-      },
-      "blocks": {
-        "monte_collection_0": {
-          "type": "monte_collection",
-          "settings": {
-            "label": "Wszystko",
-            "link": "/collections/all",
-            "show_placeholder": true
-          }
-        },
-        "monte_collection_1": {
-          "type": "monte_collection",
-          "settings": {
-            "label": "Zestawy",
-            "link": "/collections/zestawy",
-            "show_placeholder": true,
-            "collection": "zestawy"
-          }
-        },
-        "monte_collection_2": {
-          "type": "monte_collection",
-          "settings": {
-            "label": "Maski",
-            "link": "/collections/maski",
-            "show_placeholder": true,
-            "collection": "maski"
-          }
-        },
-        "monte_collection_3": {
-          "type": "monte_collection",
-          "settings": {
-            "label": "Poszewki",
-            "link": "/collections/poszewki",
-            "show_placeholder": true,
-            "collection": "poszewki"
-          }
-        },
-        "monte_collection_4": {
-          "type": "monte_collection",
-          "settings": {
-            "label": "Czepki",
-            "link": "/collections/czepki",
-            "show_placeholder": true,
-            "collection": "czepki"
-          }
-        },
-        "monte_collection_5": {
-          "type": "monte_collection",
-          "settings": {
-            "label": "Gumki",
-            "link": "/collections/gumki",
-            "show_placeholder": true,
-            "collection": "gumki"
-          }
-        },
-        "monte_shop_promo": {
-          "type": "monte_promo",
-          "settings": {
-            "enabled": true,
-            "show_placeholder": true,
-            "badge": "Nowość",
-            "heading": "Jedwabne poszewki na poduszkę",
-            "button_label": "Zobacz poszewki",
-            "link": "/collections"
-          }
-        },
-        "monte_bundle_promo": {
-          "type": "monte_bundle_promo",
-          "settings": {
-            "enabled": true,
-            "show_placeholder": true,
-            "heading": "Połącz produkty, oszczędź więcej",
-            "body": "Wybierz dowolne produkty Monté i otrzymaj dodatkowe 15% rabatu na cały zestaw.",
-            "button_label": "Stwórz swój zestaw",
-            "link": "/pages/bundle-builder"
-          }
-        },
-        "monte_bundle_0": {
-          "type": "monte_bundle",
-          "settings": {
-            "label": "Nazwa zestawu",
-            "description": "Krótki opis",
-            "link": "/collections",
-            "show_placeholder": true
-          }
-        },
-        "monte_bundle_1": {
-          "type": "monte_bundle",
-          "settings": {
-            "label": "Nazwa zestawu",
-            "description": "Krótki opis",
-            "link": "/collections",
-            "show_placeholder": true
-          }
-        },
-        "monte_bundle_2": {
-          "type": "monte_bundle",
-          "settings": {
-            "label": "Nazwa zestawu",
-            "description": "Krótki opis",
-            "link": "/collections",
-            "show_placeholder": true
-          }
-        }
-      },
-      "block_order": [
-        "monte_collection_0",
-        "monte_collection_1",
-        "monte_collection_2",
-        "monte_collection_3",
-        "monte_collection_4",
-        "monte_collection_5",
-        "monte_shop_promo",
-        "monte_bundle_promo",
-        "monte_bundle_0",
-        "monte_bundle_1",
-        "monte_bundle_2"
-      ]
+        "background_blur_radius": 0,
+        "menu_secondary_color": "#52597e",
+        "menu_card_color": "#eee7e0",
+        "menu_border_color": "#dcd6cf"
+      }
     },
     "lv3_announcement_timer_aJt6UP": {
       "type": "lv3-announcement-timer",

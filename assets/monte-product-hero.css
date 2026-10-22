@@ -203,7 +203,6 @@
  .mp-picker-item p { font-size:14px; }
 }
 @media(hover:hover) {
- .mp-swatch:hover { border-color:#232e71; }
  .mp-small-primary:hover,.mp-atc:hover:not(:disabled) { background:#182153; }
  .mp-picker .mp-pick:hover:not(:disabled) { color:#fdfbf9; background:#182153; }
  .mp-faq summary:hover,.mp-expand:hover,.mp-slot-remove:hover { opacity:.75; }

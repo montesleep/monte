@@ -88,7 +88,7 @@ class MonteProductReviews extends HTMLElement {
 
   stars(rating, count = 5, hero = false) {
     const assets = this.config.assets;
-    const visualRating = Math.round(rating * 2) / 2;
+    const visualRating = Math.floor(rating * 2) / 2;
     return `<span class="monte-social-rating" role="img" aria-label="${rating.toFixed(1)} z 5 gwiazdek">${Array.from({ length: count }, (_, index) => {
       const fill = Math.min(1, Math.max(0, visualRating - index)) * 100;
       return `<span class="monte-social-rating__star" aria-hidden="true"><img src="${escapeHTML(hero ? assets.heroBase : assets.base)}" width="16" height="16" alt=""><img src="${escapeHTML(assets.fill)}" width="16" height="16" alt="" style="clip-path:inset(0 ${100 - fill}% 0 0)"><img class="monte-social-rating__glyph" src="${escapeHTML(assets.glyph)}" width="12.618" height="12" alt=""></span>`;

@@ -33,7 +33,7 @@
     </monte-product-media>
     <div class="mp-info">
       <reveal-items class="mp-intro" margin="0px">
-        {%- if section.settings.monte_show_rating -%}<div class="mp-rating">{% render 'monte-social-rating', rating: settings.monte_social_rating %}{%- if shop.metafields.custom.rating_text_social != blank -%}<span>{{ shop.metafields.custom.rating_text_social.value | escape }}</span>{%- endif -%}</div>{%- endif -%}
+        {%- if section.settings.monte_show_rating -%}<a class="mp-rating mpr-hero-rating" href="#product-reviews" data-product-review-rating="{{ product.id }}" aria-label="Przejdź do opinii klientów"><span>Opinie klientów</span></a>{%- endif -%}
         <h1 class="mp-title">{% render 'monte-product-display-title', product: product %}</h1>
         {%- if highlights.size > 0 -%}<ul class="mp-benefits">{%- for block in highlights -%}<li {{ block.shopify_attributes }}>{% render 'monte-product-check' %}<span>{{ block.settings.text }}</span></li>{%- endfor -%}</ul>{%- endif -%}
         <div class="mp-price" data-main-price><strong>{{ variant.price | money }}</strong>{%- if variant.compare_at_price > variant.price -%}<s>{{ variant.compare_at_price | money }}</s><span class="mp-saving">−{{ variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round }}%</span>{%- endif -%}</div>

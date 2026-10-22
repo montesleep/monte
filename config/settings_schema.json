@@ -1189,5 +1189,16 @@
         "label": "Shipping background"
       }
     ]
+  },
+  {
+    "name": "Monté product reviews",
+    "settings": [
+      {
+        "type": "text",
+        "id": "monte_judgeme_public_token",
+        "label": "Judge.me public API token",
+        "info": "Public storefront token only. Never enter a private API token. Reviews are grouped using custom.product_group."
+      }
+    ]
   }
 ]

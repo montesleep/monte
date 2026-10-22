@@ -1,0 +1,56 @@
+{{ 'monte-social-rating.css' | asset_url | stylesheet_tag }}
+{{ 'monte-product-reviews.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'monte-product-reviews.js' | asset_url }}" type="module"></script>
+{%- assign review_group = product.metafields.custom.product_group.value -%}
+<monte-product-reviews id="product-reviews" class="mpr" data-product-id="{{ product.id }}" aria-labelledby="reviews-heading-{{ section.id }}">
+  <h2 id="reviews-heading-{{ section.id }}" class="mpr-heading">{{ section.settings.heading | escape | newline_to_br }}</h2>
+  <div class="mpr-summary">
+    <div data-review-summary aria-live="polite"><p>Ładowanie opinii…</p></div>
+    <button type="button" class="button button--outline mpr-write" data-write-review>{{ section.settings.button_label | escape }}</button>
+  </div>
+  <p data-review-status role="status"></p>
+  <div data-review-list class="mpr-list" tabindex="-1" aria-label="Opinie klientów"></div>
+  <nav data-review-pagination class="mpr-pagination" aria-label="Strony opinii"></nav>
+  <noscript><p>Włącz JavaScript, aby przeczytać opinie i zostawić swoją.</p></noscript>
+  <script type="application/json" data-review-config>
+    {
+      "shop": {{ shop.permanent_domain | json }},
+      "token": {{ settings.monte_judgeme_public_token | json }},
+      "assets": {
+        "base": {{ 'monte-rating-base.svg' | asset_url | json }},
+        "fill": {{ 'monte-rating-background.svg' | asset_url | json }},
+        "glyph": {{ 'monte-rating-glyph.svg' | asset_url | json }},
+        "verified": {{ 'monte-review-verified.svg' | asset_url | json }}
+      },
+      "products": [
+        {% render 'monte-review-product-data', review_product: product, group: review_group %}
+        {%- for color in review_group.colors.value -%}
+          {%- assign color_product = color.product.value -%}
+          {%- if color_product != blank and color_product.id != product.id -%},
+            {% render 'monte-review-product-data', review_product: color_product, group: review_group %}
+          {%- endif -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+  {%- comment -%}Native Judge.me form bridge only. Review display is rendered by Monté.{%- endcomment -%}
+  <div hidden aria-hidden="true" class="mpr-native-form">
+    <div class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}" data-product-title="{{ product.title | escape }}" data-product-image-url="{{ product.featured_image | image_url: width: 300 }}">
+      <div class="jdgm-rev-widg" data-image-url="{{ product.featured_image | image_url: width: 300 }}"></div>
+    </div>
+  </div>
+</monte-product-reviews>
+{% schema %}
+{
+  "name": "Monté Product Reviews",
+  "tag": "section",
+  "class": "shopify-section--monte-product-reviews",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Co mówią\nklienci o Monté" },
+    { "type": "text", "id": "button_label", "label": "Write review button", "default": "Zostaw opinię" },
+    { "type": "paragraph", "content": "Published reviews come from Judge.me. Products sharing custom.product_group share reviews and ratings. Five reviews are displayed per page. Configure the public API token in Theme settings > Monté product reviews." }
+  ],
+  "presets": [{ "name": "Monté Product Reviews" }]
+}
+{% endschema %}

@@ -1,0 +1,52 @@
+.mpr { display:block; padding:40px 20px; color:#232e71; background:transparent; font:400 16px/1.5 var(--text-font-family); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; font-synthesis:none; scroll-margin-top:100px; }
+.mpr-heading { margin:0 0 40px; text-align:center; font:500 32px/1.1 var(--heading-font-family); letter-spacing:0; text-transform:none; }
+.mpr-summary { display:flex; flex-direction:column; align-items:center; gap:20px; border-bottom:1px dashed #dcd6cf; padding-bottom:20px; }
+.mpr-score { display:flex; align-items:center; gap:8px; font-size:14px; white-space:nowrap; }
+.mpr-score-number { font:500 24px/1.1 var(--heading-font-family); }
+.mpr-histogram { display:grid; gap:8px; margin-top:20px; }
+.mpr-histogram-row { display:grid; grid-template-columns:16px 16px minmax(0,1fr) 36px; align-items:center; gap:12px; font-size:14px; }
+.mpr-histogram-row>span:last-child { text-align:right; }
+.mpr-histogram-track { height:4px; background:#dcd6cf; overflow:hidden; border-radius:4px; }
+.mpr-histogram-fill { display:block; height:100%; background:#232e71; border-radius:inherit; }
+.mpr-write.button { min-height:56px; padding:16px 32px; border:1px solid #232e71; border-radius:100px; background:transparent; color:#232e71; font:600 16px/1.5 var(--text-font-family); letter-spacing:0; }
+.mpr-list { outline:none; }
+.mpr-review { display:grid; gap:20px; padding:20px 0; border-bottom:1px dashed #dcd6cf; overflow-wrap:anywhere; }
+.mpr-content { min-width:0; display:flex; flex-direction:column; gap:20px; }
+.mpr-review-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.mpr-date { color:#52597e; opacity:.5; font-size:14px; white-space:nowrap; }
+.mpr-title { margin:0; font:600 16px/1.5 var(--text-font-family); color:inherit; letter-spacing:0; text-transform:none; }
+.mpr-body { margin:0; white-space:pre-line; }
+.mpr-copy { display:grid; gap:12px; }
+.mpr-author { display:flex; flex-direction:column; gap:20px; font-size:14px; }
+.mpr-person,.mpr-product { display:flex; align-items:center; gap:12px; }
+.mpr-avatar { width:48px; height:48px; flex:none; border-radius:50%; background:#e7e0d8; display:grid; place-items:center; font-size:14px; font-weight:600; }
+.mpr-author strong { font-weight:600; }
+.mpr-verification { display:flex; gap:8px; align-items:center; color:#52597e; }
+.mpr-verification img { width:16px; height:16px; }
+.mpr-product img { width:48px; height:48px; flex:none; object-fit:cover; border-radius:8px; }
+.mpr-product span { color:#52597e; }
+.mpr-product strong { display:block; color:#232e71; }
+.mpr-photos { display:flex; flex-wrap:wrap; gap:8px; }
+.mpr-photos a { display:block; border-radius:8px; overflow:hidden; }
+.mpr-photos img { width:64px; height:64px; object-fit:cover; }
+.mpr-pagination { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:16px; margin-top:20px; }
+.mpr-pagination:empty,[data-review-status]:empty { display:none; }
+.mpr-pagination button { width:44px; height:44px; border:1px solid #dcd6cf; border-radius:50%; font-weight:600; background:transparent; }
+.mpr-pagination [aria-current="page"] { border-color:#232e71; }
+.mpr-pagination button:focus-visible,.mpr a:focus-visible,.mpr-write:focus-visible { outline:2px solid #232e71; outline-offset:4px; }
+.mpr-hero-rating { display:flex; align-items:center; gap:8px; font:400 14px/21px var(--text-font-family); color:#232e71; font-synthesis:none; }
+.mpr-hero-rating strong { font-weight:600; }
+@media (hover:hover) { .mpr-write.button:hover { background:#232e71; color:#fdfbf9; } .mpr-pagination button:hover { border-color:#232e71; } .mpr-product:hover span { text-decoration:underline; } }
+@media (min-width:1000px) {
+  .mpr { padding:80px 40px; }
+  .mpr-heading { font-size:48px; margin-bottom:64px; }
+  .mpr-summary { flex-direction:row; justify-content:space-between; }
+  .mpr-score { font-size:16px; }
+  .mpr-review { grid-template-columns:280px minmax(0,1fr); column-gap:80px; padding:40px 0; }
+  .mpr-author { grid-column:1; grid-row:1; gap:32px; font-size:16px; }
+  .mpr-content { grid-column:2; grid-row:1; }
+  .mpr-body,.mpr-title { font-size:18px; }
+  .mpr-date { font-size:16px; }
+  .mpr-photos img { width:80px; height:80px; }
+  .mpr-pagination { margin-top:40px; }
+}

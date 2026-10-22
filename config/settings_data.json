@@ -139,7 +139,8 @@
     "monte_payment_1": "shopify://shop_images/Visa.svg",
     "monte_payment_2": "shopify://shop_images/Mastercard.svg",
     "monte_payment_3": "shopify://shop_images/Przelewy24.svg",
-    "monte_payment_4": "shopify://shop_images/Blik.svg"
+    "monte_payment_4": "shopify://shop_images/Blik.svg",
+    "monte_judgeme_public_token": "hK2O1Ozd1p2XpZ37Qt-5ZU_8LqI"
   },
   "installed_preset_name": "Impact",
   "presets": {

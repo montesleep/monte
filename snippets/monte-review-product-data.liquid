@@ -1,0 +1,7 @@
+{
+  "id": {{ review_product.id | json }},
+  "handle": {{ review_product.handle | json }},
+  "url": {{ review_product.url | json }},
+  "title": {% render 'monte-product-display-title', product: review_product, group_title: group.title.value, format: 'json' %},
+  "image": {% if review_product.featured_image %}{{ review_product.featured_image | image_url: width: 160 | json }}{% else %}null{% endif %}
+}

@@ -1,0 +1,91 @@
+/* Scoped skin for the native Judge.me five-step form. */
+.monte-review-form.jdgm-write-review-modal { --jdgm-primary-color:#232e71; --jdgm-secondary-color:#eee7e0; z-index:1000000; color:#232e71; font:400 16px/1.5 var(--text-font-family); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; font-synthesis:none; }
+.monte-review-form.jdgm-write-review-modal * { box-sizing:border-box; letter-spacing:0; }
+.monte-review-form.jdgm-write-review-modal :focus-visible { outline-color:#232e71; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__overlay { background:rgba(0,0,0,.6); opacity:1; backdrop-filter:blur(17px); -webkit-backdrop-filter:blur(17px); }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__container { padding:60px; pointer-events:none; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__content { background:#f8f1e9; color:#232e71; width:520px; max-width:100%; height:auto; min-height:0; max-height:none; padding:0; margin:auto; border-radius:16px; overflow:visible; pointer-events:auto; animation:monte-review-enter .4s cubic-bezier(.25,.46,.45,.94); }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__sections { display:block; transform:none!important; transition:none; will-change:auto; padding:32px 20px; max-height:calc(100dvh - 120px); overflow:auto; overscroll-behavior:contain; scrollbar-width:thin; border-radius:inherit; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__slider-container { display:block; transform:none!important; height:auto; transition:none; will-change:auto; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__section, .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page { display:none; height:auto; min-height:0; transform:none; transition:none; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__section.current-section, .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page.current-page { display:flex; opacity:1; visibility:visible; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page.current-page { gap:40px; animation:monte-review-step .3s ease; overflow:visible; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page-header { gap:16px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__title, .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__product-title { font:500 32px/1.1 var(--heading-font-family); color:#232e71; margin:0; display:block; overflow:visible; -webkit-line-clamp:unset; text-wrap:balance; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__intro { font:400 16px/1.5 var(--text-font-family); color:#52597e; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form { height:auto; padding:0; gap:40px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--review-form-intro .jdgm-write-review-modal__form { gap:16px; padding:0 0 37px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__product-image { width:180px; height:180px; border-radius:16px; background:#eee7e0; flex:none; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--review-form-intro .jdgm-write-review-modal__product-title { font-size:20px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--review-form-intro .jdgm-write-review-modal__stars { margin-top:24px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__stars { display:inline-flex; gap:8px; margin:0; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__stars .jdgm-star { display:block; flex:none; width:48px; height:48px; padding:0!important; border:0; border-radius:8px; background:#dcd6cf; font-size:0; line-height:1; overflow:hidden; transition:background-color .2s ease; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__stars .jdgm-star.jdgm--on { background:#d9a17d; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__stars .jdgm-star:before { content:""; display:block; width:48px; height:48px; background:url('./monte-review-form-star.svg') center/contain no-repeat; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__stars::before, .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__stars::after { display:none; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--review-form-intro .jdgm-write-review-modal__stars::before,
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--review-form-intro .jdgm-write-review-modal__stars::after { display:block; top:64px; font:600 14px/21px var(--text-font-family); color:#52597e; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--review-form-intro .jdgm-write-review-modal__stars::before { content:"Niezadowolony"; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--review-form-intro .jdgm-write-review-modal__stars::after { content:"Zadowolony"; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--review-details .jdgm-write-review-modal__page-header { gap:16px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form-group { gap:16px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form-group--review-content { height:auto; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-label { font:600 16px/24px var(--text-font-family); color:#232e71; margin:0 0 8px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-input { font:400 16px/24px var(--text-font-family); color:#232e71; background:#eee7e0; border:1px solid #dcd6cf; border-radius:999px; padding:20px 24px; height:66px; box-shadow:none; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-input::placeholder { color:#9ba0b5; font:inherit; opacity:1; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-input:focus { border-color:#232e71; outline:none; }
+.monte-review-form.jdgm-write-review-modal textarea.jdgm-write-review-modal__field-input { height:120px; min-height:120px; flex:auto; border-radius:16px; resize:vertical; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-input.error { border-color:#d22b2b; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__gdpr-statement { font:400 12px/18px var(--text-font-family); color:#52597e; margin:0; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__gdpr-statement a { color:inherit; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--review-details .jdgm-write-review-modal__form { gap:20px; }
+.monte-review-form.jdgm-write-review-modal #jdgm-email-help { display:none; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__checkbox-label { font:400 16px/24px var(--text-font-family); gap:12px; color:#232e71; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__checkbox-custom { width:20px; height:20px; border:1px solid #dcd6cf; background:#eee7e0; border-radius:4px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__checkbox-input:checked + .jdgm-write-review-modal__checkbox-custom { background:#232e71; border-color:#232e71; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__checkbox-custom::after { left:6px; top:2px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__navigation { margin-top:40px; gap:16px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn { position:relative; display:inline-flex; align-items:center; justify-content:center; width:0; flex:1; min-width:0; max-width:none; height:56px; min-height:56px; padding:12px 16px; border:1px solid #232e71; border-radius:100px; background:#232e71; color:#fdfbf9; font:600 16px/24px var(--text-font-family); text-align:center; opacity:1; white-space:nowrap; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn-back { background:transparent; color:#232e71; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn-back svg { display:none; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn:disabled { opacity:.5; background:#232e71; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn-close { flex:none; width:auto; padding-inline:32px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__close-btn { top:-44px; right:-44px; width:44px; height:44px; display:grid; place-items:center; padding:14px; border:0; border-radius:50%; background:#f8f1e9; color:#232e71; opacity:1!important; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__close-btn svg { width:16px; height:16px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form-group--share-media { max-height:none!important; overflow:visible; gap:16px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--share-media .jdgm-write-review-modal__field-group--media-upload { height:auto; min-height:140px; padding:20px; border:2px dashed #dcd6cf; border-radius:16px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__media-upload { gap:16px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__media-upload-icon { width:32px; height:32px; background:url('./monte-review-form-upload.svg') center/contain no-repeat; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__media-upload-icon svg { visibility:hidden; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--share-media .jdgm-write-review-modal__media-upload-prompt { color:#232e71; font:400 16px/24px var(--text-font-family); text-align:center; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__media-upload-prompt b { font-weight:400; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form--thank-you { gap:16px; padding:0; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__text { margin-top:24px; color:#52597e; font:400 16px/24px var(--text-font-family); }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form--thank-you-separator, .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form--thank-you-separator ~ * { display:none; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__thank-you-nav { margin:0; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__repeat-prompt { padding:32px 20px; }
+@media (hover:hover) {
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn:hover { background:#182153; opacity:1; }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn-back:hover { background:transparent; color:#fdfbf9; }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__close-btn:hover { background:#eee7e0; }
+}
+@media (max-width:767px) {
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__container { padding:76px 0 0; align-items:flex-end; }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__content { width:100%; margin:0; border-radius:16px 16px 0 0; }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__sections { max-height:calc(100dvh - 76px); padding-bottom:max(32px,env(safe-area-inset-bottom)); }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__close-btn { top:-60px; right:calc(50% - 22px); }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__title, .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__product-title { font-size:24px; }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__intro, .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__text { font-size:14px; line-height:21px; }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__product-image { width:164px; height:164px; }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-label { font-size:14px; line-height:21px; }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-input { height:44px; padding:10px 20px; font-size:14px; line-height:21px; }
+  .monte-review-form.jdgm-write-review-modal textarea.jdgm-write-review-modal__field-input { padding:16px 20px; }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__checkbox-label, .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__gdpr-statement { font-size:14px; line-height:21px; }
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--share-media .jdgm-write-review-modal__media-upload-prompt { font-size:14px; line-height:21px; }
+}
+@keyframes monte-review-enter { from { opacity:0; translate:0 24px; } to { opacity:1; translate:0 0; } }
+@keyframes monte-review-step { from { opacity:0; translate:0 8px; } to { opacity:1; translate:0 0; } }
+@media (prefers-reduced-motion:reduce) {
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__content, .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page.current-page { animation:none; }
+}
+

@@ -1,5 +1,6 @@
 {{ 'monte-social-rating.css' | asset_url | stylesheet_tag }}
 {{ 'monte-product-reviews.css' | asset_url | stylesheet_tag }}
+{{ 'monte-review-form.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'monte-product-reviews.js' | asset_url }}" type="module"></script>
 {%- assign review_group = product.metafields.custom.product_group.value -%}
 <monte-product-reviews id="product-reviews" class="mpr" data-product-id="{{ product.id }}" aria-labelledby="reviews-heading-{{ section.id }}">

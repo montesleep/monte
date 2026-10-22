@@ -80,6 +80,7 @@ body:has(.monte-review-form[style*="display: block"]) shopify-chat { display:non
   .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__close-btn:hover { background:#eee7e0; }
 }
 @media (max-width:767px) {
+  .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn-close { width:159.5px; }
   .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__container { padding:76px 0 0; align-items:flex-end; }
   .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__content { width:100%; margin:0; border-radius:16px 16px 0 0; }
   .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__sections { max-height:calc(100dvh - 76px); padding-bottom:max(32px,env(safe-area-inset-bottom)); }

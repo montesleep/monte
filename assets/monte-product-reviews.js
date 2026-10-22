@@ -160,13 +160,15 @@ class MonteProductReviews extends HTMLElement {
       }
       if (!this.isConnected) return;
       window.jdgm.loadCSS(window.jdgm.widgetPath('form.css'));
-      if (!this.form) {
-        this.form = new window.jdgm._WriteReviewModal(window.jdgm.$);
-        await this.form.setup('jdgm-review-widget-modal', this.dataset.productId);
+      if (!window.jdgm._rtlStarsEnabled) {
+        window.jdgm.loadScript(window.jdgm.CDN_HOST + 'widget/form.js');
       }
-      this.form.showModalPage();
+      while (!window.jdgm._rtlStarsEnabled || !document.querySelector('.jdgm-review-widget-modal.jdgm-write-review-modal')) {
+        if (Date.now() - start > 15000) throw new Error('Judge.me form unavailable');
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+      this.querySelector('.jdgm-write-rev-link').click();
     } catch {
-      this.form = null;
       status.textContent = 'Nie udało się otworzyć formularza opinii. Spróbuj ponownie.';
     } finally { button.disabled = false; }
   }

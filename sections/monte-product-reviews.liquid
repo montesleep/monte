@@ -36,7 +36,7 @@
   {%- comment -%}Native Judge.me form bridge only. Review display is rendered by Monté.{%- endcomment -%}
   <div hidden aria-hidden="true" class="mpr-native-form">
     <div class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}" data-product-title="{{ product.title | escape }}" data-product-image-url="{{ product.featured_image | image_url: width: 300 }}">
-      <div class="jdgm-rev-widg" data-image-url="{{ product.featured_image | image_url: width: 300 }}"></div>
+      <div class="jdgm-rev-widg" data-image-url="{{ product.featured_image | image_url: width: 300 }}"><div class="jdgm-rev-widg__header"><span class="jdgm-row-stars"></span><a href="#" class="jdgm-write-rev-link">Zostaw opinię</a></div></div>
     </div>
   </div>
 </monte-product-reviews>

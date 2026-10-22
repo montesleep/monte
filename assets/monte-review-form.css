@@ -63,8 +63,9 @@ body:has(.monte-review-form[style*="display: block"]) shopify-chat { display:non
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn-back svg { display:none; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn:disabled { opacity:.5; background:#232e71; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn-close { flex:none; width:auto; padding-inline:32px; }
-.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__close-btn { top:-44px; right:-44px; width:44px; height:44px; display:grid; place-items:center; padding:14px; border:0; border-radius:50%; background:#f8f1e9; color:#232e71; opacity:1!important; animation:monte-review-close .15s .55s linear backwards; }
-.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__close-btn svg { width:16px; height:16px; }
+/* Judge.me sets display:block inline; retain centering independently of its lifecycle. */
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__close-btn { top:-44px; right:-44px; width:44px; height:44px; display:grid!important; place-items:center; line-height:0; padding:14px; border:0; border-radius:50%; background:#f8f1e9; color:#232e71; opacity:1!important; animation:monte-review-close .15s .55s linear backwards; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__close-btn svg { display:block; width:16px; height:16px; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form-group--share-media { max-height:none!important; overflow:visible; gap:16px; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--share-media .jdgm-write-review-modal__field-group--media-upload { height:auto; min-height:140px; padding:20px; border:2px dashed #dcd6cf; border-radius:16px; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__media-upload { gap:16px; }

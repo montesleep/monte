@@ -1,5 +1,9 @@
 /* Scoped skin for the native Judge.me five-step form. */
+html:has(.monte-review-form[style*="display: block"]), body:has(.monte-review-form[style*="display: block"]) { overflow:hidden!important; overscroll-behavior:none; }
 body:has(.monte-review-form[style*="display: block"]) shopify-chat { display:none!important; }
+.monte-review-form.jdgm-write-review-modal .jdgm-coupon-banner-container:empty { display:none; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form-group--share-media { padding:0; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__checkbox-text { color:#232e71; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__section:not(.current-section), .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page:not(.current-page) { display:none!important; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page.current-page { display:flex!important; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page-header { margin:0!important; flex:none; }
@@ -36,7 +40,7 @@ body:has(.monte-review-form[style*="display: block"]) shopify-chat { display:non
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page--review-details .jdgm-write-review-modal__page-header { gap:16px; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form-group { gap:16px; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form-group--review-content { height:auto; }
-.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-label { font:600 16px/24px var(--text-font-family); color:#232e71; margin:0 0 8px; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-label { font:600 16px/24px var(--text-font-family); color:#232e71; margin:0 0 12px; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-input { font:400 16px/24px var(--text-font-family); color:#232e71; background:#eee7e0; border:1px solid #dcd6cf; border-radius:999px; padding:20px 24px; height:66px; box-shadow:none; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-input::placeholder { color:#9ba0b5; font:inherit; opacity:1; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-input:focus { border-color:#232e71; outline:none; }

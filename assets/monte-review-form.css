@@ -1,4 +1,10 @@
 /* Scoped skin for the native Judge.me five-step form. */
+body:has(.monte-review-form[style*="display: block"]) shopify-chat { display:none!important; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__section:not(.current-section), .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page:not(.current-page) { display:none!important; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page.current-page { display:flex!important; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__page-header { margin:0!important; flex:none; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__field-group--stars { display:flex; justify-content:center; line-height:0; }
+.monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__form { flex:none; }
 .monte-review-form.jdgm-write-review-modal { --jdgm-primary-color:#232e71; --jdgm-secondary-color:#eee7e0; z-index:1000000; color:#232e71; font:400 16px/1.5 var(--text-font-family); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; font-synthesis:none; }
 .monte-review-form.jdgm-write-review-modal * { box-sizing:border-box; letter-spacing:0; }
 .monte-review-form.jdgm-write-review-modal :focus-visible { outline-color:#232e71; }

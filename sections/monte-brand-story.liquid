@@ -8,10 +8,6 @@
     assign mobile_image = desktop_image
     assign mobile_video = desktop_video
   endif
-  assign fallback = ''
-  if section.settings.show_default_image
-    assign fallback = 'monte-brand-story.png'
-  endif
   assign button_label = section.settings.button_label | escape
 -%}
 <style>#shopify-section-{{ section.id }} { background: transparent; }</style>
@@ -22,14 +18,14 @@
         {%- if desktop_video != blank -%}
           {%- render 'media', media: desktop_video, autoplay: true, loop: true, show_play_button: true, sizes: '60vw' -%}
         {%- else -%}
-          {%- render 'monte-navigation-media', image: desktop_image, placeholder: fallback, width: 1814, height: 1400, sizes: '(min-width: 1000px) 60vw, 100vw' -%}
+          {%- render 'monte-navigation-media', image: desktop_image, placeholder: 'lifestyle-1', width: 1814, height: 1400, sizes: '(min-width: 1000px) 60vw, 100vw' -%}
         {%- endif -%}
       </div>
-      <div class="monte-story__mobile{% if mobile_image == blank and mobile_video == blank and fallback != blank %} monte-story__mobile--design{% endif %}">
+      <div class="monte-story__mobile">
         {%- if mobile_video != blank -%}
           {%- render 'media', media: mobile_video, autoplay: true, loop: true, show_play_button: true, sizes: '100vw' -%}
         {%- else -%}
-          {%- render 'monte-navigation-media', image: mobile_image, placeholder: fallback, width: 1814, height: 1400, sizes: '100vw' -%}
+          {%- render 'monte-navigation-media', image: mobile_image, placeholder: 'lifestyle-1', width: 1814, height: 1400, sizes: '100vw' -%}
         {%- endif -%}
       </div>
     </div>
@@ -83,12 +79,6 @@
       "id": "mobile_video",
       "label": "Mobile video",
       "info": "Replaces the mobile image. If both mobile media fields are empty, desktop media is used."
-    },
-    {
-      "type": "checkbox",
-      "id": "show_default_image",
-      "label": "Show design image when no media is selected",
-      "default": true
     },
     {
       "type": "checkbox",

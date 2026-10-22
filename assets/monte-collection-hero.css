@@ -2,7 +2,7 @@
 .monte-collection-hero__frame { display: flex; flex-direction: column; justify-content: flex-end; position: relative; isolation: isolate; min-height: var(--mch-height-mobile, 420px); padding: 20px; overflow: hidden; border-radius: 16px; background: #182153; }
 .monte-collection-hero__media, .monte-collection-hero__overlay { position: absolute; inset: 0; pointer-events: none; }
 .monte-collection-hero__media { z-index: 0; }
-.monte-collection-hero__media :is(picture, img, video, video-media), .monte-collection-hero__desktop, .monte-collection-hero__mobile { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--mch-mobile-image-position, 50% 50%); border-radius: 0; }
+.monte-collection-hero__media :is(picture, img, video, video-media, svg), .monte-collection-hero__desktop, .monte-collection-hero__mobile { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--mch-mobile-image-position, 50% 50%); border-radius: 0; }
 .monte-collection-hero__desktop { display: none; }
 .monte-collection-hero__frame--gradient .monte-collection-hero__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180.101deg, transparent 32.646%, rgba(0, 0, 0, var(--mch-gradient-opacity, .8)) 93.074%); }
 .monte-collection-hero__overlay { z-index: 1; background: var(--mch-overlay, #000); opacity: var(--mch-overlay-opacity, .2); }
@@ -15,7 +15,7 @@
 @media (min-width: 700px) {
   .monte-collection-hero { margin-inline: 8px; }
   .monte-collection-hero__frame { min-height: var(--mch-height-desktop, 460px); padding: 64px 40px; }
-  .monte-collection-hero__media :is(img, video) { object-position: var(--mch-image-position, 50% 50%); }
+  .monte-collection-hero__media :is(img, video, svg) { object-position: var(--mch-image-position, 50% 50%); }
   .monte-collection-hero__desktop { display: block; }
   .monte-collection-hero__mobile { display: none; }
   .monte-collection-hero__frame--gradient .monte-collection-hero__media::after { display: none; }

@@ -21,7 +21,6 @@
       "name": "Monté Contact Hero",
       "settings": {
         "design_images": "contact",
-        "show_default_images": true,
         "desktop_height": 460,
         "mobile_height": 420,
         "heading": "Jesteśmy tu dla Ciebie",

@@ -25,7 +25,7 @@
         -%}
         <div class="monte-mission__item monte-mission__item--{{ index }}">
           <div class="monte-mission__motion">
-            {%- render 'monte-mission-media', image: section.settings[image_key], video: section.settings[video_key], index: index, show_default: section.settings.show_design_images -%}
+            {%- render 'monte-mission-media', image: section.settings[image_key], video: section.settings[video_key], index: index -%}
           </div>
         </div>
       {%- endfor -%}
@@ -46,7 +46,7 @@
       -%}
       <div class="monte-mission__mobile-item monte-mission__mobile-item--{{ index }}">
         <div class="monte-mission__motion">
-          {%- render 'monte-mission-media', image: section.settings[image_key], video: section.settings[video_key], index: fallback_index, show_default: section.settings.show_design_images -%}
+          {%- render 'monte-mission-media', image: section.settings[image_key], video: section.settings[video_key], index: fallback_index -%}
         </div>
       </div>
     {%- endfor -%}
@@ -88,12 +88,6 @@
       "id": "button_link",
       "label": "Button link",
       "default": "/collections/all"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_design_images",
-      "label": "Show design images when no media is selected",
-      "default": true
     },
     {
       "type": "color",

@@ -122,47 +122,38 @@
             "item_1_media_type": "image",
             "item_1_alt": "Monté — jedwabna maska do spania",
             "item_1_play_overlay": true,
-            "item_1_design_image": "1",
             "item_2_enabled": true,
             "item_2_media_type": "image",
             "item_2_alt": "Monté — jedwabna maska do spania",
             "item_2_play_overlay": true,
-            "item_2_design_image": "2",
             "item_3_enabled": true,
             "item_3_media_type": "image",
             "item_3_alt": "Monté — jedwabna maska do spania",
             "item_3_play_overlay": true,
-            "item_3_design_image": "3",
             "item_4_enabled": false,
             "item_4_media_type": "image",
             "item_4_alt": "",
             "item_4_play_overlay": true,
-            "item_4_design_image": "none",
             "item_5_enabled": false,
             "item_5_media_type": "image",
             "item_5_alt": "",
             "item_5_play_overlay": true,
-            "item_5_design_image": "none",
             "item_6_enabled": false,
             "item_6_media_type": "image",
             "item_6_alt": "",
             "item_6_play_overlay": true,
-            "item_6_design_image": "none",
             "item_7_enabled": false,
             "item_7_media_type": "image",
             "item_7_alt": "",
             "item_7_play_overlay": true,
-            "item_7_design_image": "none",
             "item_8_enabled": false,
             "item_8_media_type": "image",
             "item_8_alt": "",
             "item_8_play_overlay": true,
-            "item_8_design_image": "none",
             "item_9_enabled": false,
             "item_9_media_type": "image",
             "item_9_alt": "",
-            "item_9_play_overlay": true,
-            "item_9_design_image": "none"
+            "item_9_play_overlay": true
           }
         },
         "monte_accordions": {
@@ -279,7 +270,6 @@
         "heading": "Jedwab, który dba\no Ciebie",
         "subheading": "Rozpakowanie, materiał, zapięcie rzepu, zobacz to wszystko z bliska. Poniżej cztery szczegóły, które sprawiają, że różnicę czuć od razu.",
         "video": "{{ product.metafields.custom.mask_preview.value }}",
-        "show_design_image": true,
         "media_alt": "Rozpakowanie pudełka Monté",
         "heading_color": "#232e71",
         "body_color": "#52597e",
@@ -298,8 +288,7 @@
           "settings": {
             "title": "Chłodny latem, przyjemny zimą",
             "description": "<p>Naturalna regulacja temperatury każdej nocy.</p>",
-            "number": "",
-            "design_image": "1"
+            "number": ""
           }
         },
         "feature_2": {
@@ -307,8 +296,7 @@
           "settings": {
             "title": "Rzep, który się dopasowuje",
             "description": "<p>Bez ucisku na skronie, nie czepia się o włosy.</p>",
-            "number": "",
-            "design_image": "2"
+            "number": ""
           }
         },
         "feature_3": {
@@ -316,8 +304,7 @@
           "settings": {
             "title": "Budzisz się bardziej wypoczęta",
             "description": "<p>Głęboki sen w pełnej ciemności.</p>",
-            "number": "",
-            "design_image": "3"
+            "number": ""
           }
         }
       },

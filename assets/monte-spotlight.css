@@ -4,7 +4,7 @@
 .monte-spotlight__media::after { content: ''; position: absolute; inset: 0; background: rgb(0 0 0 / .2); pointer-events: none; }
 .monte-spotlight__media > div { width: 100%; height: 100%; }
 .monte-spotlight__media-desktop { display: none; }
-.monte-spotlight__media :is(img, video, video-media) { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; border-radius: 0; }
+.monte-spotlight__media :is(img, video, video-media, svg) { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; border-radius: 0; }
 .monte-spotlight__content { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; width: 100%; }
 .monte-spotlight__badge { max-width: 100%; padding: 3px 8px; border-radius: 4px; background: var(--spotlight-badge-bg); color: var(--spotlight-badge-text); font: 500 12px/1.5 'PP Neue Montreal Mono', monospace; letter-spacing: -.12px; text-transform: uppercase; overflow-wrap: anywhere; }
 .monte-spotlight__details { display: grid; gap: 12px; width: 100%; }

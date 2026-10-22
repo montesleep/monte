@@ -12,8 +12,8 @@
           {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', image_size: '1440x', class: 'monte-details__video' }}
         {%- elsif section.settings.image != blank -%}
           {{ section.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '375,750,1100,1440,1800', sizes: '(min-width: 1000px) 50vw, 100vw' }}
-        {%- elsif section.settings.show_design_image -%}
-          <img src="{{ 'monte-product-detail.jpg' | asset_url }}" width="1440" height="1440" loading="lazy" alt="{{ section.settings.media_alt | escape }}">
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder monte-media-placeholder' }}
         {%- endif -%}
       </div>
       <div class="monte-details__list">
@@ -44,7 +44,6 @@
     { "type": "header", "content": "Media" },
     { "type": "image_picker", "id": "image", "label": "Image" },
     { "type": "video", "id": "video", "label": "Video", "info": "Replaces the image on all screen sizes. Plays continuously, muted and without player controls. Media stays the same for every accordion item." },
-    { "type": "checkbox", "id": "show_design_image", "label": "Show design image when no media is selected", "default": true },
     { "type": "text", "id": "media_alt", "label": "Default image description", "default": "Rozpakowanie pudełka Monté" },
     { "type": "header", "content": "Colors" },
     { "type": "color", "id": "heading_color", "label": "Primary text and progress", "default": "#232E71" },

@@ -3,52 +3,6 @@
   assign design_images = design_images | default: section.settings.design_images
   assign hero_heading = hero_heading | default: section.settings.heading
   assign hero_subheading = hero_subheading | default: section.settings.subheading
-  assign default_desktop = 'monte-collection-hero-desktop.png'
-  assign default_mobile = 'monte-collection-hero-mobile.png'
-  assign default_desktop_width = 1746
-  assign default_desktop_height = 810
-  assign default_mobile_width = 932
-  assign default_mobile_height = 1308
-  if design_images == 'faq' or design_images == 'policy'
-    assign default_desktop = 'monte-faq-hero-desktop.png'
-    assign default_mobile = 'monte-faq-hero-mobile.png'
-    assign default_desktop_width = 2327
-    assign default_desktop_height = 1080
-    assign default_mobile_width = 2327
-    assign default_mobile_height = 1080
-  elsif design_images == 'contact'
-    assign default_desktop = 'monte-contact-hero.png'
-    assign default_mobile = 'monte-contact-hero.png'
-    assign default_desktop_width = 1800
-    assign default_desktop_height = 540
-    assign default_mobile_width = 1800
-    assign default_mobile_height = 540
-  endif
-  if design_images == 'policy' or design_images == 'builder'
-    assign default_desktop = 'monte-nav-bundles-promo.png'
-    assign default_mobile = 'monte-nav-bundles-promo.png'
-    assign default_desktop_width = 2327
-    assign default_desktop_height = 1080
-    assign default_mobile_width = 2327
-    assign default_mobile_height = 1080
-  endif
-  if design_images == 'about'
-    assign default_desktop = 'monte-about-hero.jpg'
-    assign default_mobile = 'monte-about-hero.jpg'
-    assign default_desktop_width = 1988
-    assign default_desktop_height = 791
-    assign default_mobile_width = 1988
-    assign default_mobile_height = 791
-  endif
-  assign mobile_default_position = '50% 50%'
-  if design_images == 'contact' and section.settings.mobile_image == blank and section.settings.image == blank
-    assign mobile_default_position = '65.49% 50%'
-  endif
-  if design_images == 'policy' or design_images == 'builder'
-    if section.settings.mobile_image == blank and section.settings.image == blank
-    assign mobile_default_position = '83.46% 50%'
-    endif
-  endif
   assign desktop_image = section.settings.image
   assign desktop_video = section.settings.video
   assign mobile_image = section.settings.mobile_image
@@ -63,53 +17,30 @@
 <style>
   #shopify-section-{{ section.id }} { background: transparent; margin: 0; padding: 0; }
 </style>
-<reveal-items class="monte-collection-hero{% if design_images == 'about' %} monte-collection-hero--about{% endif %}" selector=".monte-collection-hero__content" margin="0px" style="--mch-gradient-opacity: {% if design_images == 'faq' or design_images == 'policy' or design_images == 'contact' or design_images == 'about' or design_images == 'builder' %}.7{% else %}.8{% endif %}; --mch-height-desktop: {{ section.settings.desktop_height }}px; --mch-height-mobile: {{ section.settings.mobile_height }}px; --mch-heading: {{ section.settings.heading_color }}; --mch-body: {{ section.settings.body_color }}; --mch-rating: {{ section.settings.rating_color }}; --mch-overlay: {{ section.settings.overlay_color }}; --mch-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --mch-image-position: {{ desktop_image.presentation.focal_point | default: '50% 50%' }}; --mch-mobile-image-position: {{ mobile_image.presentation.focal_point | default: mobile_default_position }};">
+<reveal-items class="monte-collection-hero{% if design_images == 'about' %} monte-collection-hero--about{% endif %}" selector=".monte-collection-hero__content" margin="0px" style="--mch-gradient-opacity: {% if design_images == 'faq' or design_images == 'policy' or design_images == 'contact' or design_images == 'about' or design_images == 'builder' %}.7{% else %}.8{% endif %}; --mch-height-desktop: {{ section.settings.desktop_height }}px; --mch-height-mobile: {{ section.settings.mobile_height }}px; --mch-heading: {{ section.settings.heading_color }}; --mch-body: {{ section.settings.body_color }}; --mch-rating: {{ section.settings.rating_color }}; --mch-overlay: {{ section.settings.overlay_color }}; --mch-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --mch-image-position: {{ desktop_image.presentation.focal_point | default: '50% 50%' }}; --mch-mobile-image-position: {{ mobile_image.presentation.focal_point | default: '50% 50%' }};">
   <div class="monte-collection-hero__frame{% if section.settings.mobile_gradient %} monte-collection-hero__frame--gradient{% endif %}">
     <div class="monte-collection-hero__media" aria-hidden="true">
-      {%- if desktop_video == blank and mobile_video == blank -%}
-        <picture>
-          {%- if mobile_image != blank -%}
-            <source media="(max-width: 699px)" srcset="{{ mobile_image | image_url: width: 400 }} 400w, {{ mobile_image | image_url: width: 600 }} 600w, {{ mobile_image | image_url: width: 800 }} 800w, {{ mobile_image | image_url: width: 1200 }} 1200w" sizes="calc(100vw - 8px)" width="{{ mobile_image.width }}" height="{{ mobile_image.height }}">
-          {%- elsif section.settings.show_default_images -%}
-            <source media="(max-width: 699px)" srcset="{{ default_mobile | asset_url }}" width="{{ default_mobile_width }}" height="{{ default_mobile_height }}">
+      {%- for device in (1..2) -%}
+        {%- liquid
+          assign device_class = 'desktop'
+          assign hero_video = desktop_video
+          assign hero_image = desktop_image
+          if device == 2
+            assign device_class = 'mobile'
+            assign hero_video = mobile_video
+            assign hero_image = mobile_image
+          endif
+        -%}
+        <div class="monte-collection-hero__{{ device_class }}">
+          {%- if hero_video != blank -%}
+            {%- render 'media', media: hero_video, autoplay: true, loop: true, show_play_button: true, preload: true, sizes: '100vw' -%}
+          {%- elsif hero_image != blank -%}
+            {{- hero_image | image_url: width: 3200 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400,600,800,1200,1600,2000,2400,3200', sizes: '100vw', alt: '' -}}
+          {%- else -%}
+            {{- 'lifestyle-1' | placeholder_svg_tag: 'placeholder monte-media-placeholder' | replace: '<svg', '<svg aria-hidden="true" preserveAspectRatio="xMidYMid slice"' -}}
           {%- endif -%}
-          {%- if desktop_image != blank -%}
-            {{- desktop_image | image_url: width: 3200 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400,600,800,1000,1200,1600,2000,2400,3200', sizes: '(min-width: 700px) calc(100vw - 16px), calc(100vw - 8px)', alt: '' -}}
-          {%- elsif section.settings.show_default_images -%}
-            <img src="{{ default_desktop | asset_url }}" width="{{ default_desktop_width }}" height="{{ default_desktop_height }}" loading="eager" fetchpriority="high" alt="">
-          {%- elsif mobile_image != blank -%}
-            {{- mobile_image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400,600,800,1200,1600', sizes: '100vw', alt: '' -}}
-          {%- endif -%}
-        </picture>
-      {%- else -%}
-        {%- for device in (1..2) -%}
-          {%- liquid
-            assign device_class = 'desktop'
-            assign hero_video = desktop_video
-            assign hero_image = desktop_image
-            assign default_image = default_desktop
-            assign image_width = default_desktop_width
-            assign image_height = default_desktop_height
-            if device == 2
-              assign device_class = 'mobile'
-              assign hero_video = mobile_video
-              assign hero_image = mobile_image
-              assign default_image = default_mobile
-              assign image_width = default_mobile_width
-              assign image_height = default_mobile_height
-            endif
-          -%}
-          <div class="monte-collection-hero__{{ device_class }}">
-            {%- if hero_video != blank -%}
-              {%- render 'media', media: hero_video, autoplay: true, loop: true, show_play_button: true, preload: true, sizes: '100vw' -%}
-            {%- elsif hero_image != blank -%}
-              {{- hero_image | image_url: width: 2400 | image_tag: loading: 'eager', widths: '400,600,800,1200,1600,2000,2400', sizes: '100vw', alt: '' -}}
-            {%- elsif section.settings.show_default_images -%}
-              <img src="{{ default_image | asset_url }}" width="{{ image_width }}" height="{{ image_height }}" loading="eager" alt="">
-            {%- endif -%}
-          </div>
-        {%- endfor -%}
-      {%- endif -%}
+        </div>
+      {%- endfor -%}
     </div>
     <div class="monte-collection-hero__overlay" aria-hidden="true"></div>
     <div class="monte-collection-hero__content">

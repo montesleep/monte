@@ -41,7 +41,6 @@
 .monte-menu-promo--desktop .monte-promo-content { gap: 24px; }
 .monte-menu-promo--desktop .monte-promo-heading { font-size: 40px; }
 .monte-menu-promo--desktop .monte-promo-button { min-height: 56px; padding: 16px 32px; font-size: 16px; }
-.monte-menu-promo--desktop .monte-menu-media--placeholder { position: absolute; width: 146.91%; height: 202%; max-width: none; left: -23.45%; top: -51%; }
 .monte-menu-promo--bundle { min-height: 195px; padding: 20px 16px; align-items: flex-start; }
 .monte-menu-promo--bundle::before { display: none; }
 .monte-menu-promo--bundle .monte-promo-content { width: 180px; max-width: 100%; gap: 16px; }

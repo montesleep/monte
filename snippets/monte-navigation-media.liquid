@@ -2,6 +2,6 @@
   {{- video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', image_size: '800x', class: 'monte-menu-media' -}}
 {%- elsif image != blank -%}
   {{- image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '112,224,390,600,880,1200', sizes: sizes, class: 'monte-menu-media', alt: '' -}}
-{%- elsif placeholder != blank -%}
-  <img class="monte-menu-media monte-menu-media--placeholder" src="{{ placeholder | asset_url }}" width="{{ width | default: 600 }}" height="{{ height | default: 600 }}" loading="lazy" alt="">
+{%- else -%}
+  {{- placeholder | default: 'image' | placeholder_svg_tag: 'placeholder monte-menu-media monte-media-placeholder' | replace: '<svg', '<svg aria-hidden="true" preserveAspectRatio="xMidYMid slice"' -}}
 {%- endif -%}

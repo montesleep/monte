@@ -12,18 +12,6 @@
     assign mobile_image = desktop_image
     assign mobile_video = desktop_video
   endif
-  assign key = prefix | append: 'show_default_image'
-  assign fallback = ''
-  assign image_width = 2000
-  assign image_height = 905
-  if section.settings[key]
-    assign fallback = 'monte-spotlight-masks.png'
-    if number == 2
-      assign fallback = 'monte-spotlight-pillows.png'
-      assign image_width = 1200
-      assign image_height = 1800
-    endif
-  endif
   assign key = prefix | append: 'badge'
   assign badge = section.settings[key]
   assign key = prefix | append: 'heading'
@@ -51,14 +39,14 @@
       {%- if desktop_video != blank -%}
         {%- render 'media', media: desktop_video, autoplay: true, loop: true, show_play_button: true, sizes: '(min-width: 700px) 50vw, 100vw' -%}
       {%- else -%}
-        {%- render 'monte-navigation-media', image: desktop_image, placeholder: fallback, width: image_width, height: image_height, sizes: '(min-width: 700px) 50vw, 100vw' -%}
+        {%- render 'monte-navigation-media', image: desktop_image, placeholder: 'lifestyle-1', sizes: '(min-width: 700px) 50vw, 100vw' -%}
       {%- endif -%}
     </div>
     <div class="monte-spotlight__media-mobile">
       {%- if mobile_video != blank -%}
         {%- render 'media', media: mobile_video, autoplay: true, loop: true, show_play_button: true, sizes: '100vw' -%}
       {%- else -%}
-        {%- render 'monte-navigation-media', image: mobile_image, placeholder: fallback, width: image_width, height: image_height, sizes: '100vw' -%}
+        {%- render 'monte-navigation-media', image: mobile_image, placeholder: 'lifestyle-1', sizes: '100vw' -%}
       {%- endif -%}
     </div>
   </div>

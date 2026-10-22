@@ -367,7 +367,7 @@ class MonteProductMedia extends HTMLElement {
       }
     } else {
       const maximum = Math.max(0, this.track.scrollWidth - this.track.clientWidth);
-      const navigable = this.items.length > 3 && maximum > 1;
+      const navigable = this.track.children.length > 3 && maximum > 1;
       this.querySelector('.mp-arrows').hidden = !navigable;
       this.querySelector('.mp-ugc-progress').hidden = !navigable;
       this.querySelector('[data-ugc-step="-1"]').disabled = this.track.scrollLeft <= 1;

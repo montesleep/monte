@@ -15,8 +15,6 @@
         "block-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/monte-hero-desktop.png",
-            "mobile_image": "shopify://shop_images/monte-hero-mobile.png",
             "content_max_width": 600,
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",
@@ -118,7 +116,6 @@
               "midnight-blue-silk-sleep-mask"
             ],
             "bundle_promo_enabled": true,
-            "bundle_default_image": true,
             "bundle_heading": "Połącz produkty, oszczędź więcej",
             "bundle_body": "Wybierz dowolne produkty Monté i otrzymaj do 15% dodatkowego rabatu na cały zestaw.",
             "bundle_button": "Stwórz swój zestaw",
@@ -300,7 +297,6 @@
     "monte_spotlight": {
       "type": "monte-spotlight",
       "settings": {
-        "card_1_show_default_image": true,
         "card_1_badge": "Bestseller",
         "card_1_badge_background": "#232e71",
         "card_1_badge_color": "#fdfbf9",
@@ -312,7 +308,6 @@
         "card_1_button_background": "#fdfbf9",
         "card_1_button_text_color": "#232e71",
         "card_1_button_hover": "#eee7e0",
-        "card_2_show_default_image": true,
         "card_2_badge": "Nowość",
         "card_2_badge_background": "#f8f1e9",
         "card_2_badge_color": "#232e71",
@@ -419,7 +414,6 @@
     "monte_brand_story": {
       "type": "monte-brand-story",
       "settings": {
-        "show_default_image": true,
         "image_zoom": false,
         "heading": "Dlaczego Monté?",
         "body": "Jedwab morwowy 22 momme, uczciwa jakość i produkty stworzone z myślą o Twojej nocnej rutynie.",

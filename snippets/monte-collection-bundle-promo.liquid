@@ -1,9 +1,5 @@
 {%- liquid
   assign promo_settings = promo_settings | default: section.settings
-  assign default_image = ''
-  if promo_settings.bundle_default_image
-    assign default_image = 'monte-nav-bundles-promo.png'
-  endif
   assign mobile_image = promo_settings.bundle_mobile_image
   assign mobile_video = promo_settings.bundle_mobile_video
   if mobile_image == blank and mobile_video == blank
@@ -13,10 +9,10 @@
 -%}
 <article class="monte-catalog-promo" style="--promo-text: {{ promo_settings.bundle_text }}; --promo-button: {{ promo_settings.bundle_button_bg }}; --promo-button-text: {{ promo_settings.bundle_button_text }}; --promo-button-hover: {{ promo_settings.bundle_button_hover }};">
   <div class="monte-catalog-promo__media monte-catalog-promo__media--desktop{% if promo_settings.bundle_image == blank and promo_settings.bundle_video == blank %} monte-catalog-promo__media--default{% endif %}">
-    {%- render 'monte-navigation-media', image: promo_settings.bundle_image, video: promo_settings.bundle_video, placeholder: default_image, sizes: '(min-width: 700px) 25vw, 100vw', width: 2327, height: 1080 -%}
+    {%- render 'monte-navigation-media', image: promo_settings.bundle_image, video: promo_settings.bundle_video, placeholder: 'lifestyle-1', sizes: '(min-width: 700px) 25vw, 100vw', width: 2327, height: 1080 -%}
   </div>
   <div class="monte-catalog-promo__media monte-catalog-promo__media--mobile">
-    {%- render 'monte-navigation-media', image: mobile_image, video: mobile_video, placeholder: default_image, sizes: '100vw', width: 2327, height: 1080 -%}
+    {%- render 'monte-navigation-media', image: mobile_image, video: mobile_video, placeholder: 'lifestyle-1', sizes: '100vw', width: 2327, height: 1080 -%}
   </div>
   <div class="monte-catalog-promo__content">
     <div class="monte-catalog-promo__copy">

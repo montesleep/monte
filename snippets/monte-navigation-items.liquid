@@ -22,15 +22,11 @@
           assign item_label = item.settings.label
           assign item_image = item.settings.image
         endif
-        assign placeholder = ''
-        if item.settings.show_placeholder
-          assign placeholder = 'monte-nav-placeholder.png'
-        endif
       -%}
       <li {{ item.shopify_attributes }}>
         <a class="monte-collection-link group{% unless desktop %} monte-menu-row{% endunless %}" href="{{ item_url }}">
           <span class="monte-collection-image overflow-hidden">
-            {%- render 'monte-navigation-media', image: item_image, video: item.settings.video, placeholder: placeholder, sizes: '(min-width: 1150px) 195px, 56px' -%}
+            {%- render 'monte-navigation-media', image: item_image, video: item.settings.video, placeholder: 'collection-1', sizes: '(min-width: 1150px) 195px, 56px' -%}
           </span>
           <span class="monte-menu-row-copy"><span class="reversed-link">{{ item_label | escape }}</span>{%- if kind == 'bundle' and item_description != blank -%}<span class="monte-menu-description">{{ item_description | escape }}</span>{%- endif -%}</span>
           {%- unless desktop -%}<img class="monte-nav-arrow" src="{{ 'monte-nav-next.svg' | asset_url }}" width="20" height="20" alt="">{%- endunless -%}

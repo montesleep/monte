@@ -1,18 +1,4 @@
 {%- liquid
-  assign fallback = blank
-  assign image_width = 1200
-  assign image_height = 1200
-  if block.settings.design_image != 'none'
-    assign fallback = 'monte-feature-' | append: block.settings.design_image | append: '.jpg'
-    if block.settings.design_image == '2'
-      assign image_width = 1048
-    endif
-  endif
-  if block.settings.design_image contains 'about-'
-    assign fallback = block.settings.design_image | replace: 'about-', 'monte-about-value' | append: '.jpg'
-    assign image_width = 1600
-    assign image_height = 1600
-  endif
   assign mobile_image = block.settings.mobile_image
   assign mobile_video = block.settings.mobile_video
   if mobile_image == blank and mobile_video == blank
@@ -34,10 +20,10 @@
 <article class="monte-feature" {{ block.shopify_attributes }}>
   <div class="monte-feature__media">
     <div class="monte-feature__media-desktop">
-      {%- render 'monte-navigation-media', image: block.settings.image, video: block.settings.video, placeholder: fallback, width: image_width, height: image_height, sizes: '(min-width: 1000px) calc((100vw - 120px) / 3), 240px' -%}
+      {%- render 'monte-navigation-media', image: block.settings.image, video: block.settings.video, placeholder: 'image', sizes: '(min-width: 1000px) calc((100vw - 120px) / 3), 240px' -%}
     </div>
     <div class="monte-feature__media-mobile">
-      {%- render 'monte-navigation-media', image: mobile_image, video: mobile_video, placeholder: fallback, width: image_width, height: image_height, sizes: '240px' -%}
+      {%- render 'monte-navigation-media', image: mobile_image, video: mobile_video, placeholder: 'image', sizes: '240px' -%}
     </div>
   </div>
   <div class="monte-feature__content">

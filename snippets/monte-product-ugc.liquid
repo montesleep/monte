@@ -9,7 +9,6 @@
       assign image_key = prefix | append: 'image'
       assign video_key = prefix | append: 'video'
       assign type_key = prefix | append: 'media_type'
-      assign fallback_key = prefix | append: 'design_image'
       assign alt_key = prefix | append: 'alt'
       assign play_key = prefix | append: 'play_overlay'
       assign media = block.settings[image_key]
@@ -17,16 +16,16 @@
       if block.settings[type_key] == 'video'
         assign video = block.settings[video_key]
       endif
-      assign fallback = block.settings[fallback_key]
       assign label = block.settings[alt_key] | default: block.settings.title
     -%}
-    {%- if media != blank or video != blank or fallback != 'none' and fallback != blank -%}
+    {%- if media != blank or video != blank -%}
       <button type="button" class="mp-ugc-item" data-lightbox-item aria-label="{{ label | escape }} — {{ i }}">
         {%- if video != blank -%}{{ video | video_tag: autoplay: false, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', image_size: '600x' }}
-        {%- elsif media != blank -%}{{ media | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '240,480,800,1200', sizes: '(min-width: 1000px) 15vw, 30vw' }}
-        {%- else -%}<img src="{{ 'monte-pdp-ugc-' | append: fallback | append: '.jpg' | asset_url }}" width="896" height="1200" loading="lazy" alt="{{ label | escape }}">{%- endif -%}
+        {%- elsif media != blank -%}{{ media | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '240,480,800,1200', sizes: '(min-width: 1000px) 15vw, 30vw' }}{%- endif -%}
         {%- if block.settings.show_play and block.settings[play_key] -%}<span class="mp-play"><img src="{{ 'monte-pdp-play.svg' | asset_url }}" width="24" height="24" alt=""></span>{%- endif -%}
       </button>
+    {%- else -%}
+      <div class="mp-ugc-item mp-ugc-item--placeholder" aria-hidden="true">{{ 'image' | placeholder_svg_tag: 'placeholder monte-media-placeholder' }}</div>
     {%- endif -%}
   {%- endfor -%}
 {%- endcapture -%}

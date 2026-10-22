@@ -7,7 +7,6 @@
       "name": "Monté About Hero",
       "settings": {
         "design_images": "about",
-        "show_default_images": true,
         "desktop_height": 460,
         "mobile_height": 420,
         "heading": "O Monté",
@@ -25,7 +24,6 @@
       "type": "monte-brand-story",
       "name": "Monté About Story",
       "settings": {
-        "show_default_image": true,
         "image_zoom": false,
         "heading": "Nasza historia",
         "body": "",
@@ -47,7 +45,6 @@
         "heading": "Nasza misja",
         "button_label": "Odkryj nasze produkty",
         "button_link": "/collections/all",
-        "show_design_images": true,
         "heading_color": "#232E71",
         "body_color": "#52597E",
         "button_background": "#232E71",
@@ -78,24 +75,21 @@
           "type": "feature",
           "settings": {
             "title": "Jakość",
-            "description": "<p>Każdy produkt powstaje z jedwabiu morwowego 22 momme. Nie szukamy tańszych zamienników i nie idziemy na skróty.</p>",
-            "design_image": "about-1"
+            "description": "<p>Każdy produkt powstaje z jedwabiu morwowego 22 momme. Nie szukamy tańszych zamienników i nie idziemy na skróty.</p>"
           }
         },
         "value_2": {
           "type": "feature",
           "settings": {
             "title": "Uczciwość",
-            "description": "<p>Piszemy dokładnie to, co jest. Prawdziwy skład, prawdziwe zdjęcia, prawdziwe opinie. Bez marketingowych sztuczek.</p>",
-            "design_image": "about-2"
+            "description": "<p>Piszemy dokładnie to, co jest. Prawdziwy skład, prawdziwe zdjęcia, prawdziwe opinie. Bez marketingowych sztuczek.</p>"
           }
         },
         "value_3": {
           "type": "feature",
           "settings": {
             "title": "Ludzie",
-            "description": "<p>Tworzymy produkty dla prawdziwych ludzi, nie dla katalogów. Każda opinia, każde pytanie i każdy zwrot uczą nas robić to lepiej.</p>",
-            "design_image": "about-3"
+            "description": "<p>Tworzymy produkty dla prawdziwych ludzi, nie dla katalogów. Każda opinia, każde pytanie i każdy zwrot uczą nas robić to lepiej.</p>"
           }
         }
       },
@@ -109,7 +103,6 @@
       "type": "monte-spotlight",
       "name": "Monté Product Spotlight",
       "settings": {
-        "card_1_show_default_image": true,
         "card_1_badge": "Bestseller",
         "card_1_badge_background": "#232e71",
         "card_1_badge_color": "#fdfbf9",
@@ -121,7 +114,6 @@
         "card_1_button_background": "#fdfbf9",
         "card_1_button_text_color": "#232e71",
         "card_1_button_hover": "#eee7e0",
-        "card_2_show_default_image": true,
         "card_2_badge": "Nowość",
         "card_2_badge_background": "#f8f1e9",
         "card_2_badge_color": "#232e71",

@@ -13,7 +13,7 @@ body:has(.monte-review-form[style*="display: block"]) shopify-chat { display:non
 .monte-review-form.jdgm-write-review-modal * { box-sizing:border-box; letter-spacing:0; }
 .monte-review-form.jdgm-write-review-modal :focus-visible { outline-color:#232e71; }
 /* Keep the backdrop ancestor opaque during Judge.me's native opening fade. */
-.monte-review-form.jdgm-write-review-modal { --monte-review-closed:inset(0 0 0 100% round 16px); animation:monte-review-backdrop-root .7s linear; }
+.monte-review-form.jdgm-write-review-modal { --monte-review-radius:16px; --monte-review-closed:inset(0 0 0 100% round 16px); animation:monte-review-backdrop-root .7s linear; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__overlay { background:rgba(0,0,0,.6); opacity:1; backdrop-filter:blur(17px); -webkit-backdrop-filter:blur(17px); animation:monte-review-backdrop .3s linear both; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__container { padding:60px; pointer-events:none; }
 .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__content { background:transparent; color:#232e71; width:520px; max-width:100%; height:auto; min-height:0; max-height:none; padding:0; margin:auto; border-radius:16px; overflow:visible; pointer-events:auto; }
@@ -83,7 +83,7 @@ body:has(.monte-review-form[style*="display: block"]) shopify-chat { display:non
   .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__close-btn:hover { background:#eee7e0; }
 }
 @media (max-width:767px) {
-  .monte-review-form.jdgm-write-review-modal { --monte-review-closed:inset(100% 0 0 0 round 16px 16px 0 0); }
+  .monte-review-form.jdgm-write-review-modal { --monte-review-radius:16px 16px 0 0; --monte-review-closed:inset(100% 0 0 0 round 16px 16px 0 0); }
   .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__nav-btn-close { width:159.5px; }
   .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__container { padding:76px 0 0; align-items:flex-end; }
   .monte-review-form.jdgm-write-review-modal .jdgm-write-review-modal__content { width:100%; margin:0; border-radius:16px 16px 0 0; }
@@ -100,7 +100,7 @@ body:has(.monte-review-form[style*="display: block"]) shopify-chat { display:non
 }
 @keyframes monte-review-backdrop-root { from, to { opacity:1; } }
 @keyframes monte-review-backdrop { from { background-color:rgba(0,0,0,0); backdrop-filter:blur(0); -webkit-backdrop-filter:blur(0); } to { background-color:rgba(0,0,0,.6); backdrop-filter:blur(17px); -webkit-backdrop-filter:blur(17px); } }
-@keyframes monte-review-panel { from { clip-path:var(--monte-review-closed); } to { clip-path:inset(0 0 0 0 round 16px); } }
+@keyframes monte-review-panel { from { clip-path:var(--monte-review-closed); } to { clip-path:inset(0 0 0 0 round var(--monte-review-radius)); } }
 @keyframes monte-review-content { from { opacity:0; } to { opacity:1; } }
 @keyframes monte-review-close { from { filter:opacity(0); } to { filter:opacity(1); } }
 @keyframes monte-review-step { from { opacity:0; translate:0 8px; } to { opacity:1; translate:0 0; } }

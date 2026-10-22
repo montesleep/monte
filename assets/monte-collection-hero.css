@@ -1,7 +1,7 @@
 .monte-collection-hero { display: block; margin-inline: 4px; background: transparent; opacity: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
 .monte-collection-hero__frame { display: flex; flex-direction: column; justify-content: flex-end; position: relative; isolation: isolate; min-height: var(--mch-height-mobile, 420px); padding: 20px; overflow: hidden; border-radius: 16px; background: #182153; }
 .monte-collection-hero__media, .monte-collection-hero__overlay { position: absolute; inset: 0; pointer-events: none; }
-.monte-collection-hero__media { z-index: 0; }
+.monte-collection-hero__media { z-index: 0; background: rgb(var(--background)); }
 .monte-collection-hero__media :is(picture, img, video, video-media, svg), .monte-collection-hero__desktop, .monte-collection-hero__mobile { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--mch-mobile-image-position, 50% 50%); border-radius: 0; }
 .monte-collection-hero__desktop { display: none; }
 .monte-collection-hero__frame--gradient .monte-collection-hero__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180.101deg, transparent 32.646%, rgba(0, 0, 0, var(--mch-gradient-opacity, .8)) 93.074%); }

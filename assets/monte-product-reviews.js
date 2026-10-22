@@ -120,13 +120,14 @@ class MonteProductReviews extends HTMLElement {
     const dateText = Number.isNaN(date) ? '' : new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Warsaw', day: '2-digit', month: '2-digit', year: 'numeric' }).format(date);
     return `<article class="mpr-review" data-review-id="${escapeHTML(review.id)}">
       <div class="mpr-content">
-        <div class="mpr-review-top">${this.stars(review.score)}<time class="mpr-date" datetime="${escapeHTML(review.date)}">${dateText}</time></div>
+        <div class="mpr-review-top">${this.stars(review.score)}</div>
         <div class="mpr-copy">${review.title ? `<h3 class="mpr-title">${escapeHTML(review.title)}</h3>` : ''}<p class="mpr-body">${escapeHTML(review.body)}</p></div>
         ${review.photos.length ? `<div class="mpr-photos">${review.photos.map(photo => `<a href="${escapeHTML(photo.full)}" target="_blank" rel="noopener" aria-label="Otwórz zdjęcie z opinii"><img src="${escapeHTML(photo.thumb)}" alt="Zdjęcie z opinii klienta" width="80" height="80" loading="lazy"></a>`).join('')}</div>` : ''}
       </div>
       <div class="mpr-author"><div class="mpr-person"><span class="mpr-avatar" aria-hidden="true">${escapeHTML(initials)}</span><div><strong>${escapeHTML(review.author)}</strong>${review.verified ? `<div class="mpr-verification">Zweryfikowany klient<img src="${escapeHTML(this.config.assets.verified)}" width="16" height="16" alt=""></div>` : ''}</div></div>
         <a class="mpr-product" href="${escapeHTML(review.product.url)}">${review.product.image ? `<img src="${escapeHTML(review.product.image)}" alt="" width="48" height="48" loading="lazy">` : ''}<span><strong>Recenzja na:</strong>${escapeHTML(review.product.title)}</span></a>
       </div>
+      <time class="mpr-date" datetime="${escapeHTML(review.date)}">${dateText}</time>
     </article>`;
   }
 

@@ -10,6 +10,7 @@
 .mpr-histogram-fill { display:block; height:100%; background:#232e71; border-radius:inherit; }
 .mpr-write.button { min-height:56px; padding:16px 32px; border:1px solid #232e71; border-radius:100px; background:transparent; color:#232e71; font:600 16px/1.5 var(--text-font-family); letter-spacing:0; }
 .mpr-list { outline:none; scroll-margin-top:100px; }
+.mpr-write.button { box-shadow:none; }
 .mpr-review { display:grid; gap:20px; padding:20px 0; border-bottom:1px dashed #dcd6cf; overflow-wrap:anywhere; }
 .mpr-content { min-width:0; display:flex; flex-direction:column; gap:20px; }
 .mpr-review-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }

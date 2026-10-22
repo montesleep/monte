@@ -109,7 +109,11 @@ Supported variables
 
                 {%- comment -%}If the next block is a rating block, then we add it as part of this one to have it inline{%- endcomment -%}
                 {%- if next_block.type == 'rating' -%}
-                  {%- render 'product-rating', product: product, show_empty: next_block.settings.show_empty, block: next_block -%}
+                  {%- if template.name == 'product' and template.suffix == 'pre-order' -%}
+                    <a class="mpr-hero-rating" href="#product-reviews" data-product-review-rating="{{ product.id }}" aria-label="Przejdź do opinii klientów"><span>Opinie klientów</span></a>
+                  {%- else -%}
+                    {%- render 'product-rating', product: product, show_empty: next_block.settings.show_empty, block: next_block -%}
+                  {%- endif -%}
                 {%- endif -%}
               </div>
 
@@ -134,7 +138,11 @@ Supported variables
 
           {%- if previous_block.type != 'price' -%}
             <div class="product-info__rating">
-              {%- render 'product-rating', product: product, show_empty: block.settings.show_empty, block: block -%}
+              {%- if template.name == 'product' and template.suffix == 'pre-order' -%}
+                <a class="mpr-hero-rating" href="#product-reviews" data-product-review-rating="{{ product.id }}" aria-label="Przejdź do opinii klientów"><span>Opinie klientów</span></a>
+              {%- else -%}
+                {%- render 'product-rating', product: product, show_empty: block.settings.show_empty, block: block -%}
+              {%- endif -%}
             </div>
           {%- endif -%}
 

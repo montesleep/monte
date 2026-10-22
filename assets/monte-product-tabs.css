@@ -15,7 +15,7 @@
 .monte-product-card__image { transition: transform .4s cubic-bezier(.25,.46,.45,.94); }
 .monte-product-card__badges { position: absolute; inset: auto 0 0; display: flex; flex-wrap: wrap; gap: 4px; padding: 8px; pointer-events: none; }
 .monte-product-card__badges .badge { max-width: 100%; min-height: 20px; border-radius: 4px; padding: 4px 8px; font: 500 10px/1.2 'PP Neue Montreal Mono', monospace; letter-spacing: -.1px; text-transform: uppercase; white-space: normal; overflow-wrap: anywhere; }
-.monte-product-card__badges .monte-discount-badge { background: #d9e8e1; color: #2f6b57; }
+.monte-product-card__badges .monte-discount-badge { background: rgb(var(--on-sale-badge-background)); color: rgb(var(--on-sale-badge-text)); }
 .monte-product-card__badges .monte-status-badge { background: var(--mp-primary); color: #fdfbf9; }
 .monte-product-card__info { display: grid; gap: 12px; padding: 12px; }
 .monte-product-card__swatches { position: relative; z-index: 2; display: flex; align-items: center; gap: 2px; width: max-content; max-width: 100%; }

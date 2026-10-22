@@ -2,7 +2,7 @@ import { Drawer, ProductGallery, Tabs } from 'theme';
 import { timeline } from 'vendor';
 
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
-const money = value => new Intl.NumberFormat(Shopify.locale || 'pl-PL', { style: 'currency', currency: Shopify.currency?.active || 'PLN', maximumFractionDigits: 2 }).format(value / 100);
+const money = (value, minimumFractionDigits = 2) => new Intl.NumberFormat(Shopify.locale || 'pl-PL', { style: 'currency', currency: Shopify.currency?.active || 'PLN', minimumFractionDigits, maximumFractionDigits: 2 }).format(value / 100);
 
 class MonteProductHero extends HTMLElement {
   connectedCallback() {
@@ -208,7 +208,7 @@ class MonteProductBundle extends HTMLElement {
       const button = event.target.closest('[data-pick-product]'); if (!button || button.disabled) return;
       let item = { ...this.data.products.find(item => item.productId === Number(button.dataset.pickProduct)) };
       const option = button.closest('.mp-picker-item').querySelector('select')?.selectedOptions[0];
-      if (option) item = { ...item, id: Number(option.value), price: Number(option.dataset.price), available: option.dataset.available === 'true' };
+      if (option) item = { ...item, id: Number(option.value), price: Number(option.dataset.price), compare: Number(option.dataset.compare) || 0, available: option.dataset.available === 'true' };
       if (!item.available) return;
       this.slots[this.activeSlot] = item; this.render(); await this.drawer.hide();
       this.querySelector(`[data-remove-slot="${this.activeSlot}"]`)?.focus({ preventScroll: true });
@@ -233,10 +233,16 @@ class MonteProductBundle extends HTMLElement {
   }
   get selectionPrices() {
     if (this.count === 1) return { price: this.current.price, compare: this.current.compare };
-    // Match the main bundle estimate while an unfilled slot awaits selection.
-    const compare = this.slots.reduce((sum, item) => sum + (item?.price ?? this.current.price), 0);
+    return this.pairPrices;
+  }
+  get pairPrices() {
+    // Empty slots use the current product until selected. Discounts apply to current prices;
+    // displayed savings include the difference from each variant's original price.
+    const items = this.slots.map(item => item || this.current);
+    const subtotal = items.reduce((sum, item) => sum + item.price, 0);
+    const compare = items.reduce((sum, item) => sum + Math.max(item.price, item.compare || 0), 0);
     const discount = Math.min(100, Math.max(0, Number(this.dataset.discount) || 0));
-    return { price: Math.round(compare * (1 - discount / 100)), compare };
+    return { price: Math.round(subtotal * (1 - discount / 100)), compare };
   }
   notifySelection() { this.dispatchEvent(new CustomEvent('monte:bundle-change', { bubbles: true })); }
   updatePrice() {
@@ -251,7 +257,13 @@ class MonteProductBundle extends HTMLElement {
   render() {
     this.querySelectorAll('[data-choice]').forEach(row => row.dataset.selected = String(Number(row.dataset.choice) === this.count));
     this.querySelector('[data-selected-label]').textContent = this.querySelector(`[data-choice="${this.count}"] [data-option-title]`).textContent;
-    this.querySelector('[data-single-price]').textContent = money(this.current.price);
+    this.querySelector('[data-single-price]').textContent = money(this.current.price, 0);
+    const savingsLabel = this.dataset.savingsLabel || 'Oszczędzasz';
+    const singleCompare = this.querySelector('[data-single-compare]');
+    singleCompare.textContent = money(this.current.compare, 0); singleCompare.hidden = this.current.compare <= this.current.price;
+    const singleSaving = this.querySelector('[data-single-saving]');
+    singleSaving.textContent = `${savingsLabel} ${money(Math.max(0, this.current.compare - this.current.price), 0)}`;
+    singleSaving.hidden = singleCompare.hidden;
     const slots = this.querySelector('.mp-bundle-slots');
     if (slots) {
       slots.hidden = this.count !== 2;
@@ -262,13 +274,10 @@ class MonteProductBundle extends HTMLElement {
         const title = row.querySelector('[data-slot-title]'); title.hidden = !item; title.textContent = item?.title || '';
         row.querySelector('[data-pick-slot]').hidden = Boolean(item); row.querySelector('[data-remove-slot]').hidden = !item;
       });
-      // Empty slots use the current product price for an estimate until a product is selected.
-      const compare = this.slots.reduce((sum, item) => sum + (item?.price ?? this.current.price), 0);
-      const discount = Math.min(100, Math.max(0, Number(this.dataset.discount) || 0));
-      const total = Math.round(compare * (1 - discount / 100));
-      this.querySelector('[data-pair-price]').textContent = money(total);
-      const crossed = this.querySelector('[data-pair-compare]'); crossed.textContent = money(compare); crossed.hidden = !discount;
-      const saving = this.querySelector('[data-pair-saving]'); saving.textContent = `Oszczędzasz ${money(compare - total)}`; saving.hidden = !discount;
+      const { price: total, compare } = this.pairPrices;
+      this.querySelector('[data-pair-price]').textContent = money(total, 0);
+      const crossed = this.querySelector('[data-pair-compare]'); crossed.textContent = money(compare, 0); crossed.hidden = compare <= total;
+      const saving = this.querySelector('[data-pair-saving]'); saving.textContent = `${savingsLabel} ${money(compare - total, 0)}`; saving.hidden = crossed.hidden;
     }
     this.querySelectorAll('[data-current-color]').forEach(swatch => swatch.setAttribute('aria-current', String(this.count === 1 || this.slots.some(item => item?.productId === this.current.productId))));
     const incomplete = this.count === 2 && this.slots.some(item => !item);

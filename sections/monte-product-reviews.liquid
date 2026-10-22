@@ -17,7 +17,8 @@
       "shop": {{ shop.permanent_domain | json }},
       "token": {{ settings.monte_judgeme_public_token | json }},
       "assets": {
-        "base": {{ 'monte-rating-base.svg' | asset_url | json }},
+        "base": {{ 'monte-review-rating-base.svg' | asset_url | json }},
+        "heroBase": {{ 'monte-product-rating-base.svg' | asset_url | json }},
         "fill": {{ 'monte-rating-background.svg' | asset_url | json }},
         "glyph": {{ 'monte-rating-glyph.svg' | asset_url | json }},
         "verified": {{ 'monte-review-verified.svg' | asset_url | json }}

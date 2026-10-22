@@ -1,4 +1,11 @@
 const reviewRequests = new Map();
+
+// Keep three neighboring pages before the final page; omit dots when no pages are skipped.
+function reviewPageNumbers(pages, current) {
+  if (pages <= 4) return Array.from({ length: pages }, (_, index) => index + 1);
+  const start = Math.max(1, Math.min(current - 1, pages - 3));
+  return [start, start + 1, start + 2, pages];
+}
 const escapeHTML = (value = '') => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 const safeURL = value => {
   if (!value) return '';
@@ -79,11 +86,11 @@ class MonteProductReviews extends HTMLElement {
 
   disconnectedCallback() { this.abort?.abort(); this.initialized = false; }
 
-  stars(rating, count = 5) {
+  stars(rating, count = 5, hero = false) {
     const assets = this.config.assets;
     return `<span class="monte-social-rating" role="img" aria-label="${rating.toFixed(1)} z 5 gwiazdek">${Array.from({ length: count }, (_, index) => {
       const fill = Math.min(1, Math.max(0, rating - index)) * 100;
-      return `<span class="monte-social-rating__star" aria-hidden="true"><img src="${escapeHTML(assets.base)}" width="16" height="16" alt=""><img src="${escapeHTML(assets.fill)}" width="16" height="16" alt="" style="clip-path:inset(0 ${100 - fill}% 0 0)"><img class="monte-social-rating__glyph" src="${escapeHTML(assets.glyph)}" width="12.618" height="12" alt=""></span>`;
+      return `<span class="monte-social-rating__star" aria-hidden="true"><img src="${escapeHTML(hero ? assets.heroBase : assets.base)}" width="16" height="16" alt=""><img src="${escapeHTML(assets.fill)}" width="16" height="16" alt="" style="clip-path:inset(0 ${100 - fill}% 0 0)"><img class="monte-social-rating__glyph" src="${escapeHTML(assets.glyph)}" width="12.618" height="12" alt=""></span>`;
     }).join('')}</span>`;
   }
 
@@ -104,7 +111,7 @@ class MonteProductReviews extends HTMLElement {
       }).join('');
       summary.innerHTML = `<div class="mpr-score"><span class="mpr-score-number">${average.toFixed(1)}</span>${this.stars(average)}<span>Na podstawie ${count} opinii</span></div><div class="mpr-histogram">${histogram}</div>`;
       document.querySelectorAll(`[data-product-review-rating="${this.dataset.productId}"]`).forEach(rating => {
-        rating.innerHTML = count ? `${this.stars(average)}<span>Ocena <strong>${average.toFixed(1)}</strong>/5 | <strong>${count} ${count === 1 ? 'recenzja' : 'recenzji'}</strong>.</span>` : '<span>Brak opinii — zostaw pierwszą</span>';
+        rating.innerHTML = count ? `${this.stars(average, 5, true)}<span>Ocena <strong>${average.toFixed(1)}</strong>/5 | <strong>${count} ${count === 1 ? 'recenzja' : 'recenzji'}</strong>.</span>` : '<span>Brak opinii — zostaw pierwszą</span>';
       });
       this.renderPage();
     } catch (error) {
@@ -135,10 +142,10 @@ class MonteProductReviews extends HTMLElement {
     const list = this.querySelector('[data-review-list]');
     list.innerHTML = this.reviews.length ? this.reviews.slice((this.page - 1) * 5, this.page * 5).map(review => this.renderReview(review)).join('') : '<p>Ten produkt nie ma jeszcze opinii. Zostaw pierwszą!</p>';
     const pages = Math.ceil(this.reviews.length / 5);
-    const visiblePages = Array.from({ length: pages }, (_, i) => i + 1).filter(page => pages <= 7 || page === 1 || page === pages || Math.abs(page - this.page) <= 1);
+    const visiblePages = reviewPageNumbers(pages, this.page);
     let previous = 0;
     this.querySelector('[data-review-pagination]').innerHTML = pages > 1 ? visiblePages.map(page => {
-      const gap = page > previous + 1 ? '<span aria-hidden="true">…</span>' : '';
+      const gap = previous && page > previous + 1 ? '<span class="mpr-pagination-ellipsis" aria-hidden="true">…</span>' : '';
       previous = page;
       return `${gap}<button type="button" data-review-page="${page}" aria-label="Strona opinii ${page}" ${page === this.page ? 'aria-current="page"' : ''}>${page}</button>`;
     }).join('') : '';

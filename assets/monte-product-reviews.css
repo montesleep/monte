@@ -42,7 +42,7 @@
   .mpr-score { flex-wrap:wrap; justify-content:center; }
   .mpr-score>span:last-child { flex-basis:100%; text-align:center; }
 }
-@media (hover:hover) { .mpr-write.button:hover { background:#232e71; color:#fdfbf9; } .mpr-pagination button:hover { border-color:#232e71; } .mpr-product:hover span { text-decoration:underline; } }
+@media (hover:hover) { .mpr-write.button:hover { background:#232e71; color:#fdfbf9; } .mpr-pagination button:hover { border-color:#232e71; } }
 @media (min-width:1000px) {
   .mpr { padding:80px 40px; }
   .mpr-heading { font-size:48px; margin-bottom:64px; }

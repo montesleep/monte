@@ -2,7 +2,7 @@ import { Drawer, ProductGallery, Tabs } from 'theme';
 import { timeline } from 'vendor';
 
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
-const money = (value, minimumFractionDigits = 2) => new Intl.NumberFormat(Shopify.locale || 'pl-PL', { style: 'currency', currency: Shopify.currency?.active || 'PLN', minimumFractionDigits, maximumFractionDigits: 2 }).format(value / 100);
+const money = (value, minimumFractionDigits = 2) => new Intl.NumberFormat(Shopify.locale || 'pl-PL', { style: 'currency', currency: Shopify.currency?.active || 'PLN', minimumFractionDigits: value % 100 ? 2 : minimumFractionDigits, maximumFractionDigits: 2 }).format(value / 100);
 
 class MonteProductHero extends HTMLElement {
   connectedCallback() {

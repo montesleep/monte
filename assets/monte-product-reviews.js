@@ -198,7 +198,7 @@ class MonteProductReviews extends HTMLElement {
         if (Date.now() - start > 15000) throw new Error('Judge.me form unavailable');
         await new Promise(resolve => setTimeout(resolve, 100));
       }
-      const { prepareReviewForm } = await import('./monte-review-form.js');
+      const { prepareReviewForm } = await import(this.config.assets.form || './monte-review-form.js');
       prepareReviewForm(this.config.products[0].title);
       this.querySelector('.jdgm-write-rev-link').click();
     } catch {

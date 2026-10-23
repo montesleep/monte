@@ -292,7 +292,8 @@
         "card_color": "#fdfbf9",
         "mobile_card_color": "#ffffff",
         "star_color": "#d9a17d"
-      }
+      },
+      "disabled": true
     },
     "monte_spotlight": {
       "type": "monte-spotlight",
@@ -455,6 +456,60 @@
         "chart_text_color": "",
         "chart_true_false_color": ""
       }
+    },
+    "monte_ugc": {
+      "type": "monte-ugc-carousel",
+      "blocks": {
+        "video_1": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "product": "midnight-blue-silk-sleep-mask"
+          }
+        },
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "product": "classic-black-silk-sleep-mask"
+          }
+        },
+        "video_3": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "product": "champagne-gold-silk-sleep-mask"
+          }
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "product": "rose-noir-silk-sleep-mask"
+          }
+        },
+        "video_5": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "product": "midnight-blue-silk-sleep-mask"
+          }
+        }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4",
+        "video_5"
+      ],
+      "settings": {
+        "heading": "Zobacz Monté w akcji",
+        "button_label": "Zobacz produkt",
+        "text_color": "#232e71",
+        "card_color": "#eee7e0",
+        "compare_color": "#8a2f3a"
+      }
     }
   },
   "order": [
@@ -462,6 +517,7 @@
     "monte_benefits",
     "section-5",
     "monte_reviews",
+    "monte_ugc",
     "monte_spotlight",
     "faq_accordion_GirgW4",
     "monte_brand_story",

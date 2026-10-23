@@ -1,0 +1,82 @@
+{{ 'monte-ugc-carousel.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'monte-ugc-carousel.js' | asset_url }}" defer></script>
+<monte-ugc-carousel class="mugc" style="--mugc-text: {{ section.settings.text_color }}; --mugc-card: {{ section.settings.card_color }}; --mugc-compare: {{ section.settings.compare_color }};" aria-label="{{ section.settings.heading | escape }}" role="region" aria-roledescription="karuzela">
+  {%- if section.settings.heading != blank -%}<h2 class="mugc-heading">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+  <div class="mugc-viewport" tabindex="0" aria-label="Filmy klientów. Użyj strzałek w lewo i w prawo." data-monte-reveal="off">
+    <div class="mugc-track">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign product = block.settings.product
+          assign variant = product.selected_or_first_available_variant
+          assign group = product.metafields.custom.product_group.value
+          assign clip = block.settings.video
+          assign cover = block.settings.image | default: clip.preview_image
+        -%}
+        <article class="mugc-slide{% if forloop.first %} is-active{% endif %}" data-ugc-id="{{ block.id }}" role="group" aria-roledescription="slajd" aria-label="{{ forloop.index }} z {{ section.blocks.size }}" {{ block.shopify_attributes }}>
+          <div class="mugc-media">
+            {%- if clip != blank and block.settings.media_type == 'video' -%}
+              {{ clip | video_tag: autoplay: false, loop: true, muted: true, controls: false, playsinline: true, preload: 'none', image_size: '640x', class: 'mugc-video' }}
+            {%- elsif cover != blank -%}
+              {{ cover | image_url: width: 960 | image_tag: loading: 'lazy', widths: '240,320,480,640,960', sizes: '(min-width: 1000px) 320px, 240px', draggable: false }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder monte-media-placeholder' }}
+            {%- endif -%}
+            <button class="mugc-media-action" type="button" data-ugc-action="media" data-monte-motion="off" aria-label="Odtwórz lub zatrzymaj film {{ forloop.index }}" disabled></button>
+            {%- if clip != blank and block.settings.media_type == 'video' -%}
+              <div class="mugc-controls" hidden>
+                <button class="mugc-control" type="button" data-ugc-action="sound" aria-label="Włącz dźwięk" aria-pressed="false">
+                  <span class="mugc-icon"><img data-muted src="{{ 'monte-ugc-mute.svg' | asset_url }}" width="16.0001" height="16.0001" alt=""><img data-sound src="{{ 'monte-ugc-sound.svg' | asset_url }}" width="14.8333" height="14.5909" alt="" hidden></span>
+                </button>
+                <button class="mugc-control" type="button" data-ugc-action="play" aria-label="Zatrzymaj film" aria-pressed="false">
+                  <span class="mugc-icon"><img data-pause src="{{ 'monte-ugc-pause.svg' | asset_url }}" width="11" height="14.6667" alt=""><img data-play src="{{ 'monte-ugc-play.svg' | asset_url }}" width="12.2786" height="14.0737" alt="" hidden></span>
+                </button>
+              </div>
+            {%- endif -%}
+          </div>
+          {%- if product != blank -%}
+            <a class="mugc-product" href="{{ product.url }}" draggable="false">
+              <div class="mugc-product-info">
+                <div class="mugc-product-image">{%- if product.featured_image != blank -%}{{ product.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '96,128,160', sizes: '64px', alt: '', draggable: false }}{%- else -%}{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}{%- endif -%}</div>
+                <div class="mugc-product-copy"><span class="mugc-product-title">{% render 'monte-product-display-title', product: product, group_title: group.title.value %}</span><div class="mugc-price"><strong>{{ variant.price | money_without_trailing_zeros }}</strong>{% if variant.compare_at_price > variant.price %}<s>{{ variant.compare_at_price | money_without_trailing_zeros }}</s>{% endif %}</div></div>
+              </div>
+              <span class="mugc-product-button button--outline">{{ section.settings.button_label | escape }}</span>
+            </a>
+          {%- elsif request.design_mode -%}
+            <div class="mugc-product mugc-product--empty"><span>Select a product in this video block.</span></div>
+          {%- endif -%}
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+  <div class="mugc-navigation" hidden>
+    <button type="button" class="mugc-arrow button--outline" data-ugc-step="-1" aria-label="Poprzedni film"><img src="{{ 'monte-ugc-chevron.svg' | asset_url }}" width="16" height="11.2" alt=""></button>
+    <button type="button" class="mugc-arrow button--outline" data-ugc-step="1" aria-label="Następny film"><img src="{{ 'monte-ugc-chevron.svg' | asset_url }}" width="16" height="11.2" alt=""></button>
+  </div>
+  <span class="sr-only" data-ugc-status role="status" aria-live="polite"></span>
+</monte-ugc-carousel>
+{% schema %}
+{
+  "name": "Monté UGC Carousel",
+  "tag": "section",
+  "class": "shopify-section--monte-ugc-carousel",
+  "max_blocks": 20,
+  "disabled_on": { "groups": ["header", "footer", "custom.overlay"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Zobacz Monté w akcji" },
+    { "type": "text", "id": "button_label", "label": "Product button label", "default": "Zobacz produkt" },
+    { "type": "paragraph", "content": "Only the centered video plays. Slides advance every 5 seconds while visible. Sound or manual pause stops rotation. Muted playback resumes rotation. Swiping or using the arrows starts a fresh interval. Reduced-motion preferences disable automatic rotation." },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#232E71" },
+    { "type": "color", "id": "card_color", "label": "Product card color", "default": "#EEE7E0" },
+    { "type": "color", "id": "compare_color", "label": "Compare-at price color", "default": "#8A2F3A" }
+  ],
+  "blocks": [
+    { "type": "video", "name": "Video and product", "settings": [
+      { "type": "select", "id": "media_type", "label": "Media type", "default": "video", "options": [{ "value": "video", "label": "Video" }, { "value": "image", "label": "Image" }] },
+      { "type": "video", "id": "video", "label": "Video" },
+      { "type": "image_picker", "id": "image", "label": "Image", "info": "Shown when Image is selected or no video has been uploaded." },
+      { "type": "product", "id": "product", "label": "Linked product" }
+    ] }
+  ],
+  "presets": [{ "name": "Monté UGC Carousel", "blocks": [{ "type": "video" }, { "type": "video" }, { "type": "video" }, { "type": "video" }, { "type": "video" }] }]
+}
+{% endschema %}

@@ -28,11 +28,66 @@
     "main": {
       "type": "main-collection",
       "settings": {}
+    },
+    "monte_ugc": {
+      "type": "monte-ugc-carousel",
+      "blocks": {
+        "video_1": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "product": "midnight-blue-silk-sleep-mask"
+          }
+        },
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "product": "classic-black-silk-sleep-mask"
+          }
+        },
+        "video_3": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "product": "champagne-gold-silk-sleep-mask"
+          }
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "product": "rose-noir-silk-sleep-mask"
+          }
+        },
+        "video_5": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "product": "midnight-blue-silk-sleep-mask"
+          }
+        }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4",
+        "video_5"
+      ],
+      "settings": {
+        "heading": "Zobacz Monté w akcji",
+        "button_label": "Zobacz produkt",
+        "text_color": "#232e71",
+        "card_color": "#eee7e0",
+        "compare_color": "#8a2f3a"
+      }
     }
   },
   "order": [
     "banner",
     "categories",
-    "main"
+    "main",
+    "monte_ugc"
   ]
 }

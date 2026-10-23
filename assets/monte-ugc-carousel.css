@@ -24,7 +24,7 @@
 .mugc-product-image img,.mugc-product-image svg{width:100%;height:100%;object-fit:cover;display:block}
 .mugc-product-copy{display:flex;flex:1;flex-direction:column;gap:4px;min-width:0}
 .mugc-product-title{font-size:14px;font-weight:600;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mugc-price{display:flex;align-items:baseline;gap:8px;white-space:nowrap;line-height:1.5}
+.mugc-price{display:flex;align-items:center;gap:8px;white-space:nowrap;line-height:1.5}
 .mugc-price strong{font-size:16px;font-weight:600}
 .mugc-price s{font-size:14px;font-weight:400;color:var(--mugc-compare,#8a2f3a)}
 .mugc-product-button{height:44px;border:1px solid #232e71;border-radius:100px;display:flex;align-items:center;justify-content:center;padding:0 16px;font-size:16px;font-weight:600;line-height:1.5;text-align:center;color:#232e71;transition:background-color .3s,color .3s}
@@ -34,7 +34,7 @@
 .mugc-arrow img{display:block;max-width:none;rotate:90deg;transition:filter .3s}
 .mugc-arrow[data-ugc-step="1"] img{rotate:-90deg}
 .mugc button:focus-visible,.mugc a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
-@media(hover:hover) and (pointer:fine){.mugc-control:hover{background:rgb(35 46 113/.24)}.mugc-product:hover{scale:.98}.mugc-product:hover .mugc-product-button{background:#232e71;color:#fdfbf9}.mugc-arrow:hover{background:#232e71;color:#fdfbf9}.mugc-arrow:hover img{filter:brightness(0) invert(1)}}
+@media(hover:hover) and (pointer:fine){.mugc-control:hover{background:rgb(35 46 113/.24)}.mugc-product:hover{scale:.98}.mugc-arrow:hover{background:#232e71;color:#fdfbf9}.mugc-arrow:hover img{filter:brightness(0) invert(1)}}
 .mugc-product:active{scale:.96}
 .mugc-product-button,.mugc-arrow{--monte-outline-shadow:none;box-shadow:none}
 @media(max-width:999px){.mugc{--ugc-width:240px;--ugc-gap:16px;--ugc-height:390px;--ugc-side-height:331px;padding:40px 0}.mugc-heading{font-size:32px;max-width:500px;padding:0 16px}.mugc-track{padding-inline:16px}.mugc-product{min-height:120px}.mugc-product-image{width:48px;height:48px}.mugc-price strong{font-size:14px}.mugc-price s{font-size:12px}.mugc-product-button{height:32px;font-size:12px}.mugc-arrow{width:44px;height:44px}}

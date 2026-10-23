@@ -68,6 +68,34 @@ function loadGroup(config) {
   return reviewRequests.get(key);
 }
 
+function reviewStars(config, rating, count = 5, hero = false) {
+    const assets = config.assets;
+    const visualRating = Math.floor(rating * 2) / 2;
+    return `<span class="monte-social-rating" role="img" aria-label="${rating.toFixed(1)} z 5 gwiazdek">${Array.from({ length: count }, (_, index) => {
+      const fill = Math.min(1, Math.max(0, visualRating - index)) * 100;
+      return `<span class="monte-social-rating__star" aria-hidden="true"><img src="${escapeHTML(hero ? assets.heroBase : assets.base)}" width="16" height="16" alt=""><img src="${escapeHTML(assets.fill)}" width="16" height="16" alt="" style="clip-path:inset(0 ${100 - fill}% 0 0)"><img class="monte-social-rating__glyph" src="${escapeHTML(assets.glyph)}" width="12.618" height="12" alt=""></span>`;
+    }).join('')}</span>`;
+  }
+
+function renderProductRating(element, config, reviews) {
+  const count = reviews.length;
+  const average = count ? reviews.reduce((sum, review) => sum + review.score, 0) / count : 0;
+  element.innerHTML = count ? `${reviewStars(config, average, 5, true)}<span>Ocena <strong>${average.toFixed(1)}</strong>/5 | <strong>${count} ${count === 1 ? 'recenzja' : 'recenzji'}</strong>.</span>` : '';
+  element.hidden = count === 0;
+}
+
+// Quickviews use the same grouped reviews without mounting a full reviews section.
+export async function loadProductRating(element, config) {
+  element.hidden = true;
+  try {
+    if (!config.token) return;
+    const reviews = await loadGroup(config);
+    if (element.isConnected) renderProductRating(element, config, reviews);
+  } catch {
+    element.hidden = true;
+  }
+}
+
 class MonteProductReviews extends HTMLElement {
   connectedCallback() {
     if (this.initialized) return;
@@ -86,14 +114,7 @@ class MonteProductReviews extends HTMLElement {
 
   disconnectedCallback() { this.abort?.abort(); this.initialized = false; }
 
-  stars(rating, count = 5, hero = false) {
-    const assets = this.config.assets;
-    const visualRating = Math.floor(rating * 2) / 2;
-    return `<span class="monte-social-rating" role="img" aria-label="${rating.toFixed(1)} z 5 gwiazdek">${Array.from({ length: count }, (_, index) => {
-      const fill = Math.min(1, Math.max(0, visualRating - index)) * 100;
-      return `<span class="monte-social-rating__star" aria-hidden="true"><img src="${escapeHTML(hero ? assets.heroBase : assets.base)}" width="16" height="16" alt=""><img src="${escapeHTML(assets.fill)}" width="16" height="16" alt="" style="clip-path:inset(0 ${100 - fill}% 0 0)"><img class="monte-social-rating__glyph" src="${escapeHTML(assets.glyph)}" width="12.618" height="12" alt=""></span>`;
-    }).join('')}</span>`;
-  }
+  stars(rating, count = 5, hero = false) { return reviewStars(this.config, rating, count, hero); }
 
   async load() {
     const summary = this.querySelector('[data-review-summary]');
@@ -112,7 +133,7 @@ class MonteProductReviews extends HTMLElement {
       }).join('');
       summary.innerHTML = `<div class="mpr-score"><span class="mpr-score-number">${average.toFixed(1)}</span>${this.stars(average)}<span>Na podstawie ${count} opinii</span></div><div class="mpr-histogram">${histogram}</div>`;
       document.querySelectorAll(`[data-product-review-rating="${this.dataset.productId}"]`).forEach(rating => {
-        rating.innerHTML = count ? `${this.stars(average, 5, true)}<span>Ocena <strong>${average.toFixed(1)}</strong>/5 | <strong>${count} ${count === 1 ? 'recenzja' : 'recenzji'}</strong>.</span>` : '<span>Brak opinii — zostaw pierwszą</span>';
+        renderProductRating(rating, this.config, this.reviews);
       });
       this.renderPage();
     } catch (error) {

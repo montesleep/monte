@@ -190,6 +190,18 @@ class MonteBundleBuilder extends HTMLElement {
       });
       layout.append(info);hero.append(layout);hero.querySelectorAll('script').forEach(node=>node.remove());
       hero.querySelectorAll('[data-shopify-editor-block]').forEach(node=>node.removeAttribute('data-shopify-editor-block'));
+      const ratingLink=hero.querySelector('[data-product-review-rating]');
+      const reviewConfig=doc.querySelector('monte-product-reviews [data-review-config]');
+      if(ratingLink){
+        const rating=document.createElement('div');rating.className=ratingLink.className;rating.hidden=true;
+        ratingLink.replaceWith(rating);
+        if(reviewConfig){
+          const config=JSON.parse(reviewConfig.textContent);
+          import(this.config.reviewsModule).then(({loadProductRating})=>{
+            if(!request.signal.aborted&&rating.isConnected) return loadProductRating(rating,config);
+          }).catch(()=>{rating.hidden=true;});
+        }
+      }
       content.replaceChildren(hero);content.scrollTop=0;button.disabled=!product.available || this.quantity(id)>=product.maximum&&this.selected.has(id);
     }catch(error){if(error.name!=='AbortError'){content.innerHTML=`<p class="mb-quick-loading">${escapeHTML(this.config.errorText)} <a href="${escapeHTML(product.url)}">Zobacz produkt</a></p>`;}}
   }

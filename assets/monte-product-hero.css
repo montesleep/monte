@@ -9,6 +9,7 @@
 .mp-intro { display:grid; gap:20px; }
 .mp-title { font:500 32px/1.1 var(--heading-font-family); text-transform:none; letter-spacing:0; overflow-wrap:anywhere; }
 .mp-rating { display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:14px; }
+.mp-rating[hidden] { display:none!important; }
 .mp-benefits { display:grid; gap:8px; padding:0; list-style:none; }
 .mp-benefits li { display:flex; gap:12px; align-items:center; }
 .mp-check { display:grid; place-items:center; flex:none; width:24px; height:24px; background:#232e71; border-radius:50%; }

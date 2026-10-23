@@ -74,6 +74,8 @@ class MonteUgcCarousel extends HTMLElement {
   }
 
   setup(id = this.originals[0].dataset.ugcId) {
+    const playback = this.active ? { paused: this.paused, sound: this.sound, manual: this.manualPlay,
+      time: this.active.querySelector('video')?.currentTime || 0 } : null;
     clearTimeout(this.timer);
     clearTimeout(this.transitionTimer);
     this.moving = false;
@@ -108,6 +110,15 @@ class MonteUgcCarousel extends HTMLElement {
     this.track.style.transition = 'none';
     this.position();
     this.activate(slides[this.center]);
+    if (playback) {
+      this.paused = playback.paused;
+      this.sound = playback.sound;
+      this.manualPlay = playback.manual;
+      const video = this.active.querySelector('video');
+      if (video && playback.time > 0 && Number.isFinite(video.duration)) video.currentTime = Math.min(playback.time, video.duration);
+      this.controls();
+      this.playActive();
+    }
     this.updateAccess();
     this.schedule();
   }

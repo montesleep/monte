@@ -31,7 +31,7 @@ export function prepareReviewForm(productTitle) {
         desktop.textContent = 'Nie teraz';
         const mobile = document.createElement('span');
         mobile.className = 'monte-repeat-label-mobile';
-        mobile.textContent = 'Wstecz';
+        mobile.textContent = 'Nie teraz';
         notNow.replaceChildren(desktop, mobile);
       }
     }

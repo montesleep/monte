@@ -443,7 +443,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Co jeśli produkt nie przypadnie mi do gustu?",
-            "answer": "<p>Na zgłoszenie zwrotu masz 30 dni od otrzymania zamówienia. Napisz na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a>, podając numer zamówienia, a przeprowadzimy Cię przez kolejne kroki. Szczegółowe warunki znajdziesz w naszej <a href=\"/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\">Polityce zwrotów</a>.</p>"
+            "answer": "<p>Na zgłoszenie zwrotu masz 30 dni od otrzymania zamówienia. Napisz na <span style=\"text-decoration:underline\">hello@montesleep.com</span>, podając numer zamówienia, a przeprowadzimy Cię przez kolejne kroki. Szczegółowe warunki znajdziesz w naszej <a href=\"/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\">Polityce zwrotów</a>.</p>"
           }
         }
       },

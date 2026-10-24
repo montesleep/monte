@@ -1,1 +1,16 @@
-{"sections":{"main":{"type":"main-blog","settings":{}}},"order":["main"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "monte_layout": true,
+        "monte_heading": "Blog Monté",
+        "monte_text_color": "#232E71",
+        "articles_per_page": 12
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

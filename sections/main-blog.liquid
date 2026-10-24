@@ -1,3 +1,6 @@
+{%- if section.settings.monte_layout -%}
+  {%- render 'monte-blog-listing' -%}
+{%- else -%}
 {%- render 'section-spacing-collapsing' -%}
 
 <style>
@@ -167,6 +170,8 @@
   {%- endif -%}
 </div>
 
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Blog",
@@ -232,6 +237,32 @@
     }
   ],
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "monte_layout",
+      "label": "Use Monté blog design",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "monte_heading",
+      "label": "Heading",
+      "default": "Blog Monté"
+    },
+    {
+      "type": "color",
+      "id": "monte_text_color",
+      "label": "Heading and article titles",
+      "default": "#232E71"
+    },
+    {
+      "type": "paragraph",
+      "content": "The Monté layout automatically shows 12 articles per page, with pagination when more articles are available."
+    },
+    {
+      "type": "header",
+      "content": "Legacy Impact layout"
+    },
     {
       "type": "header",
       "content": "Banner"

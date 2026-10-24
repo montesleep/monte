@@ -1,0 +1,22 @@
+{{ 'monte-blog.css' | asset_url | stylesheet_tag }}
+{{ 'monte-blog-listing.css' | asset_url | stylesheet_tag }}
+<div class="monte-blog-listing" id="BlogListing-{{ section.id }}" style="--mblog-color: {{ section.settings.monte_text_color }};">
+  <h1 class="monte-blog-listing__heading">{{ section.settings.monte_heading | default: blog.title | escape }}</h1>
+  {%- paginate blog.articles by 12 -%}
+    <div class="monte-blog-listing__grid">
+      {%- for article in blog.articles -%}
+        <article class="monte-blog-listing__item">
+          <a class="monte-blog__card" href="{{ article.url }}">
+            <div class="monte-blog__media">
+              {%- render 'monte-navigation-media', image: article.image, placeholder: 'image', sizes: '(min-width: 1000px) 55vw, (min-width: 700px) 50vw, 100vw' -%}
+            </div>
+            <h2 class="monte-blog__title">{{ article.title | escape }}</h2>
+          </a>
+        </article>
+      {%- else -%}
+        <p class="monte-blog-listing__empty">{{ 'blog.general.empty_blog' | t }}</p>
+      {%- endfor -%}
+    </div>
+    {%- render 'monte-numbered-pagination', paginate: paginate, anchor: section.id -%}
+  {%- endpaginate -%}
+</div>

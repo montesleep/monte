@@ -1,0 +1,22 @@
+{%- comment -%}Three moving page numbers and the final page, matching product reviews.{%- endcomment -%}
+{%- if paginate.pages > 1 -%}
+  {%- liquid
+    assign first_page = 1
+    assign last_page = paginate.pages
+    if paginate.pages > 4
+      assign max_start = paginate.pages | minus: 3
+      assign first_page = paginate.current_page | minus: 1 | at_least: 1 | at_most: max_start
+      assign last_page = first_page | plus: 2
+    endif
+  -%}
+  <nav class="monte-numbered-pagination" aria-label="{{ 'general.accessibility.pagination' | t }}">
+    {%- for page in (first_page..last_page) -%}
+      <a class="monte-numbered-pagination__button" href="?{{ paginate.page_param }}={{ page }}#BlogListing-{{ anchor }}" aria-label="{{ 'general.accessibility.go_to_page' | t: index: page }}" {% if page == paginate.current_page %}aria-current="page"{% endif %}>{{ page }}</a>
+    {%- endfor -%}
+    {%- if last_page < paginate.pages -%}
+      {%- assign next_page = last_page | plus: 1 -%}
+      {%- if next_page < paginate.pages -%}<span class="monte-numbered-pagination__ellipsis" aria-hidden="true">…</span>{%- endif -%}
+      <a class="monte-numbered-pagination__button" href="?{{ paginate.page_param }}={{ paginate.pages }}#BlogListing-{{ anchor }}" aria-label="{{ 'general.accessibility.go_to_page' | t: index: paginate.pages }}" {% if paginate.current_page == paginate.pages %}aria-current="page"{% endif %}>{{ paginate.pages }}</a>
+    {%- endif -%}
+  </nav>
+{%- endif -%}

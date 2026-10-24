@@ -1,0 +1,40 @@
+.shopify-section--main-blog:has(.monte-blog-listing) { background: transparent; }
+.monte-blog-listing {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 40px 20px;
+  color: var(--mblog-color, #232e71);
+  background: transparent;
+  scroll-margin-top: calc(var(--header-height, 80px) + 20px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+}
+.monte-blog-listing__heading { margin: 0; font: 500 32px/1.1 var(--heading-font-family); color: inherit; text-align: center; text-transform: none; letter-spacing: 0; }
+.monte-blog-listing__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
+.monte-blog-listing__item { min-width: 0; }
+.monte-blog-listing__item:nth-child(3n + 1) { grid-column: 1 / -1; }
+.monte-blog-listing .monte-blog__media { aspect-ratio: 1; }
+.monte-blog-listing .monte-blog__title { font-size: 16px; }
+.monte-blog-listing__item:nth-child(3n + 1) .monte-blog__media { aspect-ratio: auto; height: 250px; }
+.monte-blog-listing__item:nth-child(3n + 1) .monte-blog__title { font-size: 24px; }
+.monte-blog-listing__empty { grid-column: 1 / -1; text-align: center; font-family: var(--text-font-family); }
+.monte-numbered-pagination { display: flex; justify-content: center; align-items: center; gap: 16px; }
+.monte-numbered-pagination__button { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 32px; height: 32px; padding: 0; border: 1px solid #dcd6cf; border-radius: 50%; font: 600 14px/1.5 var(--text-font-family); text-align: center; color: inherit; background: transparent; text-decoration: none; }
+.monte-numbered-pagination__button[aria-current="page"] { border-color: #232e71; }
+.monte-numbered-pagination__ellipsis { font: 600 14px/1.5 var(--text-font-family); }
+.monte-blog-listing a:focus-visible { outline: 2px solid #232e71; outline-offset: 4px; }
+@media (hover: hover) { .monte-numbered-pagination__button:hover { border-color: #232e71; } }
+@media (min-width: 1000px) {
+  .monte-blog-listing { gap: 40px; padding: 40px 40px 80px; }
+  .monte-blog-listing__heading { font-size: 48px; }
+  .monte-blog-listing__grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 64px 0; }
+  .monte-blog-listing__item { width: 48.529412%; }
+  .monte-blog-listing__item:is(:nth-child(8n + 1), :nth-child(8n + 6)) { width: 52.941176%; }
+  .monte-blog-listing__item:is(:nth-child(8n + 2), :nth-child(8n + 5)) { width: 38.235294%; }
+  .monte-blog-listing .monte-blog-listing__item .monte-blog__media { height: 400px; aspect-ratio: auto; }
+  .monte-blog-listing .monte-blog-listing__item .monte-blog__title { font-size: 32px; }
+  .monte-numbered-pagination__button { width: 44px; height: 44px; font-size: 16px; }
+  .monte-numbered-pagination__ellipsis { font-size: 16px; }
+}

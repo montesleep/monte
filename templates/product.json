@@ -117,16 +117,18 @@
           "type": "monte_ugc_carousel",
           "settings": {
             "title": "Ty + Monté",
-            "show_play": false,
+            "show_play": true,
             "item_1_enabled": true,
-            "item_1_media_type": "image",
+            "item_1_media_type": "video",
+            "item_1_video": "shopify://files/videos/lv_0_20260414114718 (1).mp4",
             "item_1_alt": "Monté — jedwabna maska do spania",
             "item_1_play_overlay": true,
             "item_2_enabled": true,
-            "item_2_media_type": "image",
+            "item_2_media_type": "video",
+            "item_2_video": "shopify://files/videos/lv_0_20260414114718 (1).mp4",
             "item_2_alt": "Monté — jedwabna maska do spania",
             "item_2_play_overlay": true,
-            "item_3_enabled": true,
+            "item_3_enabled": false,
             "item_3_media_type": "image",
             "item_3_alt": "Monté — jedwabna maska do spania",
             "item_3_play_overlay": true,
@@ -429,13 +431,28 @@
       "type": "related-products",
       "settings": {
         "monte_layout": true,
-        "title": "Może Ci się spodobać",
+        "recommendations_count": 6,
         "products": [
           "midnight-blue-silk-sleep-mask",
           "classic-black-silk-sleep-mask",
           "rose-noir-silk-sleep-mask",
           "champagne-gold-silk-sleep-mask"
-        ]
+        ],
+        "full_width": true,
+        "stack_products": true,
+        "show_progress_bar": false,
+        "products_per_row_mobile": "1",
+        "products_per_row_desktop": 3,
+        "subheading": "",
+        "title": "Może Ci się spodobać",
+        "content": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
       }
     }
   },

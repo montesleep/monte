@@ -18,7 +18,7 @@
 .monte-sleep-story__value span { white-space: pre-wrap; }
 .monte-sleep-story__stat p { margin: 0; color: var(--mas-body); font: 400 14px/1.5 var(--text-font-family); }
 .monte-silk-story { padding: 40px 20px; }
-.monte-silk-story__heading { margin: 0 auto 32px; max-width: 300px; font: 500 32px/1.1 var(--heading-font-family); text-align: center; letter-spacing: 0; text-transform: none; }
+.monte-silk-story__heading { margin: 0 auto 32px; max-width: 280px; font: 500 32px/1.1 var(--heading-font-family); text-align: center; letter-spacing: 0; text-transform: none; }
 .monte-silk-story__rows { display: grid; gap: 32px; max-width: 1120px; margin-inline: auto; }
 .monte-silk-story .monte-feature { min-width: 0; gap: 16px; }
 .monte-silk-story .monte-feature__media { height: 250px; aspect-ratio: auto; }

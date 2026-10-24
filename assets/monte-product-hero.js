@@ -1,4 +1,4 @@
-import { Drawer, ProductGallery, Tabs } from 'theme';
+import { Drawer, ProductGallery, Tabs, DialogElement } from 'theme';
 import { timeline } from 'vendor';
 
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -316,6 +316,212 @@ class MonteProductBundle extends HTMLElement {
   }
 }
 
+class MonteUgcStories extends DialogElement {
+  get shouldLock() { return true; }
+  connectedCallback() {
+    super.connectedCallback();
+    const signal = this._abortController.signal;
+    this.media = this.querySelector('.mps-media');
+    this.progress = this.querySelector('.mps-progress');
+    this.surface = this.querySelector('.mps-frame');
+    this.mobile = matchMedia('(max-width:999px)');
+    this.addEventListener('click', event => {
+      if (Date.now() < (this.suppressClickUntil || 0)) { event.preventDefault(); return; }
+      if (event.target.closest('[data-story-close]')) this.hide();
+      else if (event.target.closest('[data-story-sound]')) {
+        this.muted = !this.muted;
+        if (this.video) this.video.muted = this.muted;
+        this.updateControls();
+      } else if (event.target.closest('[data-story-step]')) {
+        this.selectStory(this.index + Number(event.target.closest('[data-story-step]').dataset.storyStep));
+      } else if (event.target.closest('[data-story-pause]') && !this.mobile.matches) {
+        if (this.video?.ended || this.imageElapsed >= 5000) this.selectStory(this.index);
+        else { this.paused = !this.paused; this.syncPlayback(); this.updateControls(); }
+      }
+    }, { signal });
+    this.addEventListener('keydown', event => {
+      if (['ArrowLeft', 'ArrowRight'].includes(event.key)) {
+        event.preventDefault(); this.selectStory(this.index + (event.key === 'ArrowRight' ? 1 : -1));
+      }
+    }, { signal });
+    this.surface.addEventListener('pointerdown', event => {
+      if (event.button !== 0 || event.isPrimary === false || event.target.closest('.mps-controls')) return;
+      this.pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, dx: 0 };
+    }, { signal });
+    this.surface.addEventListener('pointermove', event => {
+      const p = this.pointer;
+      if (!p || p.id !== event.pointerId) return;
+      const dx = event.clientX - p.x, dy = event.clientY - p.y;
+      if (!p.dragging && Math.abs(dy) > Math.abs(dx) * 1.25 && Math.abs(dy) > 10) { this.pointer = null; return; }
+      if (!p.dragging && Math.abs(dx) >= 6 && Math.abs(dx) >= Math.abs(dy)) {
+        p.dragging = true; this.surface.setPointerCapture(event.pointerId);
+      }
+      if (p.dragging) { p.dx = dx; if (event.cancelable) event.preventDefault(); }
+    }, { signal, passive: false });
+    const finishSwipe = (event, cancelled = false) => {
+      const p = this.pointer;
+      if (!p || p.id !== event.pointerId) return;
+      this.pointer = null;
+      if (this.surface.hasPointerCapture(p.id)) this.surface.releasePointerCapture(p.id);
+      if (!p.dragging) return;
+      this.suppressClickUntil = Date.now() + 350;
+      if (!cancelled && Math.abs(p.dx) >= 24) this.selectStory(this.index + (p.dx < 0 ? 1 : -1));
+    };
+    document.addEventListener('pointerup', event => finishSwipe(event), { signal });
+    document.addEventListener('pointercancel', event => finishSwipe(event, true), { signal });
+    document.addEventListener('visibilitychange', () => { this.lastFrame = performance.now(); this.syncPlayback(); }, { signal });
+    this.mobile.addEventListener('change', () => {
+      // Mobile uses both halves for navigation, so never retain a desktop pause there.
+      if (this.mobile.matches && !this.video?.ended) { this.paused = false; this.syncPlayback(); this.updateControls(); }
+    }, { signal });
+    this.addEventListener('dialog:after-hide', () => {
+      if (this.open) return;
+      this.owner.lightboxOpen = false;
+      this.owner.syncVideos();
+      const parent = this.owner.closest('monte-builder-dialog');
+      if (parent?.open) parent.focusTrap.unpause();
+    }, { signal });
+  }
+  openStories(owner, index) {
+    this.owner = owner;
+    this.items = owner.items;
+    this.muted = false;
+    this.progress.replaceChildren(...this.items.map((_, i) => {
+      const track = document.createElement('span');
+      track.className = 'mps-progress-track';
+      track.setAttribute('role', 'progressbar');
+      track.setAttribute('aria-label', `Materiał ${i + 1} z ${this.items.length}`);
+      track.setAttribute('aria-valuemin', '0'); track.setAttribute('aria-valuemax', '100');
+      const fill = document.createElement('span'); fill.className = 'mps-progress-fill'; track.append(fill);
+      return track;
+    }));
+    this.owner.lightboxOpen = true;
+    this.owner.syncVideos();
+    this.owner.closest('monte-builder-dialog')?.focusTrap.pause();
+    this.show();
+    // Start within the original user gesture to permit audible autoplay.
+    this.selectStory(index, false);
+  }
+  selectStory(index, animate = true) {
+    if (!this.open || index < 0 || index >= this.items.length) return;
+    cancelAnimationFrame(this.frame);
+    this.video?.pause();
+    this.mediaAbort?.abort(); this.mediaAbort = new AbortController();
+    const signal = this.mediaAbort.signal;
+    this.index = index; this.paused = false; this.imageElapsed = 0;
+    const source = this.items[index].querySelector('video') || this.items[index].querySelector('img');
+    const media = source.cloneNode(true);
+    media.removeAttribute('id'); media.removeAttribute('loading'); media.removeAttribute('class');
+    this.media.replaceChildren(media);
+    this.video = media.tagName === 'VIDEO' ? media : null;
+    if (this.video) {
+      media.controls = false; media.loop = false; media.autoplay = false; media.muted = this.muted;
+      media.removeAttribute('controls'); media.removeAttribute('loop'); media.removeAttribute('autoplay'); media.removeAttribute('muted');
+      media.setAttribute('playsinline', ''); media.preload = 'auto';
+      media.addEventListener('ended', () => this.completeStory(), { signal });
+      media.addEventListener('error', () => { this.querySelector('.mps-status').textContent = 'Nie udało się odtworzyć filmu. Wybierz następny materiał.'; }, { signal });
+    }
+    if (animate && !reduced()) media.animate({ opacity: [0, 1] }, { duration: 220, easing: 'ease-out' });
+    this.querySelector('.mps-status').textContent = `Materiał ${index + 1} z ${this.items.length}`;
+    this.updateControls(); this.paintProgress(0); this.syncPlayback();
+    this.lastFrame = performance.now();
+    this.tick();
+  }
+  syncPlayback() {
+    const video = this.video;
+    if (!video) return;
+    if (!this.open || this.paused || document.hidden || video.ended) { video.pause(); return; }
+    video.muted = this.muted;
+    const play = video.play();
+    play?.catch(error => {
+      if (video !== this.video || !this.open || error.name === 'AbortError') return;
+      // Some browsers block audible autoplay despite a user gesture.
+      if (!video.muted && error.name === 'NotAllowedError') {
+        this.muted = true; video.muted = true; this.updateControls();
+        video.play().catch(() => {});
+      }
+    });
+  }
+  updateControls() {
+    this.querySelector('[data-story-audible]').hidden = this.muted;
+    this.querySelector('[data-story-muted]').hidden = !this.muted;
+    const sound = this.querySelector('[data-story-sound]');
+    sound.hidden = !this.video;
+    sound.setAttribute('aria-label', this.muted ? 'Włącz dźwięk' : 'Wyłącz dźwięk');
+    sound.setAttribute('aria-pressed', String(!this.muted));
+    this.querySelector('[data-story-pause]').setAttribute('aria-label', this.video?.ended ? 'Odtwórz ponownie' : this.paused ? 'Wznów odtwarzanie' : 'Zatrzymaj film');
+    this.querySelectorAll('[data-story-step]').forEach(button => {
+      const disabled = Number(button.dataset.storyStep) < 0 ? this.index === 0 : this.index === this.items.length - 1;
+      button.disabled = button.classList.contains('mps-arrow') && disabled;
+      button.setAttribute('aria-disabled', String(disabled));
+    });
+  }
+  paintProgress(fraction) {
+    [...this.progress.children].forEach((track, index) => {
+      const value = index < this.index ? 1 : index === this.index ? Math.max(0, Math.min(1, fraction)) : 0;
+      track.firstElementChild.style.transform = `scaleX(${value})`;
+      const percent = String(Math.round(value * 100));
+      if (track.getAttribute('aria-valuenow') !== percent) track.setAttribute('aria-valuenow', percent);
+    });
+  }
+  completeStory() {
+    this.paintProgress(1);
+    if (this.index < this.items.length - 1) this.selectStory(this.index + 1);
+    else { this.paused = true; this.updateControls(); }
+  }
+  tick(now = performance.now()) {
+    if (!this.open) return;
+    const elapsed = Math.min(100, now - this.lastFrame); this.lastFrame = now;
+    if (this.video) {
+      this.paintProgress(Number.isFinite(this.video.duration) && this.video.duration > 0 ? this.video.currentTime / this.video.duration : 0);
+    } else if (!this.paused && !document.hidden) {
+      this.imageElapsed += elapsed; this.paintProgress(this.imageElapsed / 5000);
+      if (this.imageElapsed >= 5000) { this.completeStory(); if (this.imageElapsed === 0) return; }
+    }
+    this.frame = requestAnimationFrame(time => this.tick(time));
+  }
+  lock() {
+    if (this.savedBody) return;
+    this.scrollY = window.scrollY;
+    this.savedBody = ['position', 'top', 'width', 'overflow'].map(key => [key, document.body.style[key]]);
+    Object.assign(document.body.style, { position: 'fixed', top: `-${this.scrollY}px`, width: '100%', overflow: 'hidden' });
+  }
+  unlock() {
+    if (!this.savedBody) return;
+    this.savedBody.forEach(([key, value]) => document.body.style[key] = value);
+    this.savedBody = null; window.scrollTo(0, this.scrollY);
+  }
+  async transition(open, animate = true) {
+    this.animations?.forEach(animation => animation.cancel());
+    const immediate = !animate || reduced() || window.themeVariables?.settings?.reduceDrawerAnimation;
+    const closed = this.mobile.matches ? 'inset(100% 0 0 0 round 16px)' : 'inset(0 0 0 100% round 16px)';
+    const expanded = 'inset(0 0 0 0 round 16px)';
+    const overlayFrames = [
+      { backgroundColor: 'rgba(0,0,0,0)', backdropFilter: 'blur(0px)', webkitBackdropFilter: 'blur(0px)' },
+      { backgroundColor: 'rgba(0,0,0,.6)', backdropFilter: 'blur(17px)', webkitBackdropFilter: 'blur(17px)' }
+    ];
+    const animations = [
+      this.querySelector('.mps-overlay').animate(open ? overlayFrames : [...overlayFrames].reverse(), { duration: immediate ? 0 : 300, fill: 'both' }),
+      this.surface.animate({ clipPath: open ? [closed, expanded] : [expanded, closed] }, { duration: immediate ? 0 : 400, delay: immediate ? 0 : 150, easing: 'cubic-bezier(.86,0,.07,1)', fill: 'both' }),
+      ...[...this.querySelectorAll('.mps-controls,.mps-avatar,.mps-progress,.mps-arrow')].map(element => element.animate({ opacity: open ? [0, 1] : [1, 0] }, { duration: immediate ? 0 : 150, delay: open && !immediate ? 550 : 0, fill: 'both' }))
+    ];
+    this.animations = animations;
+    await Promise.all(animations.map(animation => animation.finished.catch(() => {})));
+    if (this.animations === animations && !open && !this.open) { this.style.display = 'none'; this.unlock(); }
+  }
+  _showTransition(animate) { this.lock(); this.style.display = 'flex'; return this.transition(true, animate); }
+  _hideTransition() {
+    this.pointer = null; this.video?.pause(); cancelAnimationFrame(this.frame);
+    return this.transition(false);
+  }
+  disconnectedCallback() {
+    this.video?.pause(); cancelAnimationFrame(this.frame); this.mediaAbort?.abort();
+    this.animations?.forEach(animation => animation.cancel()); this.unlock();
+    super.disconnectedCallback();
+  }
+}
+if (!customElements.get('monte-ugc-stories')) customElements.define('monte-ugc-stories', MonteUgcStories);
+
 class MonteProductMedia extends HTMLElement {
   connectedCallback() {
     this.abort = new AbortController(); const signal = this.abort.signal;
@@ -349,6 +555,7 @@ class MonteProductMedia extends HTMLElement {
   }
   disconnectedCallback() {
     this.abort?.abort(); this.resize?.disconnect(); this.visibility?.disconnect(); cancelAnimationFrame(this.frame);
+    this.stories?.remove(); this.stories = null;
     this.querySelectorAll('video').forEach(video => video.pause()); this._photoswipe?.destroy(); this._photoswipe = null;
   }
   syncVideos() {
@@ -394,6 +601,14 @@ class MonteProductMedia extends HTMLElement {
     this.frame = requestAnimationFrame(time => this.tick(time));
   }
   openLightbox(index) {
+    if (!this.gallery && this.querySelector('[data-ugc-stories-template]')) {
+      if (!this.stories) {
+        this.stories = this.querySelector('[data-ugc-stories-template]').content.firstElementChild.cloneNode(true);
+        document.body.append(this.stories);
+      }
+      this.stories.openStories(this, index);
+      return;
+    }
     if (!this._photoswipe) {
       // Reuse Impact's PhotoSwipe instance, UI, zoom controls and pagination.
       Object.getOwnPropertyDescriptor(ProductGallery.prototype, 'photoswipe').get.call(this);

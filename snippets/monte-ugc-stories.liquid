@@ -1,0 +1,22 @@
+<template data-ugc-stories-template>
+  <monte-ugc-stories class="mps" tabindex="-1" aria-label="{{ block.settings.title | escape }}" aria-modal="true" initial-focus=".mps-controls [data-story-close]" data-monte-reveal="off">
+    <div class="mps-overlay" data-story-close></div>
+    <div class="mps-panel">
+      <div class="mps-frame">
+        <div class="mps-media"></div>
+        <div class="mps-gradient" aria-hidden="true"></div>
+        <button class="mps-play-area" type="button" data-story-pause data-monte-motion="off" aria-label="Zatrzymaj film"></button>
+        <div class="mps-tap-areas"><button type="button" data-story-step="-1" data-monte-motion="off" aria-label="Poprzedni materiał"></button><button type="button" data-story-step="1" data-monte-motion="off" aria-label="Następny materiał"></button></div>
+        <div class="mps-progress" aria-label="Postęp odtwarzania"></div>
+        <img class="mps-avatar" src="{{ 'monte-ugc-story-avatar.png' | asset_url }}" width="44" height="44" alt="Monté">
+        <div class="mps-controls">
+          <button type="button" class="mps-control" data-story-close data-monte-motion="button" aria-label="Zamknij filmy"><img src="{{ 'monte-ugc-story-close.svg' | asset_url }}" width="13.5607" height="13.5607" alt=""></button>
+          <button type="button" class="mps-control" data-story-sound data-monte-motion="button" aria-label="Wyłącz dźwięk" aria-pressed="true"><span class="mps-icon"><img data-story-audible src="{{ 'monte-ugc-sound.svg' | asset_url }}" width="14.8333" height="14.5909" alt=""><img data-story-muted src="{{ 'monte-ugc-mute.svg' | asset_url }}" width="16.0001" height="16.0001" alt="" hidden></span></button>
+        </div>
+        <span class="mps-status sr-only" role="status" aria-live="polite"></span>
+      </div>
+      <button type="button" class="mps-arrow mps-arrow--previous" data-story-step="-1" data-monte-motion="button" aria-label="Poprzedni materiał"><img src="{{ 'monte-ugc-story-chevron.svg' | asset_url }}" width="16" height="11.2" alt=""></button>
+      <button type="button" class="mps-arrow mps-arrow--next" data-story-step="1" data-monte-motion="button" aria-label="Następny materiał"><img src="{{ 'monte-ugc-story-chevron.svg' | asset_url }}" width="16" height="11.2" alt=""></button>
+    </div>
+  </monte-ugc-stories>
+</template>

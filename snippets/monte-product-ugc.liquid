@@ -34,5 +34,6 @@
     <div class="mp-ugc-header"><h2>{{ block.settings.title | escape }}</h2><div class="mp-arrows" hidden><button type="button" data-ugc-step="-1" aria-label="Poprzednie materiały" disabled>{% render 'icon', icon: 'chevron-left', width: 16 %}</button><button type="button" data-ugc-step="1" aria-label="Następne materiały">{% render 'icon', icon: 'chevron-right', width: 16 %}</button></div></div>
     <div class="mp-ugc-track" data-media-track tabindex="0" aria-label="{{ block.settings.title | escape }}">{{ items }}</div>
     <div class="mp-ugc-progress" aria-hidden="true" hidden><span></span></div>
+    {% render 'monte-ugc-stories', block: block %}
   </monte-product-media></reveal-items>
 {%- elsif request.design_mode -%}<div {{ block.shopify_attributes }}>Enable a media item in this block to show the UGC carousel.</div>{%- endif -%}

@@ -1,4 +1,4 @@
-.mps{position:fixed;inset:0;z-index:1000001;display:none;align-items:center;justify-content:center;padding:24px 80px;isolation:isolate;font-family:var(--text-font-family);font-synthesis:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.mps{position:fixed;inset:0;z-index:2147483100;display:none;align-items:center;justify-content:center;padding:24px 80px;isolation:isolate;font-family:var(--text-font-family);font-synthesis:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .mps [hidden]{display:none!important}
 .mps-overlay{position:absolute;inset:0;background:rgb(0 0 0/.6);backdrop-filter:blur(17px);-webkit-backdrop-filter:blur(17px)}
 .mps-panel{position:relative;width:min(360px,calc((100dvh - 48px)*.5625));aspect-ratio:9/16;flex:none;outline:none}

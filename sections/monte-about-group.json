@@ -60,7 +60,7 @@
           "type": "stat",
           "settings": {
             "value": "70%",
-            "description": "Nocnej pielęgnacji wsiąka w zwykłą bawełnianą poszewkę, zamiast w skórę."
+            "description": "Kosmetyków z wieczornej pielęgnacji wchłania bawełniana poszewka, a nie Twoja skóra."
           }
         }
       },
@@ -116,6 +116,7 @@
       ],
       "name": "Monté Silk Story",
       "settings": {
+        "scroll_story": true,
         "heading": "Dlatego stawiamy na jedwab",
         "show_numbers": true,
         "heading_color": "#232e71",

@@ -1,3 +1,6 @@
+{%- if section.settings.monte_layout -%}
+  {%- render "monte-article" -%}
+{%- else -%}
 {%- render 'section-spacing-collapsing' -%}
 
 {%- assign background_color = article.metafields.banner.background_color.value | default: section.settings.banner_background -%}
@@ -135,12 +138,22 @@
   </div>
 </div>
 
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Blog post",
   "class": "shopify-section--main-article",
   "tag": "section",
   "settings": [
+    {"type": "checkbox", "id": "monte_layout", "label": "Use Monté article design", "default": true},
+    {"type": "image_picker", "id": "author_image", "label": "Author photo", "info": "Shared across articles using this template. The name and publication date come from each article."},
+    {"type": "image_picker", "id": "mobile_image", "label": "Mobile image override"},
+    {"type": "video", "id": "video", "label": "Desktop video override", "info": "Replaces the image. Autoplays muted and loops without player controls."},
+    {"type": "video", "id": "mobile_video", "label": "Mobile video override"},
+    {"type": "color", "id": "monte_heading_color", "label": "Monté headings", "default": "#232E71"},
+    {"type": "color", "id": "monte_body_color", "label": "Monté body text", "default": "#52597E"},
+    {"type": "header", "content": "Legacy Impact layout", "info": "Banner layout, overlay and body width below apply only when Monté article design is disabled. Image, author and date settings apply to both designs."},
     {
       "type": "checkbox",
       "id": "allow_transparent_header",

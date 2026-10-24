@@ -1,0 +1,57 @@
+{{ 'monte-article.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign desktop_image = section.settings.image | default: article.image
+  assign mobile_image = section.settings.mobile_image
+  assign desktop_video = section.settings.video
+  assign mobile_video = section.settings.mobile_video
+  if mobile_image == blank and mobile_video == blank
+    assign mobile_image = desktop_image
+    assign mobile_video = desktop_video
+  endif
+  assign author_image = article.metafields.custom.author_image.value | default: section.settings.author_image
+  assign months = 'stycznia,lutego,marca,kwietnia,maja,czerwca,lipca,sierpnia,września,października,listopada,grudnia' | split: ','
+  assign month_index = article.published_at | date: '%m' | minus: 1
+-%}
+<article class="monte-article" style="--marticle-heading: {{ section.settings.monte_heading_color }}; --marticle-body: {{ section.settings.monte_body_color }};">
+  <header class="monte-article__header">
+    <div class="monte-article__intro">
+      <h1 class="monte-article__title">{{ article.title | escape }}</h1>
+      <div class="monte-article__byline">
+        {%- if section.settings.show_author -%}
+          <div class="monte-article__avatar">
+            {%- render 'monte-navigation-media', image: author_image, placeholder: 'image', sizes: '64px' -%}
+          </div>
+        {%- endif -%}
+        <div class="monte-article__meta" data-monte-reveal="off">
+          {%- if section.settings.show_author -%}<p class="monte-article__author">{{ article.author | escape }}</p>{%- endif -%}
+          {%- if section.settings.show_date -%}
+            <time class="monte-article__date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%-d' }} {{ months[month_index] }} {{ article.published_at | date: '%Y' }}</time>
+          {%- endif -%}
+          <div class="monte-article__reading">
+            <span class="monte-article__clock"><img src="{{ 'monte-article-clock.svg' | asset_url }}" width="17.125" height="17.125" alt="" aria-hidden="true"></span>
+            <span>5 minut czytania</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="monte-article__hero">
+      <div class="monte-article__desktop">
+        {%- render 'monte-navigation-media', image: desktop_image, video: desktop_video, placeholder: 'lifestyle-1', sizes: '(min-width: 1000px) calc(100vw - 80px), calc(100vw - 40px)' -%}
+      </div>
+      <div class="monte-article__mobile">
+        {%- render 'monte-navigation-media', image: mobile_image, video: mobile_video, placeholder: 'lifestyle-1', sizes: 'calc(100vw - 40px)' -%}
+      </div>
+    </div>
+  </header>
+  <div class="monte-article__content">
+    <div class="monte-article__body">{{ article.content }}</div>
+  </div>
+  {%- for block in section.blocks -%}
+    <div class="monte-article__extras">
+      {%- case block.type -%}
+        {%- when 'navigation' -%}{%- render 'article-navigation', show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, block_attributes: block.shopify_attributes -%}
+        {%- when 'comments' -%}{%- render 'article-comments', show_gravatar: block.settings.show_gravatar, comments_pagination: block.settings.comments_per_page, block_attributes: block.shopify_attributes -%}
+      {%- endcase -%}
+    </div>
+  {%- endfor -%}
+</article>

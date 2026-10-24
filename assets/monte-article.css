@@ -1,0 +1,59 @@
+.shopify-section--main-article:has(.monte-article) { background: transparent; }
+.monte-article {
+  background: transparent;
+  color: var(--marticle-body, #52597e);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+}
+.monte-article__header { display: flex; flex-direction: column; gap: 32px; padding: 20px 20px 0; }
+.monte-article__intro { display: flex; flex-direction: column; gap: 16px; }
+.monte-article__title { margin: 0; max-width: 1000px; font: 500 32px/1.1 var(--heading-font-family); letter-spacing: 0; color: var(--marticle-heading, #232e71); text-transform: none; overflow-wrap: anywhere; }
+.monte-article__byline { display: flex; align-items: center; gap: 16px; }
+.monte-article__avatar { flex: 0 0 64px; width: 64px; height: 64px; overflow: hidden; border-radius: 50%; }
+.monte-article__avatar > :is(img, svg) { display: block; width: 100%; height: 100%; object-fit: cover; }
+.monte-article__meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; font: 400 14px/1.5 var(--text-font-family); }
+.monte-article__author { margin: 0; color: var(--marticle-heading, #232e71); font-weight: 600; }
+.monte-article__reading { display: flex; align-items: center; gap: 4px; color: var(--marticle-heading, #232e71); font-weight: 600; }
+.monte-article__clock { display: grid; place-items: center; flex: 0 0 20px; width: 20px; height: 20px; }
+.monte-article__clock img { display: block; max-width: none; }
+.monte-article__hero { height: 250px; width: 100%; overflow: hidden; border-radius: 16px; }
+.monte-article__hero > div { width: 100%; height: 100%; }
+.monte-article__desktop { display: none; }
+.monte-article__hero :is(img, video, svg) { display: block; width: 100%; height: 100%; object-fit: cover; }
+.monte-article__content { padding: 40px 20px; }
+.monte-article__body { width: 100%; max-width: 600px; margin-inline: auto; font: 400 16px/1.5 var(--text-font-family); overflow-wrap: anywhere; }
+.monte-article__body :is(p, ul, ol, blockquote, figure, table, pre) { margin: 0 0 1.5em; }
+.monte-article__body :is(h1, h2, h3, h4, h5, h6) { margin: 48px 0 24px; font: 500 24px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; color: var(--marticle-heading, #232e71); }
+.monte-article__body :is(h1, h2, h3, h4, h5, h6) :is(strong, b) { font-weight: inherit; }
+.monte-article__body :is(strong, b) { font-weight: 600; }
+.monte-article__body :is(ul, ol) { padding-inline-start: 1.5em; list-style-position: outside; }
+.monte-article__body ul { list-style-type: disc; }
+.monte-article__body ol { list-style-type: decimal; }
+.monte-article__body li + li { margin-top: .5em; }
+.monte-article__body li > :last-child { margin-bottom: 0; }
+.monte-article__body a { color: var(--marticle-heading, #232e71); text-decoration: underline; text-underline-offset: .2em; }
+.monte-article__body blockquote { border-inline-start: 2px solid currentColor; padding-inline-start: 20px; }
+.monte-article__body :is(img, video, iframe) { max-width: 100%; border-radius: 16px; }
+.monte-article__body :is(img, video) { display: block; height: auto; margin-block: 24px; }
+.monte-article__body iframe { display: block; width: 100%; }
+.monte-article__body table { display: block; width: 100%; overflow-x: auto; border-collapse: collapse; }
+.monte-article__body :is(th, td) { padding: 12px; border: 1px solid #dcd6cf; text-align: start; }
+.monte-article__body pre { overflow-x: auto; }
+.monte-article__body hr { margin: 40px 0; border: 0; border-top: 1px solid #dcd6cf; }
+.monte-article__body > :first-child { margin-top: 0; }
+.monte-article__body > :last-child { margin-bottom: 0; }
+.monte-article__extras { padding: 0 20px 40px; }
+@media (min-width: 1000px) {
+  .monte-article__header { gap: 40px; padding: 40px 40px 0; }
+  .monte-article__intro, .monte-article__byline { gap: 20px; }
+  .monte-article__title { font-size: 56px; }
+  .monte-article__hero { height: 600px; }
+  .monte-article__desktop { display: block; }
+  .monte-article__mobile { display: none; }
+  .monte-article__content { padding: 80px 40px; }
+  .monte-article__body { font-size: 18px; }
+  .monte-article__body :is(h1, h2, h3) { font-size: 40px; margin-top: 54px; margin-bottom: 36px; }
+  .monte-article__body :is(h4, h5, h6) { font-size: 28px; }
+  .monte-article__extras { padding: 0 40px 80px; }
+}

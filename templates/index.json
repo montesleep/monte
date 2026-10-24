@@ -428,15 +428,15 @@
         "faq_item_wxHMyp": {
           "type": "faq_item",
           "settings": {
-            "question": "Czy nadaje się do podróży i drzemek?",
-            "answer": "<p>Tak. Monté jest lekka i mieści się w eleganckim pudełku, które łatwo zmieści się w torbie podręcznej. Działa równie dobrze w samolocie, pociągu, hotelu czy podczas drzemki w ciągu dnia.</p>"
+            "question": "Czy mogę stworzyć własny zestaw?",
+            "answer": "<p>Tak. W <a href=\"/pages/bundle-builder\" target=\"_blank\" title=\"Stwórz swój zestaw\">kreatorze zestawów</a> możesz połączyć wybrane produkty i kolory, dla siebie lub na prezent. Dodaj to, czego potrzebujesz, a cenę całego zestawu i przysługujący rabat zobaczysz przed przejściem do kasy.</p>"
           }
         },
         "faq_item_tfj77a": {
           "type": "faq_item",
           "settings": {
-            "question": "Jak ją pielęgnować?",
-            "answer": "<p>Pranie ręczne w zimnej wodzie (maks. 30°C) z delikatnym detergentem do jedwabiu. Susz na płasko, z dala od słońca. Po wysuszeniu możesz przywrócić puszystość żelazkiem w trybie pary od wewnętrznej strony tkaniny.</p>"
+            "question": "Jak wygląda dostawa?",
+            "answer": "<p>Zamówienia wysyłamy z Polski kurierem InPost na terenie całego kraju. Dostawa kosztuje 11,99 zł, a przy zamówieniu od 250 zł jest bezpłatna. Po nadaniu paczki otrzymasz e-mail z linkiem do jej śledzenia.</p>"
           }
         },
         "faq_item_q4MBdR": {

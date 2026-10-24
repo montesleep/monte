@@ -235,7 +235,7 @@
           "type": "item",
           "settings": {
             "title": "100% blackout dla całkowitej ciemności",
-            "description": "<p>Tak. Monté ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. 94% klientów w ankiecie po zakupie oceniło blackout jako całkowity.</p>"
+            "description": "<p>Nasza maska ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. Pełna ciemność bez prześwitów, od pierwszej nocy.</p>"
           }
         },
         "detail_2": {
@@ -314,6 +314,7 @@
         "feature_3"
       ],
       "settings": {
+        "stack_mobile": false,
         "heading": "Małe detale, które\nzmieniają jakość snu",
         "accessibility_label": "Małe detale Monté",
         "show_numbers": true,

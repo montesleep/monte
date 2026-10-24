@@ -19,7 +19,7 @@
         "mobile_text": "☀️ Letnia wyprzedaż: rabaty do -30%",
         "show_icon": false,
         "icon_text": "☀️",
-        "countdown_enabled": true,
+        "countdown_enabled": false,
         "countdown_start_date": "2026-10-17",
         "countdown_start_time": "00:00",
         "countdown_label": "Czas do końca promocji",

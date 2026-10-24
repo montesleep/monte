@@ -3,13 +3,13 @@
 .monte-mission__content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 32px; }
 .monte-mission__copy { display: grid; gap: 16px; opacity: 1; }
 .monte-mission--centered .monte-mission__content { align-items: center; text-align: center; }
-.monte-mission.monte-mission--centered .button { align-self: center; }
 .monte-mission h2 { margin: 0; color: var(--mm-heading); font: 500 32px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
 .monte-mission__body { color: var(--mm-body); font: 400 14px/1.5 var(--text-font-family); overflow-wrap: anywhere; }
 .monte-mission__body p { margin: 0; }
 .monte-mission__body p + p { margin-top: 1.5em; }
 .monte-mission .button { align-self: flex-start; border: 1px solid var(--mm-button); border-radius: 100px; min-height: 44px; padding: 10px 24px; background: var(--mm-button); color: var(--mm-button-text); box-shadow: none; font: 600 14px/1.5 var(--text-font-family); letter-spacing: 0; text-transform: none; white-space: normal; text-align: center; transition: background-color .2s ease, border-color .2s ease; }
 .monte-mission .button:focus-visible { outline: 2px solid var(--mm-button); outline-offset: 4px; }
+.monte-mission--centered .button { align-self: center; }
 .monte-mission__side { display: none; }
 .monte-mission__mobile { position: relative; height: 230px; margin-top: 32px; }
 .monte-mission__mobile-item, .monte-mission__item { position: absolute; transform: rotate(var(--mm-angle)); }

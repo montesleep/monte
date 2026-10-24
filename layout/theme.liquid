@@ -77,6 +77,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     {{- 'monte-soft-reveal.css' | asset_url | stylesheet_tag -}}
     <script type="module" src="{{ 'monte-soft-reveal.js' | asset_url }}"></script>
     <script type="module" src="{{ 'monte-button-motion.js' | asset_url }}"></script>
+    {{- 'monte-smooth-scroll.css' | asset_url | stylesheet_tag -}}
+    <script type="module" src="{{ 'monte-smooth-scroll.js' | asset_url }}" data-monte-lenis-src="{{ 'monte-lenis-vendor.js' | asset_url }}"></script>
     {%- if request.page_type == 'policy' -%}
       {{- 'monte-policy.css' | asset_url | stylesheet_tag -}}
     {%- endif -%}

@@ -1,0 +1,9 @@
+/* Keep native document layout, sticky positioning and all drawer scroll containers. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis {
+  scroll-behavior: auto !important;
+}

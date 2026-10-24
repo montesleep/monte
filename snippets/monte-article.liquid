@@ -17,7 +17,7 @@
     <div class="monte-article__intro">
       <h1 class="monte-article__title">{{ article.title | escape }}</h1>
       <div class="monte-article__byline">
-        {%- if section.settings.show_author -%}
+        {%- if section.settings.show_author and author_image != blank -%}
           <div class="monte-article__avatar">
             {%- render 'monte-navigation-media', image: author_image, placeholder: 'image', sizes: '64px' -%}
           </div>

@@ -13,11 +13,13 @@ class MonteUgcCarousel extends HTMLElement {
     this.paused = false;
     this.sound = false;
     this.editorSelected = false;
-    this.addEventListener('click', event => this.onClick(event), options);
+    this.addEventListener('click', event => this.onClick(event), { ...options, capture: true });
+    // Media events do not bubble; capture also covers recycled slide copies.
+    this.addEventListener('ended', event => this.advanceEndedVideo(event.target), { ...options, capture: true });
     this.viewport.addEventListener('pointerdown', event => this.pointerDown(event), options);
-    this.viewport.addEventListener('pointermove', event => this.pointerMove(event), options);
-    this.viewport.addEventListener('pointerup', event => this.pointerEnd(event), options);
-    this.viewport.addEventListener('pointercancel', event => this.pointerEnd(event, true), options);
+    document.addEventListener('pointermove', event => this.pointerMove(event), { ...options, passive: false });
+    document.addEventListener('pointerup', event => this.pointerEnd(event), options);
+    document.addEventListener('pointercancel', event => this.pointerEnd(event, true), options);
     this.viewport.addEventListener('dragstart', event => event.preventDefault(), options);
     this.viewport.addEventListener('keydown', event => {
       if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
@@ -148,7 +150,12 @@ class MonteUgcCarousel extends HTMLElement {
       const controls = item.querySelector('.mugc-controls');
       if (controls) controls.hidden = !active;
       const video = item.querySelector('video');
-      if (video) { video.muted = true; if (!active) video.pause(); }
+      if (video) {
+        video.muted = true;
+        video.loop = true;
+        if (!active) video.pause();
+        else if (video.readyState > 0) video.currentTime = 0;
+      }
       item.querySelector('[data-ugc-action="media"]').setAttribute('aria-label', active ? 'Zatrzymaj automatyczne odtwarzanie' : 'Pokaż ten film');
     }
     this.controls();
@@ -175,6 +182,9 @@ class MonteUgcCarousel extends HTMLElement {
     if (!this.active) return;
     const video = this.active.querySelector('video');
     if (!video) return;
+    video.loop = !this.sound;
+    video.muted = !this.sound;
+    if (this.advanceEndedVideo(video)) return;
     if (!this.visible || document.hidden || this.paused || (this.reduced.matches && !this.manualPlay)) {
       video.pause();
       return;
@@ -194,6 +204,7 @@ class MonteUgcCarousel extends HTMLElement {
 
   schedule(reset = true) {
     clearTimeout(this.timer);
+    if (this.advanceEndedVideo(this.active?.querySelector('video'))) return;
     if (reset) this.deadline = Date.now() + 5000;
     const focused = this.contains(document.activeElement) && document.activeElement.matches(':focus-visible');
     if (!this.isConnected || !this.visible || document.hidden || this.paused || this.sound || this.pointer ||
@@ -207,26 +218,40 @@ class MonteUgcCarousel extends HTMLElement {
     if (!delta) return;
     clearTimeout(this.timer);
     this.moving = true;
+    this.moveDelta = delta;
+    this.moveManual = manual;
     this.deadline = Date.now() + 5000;
     const duration = this.reduced.matches ? 0 : 550;
     this.track.style.transition = `transform ${duration}ms cubic-bezier(.25,.46,.45,.94)`;
     this.activate(this.track.children[this.center + delta]);
     this.position(-delta * this.step);
-    this.transitionTimer = setTimeout(() => {
-      this.track.style.transition = 'none';
-      for (let i = 0; i < Math.abs(delta); i++) {
-        if (delta > 0) this.track.append(this.track.firstElementChild);
-        else this.track.prepend(this.track.lastElementChild);
-      }
-      this.position();
-      this.updateAccess();
-      this.moving = false;
-      if (manual) {
-        const index = this.originals.findIndex(slide => slide.dataset.ugcId === this.active.dataset.ugcId);
-        this.querySelector('[data-ugc-status]').textContent = `Film ${index + 1} z ${this.originals.length}`;
-      }
-      this.schedule(false);
-    }, duration);
+    this.transitionTimer = setTimeout(() => this.finishMove(), duration);
+  }
+
+  finishMove() {
+    if (!this.moving) return;
+    clearTimeout(this.transitionTimer);
+    this.track.style.transition = 'none';
+    for (let i = 0; i < Math.abs(this.moveDelta); i++) {
+      if (this.moveDelta > 0) this.track.append(this.track.firstElementChild);
+      else this.track.prepend(this.track.lastElementChild);
+    }
+    this.position();
+    this.updateAccess();
+    this.moving = false;
+    if (this.moveManual) {
+      const index = this.originals.findIndex(slide => slide.dataset.ugcId === this.active.dataset.ugcId);
+      this.querySelector('[data-ugc-status]').textContent = `Film ${index + 1} z ${this.originals.length}`;
+    }
+    this.schedule(false);
+  }
+
+  advanceEndedVideo(video) {
+    if (!video?.ended || video !== this.active?.querySelector('video') || !this.sound || this.paused ||
+        this.moving || this.pointer || !this.visible || document.hidden || this.editorSelected) return false;
+    if (this.originals.length > 1) this.move(1);
+    else { this.paused = true; this.controls(); }
+    return true;
   }
 
   onClick(event) {
@@ -253,9 +278,10 @@ class MonteUgcCarousel extends HTMLElement {
   }
 
   pointerDown(event) {
-    if (event.button !== 0 || this.moving || event.target.closest('.mugc-controls')) return;
+    if (event.button !== 0 || event.isPrimary === false || this.pointer || this.originals.length < 2) return;
     clearTimeout(this.timer);
-    this.pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, dx: 0, dragging: false };
+    this.pointer = { id: event.pointerId, x: event.clientX, y: event.clientY, dx: 0,
+      lastX: event.clientX, lastTime: event.timeStamp, velocity: 0, dragging: false, offset: 0 };
   }
 
   pointerMove(event) {
@@ -263,15 +289,31 @@ class MonteUgcCarousel extends HTMLElement {
     if (!pointer || event.pointerId !== pointer.id) return;
     const dx = event.clientX - pointer.x, dy = event.clientY - pointer.y;
     if (!pointer.dragging) {
-      if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 8) { this.pointer = null; this.schedule(); return; }
-      if (Math.abs(dx) < 8 || this.originals.length < 2) return;
+      // Wait for clear intent instead of rejecting a slightly diagonal swipe.
+      if (Math.abs(dy) > Math.abs(dx) * 1.25 && Math.abs(dy) > 10) {
+        this.pointer = null;
+        this.schedule();
+        return;
+      }
+      if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy)) return;
       pointer.dragging = true;
+      if (this.moving) {
+        // Settle the recycled order without jumping the slide under the finger.
+        const before = this.active.getBoundingClientRect().left;
+        this.finishMove();
+        pointer.offset = before - this.active.getBoundingClientRect().left;
+      }
       this.viewport.setPointerCapture(event.pointerId);
       this.classList.add('is-dragging');
       this.track.style.transition = 'none';
     }
+    if (event.cancelable) event.preventDefault();
+    const elapsed = event.timeStamp - pointer.lastTime;
+    if (elapsed > 0) pointer.velocity = (event.clientX - pointer.lastX) / elapsed;
+    pointer.lastX = event.clientX;
+    pointer.lastTime = event.timeStamp;
     pointer.dx = Math.max(-this.step, Math.min(this.step, dx));
-    this.position(pointer.dx);
+    this.position(pointer.offset + pointer.dx);
   }
 
   pointerEnd(event, cancelled = false) {
@@ -282,7 +324,9 @@ class MonteUgcCarousel extends HTMLElement {
     if (this.viewport.hasPointerCapture(event.pointerId)) this.viewport.releasePointerCapture(event.pointerId);
     if (!pointer.dragging) { this.schedule(); return; }
     this.suppressClickUntil = Date.now() + 350;
-    if (!cancelled && Math.abs(pointer.dx) > 35) this.move(pointer.dx < 0 ? 1 : -1, true);
+    const flick = Math.abs(pointer.dx) >= 12 && Math.abs(pointer.velocity) >= .35 &&
+      event.timeStamp - pointer.lastTime < 100;
+    if (!cancelled && (Math.abs(pointer.dx) >= 24 || flick)) this.move(pointer.dx < 0 ? 1 : -1, true);
     else {
       this.track.style.transition = 'transform 350ms cubic-bezier(.25,.46,.45,.94)';
       this.position();

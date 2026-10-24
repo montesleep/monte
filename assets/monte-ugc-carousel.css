@@ -41,3 +41,6 @@
 @media(prefers-reduced-motion:reduce){.mugc-media,.mugc-product,.mugc-product-button,.mugc-arrow,.mugc-control{transition:none}}
 
 @media(max-width:999px){.mugc-track{min-height:calc(var(--ugc-height) + var(--ugc-gap) + 120px)}}
+
+/* Keep horizontal gestures consistent over media, controls, and product links. */
+.mugc.is-ready .mugc-viewport,.mugc.is-ready .mugc-viewport *{touch-action:pan-y pinch-zoom;user-select:none;-webkit-user-select:none;-webkit-user-drag:none}

@@ -104,7 +104,16 @@
               "classic-black-silk-sleep-mask",
               "rose-noir-silk-sleep-mask",
               "champagne-gold-silk-sleep-mask"
-            ]
+            ],
+            "bundle_promo_enabled": false,
+            "bundle_heading": "Połącz produkty, oszczędź więcej",
+            "bundle_body": "Wybierz dowolne produkty Monté i otrzymaj do 15% dodatkowego rabatu na cały zestaw.",
+            "bundle_button": "Stwórz swój zestaw",
+            "bundle_link": "",
+            "bundle_text": "#fdfbf9",
+            "bundle_button_bg": "#fdfbf9",
+            "bundle_button_text": "#232e71",
+            "bundle_button_hover": "#eee7e0"
           }
         },
         "bundles": {
@@ -119,11 +128,11 @@
             "bundle_heading": "Połącz produkty, oszczędź więcej",
             "bundle_body": "Wybierz dowolne produkty Monté i otrzymaj do 15% dodatkowego rabatu na cały zestaw.",
             "bundle_button": "Stwórz swój zestaw",
-            "bundle_text": "#FDFBF9",
-            "bundle_button_bg": "#FDFBF9",
-            "bundle_button_text": "#232E71",
-            "bundle_button_hover": "#EEE7E0",
-            "bundle_link": "/pages/bundle-builder"
+            "bundle_link": "/pages/bundle-builder",
+            "bundle_text": "#fdfbf9",
+            "bundle_button_bg": "#fdfbf9",
+            "bundle_button_text": "#232e71",
+            "bundle_button_hover": "#eee7e0"
           }
         }
       },
@@ -282,6 +291,7 @@
         "testimonial_p3tdt9",
         "testimonial_qkxtmn"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Co mówią\nklienci o Monté",
         "show_rating": true,
@@ -292,8 +302,66 @@
         "card_color": "#fdfbf9",
         "mobile_card_color": "#ffffff",
         "star_color": "#d9a17d"
+      }
+    },
+    "monte_ugc": {
+      "type": "monte-ugc-carousel",
+      "blocks": {
+        "video_1": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/lv_0_20260414114718 (1).mp4",
+            "product": "midnight-blue-silk-sleep-mask"
+          }
+        },
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/lv_0_20260414114718 (1).mp4",
+            "product": "classic-black-silk-sleep-mask"
+          }
+        },
+        "video_3": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/lv_0_20260414114718 (1).mp4",
+            "product": "champagne-gold-silk-sleep-mask"
+          }
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/lv_0_20260414114718 (1).mp4",
+            "product": "rose-noir-silk-sleep-mask"
+          }
+        },
+        "video_5": {
+          "type": "video",
+          "settings": {
+            "media_type": "video",
+            "video": "shopify://files/videos/lv_0_20260414114718 (1).mp4",
+            "product": "midnight-blue-silk-sleep-mask"
+          }
+        }
       },
-      "disabled": true
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4",
+        "video_5"
+      ],
+      "settings": {
+        "heading": "Zobacz Monté w akcji",
+        "button_label": "Zobacz produkt",
+        "text_color": "#232e71",
+        "card_color": "#eee7e0",
+        "compare_color": "#8a2f3a"
+      }
     },
     "monte_spotlight": {
       "type": "monte-spotlight",
@@ -319,7 +387,9 @@
         "card_2_text_color": "#fdfbf9",
         "card_2_button_background": "#fdfbf9",
         "card_2_button_text_color": "#232e71",
-        "card_2_button_hover": "#eee7e0"
+        "card_2_button_hover": "#eee7e0",
+        "overlay_style": "solid",
+        "padding_bottom_desktop": 40
       }
     },
     "faq_accordion_GirgW4": {
@@ -418,6 +488,7 @@
         "image_zoom": false,
         "heading": "Dlaczego Monté?",
         "body": "Jedwab morwowy 22 momme, uczciwa jakość i produkty stworzone z myślą o Twojej nocnej rutynie.",
+        "body_richtext": "",
         "button_label": "Poznaj naszą historię",
         "button_link": "shopify://pages/o-marce",
         "heading_color": "#232e71",
@@ -455,60 +526,6 @@
         "chart_background": "",
         "chart_text_color": "",
         "chart_true_false_color": ""
-      }
-    },
-    "monte_ugc": {
-      "type": "monte-ugc-carousel",
-      "blocks": {
-        "video_1": {
-          "type": "video",
-          "settings": {
-            "media_type": "video",
-            "product": "midnight-blue-silk-sleep-mask"
-          }
-        },
-        "video_2": {
-          "type": "video",
-          "settings": {
-            "media_type": "video",
-            "product": "classic-black-silk-sleep-mask"
-          }
-        },
-        "video_3": {
-          "type": "video",
-          "settings": {
-            "media_type": "video",
-            "product": "champagne-gold-silk-sleep-mask"
-          }
-        },
-        "video_4": {
-          "type": "video",
-          "settings": {
-            "media_type": "video",
-            "product": "rose-noir-silk-sleep-mask"
-          }
-        },
-        "video_5": {
-          "type": "video",
-          "settings": {
-            "media_type": "video",
-            "product": "midnight-blue-silk-sleep-mask"
-          }
-        }
-      },
-      "block_order": [
-        "video_1",
-        "video_2",
-        "video_3",
-        "video_4",
-        "video_5"
-      ],
-      "settings": {
-        "heading": "Zobacz Monté w akcji",
-        "button_label": "Zobacz produkt",
-        "text_color": "#232e71",
-        "card_color": "#eee7e0",
-        "compare_color": "#8a2f3a"
       }
     }
   },

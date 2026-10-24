@@ -12,7 +12,7 @@
 .monte-mission--centered .button { align-self: center; }
 .monte-mission__side { display: none; }
 .monte-mission__mobile { position: relative; height: 230px; margin-top: 32px; }
-.monte-mission__mobile-item, .monte-mission__item { position: absolute; transform: rotate(var(--mm-angle)); }
+.monte-mission__mobile-item, .monte-mission__item { position: absolute; transform: translate3d(0, var(--mm-parallax, 0px), 0) rotate(var(--mm-angle)); }
 .monte-mission__motion { height: 100%; width: 100%; overflow: hidden; border-radius: 16px; box-shadow: 0 4px 4px rgb(0 0 0 / .25); }
 .monte-mission__motion :is(img, video, svg) { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .monte-mission__mobile-item--1 { width: 141.602px; height: 141.602px; left: calc(50% - 196.35px); top: 42.355px; --mm-angle: -30deg; --mm-entry: -160px; }
@@ -44,6 +44,7 @@
   .monte-mission__side--2 { transform: scale(.75); transform-origin: right center; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .monte-mission__mobile-item, .monte-mission__item { transform: rotate(var(--mm-angle)); }
   .monte-mission[data-animate] .monte-mission__motion, .monte-mission .button { transition: none; }
   .monte-mission[data-animate]:not([data-revealed]) .monte-mission__motion { opacity: 1; transform: none; }
 }

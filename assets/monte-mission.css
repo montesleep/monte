@@ -2,6 +2,8 @@
 .monte-mission { position: relative; display: block; overflow: clip; padding: 40px 20px; color: var(--mm-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
 .monte-mission__content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 32px; }
 .monte-mission__copy { display: grid; gap: 16px; opacity: 1; }
+.monte-mission--centered .monte-mission__content { align-items: center; text-align: center; }
+.monte-mission--centered .button { align-self: center; }
 .monte-mission h2 { margin: 0; color: var(--mm-heading); font: 500 32px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; overflow-wrap: anywhere; }
 .monte-mission__body { color: var(--mm-body); font: 400 14px/1.5 var(--text-font-family); overflow-wrap: anywhere; }
 .monte-mission__body p { margin: 0; }

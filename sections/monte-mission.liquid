@@ -1,6 +1,6 @@
 {{ 'monte-mission.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'monte-mission.js' | asset_url }}" defer></script>
-<monte-mission class="monte-mission" style="--mm-heading: {{ section.settings.heading_color }}; --mm-body: {{ section.settings.body_color }}; --mm-button: {{ section.settings.button_background }}; --mm-button-hover: {{ section.settings.button_hover }}; --mm-button-text: {{ section.settings.button_text }};">
+<monte-mission class="monte-mission{% if section.settings.center_mobile %} monte-mission--centered{% endif %}" style="--mm-heading: {{ section.settings.heading_color }}; --mm-body: {{ section.settings.body_color }}; --mm-button: {{ section.settings.button_background }}; --mm-button-hover: {{ section.settings.button_hover }}; --mm-button-text: {{ section.settings.button_text }};">
   <div class="monte-mission__content">
     <reveal-items class="monte-mission__copy" margin="0px">
       {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
@@ -66,6 +66,7 @@
     ]
   },
   "settings": [
+    { "type": "checkbox", "id": "center_mobile", "label": "Center text on mobile", "default": false },
     {
       "type": "text",
       "id": "heading",

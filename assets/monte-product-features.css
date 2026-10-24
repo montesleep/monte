@@ -23,6 +23,13 @@
 .monte-features__progress { height: 4px; border-radius: 999px; overflow: hidden; background: var(--mf-surface); }
 .monte-features__progress::before { background: var(--mf-primary); border-radius: inherit; }
 .monte-features__progress[hidden] { display: none; }
+@media (max-width: 999px) {
+  .monte-features--stacked .monte-features__reveal { gap: 32px; }
+  .monte-features--stacked .monte-features__heading { text-align: center; }
+  .monte-features--stacked .monte-features__track { display: grid; gap: 32px; margin: 0; padding: 0; overflow: visible; scroll-snap-type: none; }
+  .monte-features--stacked .monte-feature__media { height: 250px; aspect-ratio: auto; }
+  .monte-features--stacked .monte-features__progress { display: none; }
+}
 @media (min-width: 1000px) {
   .monte-features { padding: var(--mf-top, 80px) 40px var(--mf-bottom, 80px); }
   .monte-features__heading { justify-self: center; max-width: 600px; font-size: 48px; text-align: center; }

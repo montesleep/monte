@@ -1,0 +1,53 @@
+/* About page layouts. */
+.shopify-section--monte-sleep-story, .shopify-section--monte-silk-story { margin: 0; background: transparent; }
+.monte-sleep-story, .monte-silk-story { display: block; color: var(--mas-heading, #232e71); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-synthesis: none; }
+.monte-sleep-story { overflow: clip; padding-bottom: 40px; }
+.monte-sleep-story__stage { position: relative; isolation: isolate; height: 400px; }
+.monte-sleep-story__heading { position: relative; z-index: 2; margin: 0 auto; padding-top: 40px; width: calc(100% - 40px); max-width: 600px; font: 500 32px/1.1 var(--heading-font-family); text-align: center; letter-spacing: 0; text-transform: none; }
+.monte-sleep-story__background { position: absolute; top: 130px; left: 0; width: 100%; display: flex; justify-content: center; color: var(--mas-heading); opacity: .07; pointer-events: none; }
+.monte-sleep-story__background span { display: block; font: italic 500 clamp(64px, 26.67vw, 160px)/1 var(--heading-font-family); white-space: nowrap; }
+.monte-sleep-story__media { position: absolute; z-index: 3; pointer-events: none; }
+.monte-sleep-story__media--1, .monte-sleep-story__media--2 { display: none; }
+.monte-sleep-story__media--3 { width: 80px; height: 102px; left: -16px; top: 218px; }
+.monte-sleep-story__media--4 { width: 96px; height: 122px; right: -16px; top: 182px; }
+.monte-sleep-story__float { width: 100%; height: 100%; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgb(0 0 0 / .06); }
+.monte-sleep-story__float :is(img, video, svg) { display: block; width: 100%; height: 100%; object-fit: cover; }
+.monte-sleep-story__stats { position: relative; z-index: 4; display: grid; gap: 16px; margin-inline: auto; padding-inline: 20px; max-width: 1240px; }
+.monte-sleep-story__stat { display: flex; flex-direction: column; gap: 20px; padding: 20px; border-radius: 16px; background: var(--mas-card); min-width: 0; }
+.monte-sleep-story__value { margin: 0; color: var(--mas-heading); font: 500 36px/1.1 var(--heading-font-family); letter-spacing: 0; text-transform: none; }
+.monte-sleep-story__value span { white-space: pre-wrap; }
+.monte-sleep-story__stat p { margin: 0; color: var(--mas-body); font: 400 14px/1.5 var(--text-font-family); }
+.monte-silk-story { padding: 40px 20px; }
+.monte-silk-story__heading { margin: 0 auto 32px; max-width: 600px; font: 500 32px/1.1 var(--heading-font-family); text-align: center; letter-spacing: 0; text-transform: none; }
+.monte-silk-story__rows { display: grid; gap: 32px; max-width: 1120px; margin-inline: auto; }
+.monte-silk-story .monte-feature { min-width: 0; gap: 16px; }
+.monte-silk-story .monte-feature__media { height: 250px; aspect-ratio: auto; }
+.monte-silk-story .monte-feature__media-mobile img { width: 100%; }
+@media (min-width: 1000px) {
+  .monte-sleep-story { padding: 80px 0; }
+  .monte-sleep-story__stage { height: 550px; }
+  .monte-sleep-story__heading { padding-top: 80.2px; font-size: 48px; }
+  .monte-sleep-story__background { top: 100px; }
+  .monte-sleep-story__background span { font-size: clamp(240px, 24.306vw, 400px); }
+  .monte-sleep-story__media--1 { display: block; width: 180px; height: 229px; left: 5.556%; top: -20px; }
+  .monte-sleep-story__media--2 { display: block; width: 220px; height: 280px; right: 12.5%; top: -40px; }
+  .monte-sleep-story__media--3 { width: 144px; height: 183px; left: -20px; top: 285px; }
+  .monte-sleep-story__media--4 { width: 128px; height: 163px; right: 12px; top: 437px; }
+  .monte-sleep-story__stats { padding-top: 40px; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .monte-sleep-story__stat { gap: 32px; }
+  .monte-sleep-story__value { font-size: 48px; }
+  .monte-sleep-story__stat p { font-size: 16px; }
+  .monte-silk-story { padding: 80px 40px; }
+  .monte-silk-story__heading { font-size: 48px; margin-bottom: 40px; }
+  .monte-silk-story__rows { gap: 20px; }
+  .monte-silk-story .monte-feature { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 80px; align-items: center; }
+  .monte-silk-story .monte-feature:nth-child(even) .monte-feature__media { order: 2; }
+  .monte-silk-story .monte-feature__media { height: 420px; }
+  .monte-silk-story .monte-feature__content { gap: 16px; }
+  .monte-silk-story .monte-feature__title-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .monte-silk-story .monte-feature__badge { flex-basis: 24px; }
+  .monte-silk-story .monte-feature__title { font-size: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .monte-sleep-story [data-parallax-speed] { transform: none !important; }
+}

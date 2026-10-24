@@ -1,0 +1,133 @@
+{{ 'monte-product-features.css' | asset_url | stylesheet_tag }}
+{{ 'monte-about.css' | asset_url | stylesheet_tag }}
+<div class="monte-silk-story" style="--mas-heading: {{ section.settings.heading_color }}; --mf-primary: {{ section.settings.heading_color }}; --mf-secondary: {{ section.settings.body_color }}; --mf-surface: {{ section.settings.surface_color }}; --mf-badge: {{ section.settings.badge_color }}; --mf-badge-text: {{ section.settings.badge_text_color }};">
+  {%- if section.settings.heading != blank -%}<h2 class="monte-silk-story__heading">{{ section.settings.heading | escape | newline_to_br }}</h2>{%- endif -%}
+  <div class="monte-silk-story__rows">
+    {%- for block in section.blocks -%}
+      {%- render 'monte-feature-card', block: block, section: section, index: forloop.index -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Monté Silk Story",
+  "tag": "section",
+  "class": "shopify-section--monte-silk-story",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer",
+      "custom.overlay"
+    ]
+  },
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Dlatego stawiamy na jedwab"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_numbers",
+      "label": "Show numbered badges",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Headings and progress",
+      "default": "#232E71"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Descriptions",
+      "default": "#52597E"
+    },
+    {
+      "type": "color",
+      "id": "surface_color",
+      "label": "Media and progress background",
+      "default": "#EEE7E0"
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Badge background",
+      "default": "#D9A17D"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text",
+      "default": "#FDFBF9"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Product feature"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Badge text",
+          "info": "Leave empty for automatic numbering. Keep custom text short."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Desktop video",
+          "info": "Replaces the image. Autoplays, muted and looped, without controls."
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image"
+        },
+        {
+          "type": "video",
+          "id": "mobile_video",
+          "label": "Mobile video",
+          "info": "Replaces the image. Autoplays, muted and looped, without controls. Empty mobile media fields use desktop media."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Monté Silk Story",
+      "blocks": [
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        },
+        {
+          "type": "feature"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

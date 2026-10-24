@@ -1,0 +1,201 @@
+{{ 'monte-about.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'monte-about.js' | asset_url }}" defer></script>
+<monte-sleep-story class="monte-sleep-story" data-strength="{{ section.settings.parallax_strength | divided_by: 50.0 }}" style="--mas-heading: {{ section.settings.heading_color }}; --mas-body: {{ section.settings.body_color }}; --mas-card: {{ section.settings.card_color }};">
+  <div class="monte-sleep-story__stage">
+    {%- if section.settings.show_background_text and section.settings.background_text != blank -%}
+      <div class="monte-sleep-story__background" aria-hidden="true"><span data-parallax-speed="-80">{{ section.settings.background_text | escape }}</span></div>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}<h2 class="monte-sleep-story__heading">{{ section.settings.heading | escape | newline_to_br }}</h2>{%- endif -%}
+    {%- for index in (1..4) -%}
+      {%- liquid
+        assign image_key = 'image_' | append: index
+        assign video_key = 'video_' | append: index
+        assign speed = 100
+        case index
+          when 2
+            assign speed = 200
+          when 3
+            assign speed = 40
+          when 4
+            assign speed = 150
+        endcase
+      -%}
+      <div class="monte-sleep-story__media monte-sleep-story__media--{{ index }}" aria-hidden="true">
+        <div class="monte-sleep-story__float" data-parallax-speed="{{ speed }}">
+          {%- render 'monte-navigation-media', image: section.settings[image_key], video: section.settings[video_key], placeholder: 'image', sizes: '(min-width: 1000px) 220px, 96px' -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+  {%- if section.blocks.size > 0 -%}
+    <div class="monte-sleep-story__stats">
+      {%- for block in section.blocks -%}
+        <div class="monte-sleep-story__stat" {{ block.shopify_attributes }}>
+          <h3 class="monte-sleep-story__value" data-monte-reveal="off" aria-label="{{ block.settings.value | escape }}"><span data-count-value="{{ block.settings.value | escape }}" aria-hidden="true">{{ block.settings.value | escape }}</span></h3>
+          <p>{{ block.settings.description | escape }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</monte-sleep-story>
+
+{% schema %}
+{
+  "name": "Monté Sleep Story",
+  "tag": "section",
+  "class": "shopify-section--monte-sleep-story",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Nowoczesne życie\nkradnie nam sen"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_background_text",
+      "label": "Show background text",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "background_text",
+      "label": "Background text",
+      "default": "( sen )"
+    },
+    {
+      "type": "range",
+      "id": "parallax_strength",
+      "label": "Parallax intensity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "unit": "%"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Headings",
+      "default": "#232E71"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Descriptions",
+      "default": "#52597E"
+    },
+    {
+      "type": "color",
+      "id": "card_color",
+      "label": "Statistic cards",
+      "default": "#EEE7E0"
+    },
+    {
+      "type": "header",
+      "content": "Floating media 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+    {
+      "type": "video",
+      "id": "video_1",
+      "label": "Video",
+      "info": "Replaces the image. Autoplays muted and looped, without controls."
+    },
+    {
+      "type": "header",
+      "content": "Floating media 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "video",
+      "id": "video_2",
+      "label": "Video",
+      "info": "Replaces the image. Autoplays muted and looped, without controls."
+    },
+    {
+      "type": "header",
+      "content": "Floating media 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image"
+    },
+    {
+      "type": "video",
+      "id": "video_3",
+      "label": "Video",
+      "info": "Replaces the image. Autoplays muted and looped, without controls."
+    },
+    {
+      "type": "header",
+      "content": "Floating media 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image"
+    },
+    {
+      "type": "video",
+      "id": "video_4",
+      "label": "Video",
+      "info": "Replaces the image. Autoplays muted and looped, without controls."
+    },
+    {
+      "type": "paragraph",
+      "content": "On mobile, media 3 and 4 are displayed at the sides. Empty media slots use theme placeholders."
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "70%",
+          "info": "Numbers count up once on appearance. Labels such as '1 na 3' or '6 h 40' are supported."
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Monté Sleep Story",
+      "blocks": [
+        {
+          "type": "stat"
+        },
+        {
+          "type": "stat"
+        },
+        {
+          "type": "stat"
+        },
+        {
+          "type": "stat"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

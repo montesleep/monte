@@ -1,7 +1,7 @@
 {{ 'monte-product-features.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'monte-product-features.js' | asset_url }}" defer></script>
 {%- assign carousel_id = 'features-' | append: section.id -%}
-<monte-product-features class="monte-features" style="--mf-primary: {{ section.settings.heading_color }}; --mf-secondary: {{ section.settings.body_color }}; --mf-surface: {{ section.settings.surface_color }}; --mf-badge: {{ section.settings.badge_color }}; --mf-badge-text: {{ section.settings.badge_text_color }}; --mf-top: {{ section.settings.padding_top_desktop }}px; --mf-bottom: {{ section.settings.padding_bottom_desktop }}px; --mf-mobile-top: {{ section.settings.padding_top_mobile }}px; --mf-mobile-bottom: {{ section.settings.padding_bottom_mobile }}px;">
+<monte-product-features class="monte-features{% if section.settings.stack_mobile %} monte-features--stacked{% endif %}" style="--mf-primary: {{ section.settings.heading_color }}; --mf-secondary: {{ section.settings.body_color }}; --mf-surface: {{ section.settings.surface_color }}; --mf-badge: {{ section.settings.badge_color }}; --mf-badge-text: {{ section.settings.badge_text_color }}; --mf-top: {{ section.settings.padding_top_desktop }}px; --mf-bottom: {{ section.settings.padding_bottom_desktop }}px; --mf-mobile-top: {{ section.settings.padding_top_mobile }}px; --mf-mobile-bottom: {{ section.settings.padding_bottom_mobile }}px;">
   <reveal-items class="monte-features__reveal" margin="0px">
     {%- if section.settings.heading != blank -%}<h2 class="monte-features__heading">{{ section.settings.heading | escape | newline_to_br }}</h2>{%- endif -%}
     {%- if section.blocks.size > 0 -%}
@@ -29,6 +29,7 @@
   },
   "max_blocks": 12,
   "settings": [
+    { "type": "checkbox", "id": "stack_mobile", "label": "Stack cards on mobile", "default": false },
     {
       "type": "textarea",
       "id": "heading",

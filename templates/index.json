@@ -561,10 +561,12 @@
         "article_3",
         "article_4"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Blog Monté",
         "blog": "news",
         "button_label": "Zobacz wszystkie artykuły",
+        "button_link": "",
         "text_color": "#232e71",
         "padding_top_desktop": 80,
         "padding_bottom_desktop": 80,

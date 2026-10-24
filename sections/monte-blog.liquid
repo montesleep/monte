@@ -1,0 +1,65 @@
+{{ 'monte-blog.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign blog_url = section.settings.button_link | default: section.settings.blog.url
+  assign button_label = section.settings.button_label | escape
+-%}
+<div class="monte-blog" style="--mblog-color: {{ section.settings.text_color }}; --mblog-top: {{ section.settings.padding_top_mobile }}px; --mblog-bottom: {{ section.settings.padding_bottom_mobile }}px; --mblog-top-desktop: {{ section.settings.padding_top_desktop }}px; --mblog-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="monte-blog__heading" id="BlogHeading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+  {%- endif -%}
+  <div class="monte-blog__list" role="list" {% if section.settings.heading != blank %}aria-labelledby="BlogHeading-{{ section.id }}"{% else %}aria-label="Artykuły na blogu"{% endif %} tabindex="0">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign selected_article = block.settings.article
+        assign card_image = block.settings.image | default: selected_article.image
+        assign card_title = selected_article.title | default: block.settings.placeholder_title
+      -%}
+      <div class="monte-blog__item" role="listitem" {{ block.shopify_attributes }}>
+        {% if selected_article != blank %}<a class="monte-blog__card" href="{{ selected_article.url }}">{% else %}<div class="monte-blog__card monte-blog__card--placeholder">{% endif %}
+          <div class="monte-blog__media">
+            {%- render 'monte-navigation-media', image: card_image, video: block.settings.video, placeholder: 'image', sizes: '(min-width: 1000px) calc((100vw - 140px) / 4), 250px' -%}
+          </div>
+          <h3 class="monte-blog__title">{{ card_title | default: 'Tytuł artykułu' | escape }}</h3>
+        {% if selected_article != blank %}</a>{% else %}</div>{% endif %}
+      </div>
+    {%- endfor -%}
+  </div>
+  {%- if button_label != blank and blog_url != blank -%}
+    <div class="monte-blog__footer">{%- render 'button', content: button_label, href: blog_url, style: 'outline' -%}</div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Monté Blog",
+  "tag": "section",
+  "class": "shopify-section--monte-blog",
+  "max_blocks": 4,
+  "disabled_on": { "groups": ["header", "footer", "custom.overlay"] },
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Blog Monté" },
+    { "type": "blog", "id": "blog", "label": "Blog", "info": "Destination for the view-all button. Articles below are selected individually." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Zobacz wszystkie artykuły" },
+    { "type": "url", "id": "button_link", "label": "Button link override", "info": "Leave empty to link to the selected blog." },
+    { "type": "color", "id": "text_color", "label": "Heading and article titles", "default": "#232E71" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top_desktop", "label": "Padding top — desktop", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Padding bottom — desktop", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Padding top — mobile", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Padding bottom — mobile", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "article",
+      "name": "Article",
+      "settings": [
+        { "type": "article", "id": "article", "label": "Article" },
+        { "type": "image_picker", "id": "image", "label": "Image override", "info": "Leave empty to use the article's featured image." },
+        { "type": "video", "id": "video", "label": "Video override", "info": "Replaces the image. Autoplays muted, loops and has no player controls." },
+        { "type": "text", "id": "placeholder_title", "label": "Placeholder title", "default": "Tytuł artykułu", "info": "Shown only until an article is selected. Placeholder cards have no link." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Monté Blog", "blocks": [{ "type": "article" }, { "type": "article" }, { "type": "article" }, { "type": "article" }] }]
+}
+{% endschema %}

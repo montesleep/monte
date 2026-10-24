@@ -522,6 +522,55 @@
         "chart_text_color": "",
         "chart_true_false_color": ""
       }
+    },
+    "monte_blog": {
+      "type": "monte-blog",
+      "blocks": {
+        "article_1": {
+          "type": "article",
+          "settings": {
+            "article": "news/dlaczego-jedwab-morwowy-prawda-o-tkaninie-ktora-zmienia-jakosc-snu",
+            "placeholder_title": "Dlaczego jedwab morwowy? Prawda o tkaninie, która zmienia jakość snu"
+          }
+        },
+        "article_2": {
+          "type": "article",
+          "settings": {
+            "article": "news/jak-swiatlo-niszczy-twoja-melatonine-i-dlaczego-zasypiasz-gorzej-niz-kiedys",
+            "placeholder_title": "Jak światło niszczy twoją melatoninę i dlaczego zasypiasz gorzej niż kiedyś"
+          }
+        },
+        "article_3": {
+          "type": "article",
+          "settings": {
+            "article": "news/dlaczego-budzisz-sie-zmeczona-nawet-po-8-godzinach-snu",
+            "placeholder_title": "Dlaczego budzisz się zmęczona, nawet po 8 godzinach snu"
+          }
+        },
+        "article_4": {
+          "type": "article",
+          "settings": {
+            "article": "",
+            "placeholder_title": "Jak spać w podróży: samolot, autobus, długa trasa samochodem"
+          }
+        }
+      },
+      "block_order": [
+        "article_1",
+        "article_2",
+        "article_3",
+        "article_4"
+      ],
+      "settings": {
+        "heading": "Blog Monté",
+        "blog": "news",
+        "button_label": "Zobacz wszystkie artykuły",
+        "text_color": "#232e71",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
     }
   },
   "order": [
@@ -533,6 +582,7 @@
     "monte_spotlight",
     "faq_accordion_GirgW4",
     "monte_brand_story",
-    "section-15"
+    "section-15",
+    "monte_blog"
   ]
 }

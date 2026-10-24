@@ -380,20 +380,6 @@
             "question": "Co jeśli maska mi nie odpowiada?",
             "answer": "<p>Masz 30 nocy na decyzję. Jeśli zmienisz zdanie, napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a>, a przeprowadzimy Cię przez bezpłatny zwrot i oddamy pełną kwotę. Ze względów higienicznych maska musi być nieużywana, w oryginalnym opakowaniu.</p>"
           }
-        },
-        "faq_item_JmGcMF": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Jak ją pielęgnować?",
-            "answer": "<p>Pranie ręczne w zimnej wodzie (maks. 30°C) z delikatnym detergentem do jedwabiu. Susz na płasko, z dala od słońca. Po wysuszeniu możesz przywrócić puszystość żelazkiem w trybie pary od wewnętrznej strony tkaniny.</p>"
-          }
-        },
-        "faq_item_aCF3xp": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Co jeśli maska mi nie odpowiada?",
-            "answer": "<p>Oferujemy 30-nocną gwarancję zwrotu pieniędzy. Jeśli maska nie spełni twoich oczekiwań, odeślij ją w oryginalnym, nieużywanym stanie w ciągu 30 nocy od zakupu, a zwrócimy ci pełną kwotę. Bez pytań.</p>"
-          }
         }
       },
       "block_order": [
@@ -402,9 +388,7 @@
         "faq_item_BpCmWH",
         "faq_item_xFdD6h",
         "faq_item_Nab37X",
-        "faq_item_azPmpc",
-        "faq_item_JmGcMF",
-        "faq_item_aCF3xp"
+        "faq_item_azPmpc"
       ],
       "settings": {
         "monte_layout": true,

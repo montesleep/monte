@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "custom.about",
   "name": "Monté About Page",
@@ -11,88 +20,171 @@
         "mobile_height": 420,
         "heading": "O Monté",
         "subheading": "Jesteśmy młodą polską marką z dużymi ambicjami.\nOto historia tego, dlaczego powstaliśmy.",
+        "badge_text": "",
+        "badge_background": "#f8f1e9",
+        "badge_color": "#232e71",
         "show_rating": false,
-        "heading_color": "#FDFBF9",
-        "body_color": "#FDFBF9",
-        "rating_color": "#FDFBF9",
+        "heading_color": "#fdfbf9",
+        "body_color": "#fdfbf9",
+        "rating_color": "#fdfbf9",
         "overlay_color": "#000000",
         "overlay_opacity": 20,
         "mobile_gradient": true
       }
     },
+    "about_sleep": {
+      "type": "monte-sleep-story",
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "value": "1 na 3",
+            "description": "Tyle osób śpi za krótko, by organizm zdążył się w pełni zregenerować."
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "value": "6 g 40 m",
+            "description": "Tyle średnio śpi dorosły. O ponad godzinę mniej, niż potrzebuje ciało."
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "value": "2 g",
+            "description": "Tyle czasu przed snem spędzamy przy ekranach, które opóźniają zasypianie."
+          }
+        },
+        "stat_4": {
+          "type": "stat",
+          "settings": {
+            "value": "70%",
+            "description": "Nocnej pielęgnacji wsiąka w zwykłą bawełnianą poszewkę, zamiast w skórę."
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3",
+        "stat_4"
+      ],
+      "name": "Monté Sleep Story",
+      "settings": {
+        "heading": "Nowoczesne życie\nkradnie nam sen",
+        "show_background_text": true,
+        "background_text": "( sen )",
+        "parallax_strength": 50,
+        "heading_color": "#232e71",
+        "body_color": "#52597e",
+        "card_color": "#eee7e0"
+      }
+    },
+    "about_silk": {
+      "type": "monte-silk-story",
+      "blocks": {
+        "silk_1": {
+          "type": "feature",
+          "settings": {
+            "title": "Zaczynamy od materiału",
+            "description": "<p>100% jedwab morwowy 22 momme. Bez poliestrowej satyny, bez domieszek.</p>",
+            "number": ""
+          }
+        },
+        "silk_2": {
+          "type": "feature",
+          "settings": {
+            "title": "Liczy się każdy detal",
+            "description": "<p>Rzep zamiast gumki w masce, ukryty zamek w poszewce. Rozwiązania, które mają sens.</p>",
+            "number": ""
+          }
+        },
+        "silk_3": {
+          "type": "feature",
+          "settings": {
+            "title": "Premium w dotyku",
+            "description": "<p>Gładki, miękki jedwab morwowy. Premium, które czujesz od pierwszej nocy.</p>",
+            "number": ""
+          }
+        }
+      },
+      "block_order": [
+        "silk_1",
+        "silk_2",
+        "silk_3"
+      ],
+      "name": "Monté Silk Story",
+      "settings": {
+        "heading": "Dlatego stawiamy na jedwab",
+        "show_numbers": true,
+        "heading_color": "#232e71",
+        "body_color": "#52597e",
+        "surface_color": "#eee7e0",
+        "badge_color": "#d9a17d",
+        "badge_text_color": "#fdfbf9"
+      }
+    },
     "about_story": {
       "type": "monte-brand-story",
+      "disabled": true,
       "name": "Monté About Story",
       "settings": {
         "image_zoom": false,
         "heading": "Nasza historia",
         "body": "",
+        "body_richtext": "<p>Monté powstało z prostego przekonania: to, w czym śpisz, ma znaczenie. Szukaliśmy jedwabnych produktów, które naprawdę spełniają obietnice. Większość albo rozczarowywała jakością, albo kosztowała więcej niż powinna.</p><p>Postanowiliśmy to zmienić. Wybraliśmy jedwab morwowy 22 momme, zaprojektowaliśmy produkty od zera i postawiliśmy na prostotę, która działa. Bez zbędnych ozdobników, bez marketingowych obietnic, których nie da się sprawdzić.</p><p>Dziś Monté to rosnąca kolekcja jedwabnych produktów na noc, które łączą jakość z uczciwą ceną. Każdy z nich powstaje z tego samego materiału i z tą samą zasadą: rób mniej, ale rób to dobrze.</p>",
         "button_label": "",
-        "heading_color": "#232E71",
-        "body_color": "#52597E",
+        "button_link": "",
+        "heading_color": "#232e71",
+        "body_color": "#52597e",
         "padding_top_desktop": 80,
         "padding_bottom_desktop": 80,
         "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40,
-        "body_richtext": "<p>Monté powstało z prostego przekonania: to, w czym śpisz, ma znaczenie. Szukaliśmy jedwabnych produktów, które naprawdę spełniają obietnice. Większość albo rozczarowywała jakością, albo kosztowała więcej niż powinna.</p><p>Postanowiliśmy to zmienić. Wybraliśmy jedwab morwowy 22 momme, zaprojektowaliśmy produkty od zera i postawiliśmy na prostotę, która działa. Bez zbędnych ozdobników, bez marketingowych obietnic, których nie da się sprawdzić.</p><p>Dziś Monté to rosnąca kolekcja jedwabnych produktów na noc, które łączą jakość z uczciwą ceną. Każdy z nich powstaje z tego samego materiału i z tą samą zasadą: rób mniej, ale rób to dobrze.</p>",
-        "button_link": ""
-      },
-      "disabled": true
+        "padding_bottom_mobile": 40
+      }
     },
     "about_mission": {
       "type": "monte-mission",
       "name": "Monté Mission",
       "settings": {
+        "center_mobile": true,
         "heading": "Nasza misja",
+        "body": "<p>Wierzymy, że noc zasługuje na tyle samo uwagi, co dzień. Dlatego stawiamy na jeden materiał, jedwab morwowy, i budujemy wokół niego kolekcję akcesoriów na sen i pielęgnację. Prosto, uczciwie i z dbałością o każdy detal.</p><p>Chcemy, żeby jedwab przestał być luksusem od święta, a stał się częścią Twojej codziennej nocy.</p>",
         "button_label": "Odkryj nasze produkty",
         "button_link": "/collections/all",
-        "heading_color": "#232E71",
-        "body_color": "#52597E",
-        "button_background": "#232E71",
+        "heading_color": "#232e71",
+        "body_color": "#52597e",
+        "button_background": "#232e71",
         "button_hover": "#182153",
-        "button_text": "#FDFBF9",
-        "body": "<p>Wierzymy, że noc zasługuje na tyle samo uwagi, co dzień. Dlatego stawiamy na jeden materiał, jedwab morwowy, i budujemy wokół niego kolekcję akcesoriów na sen i pielęgnację. Prosto, uczciwie i z dbałością o każdy detal.</p><p>Chcemy, żeby jedwab przestał być luksusem od święta, a stał się częścią Twojej codziennej nocy.</p>",
-        "center_mobile": true
+        "button_text": "#fdfbf9"
       }
     },
     "about_values": {
       "type": "monte-product-features",
-      "name": "Monté About Values",
-      "settings": {
-        "heading": "Co nas napędza\nkażdego dnia",
-        "accessibility_label": "Wartości Monté",
-        "show_numbers": true,
-        "heading_color": "#232E71",
-        "body_color": "#52597E",
-        "surface_color": "#EEE7E0",
-        "badge_color": "#D9A17D",
-        "badge_text_color": "#FDFBF9",
-        "padding_top_desktop": 80,
-        "padding_bottom_desktop": 80,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40,
-        "stack_mobile": true
-      },
       "blocks": {
         "value_1": {
           "type": "feature",
           "settings": {
             "title": "Jakość",
-            "description": "<p>Każdy produkt powstaje z jedwabiu morwowego 22 momme. Nie szukamy tańszych zamienników i nie idziemy na skróty.</p>"
+            "description": "<p>Każdy produkt powstaje z jedwabiu morwowego 22 momme. Nie szukamy tańszych zamienników i nie idziemy na skróty.</p>",
+            "number": ""
           }
         },
         "value_2": {
           "type": "feature",
           "settings": {
             "title": "Uczciwość",
-            "description": "<p>Piszemy dokładnie to, co jest w środku. Pełny skład, dokładne wymiary i uczciwa cena, bez ukrytych domieszek.</p>"
+            "description": "<p>Piszemy dokładnie to, co jest w środku. Pełny skład, dokładne wymiary i uczciwa cena, bez ukrytych domieszek.</p>",
+            "number": ""
           }
         },
         "value_3": {
           "type": "feature",
           "settings": {
             "title": "Ludzie",
-            "description": "<p>Tworzymy produkty dla prawdziwych ludzi. Każda opinia, każde pytanie i każdy zwrot uczą nas robić to lepiej.</p>"
+            "description": "<p>Tworzymy produkty dla prawdziwych ludzi. Każda opinia, każde pytanie i każdy zwrot uczą nas robić to lepiej.</p>",
+            "number": ""
           }
         }
       },
@@ -100,7 +192,23 @@
         "value_1",
         "value_2",
         "value_3"
-      ]
+      ],
+      "name": "Monté About Values",
+      "settings": {
+        "stack_mobile": true,
+        "heading": "Co nas napędza\nkażdego dnia",
+        "accessibility_label": "Wartości Monté",
+        "show_numbers": true,
+        "heading_color": "#232e71",
+        "body_color": "#52597e",
+        "surface_color": "#eee7e0",
+        "badge_color": "#d9a17d",
+        "badge_text_color": "#fdfbf9",
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
+      }
     },
     "about_spotlight": {
       "type": "monte-spotlight",
@@ -131,96 +239,6 @@
         "overlay_style": "gradient",
         "padding_bottom_desktop": 80
       }
-    },
-    "about_sleep": {
-      "type": "monte-sleep-story",
-      "name": "Monté Sleep Story",
-      "settings": {
-        "heading": "Nowoczesne życie\nkradnie nam sen",
-        "show_background_text": true,
-        "background_text": "( sen )",
-        "parallax_strength": 50,
-        "heading_color": "#232E71",
-        "body_color": "#52597E",
-        "card_color": "#EEE7E0"
-      },
-      "blocks": {
-        "stat_1": {
-          "type": "stat",
-          "settings": {
-            "value": "1 na 3",
-            "description": "Tyle osób śpi za krótko, by organizm zdążył się w pełni zregenerować."
-          }
-        },
-        "stat_2": {
-          "type": "stat",
-          "settings": {
-            "value": "6 h 40",
-            "description": "Tyle średnio śpi dorosły. O ponad godzinę mniej, niż potrzebuje ciało."
-          }
-        },
-        "stat_3": {
-          "type": "stat",
-          "settings": {
-            "value": "2 h",
-            "description": "Tyle czasu przed snem spędzamy przy ekranach, które opóźniają zasypianie."
-          }
-        },
-        "stat_4": {
-          "type": "stat",
-          "settings": {
-            "value": "70%",
-            "description": "Nocnej pielęgnacji wsiąka w zwykłą bawełnianą poszewkę, zamiast w skórę."
-          }
-        }
-      },
-      "block_order": [
-        "stat_1",
-        "stat_2",
-        "stat_3",
-        "stat_4"
-      ]
-    },
-    "about_silk": {
-      "type": "monte-silk-story",
-      "name": "Monté Silk Story",
-      "settings": {
-        "heading": "Dlatego stawiamy na jedwab",
-        "show_numbers": true,
-        "heading_color": "#232E71",
-        "body_color": "#52597E",
-        "surface_color": "#EEE7E0",
-        "badge_color": "#D9A17D",
-        "badge_text_color": "#FDFBF9"
-      },
-      "blocks": {
-        "silk_1": {
-          "type": "feature",
-          "settings": {
-            "title": "Zaczynamy od materiału",
-            "description": "<p>100% jedwab morwowy 22 momme. Bez poliestrowej satyny, bez domieszek.</p>"
-          }
-        },
-        "silk_2": {
-          "type": "feature",
-          "settings": {
-            "title": "Liczy się każdy detal",
-            "description": "<p>Rzep zamiast gumki w masce, ukryty zamek w poszewce. Rozwiązania, które mają sens.</p>"
-          }
-        },
-        "silk_3": {
-          "type": "feature",
-          "settings": {
-            "title": "Premium w dotyku",
-            "description": "<p>Gładki, miękki jedwab morwowy. Premium, które czujesz od pierwszej nocy.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "silk_1",
-        "silk_2",
-        "silk_3"
-      ]
     }
   },
   "order": [

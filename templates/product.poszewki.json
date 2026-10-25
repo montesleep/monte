@@ -15,25 +15,25 @@
         "monte_highlight_1": {
           "type": "monte_highlight",
           "settings": {
-            "text": "<strong>100% blackout</strong> dla całkowitej ciemności"
+            "text": "<strong>Włosy nie łamią się</strong> i nie plączą w nocy"
           }
         },
         "monte_highlight_2": {
           "type": "monte_highlight",
           "settings": {
-            "text": "<strong>Nie wchłania kosmetyków</strong>, zero załamów rano"
+            "text": "<strong>Zero odcisków</strong> poduszki na twarzy rano"
           }
         },
         "monte_highlight_3": {
           "type": "monte_highlight",
           "settings": {
-            "text": "<strong>Bez ucisku na oczy</strong> i rzęsy przez całą noc"
+            "text": "<strong>Nie wchłania kremu</strong> ani olejku do włosów"
           }
         },
         "monte_highlight_4": {
           "type": "monte_highlight",
           "settings": {
-            "text": "<strong>Rzep zamiast gumki</strong>, nie ściska skroni"
+            "text": "<strong>Ukryty zamek</strong>, nie dotyka twarzy w nocy"
           }
         },
         "monte_promotion": {
@@ -314,6 +314,7 @@
         "feature_3"
       ],
       "settings": {
+        "stack_mobile": false,
         "heading": "Małe detale, które\nzmieniają jakość snu",
         "accessibility_label": "Małe detale Monté",
         "show_numbers": true,
@@ -429,13 +430,28 @@
       "type": "related-products",
       "settings": {
         "monte_layout": true,
-        "title": "Może Ci się spodobać",
+        "recommendations_count": 6,
         "products": [
           "midnight-blue-silk-sleep-mask",
           "classic-black-silk-sleep-mask",
           "rose-noir-silk-sleep-mask",
           "champagne-gold-silk-sleep-mask"
-        ]
+        ],
+        "full_width": true,
+        "stack_products": true,
+        "show_progress_bar": false,
+        "products_per_row_mobile": "1",
+        "products_per_row_desktop": 3,
+        "subheading": "",
+        "title": "Może Ci się spodobać",
+        "content": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
       }
     }
   },

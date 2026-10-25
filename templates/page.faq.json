@@ -114,8 +114,8 @@
         "question5": {
           "type": "faq_item",
           "settings": {
-            "question": "Czy wystawiacie fakturę?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "question": "Jakie metody płatności akceptujecie?",
+            "answer": "<p>Płatności obsługuje Przelewy24: karta (Visa, Mastercard), BLIK i szybki przelew online.</p>"
           }
         },
         "question6": {

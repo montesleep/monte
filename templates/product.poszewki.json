@@ -48,8 +48,8 @@
         "monte_bundle": {
           "type": "monte_bundle",
           "settings": {
-            "row1_title": "1 Maska",
-            "row2_title": "2 Maski",
+            "row1_title": "1 Poszewka",
+            "row2_title": "2 Poszewki",
             "row2_discount": 10,
             "row2_footer": "+ Darmowa dostawa",
             "popup_title": "Wybierz produkt",

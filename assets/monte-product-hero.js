@@ -176,13 +176,13 @@ class MonteProductBundle extends HTMLElement {
   connectedCallback() {
     this.abort = new AbortController(); const signal = this.abort.signal;
     this.data = JSON.parse(this.querySelector('[data-bundle-data]').textContent);
-    this.current = this.data.current; this.slots = [{ ...this.current }, null]; this.count = 1; this.activeSlot = 1;
+    this.current = this.data.current; this.slots = [{ ...this.current }, null]; this.count = 1; this.activeSlot = 1; this.slotsExpanded = undefined;
     this.drawer = document.getElementById(this.dataset.drawer);
     this.button = this.querySelector('[data-bundle-atc]'); this.error = this.querySelector('.mp-bundle-error');
     this.addEventListener('change', event => {
       if (event.target.matches('input[type=radio]')) {
-        const previous = this.count; this.count = Number(event.target.value); this.render();
-        if (previous !== this.count) this.animateSlots();
+        const previous = this.count; this.count = Number(event.target.value);
+        this.render({ animateSlots: previous !== this.count });
       }
       if (event.target.matches('[data-current-variant]')) {
         const v = this.data.variants.find(v => v.id === Number(event.target.value));
@@ -222,14 +222,33 @@ class MonteProductBundle extends HTMLElement {
     if (this.drawer?.parentElement === document.body) this.drawer.remove();
   }
   pick(index) { this.activeSlot = index; this.drawer.show(); }
-  animateSlots() {
-    const slots = this.querySelector('.mp-bundle-slots'); if (!slots || reduced()) return;
-    this.slotAnimation?.cancel();
+  animateSlots(animate = false) {
+    const slots = this.querySelector('.mp-bundle-slots'); if (!slots) return;
     const expanded = this.count === 2;
+    if (this.slotsExpanded === expanded) return;
+    this.slotsExpanded = expanded;
+    // Capture the in-flight position before cancelling so rapid toggles never snap.
+    const height = slots.hidden ? 0 : parseFloat(getComputedStyle(slots).height);
+    const opacity = slots.hidden ? 0 : parseFloat(getComputedStyle(slots).opacity);
+    this.slotAnimation?.cancel(); this.slotAnimation = null;
+    slots.inert = !expanded;
+    if (!animate || reduced()) {
+      slots.hidden = !expanded; slots.style.removeProperty('overflow'); return;
+    }
     slots.hidden = false; slots.style.overflow = 'hidden';
-    const height = `${slots.offsetHeight}px`;
-    this.slotAnimation = slots.animate({ height: expanded ? ['0px', height] : [height, '0px'], opacity: expanded ? [0, 1] : [1, 0] }, { duration: 250, easing: 'ease' });
-    this.slotAnimation.finished.then(() => { slots.hidden = this.count !== 2; slots.style.removeProperty('overflow'); }).catch(() => {});
+    const fullHeight = slots.querySelector('.mp-bundle-slots-content').offsetHeight;
+    const targetHeight = expanded ? fullHeight : 0;
+    const duration = Math.max(120, 320 * Math.min(1, Math.abs(targetHeight - height) / Math.max(1, fullHeight)));
+    const animation = slots.animate({ height: [`${height}px`, `${targetHeight}px`], opacity: [opacity, expanded ? 1 : 0] }, {
+      duration, easing: 'cubic-bezier(.25,.46,.45,.94)', fill: 'both'
+    });
+    this.slotAnimation = animation;
+    animation.finished.then(() => {
+      if (this.slotAnimation !== animation) return;
+      slots.hidden = !expanded;
+      animation.cancel(); this.slotAnimation = null;
+      slots.style.removeProperty('overflow');
+    }).catch(() => {});
   }
   get selectionPrices() {
     if (this.count === 1) return { price: this.current.price, compare: this.current.compare };
@@ -254,7 +273,7 @@ class MonteProductBundle extends HTMLElement {
       price.append(compare, badge);
     }
   }
-  render() {
+  render({ animateSlots = false } = {}) {
     this.querySelectorAll('[data-choice]').forEach(row => row.dataset.selected = String(Number(row.dataset.choice) === this.count));
     this.querySelector('[data-selected-label]').textContent = this.querySelector(`[data-choice="${this.count}"] [data-option-title]`).textContent;
     this.querySelector('[data-single-price]').textContent = money(this.current.price, 0);
@@ -266,7 +285,6 @@ class MonteProductBundle extends HTMLElement {
     singleSaving.hidden = singleCompare.hidden;
     const slots = this.querySelector('.mp-bundle-slots');
     if (slots) {
-      slots.hidden = this.count !== 2;
       this.slots.forEach((item, i) => {
         const row = this.querySelector(`[data-slot="${i}"]`), img = row.querySelector('img');
         img.hidden = !item; if (item) { img.src = item.image; img.alt = item.title; }
@@ -279,6 +297,7 @@ class MonteProductBundle extends HTMLElement {
       const crossed = this.querySelector('[data-pair-compare]'); crossed.textContent = money(compare, 0); crossed.hidden = compare <= total;
       const saving = this.querySelector('[data-pair-saving]'); saving.textContent = `${savingsLabel} ${money(compare - total, 0)}`; saving.hidden = crossed.hidden;
     }
+    this.animateSlots(animateSlots);
     this.querySelectorAll('[data-current-color]').forEach(swatch => swatch.setAttribute('aria-current', String(this.count === 1 || this.slots.some(item => item?.productId === this.current.productId))));
     const incomplete = this.count === 2 && this.slots.some(item => !item);
     const unavailable = !incomplete && (this.count === 1 ? !this.current.available : this.slots.some(item => !item.available));

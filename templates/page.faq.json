@@ -14,18 +14,24 @@
       "name": "Monté FAQ Hero",
       "settings": {
         "design_images": "faq",
-        "heading": "Najczęściej\nzadawane pytania",
-        "subheading": "Wszystko, co warto wiedzieć przed zakupem. Jeśli nie znajdziesz odpowiedzi, napisz do nas na hello@montesleep.com",
-        "show_rating": false,
-        "mobile_gradient": true,
         "desktop_height": 460,
         "mobile_height": 420,
-        "overlay_opacity": 20
+        "heading": "Najczęściej\nzadawane pytania",
+        "subheading": "Wszystko, co warto wiedzieć przed zakupem. Jeśli nie znajdziesz odpowiedzi, napisz do nas na hello@montesleep.com",
+        "badge_text": "",
+        "badge_background": "#f8f1e9",
+        "badge_color": "#232e71",
+        "show_rating": false,
+        "heading_color": "#fdfbf9",
+        "body_color": "#fdfbf9",
+        "rating_color": "#fdfbf9",
+        "overlay_color": "#000000",
+        "overlay_opacity": 20,
+        "mobile_gradient": true
       }
     },
     "navigation": {
       "type": "monte-faq-navigation",
-      "name": "Monté FAQ Navigation",
       "blocks": {
         "category1": {
           "type": "category",
@@ -65,17 +71,23 @@
         "category4",
         "category5"
       ],
-      "settings": {}
+      "name": "Monté FAQ Navigation",
+      "settings": {
+        "heading": "Przejdź szybko do pytań o...",
+        "text_color": "#232e71",
+        "button_background": "#eee7e0",
+        "button_hover": "#dcd6cf",
+        "border_color": "#dcd6cf"
+      }
     },
     "faq1": {
       "type": "faq-accordion",
-      "name": "Ogólne pytania",
       "blocks": {
         "question1": {
           "type": "faq_item",
           "settings": {
             "question": "Czym jest Monté?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "answer": "<p>Monté to polska marka jedwabnych akcesoriów na noc i do pielęgnacji. Wszystkie nasze produkty wykonane są ze 100% jedwabiu morwowego 22 momme.</p>"
           }
         },
         "question2": {
@@ -122,25 +134,29 @@
         "question5",
         "question6"
       ],
+      "name": "Ogólne pytania",
       "settings": {
         "monte_layout": true,
-        "heading": "Ogólne pytania",
         "subheading": "",
         "button_label": "",
         "button_link": "",
         "open_first": false,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf",
+        "tagline": "FAQ",
+        "heading": "Ogólne pytania",
+        "background_color": "#fdfbf9",
+        "heading_color": "#182153",
+        "body_color": "#182153",
         "padding_top_desktop": 80,
         "padding_bottom_desktop": 80,
         "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40,
-        "monte_primary": "#232e71",
-        "monte_secondary": "#52597e",
-        "monte_border": "#dcd6cf"
+        "padding_bottom_mobile": 40
       }
     },
     "faq2": {
       "type": "faq-accordion",
-      "name": "Produkty i materiały",
       "blocks": {
         "question1": {
           "type": "faq_item",
@@ -201,25 +217,29 @@
         "question6",
         "question7"
       ],
+      "name": "Produkty i materiały",
       "settings": {
         "monte_layout": true,
-        "heading": "Produkty i\nmateriały",
         "subheading": "",
         "button_label": "",
         "button_link": "",
         "open_first": false,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf",
+        "tagline": "FAQ",
+        "heading": "Produkty i\nmateriały",
+        "background_color": "#fdfbf9",
+        "heading_color": "#182153",
+        "body_color": "#182153",
         "padding_top_desktop": 80,
         "padding_bottom_desktop": 80,
         "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40,
-        "monte_primary": "#232e71",
-        "monte_secondary": "#52597e",
-        "monte_border": "#dcd6cf"
+        "padding_bottom_mobile": 40
       }
     },
     "faq3": {
       "type": "faq-accordion",
-      "name": "Dostawa",
       "blocks": {
         "question1": {
           "type": "faq_item",
@@ -272,25 +292,29 @@
         "question5",
         "question6"
       ],
+      "name": "Dostawa",
       "settings": {
         "monte_layout": true,
-        "heading": "Dostawa",
         "subheading": "",
         "button_label": "",
         "button_link": "",
         "open_first": false,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf",
+        "tagline": "FAQ",
+        "heading": "Dostawa",
+        "background_color": "#fdfbf9",
+        "heading_color": "#182153",
+        "body_color": "#182153",
         "padding_top_desktop": 80,
         "padding_bottom_desktop": 80,
         "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40,
-        "monte_primary": "#232e71",
-        "monte_secondary": "#52597e",
-        "monte_border": "#dcd6cf"
+        "padding_bottom_mobile": 40
       }
     },
     "faq4": {
       "type": "faq-accordion",
-      "name": "Zwroty i gwarancja",
       "blocks": {
         "question1": {
           "type": "faq_item",
@@ -351,25 +375,29 @@
         "question6",
         "question7"
       ],
+      "name": "Zwroty i gwarancja",
       "settings": {
         "monte_layout": true,
-        "heading": "Zwroty i\ngwarancja",
         "subheading": "",
         "button_label": "",
         "button_link": "",
         "open_first": false,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf",
+        "tagline": "FAQ",
+        "heading": "Zwroty i\ngwarancja",
+        "background_color": "#fdfbf9",
+        "heading_color": "#182153",
+        "body_color": "#182153",
         "padding_top_desktop": 80,
         "padding_bottom_desktop": 80,
         "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40,
-        "monte_primary": "#232e71",
-        "monte_secondary": "#52597e",
-        "monte_border": "#dcd6cf"
+        "padding_bottom_mobile": 40
       }
     },
     "faq5": {
       "type": "faq-accordion",
-      "name": "Pielęgnacja",
       "blocks": {
         "question1": {
           "type": "faq_item",
@@ -422,20 +450,25 @@
         "question5",
         "question6"
       ],
+      "name": "Pielęgnacja",
       "settings": {
         "monte_layout": true,
-        "heading": "Pielęgnacja",
         "subheading": "",
         "button_label": "",
         "button_link": "",
         "open_first": false,
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_border": "#dcd6cf",
+        "tagline": "FAQ",
+        "heading": "Pielęgnacja",
+        "background_color": "#fdfbf9",
+        "heading_color": "#182153",
+        "body_color": "#182153",
         "padding_top_desktop": 80,
         "padding_bottom_desktop": 80,
         "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40,
-        "monte_primary": "#232e71",
-        "monte_secondary": "#52597e",
-        "monte_border": "#dcd6cf"
+        "padding_bottom_mobile": 40
       }
     },
     "contact": {
@@ -444,6 +477,19 @@
       "settings": {
         "title": "Nie znalazłeś odpowiedzi?",
         "content": "<p>Odpowiadamy na każdą wiadomość w ciągu 24 godzin.</p>",
+        "content_style": "standard",
+        "name_placeholder": "Imię",
+        "email_placeholder": "E-mail",
+        "message_placeholder": "Twoja wiadomość...",
+        "privacy_prefix": "Akceptuję",
+        "privacy_label": "politykę prywatności",
+        "privacy_link": "",
+        "submit_label": "Wyślij wiadomość",
+        "monte_primary": "#232e71",
+        "monte_secondary": "#52597e",
+        "monte_field": "#eee7e0",
+        "monte_border": "#dcd6cf",
+        "monte_placeholder": "#9ba0b5",
         "button_background": "#232e71",
         "button_text_color": "#fdfbf9"
       }

@@ -228,43 +228,36 @@
         "question1": {
           "type": "faq_item",
           "settings": {
-            "question": "Ile kosztuje dostawa?",
-            "answer": "<p>Dostawa jest bezpłatna przy zamówieniach od 250 zł. Poniżej tej kwoty koszt dostawy wynosi 11,99 zł. Wysyłamy wyłącznie kurierem InPost.</p>"
+            "question": "Jak realizujecie wysyłkę i ile kosztuje?",
+            "answer": "<p>Wysyłamy kurierem InPost na terenie całej Polski. Dostawa kosztuje 11,99 zł, a przy zamówieniach od 250 zł jest bezpłatna.</p>"
           }
         },
         "question2": {
           "type": "faq_item",
           "settings": {
-            "question": "Ile trwa realizacja zamówienia?",
-            "answer": "<p>Zamówienia złożone do 18:00 w dni robocze wysyłamy tego samego dnia. Zamówienia złożone po 18:00 wysyłamy następnego dnia roboczego.</p>"
+            "question": "Jak szybko otrzymam zamówienie?",
+            "answer": "<p>Zamówienia złożone do 18:00 w dni robocze wysyłamy tego samego dnia. Czas dostawy kurierem InPost to zwykle 1-2 dni robocze.</p>"
           }
         },
         "question3": {
           "type": "faq_item",
           "settings": {
-            "question": "Jak mogę śledzić swoją przesyłkę?",
-            "answer": "<p>Po nadaniu paczki InPost wyśle Ci powiadomienie z informacją o statusie przesyłki. Możesz ją śledzić w aplikacji InPost na telefonie lub na stronie inpost.pl. W dniu dostawy kurier skontaktuje się z Tobą, dzięki czemu możesz ustalić dogodną godzinę lub miejsce odbioru, jeśli nie będziesz w domu.</p>"
+            "question": "Jak mogę śledzić przesyłkę?",
+            "answer": "<p>Po nadaniu paczki wyślemy Ci e-mail z numerem i linkiem do śledzenia. Status sprawdzisz na inpost.pl lub w aplikacji InPost Mobile.</p>"
           }
         },
         "question4": {
           "type": "faq_item",
           "settings": {
             "question": "Czy wysyłacie za granicę?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "answer": "<p>Obecnie realizujemy dostawy tylko na terenie Polski. W sprawie wysyłki zagranicznej napisz na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a>.</p>"
           }
         },
         "question5": {
           "type": "faq_item",
           "settings": {
             "question": "Co jeśli nie będzie mnie w domu podczas dostawy?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
-          }
-        },
-        "question6": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Czy mogę zmienić adres dostawy po złożeniu zamówienia?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "answer": "<p>Przed doręczeniem otrzymasz powiadomienie, dzięki któremu możesz przekierować paczkę na inny adres lub do wygodnego paczkomatu, również przez aplikację InPost. Jeśli nie będzie Cię pod wskazanym adresem, kurier podejmie dwie próby dostawy. Jeśli obie się nie powiodą, paczka wróci do nas, a my skontaktujemy się z Tobą, żeby ustalić, czy wysłać ją ponownie, czy zwrócić pieniądze. Jeśli nie otrzymamy odpowiedzi, zwrócimy kwotę tą samą metodą płatności, którą opłacono zamówienie.</p>"
           }
         }
       },
@@ -273,8 +266,7 @@
         "question2",
         "question3",
         "question4",
-        "question5",
-        "question6"
+        "question5"
       ],
       "name": "Dostawa",
       "settings": {
@@ -303,50 +295,43 @@
         "question1": {
           "type": "faq_item",
           "settings": {
-            "question": "Jaka jest polityka zwrotów Monté?",
-            "answer": "<p>Oferujemy 30-nocną gwarancję zwrotu pieniędzy. Jeśli maska nie spełni Twoich oczekiwań, możesz ją zwrócić w ciągu 30 nocy od zakupu, pod warunkiem że jest w stanie nieużywanym, nieprananym, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p>"
+            "question": "Jaką macie politykę zwrotów?",
+            "answer": "<p>Dajemy 30 nocy na decyzję. Jeśli zmienisz zdanie, napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a>, a wyślemy instrukcję zwrotu oraz kod do bezpłatnego nadania paczki. Produkt musi być nieużywany i w oryginalnym opakowaniu. Nie wysyłaj paczki samodzielnie za pobraniem, taka przesyłka nie zostanie przyjęta i wróci do Ciebie.</p>"
           }
         },
         "question2": {
           "type": "faq_item",
           "settings": {
-            "question": "Ile mam czasu na zwrot?",
-            "answer": "<p>Oferujemy 30-nocną gwarancję zwrotu pieniędzy. Jeśli maska nie spełni Twoich oczekiwań, możesz ją zwrócić w ciągu 30 nocy od zakupu, pod warunkiem że jest w stanie nieużywanym, nieprananym, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p>"
+            "question": "Dlaczego produkt musi być nieużywany?",
+            "answer": "<p>Ze względów higienicznych. Nasze produkty mają bezpośredni kontakt ze skórą i włosami, dlatego możemy przyjąć zwrot tylko wtedy, gdy nie były używane i mają oryginalne opakowanie.</p>"
           }
         },
         "question3": {
           "type": "faq_item",
           "settings": {
             "question": "Czy zwrot jest bezpłatny?",
-            "answer": "<p>Przed odesłaniem maski napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a>, opisując stan produktu i powód zwrotu. Po weryfikacji wyślemy Ci kod do nadania paczki przez InPost. Koszty zwrotu pokrywamy po naszej stronie.</p>"
+            "answer": "<p>Tak. Koszt zwrotu pokrywamy my. Po zgłoszeniu wyślemy Ci bezpłatny kod zwrotny InPost, którym nadasz paczkę w dowolnym paczkomacie.</p>"
           }
         },
         "question4": {
           "type": "faq_item",
           "settings": {
-            "question": "Jak wygląda proces zwrotu krok po kroku?",
-            "answer": "<p>Przed odesłaniem maski napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a>, opisując stan produktu i powód zwrotu. Po weryfikacji wyślemy Ci kod do nadania paczki przez InPost. Koszty zwrotu pokrywamy po naszej stronie.</p>"
+            "question": "Jak zwrócić produkt krok po kroku?",
+            "answer": "<p>Napisz na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a> z numerem zamówienia. Odpiszemy w ciągu 24 godzin, prześlemy instrukcję oraz bezpłatny kod InPost, którym nadasz paczkę w dowolnym paczkomacie.</p>"
           }
         },
         "question5": {
           "type": "faq_item",
           "settings": {
             "question": "Kiedy otrzymam zwrot pieniędzy?",
-            "answer": "<p>Po otrzymaniu i weryfikacji zwróconego produktu, środki zostaną zwrócone na Twoje konto w ciągu 5-7 dni roboczych, tą samą metodą płatności, którą użyto przy zakupie.</p>"
+            "answer": "<p>Pełną kwotę zwracamy w ciągu 14 dni od otrzymania przesyłki, tą samą metodą płatności. Zwykle pieniądze są widoczne na koncie w ciągu 1-3 dni roboczych, w zależności od banku.</p>"
           }
         },
         "question6": {
           "type": "faq_item",
           "settings": {
-            "question": "Co jeśli mój produkt przyszedł uszkodzony?",
-            "answer": "<p>Każda maska przed wysyłką przechodzi ręczną kontrolę jakości, więc uszkodzenia produktu po naszej stronie są wykluczone. W rzadkich przypadkach może dojść do uszkodzenia opakowania przez kuriera podczas transportu. Jeśli paczka dotarła do Ciebie w złym stanie, zrób zdjęcia opakowania i produktu zaraz po odbiorze i napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a> w ciągu 48 godzin. Zgłosimy reklamację do InPost, a Tobie wyślemy nową maskę od razu, bez czekania na rozstrzygnięcie sprawy z kurierem.</p>"
-          }
-        },
-        "question7": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Czy mogę zwrócić produkt, jeśli go używałem?",
-            "answer": "<p>Oferujemy 30-nocną gwarancję zwrotu pieniędzy. Jeśli maska nie spełni Twoich oczekiwań, możesz ją zwrócić w ciągu 30 nocy od zakupu, pod warunkiem że jest w stanie nieużywanym, nieprananym, bez śladów kosmetyków, z metkami i w oryginalnym opakowaniu.</p>"
+            "question": "Co jeśli produkt jest wadliwy lub uszkodzony w transporcie?",
+            "answer": "<p>Napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a>, najlepiej ze zdjęciem. Zajmiemy się reklamacją i ustalimy wymianę lub zwrot, a koszty odesłania w takim przypadku pokrywamy my.</p>"
           }
         }
       },
@@ -356,8 +341,7 @@
         "question3",
         "question4",
         "question5",
-        "question6",
-        "question7"
+        "question6"
       ],
       "name": "Zwroty i gwarancja",
       "settings": {
@@ -386,43 +370,43 @@
         "question1": {
           "type": "faq_item",
           "settings": {
-            "question": "Jak prać produkty jedwabne Monté?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "question": "Jak prać jedwabne produkty Monté?",
+            "answer": "<p>Pierz ręcznie w zimnej wodzie (maks. 30°C) z delikatnym detergentem do jedwabiu. Nie używaj wybielaczy ani środków z enzymami.</p>"
           }
         },
         "question2": {
           "type": "faq_item",
           "settings": {
             "question": "Czy mogę prać jedwab w pralce?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "answer": "<p>Tak, jeśli Twoja pralka ma program do jedwabiu lub delikatny. Włóż produkt do siateczki na pranie, ustaw zimną wodę, delikatny detergent i niskie wirowanie. Pranie ręczne jest najłagodniejsze, ale delikatny program maszynowy również jest bezpieczny.</p>"
           }
         },
         "question3": {
           "type": "faq_item",
           "settings": {
-            "question": "Jak suszyć produkty z jedwabiu?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "question": "Jak suszyć jedwab?",
+            "answer": "<p>Nie wyżymaj, delikatnie odciśnij nadmiar wody miękkim ręcznikiem. Susz na płasko, z dala od bezpośredniego słońca. Nie wkładaj do suszarki bębnowej.</p>"
           }
         },
         "question4": {
           "type": "faq_item",
           "settings": {
-            "question": "Czy mogę prasować maskę jedwabną?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "question": "Czy mogę prasować jedwab?",
+            "answer": "<p>Jeśli chcesz przywrócić gładkość, prasuj od wewnętrznej strony w trybie pary, trzymając żelazko kilka centymetrów od tkaniny.</p>"
           }
         },
         "question5": {
           "type": "faq_item",
           "settings": {
-            "question": "Jak często powinienem prać maskę do spania?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "question": "Jak często prać maskę lub poszewkę?",
+            "answer": "<p>Regularnie, podobnie jak inną pościel, która ma kontakt ze skórą. Dzięki temu jedwab pozostaje świeży i higieniczny.</p>"
           }
         },
         "question6": {
           "type": "faq_item",
           "settings": {
-            "question": "Jak przechowywać produkty jedwabne?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "question": "Jak dbać, żeby jedwab służył na lata?",
+            "answer": "<p>Trzymaj się delikatnego prania, suszenia na płasko i przechowywania z dala od ostrych przedmiotów. Przy takiej pielęgnacji jedwab zachowa miękkość i kolor na długo.</p>"
           }
         }
       },

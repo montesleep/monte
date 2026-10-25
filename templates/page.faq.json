@@ -97,13 +97,6 @@
             "answer": "<p>Jedwabne maski do spania, poszewki na poduszki, czepki oraz gumki do włosów. Każdy produkt powstaje z tego samego materiału: jedwabiu morwowego 22 momme.</p>"
           }
         },
-        "question3": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Czy Monté sprzedaje tylko w Polsce?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
-          }
-        },
         "question4": {
           "type": "faq_item",
           "settings": {
@@ -117,22 +110,13 @@
             "question": "Jakie metody płatności akceptujecie?",
             "answer": "<p>Płatności obsługuje Przelewy24: karta (Visa, Mastercard), BLIK i szybki przelew online.</p>"
           }
-        },
-        "question6": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Jakie metody płatności akceptujecie?",
-            "answer": "<p>Przyjmujemy płatności przez BLIK oraz wszystkie metody dostępne w systemie Przelewy24, w tym karty płatnicze i przelewy bankowe.</p>"
-          }
         }
       },
       "block_order": [
         "question1",
         "question2",
-        "question3",
         "question4",
-        "question5",
-        "question6"
+        "question5"
       ],
       "name": "Ogólne pytania",
       "settings": {
@@ -161,8 +145,8 @@
         "question1": {
           "type": "faq_item",
           "settings": {
-            "question": "Co oznacza \"jedwab morwowy 22 momme\"?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "question": "Z czego wykonane są produkty Monté?",
+            "answer": "<p>Wszystkie produkty Monté wykonane są ze 100% jedwabiu morwowego klasy 6A, 22 momme. Maska ma dodatkowo jedwabne wypełnienie.</p>"
           }
         },
         "question2": {

@@ -93,8 +93,8 @@
         "question2": {
           "type": "faq_item",
           "settings": {
-            "question": "Skąd pochodzi jedwab używany w produktach Monté?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "question": "Jakie produkty znajdę w ofercie Monté?",
+            "answer": "<p>Jedwabne maski do spania, poszewki na poduszki, czepki oraz gumki do włosów. Każdy produkt powstaje z tego samego materiału: jedwabiu morwowego 22 momme.</p>"
           }
         },
         "question3": {

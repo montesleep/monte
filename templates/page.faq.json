@@ -152,43 +152,43 @@
         "question2": {
           "type": "faq_item",
           "settings": {
-            "question": "Czym różni się jedwab morwowy od satyny?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "question": "Czy materiał ma jakieś certyfikaty?",
+            "answer": "<p>Tak. Jedwab morwowy, z którego powstają nasze produkty, ma certyfikat OEKO-TEX Standard 100. Oznacza to, że tkanina nie zawiera szkodliwych substancji i jest bezpieczna dla skóry.</p>"
           }
         },
         "question3": {
           "type": "faq_item",
           "settings": {
-            "question": "Czy maska naprawdę blokuje 100% światła?",
-            "answer": "<p>Tak. Monté ma rozszerzone pokrycie obejmujące oczy i górną część twarzy, eliminując światło z każdej strony. 94% klientów w ankiecie po zakupie oceniło blackout jako całkowity.</p>"
+            "question": "Co oznacza 22 momme i dlaczego to ważne?",
+            "answer": "<p>Momme to jednostka gęstości jedwabiu. Im wyższa wartość, tym tkanina jest grubsza, trwalsza i przyjemniejsza w dotyku. Tańsze produkty mają zwykle 16-19 momme, czyli cieńszy i mniej trwały materiał.</p>"
           }
         },
         "question4": {
           "type": "faq_item",
           "settings": {
-            "question": "Czy maska nie uciska oczu i rzęs?",
-            "answer": "<p>Nie. Jedwab morwowy 22 momme jest wyjątkowo miękki w dotyku, więc maska leży na twarzy jak nic. Jeśli chcesz jeszcze mniejszy kontakt, wystarczy poluzować rzep o jedno oczko i gotowe.</p>"
+            "question": "Czym jedwab różni się od satyny?",
+            "answer": "<p>Jedwab to naturalne włókno, które oddycha i reguluje temperaturę. Satyna to najczęściej poliester, który zatrzymuje ciepło i wilgoć przy skórze. Z wyglądu bywają podobne, ale różnicę czuć przez całą noc.</p>"
           }
         },
         "question5": {
           "type": "faq_item",
           "settings": {
-            "question": "Jak działa zapięcie na rzep?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "question": "Czy jedwab jest odpowiedni dla wrażliwej skóry?",
+            "answer": "<p>Tak. Jedwab morwowy jest delikatny i przyjazny dla wrażliwej skóry, rzęs i włosów.</p>"
           }
         },
         "question6": {
           "type": "faq_item",
           "settings": {
-            "question": "Czy rzep nie czepia się o włosy?",
-            "answer": "<p>Odpowiedź w przygotowaniu.</p>"
+            "question": "Czy maska dopasuje się do mojej głowy?",
+            "answer": "<p>Maska ma regulowany rzep, który dopasujesz do swojego obwodu głowy, i u większości osób sprawdza się bez problemu. Jeśli masz mniejszą głowę, zacznij od delikatnego dopasowania i reguluj stopniowo, aż maska leży pewnie, ale bez ucisku. W razie wątpliwości napisz do nas na <a href=\"mailto:hello@montesleep.com\">hello@montesleep.com</a>, chętnie doradzimy.</p>"
           }
         },
         "question7": {
           "type": "faq_item",
           "settings": {
-            "question": "Czy produkty Monté są hipoalergiczne?",
-            "answer": "<p>Tak. Jedwab morwowy to naturalne włókno o właściwościach hipoalergicznych. Maska posiada certyfikat OEKO-TEX Standard 100, który potwierdza brak szkodliwych substancji chemicznych w tkaninie i wypełnieniu.</p>"
+            "question": "Czy produkty są dobre dla cienkich lub farbowanych włosów?",
+            "answer": "<p>Tak. Gładki jedwab powoduje mniej tarcia niż bawełna, dlatego jest łagodniejszy dla cienkich i farbowanych włosów, mniej je łamie i plącze.</p>"
           }
         }
       },

@@ -52,6 +52,8 @@ LIQUID
         <collection-list class="collection-list">
           {%- for block in section.blocks -%}
             {%- assign collection = block.settings.collection -%}
+            {%- if collection.handle == 'czepki' -%}{%- continue -%}{%- endif -%}
+            {%- capture collection_title -%}{%- render 'monte-collection-title', collection: collection -%}{%- endcapture -%}
             {%- assign collection_url = block.settings.url | default: collection.url -%}
 
             <a {% if collection_url != blank %}href="{{ collection_url }}"{% endif %} class="collection-card {% if block.settings.text_position contains 'place-self-end' %}collection-card--reverse-transition{% endif %} shadow" reveal-js>
@@ -74,7 +76,7 @@ LIQUID
                         <p class="subheading">{{ block.settings.subheading | escape }}</p>
                       {%- endif -%}
 
-                      <p class="{{ block.settings.heading_tag }}">{{ block.settings.title | default: collection.title | escape }}</p>
+                      <p class="{{ block.settings.heading_tag }}">{{ block.settings.title | default: collection_title | escape }}</p>
                     </div>
 
                     {%- unless block.settings.text_position contains 'place-self-end' -%}

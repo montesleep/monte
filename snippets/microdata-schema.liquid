@@ -1,3 +1,4 @@
+{%- capture monte_collection_title -%}{%- render 'monte-collection-title', collection: collection -%}{%- endcapture -%}
 {%- comment -%}
 This snippet structures the micro-data using JSON-LD specification. Starting from Impact 6, we are using
 the structured_data built-in filter to ensure that Shopify can keep it up to date without requiring theme upgrade. If
@@ -31,7 +32,7 @@ managed at the theme level.
           ,{
             "@type": "ListItem",
             "position": 2,
-            "name": {{ collection.title | json }},
+            "name": {{ monte_collection_title | json }},
             "item": "{{ shop.url }}{{ collection.url }}"
           }, {
             "@type": "ListItem",
@@ -51,7 +52,7 @@ managed at the theme level.
           ,{
             "@type": "ListItem",
             "position": 2,
-            "name": {{ collection.title | json }},
+            "name": {{ monte_collection_title | json }},
             "item": "{{ shop.url }}{{ collection.url }}"
           }
       {%- elsif request.page_type == 'blog' -%}

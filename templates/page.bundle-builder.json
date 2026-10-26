@@ -1,1 +1,35 @@
-{"sections":{"hero":{"type":"collection-banner","settings":{"design_images":"builder","heading":"Połącz produkty, oszczędź więcej","subheading":"Wybierz dowolne produkty Monté i otrzymaj do 15% dodatkowego rabatu na cały zestaw.","badge_text":"STWÓRZ SWÓJ ZESTAW","show_rating":false}},"categories":{"type":"monte-collection-filter","settings":{"bundle_builder":true,"collections":["zestawy","maski","poszewki","czepki","gumki"]}},"builder":{"type":"monte-bundle-builder","settings":{}}},"order":["hero","categories","builder"]}
+{
+  "sections": {
+    "hero": {
+      "type": "collection-banner",
+      "settings": {
+        "design_images": "builder",
+        "heading": "Połącz produkty, oszczędź więcej",
+        "subheading": "Wybierz dowolne produkty Monté i otrzymaj do 15% dodatkowego rabatu na cały zestaw.",
+        "badge_text": "STWÓRZ SWÓJ ZESTAW",
+        "show_rating": false
+      }
+    },
+    "categories": {
+      "type": "monte-collection-filter",
+      "settings": {
+        "bundle_builder": true,
+        "collections": [
+          "zestawy",
+          "maski",
+          "poszewki",
+          "gumki"
+        ]
+      }
+    },
+    "builder": {
+      "type": "monte-bundle-builder",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "categories",
+    "builder"
+  ]
+}

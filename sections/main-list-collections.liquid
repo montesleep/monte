@@ -47,6 +47,8 @@
             {% assign collections_list = section.settings.collections | default: collections %}
 
             {%- for collection in collections_list -%}
+              {%- if collection.handle == 'czepki' -%}{%- continue -%}{%- endif -%}
+              {%- capture collection_title -%}{%- render 'monte-collection-title', collection: collection -%}{%- endcapture -%}
               <a href="{{ collection.url }}" class="collection-card" reveal-js>
                 <div class="content-over-media group rounded-sm" style="--content-over-media-overlay: {{ section.settings.overlay_color.rgb }} / {{ section.settings.overlay_opacity | divided_by: 100.0 }}">
                   {%- if collection.featured_image != blank -%}
@@ -56,7 +58,7 @@
 
                   <div class="collection-card__content-wrapper place-self-center text-center text-custom" style="--text-color: {{ section.settings.text_color.rgb }}">
                     <div class="collection-card__content">
-                      <p class="h2">{{ collection.title | escape }}</p>
+                      <p class="h2">{{ collection_title | escape }}</p>
                     </div>
 
                     {%- render 'icon' with 'circle-button-right-clipped', width: 48, height: 48 -%}

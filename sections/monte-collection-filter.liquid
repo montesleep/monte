@@ -9,6 +9,9 @@
   assign all_image = section.settings.all_image
   if all_image == blank
     for category in category_collections
+      if category.handle == 'czepki'
+        continue
+      endif
       if category.image != blank
         assign all_image = category.image
         break
@@ -31,6 +34,7 @@
       <div class="monte-categories__track" tabindex="0" aria-label="{{ section.settings.accessibility_label | escape }}">
         {%- render 'monte-collection-category', title: section.settings.all_label, url: routes.all_products_collection_url, image: all_image, active: all_active -%}
         {%- for category in category_collections -%}
+          {%- if category.handle == 'czepki' -%}{%- continue -%}{%- endif -%}
           {%- unless category.handle == 'all' -%}
             {%- liquid
               assign category_active = false
@@ -39,11 +43,13 @@
                 assign current_in_list = true
               endif
             -%}
-            {%- render 'monte-collection-category', title: category.title, url: category.url, image: category.image, active: category_active -%}
+            {%- capture category_title -%}{%- render 'monte-collection-title', collection: category -%}{%- endcapture -%}
+            {%- render 'monte-collection-category', title: category_title, url: category.url, image: category.image, active: category_active -%}
           {%- endunless -%}
         {%- endfor -%}
-        {%- unless all_active or current_in_list or collection == blank -%}
-          {%- render 'monte-collection-category', title: collection.title, url: collection.url, image: collection.image, active: true -%}
+        {%- unless all_active or current_in_list or collection == blank or collection.handle == 'czepki' -%}
+          {%- capture category_title -%}{%- render 'monte-collection-title', collection: collection -%}{%- endcapture -%}
+          {%- render 'monte-collection-category', title: category_title, url: collection.url, image: collection.image, active: true -%}
         {%- endunless -%}
       </div>
     </nav>

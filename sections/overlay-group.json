@@ -67,17 +67,10 @@
             "link": "/collections/poszewki"
           }
         },
-        "monte_search_tag_3": {
-          "type": "popular_search",
-          "settings": {
-            "label": "Czepki",
-            "link": "/collections/czepki"
-          }
-        },
         "monte_search_tag_4": {
           "type": "popular_search",
           "settings": {
-            "label": "Gumki",
+            "label": "Scrunchies",
             "link": "/collections/gumki"
           }
         },
@@ -92,7 +85,6 @@
       "block_order": [
         "monte_search_tag_1",
         "monte_search_tag_2",
-        "monte_search_tag_3",
         "monte_search_tag_4",
         "monte_search_tag_5"
       ]

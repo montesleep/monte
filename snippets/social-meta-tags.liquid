@@ -1,3 +1,4 @@
+{%- capture monte_collection_title -%}{%- render 'monte-collection-title', collection: collection -%}{%- endcapture -%}
 {%- comment -%}
 Add Facebook and Pinterest Open Graph meta tags to product pages
 for friendly Facebook sharing and Pinterest pinning.
@@ -24,7 +25,7 @@ Validate your Pinterest rich pins
   <meta property="og:title" content="{{ article.title | strip_html | escape }}">
 {%- elsif request.page_type == 'collection' -%}
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{{ collection.title | strip_html | escape }}">
+  <meta property="og:title" content="{{ monte_collection_title | strip_html | escape }}">
 {%- else -%}
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ page_title | escape }}">
@@ -64,7 +65,7 @@ More information:
   <meta name="twitter:title" content="{{ article.title }}">
   <meta name="twitter:description" content="{{ article.excerpt_or_content | strip_html | truncatewords: 140, '' | escape }}">
 {%- elsif request.page_type == 'collection' -%}
-  <meta name="twitter:title" content="{{ collection.title }}">
+  <meta name="twitter:title" content="{{ monte_collection_title }}">
   <meta name="twitter:description" content="{{ collection.description | strip_html | truncatewords: 140, '' | escape }}">
 {%- else -%}
   <meta name="twitter:title" content="{{ page_title | escape }}">

@@ -26,9 +26,19 @@ Supported variables
     {%- case stripped_badge_type -%}
       {%- when 'monte_status' -%}
         {%- assign monte_status = product.metafields.custom.product_badge.value -%}
-        {%- if monte_status_overridden -%}{%- assign monte_status = monte_status_override -%}{%- endif -%}
+        {%- if monte_status_overridden -%}
+          {%- assign monte_status = monte_status_override -%}
+        {%- else -%}
+          {%- for color in product.metafields.custom.product_group.value.colors.value -%}
+            {%- if color.product.value.id == product.id -%}
+              {%- assign monte_status = color.badge.value -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- assign monte_status_key = monte_status | handleize -%}
         {%- if monte_status != blank -%}
-          <span class="badge badge--primary monte-status-badge">{{ monte_status | escape }}</span>
+          <span class="badge badge--primary monte-status-badge{% if monte_status_key == 'limitowany-kolor' %} monte-status-badge--limited{% endif %}"{% if monte_status_key == 'limitowany-kolor' %} style="background-color: #d9a17d; color: #fdfbf9;"{% endif %}>{{ monte_status | escape }}</span>
         {%- endif -%}
       {%- when 'monte_discount' -%}
         {%- if variant.compare_at_price > variant.price -%}

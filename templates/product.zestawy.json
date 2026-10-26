@@ -56,20 +56,19 @@
             "footer": "+ Darmowa dostawa",
             "sleep_title": "Zestaw do Snu",
             "sleep_components": [
-              "gid://shopify/Metaobject/1859814228302",
-              "gid://shopify/Metaobject/1897557819726",
-              "jedwabna-maska-do-spania"
+              "jedwabna-maska-do-spania",
+              "jedwabna-poszewka-na-poduszke"
             ],
             "hair_title": "Zestaw do Włosów",
             "hair_components": [
-              "gid://shopify/Metaobject/1897557819726",
-              "gid://shopify/Metaobject/1897580036430"
+              "jedwabna-poszewka-na-poduszke",
+              "jedwabna-scrunchie"
             ],
             "complete_title": "Kompletny Zestaw do Snu",
             "complete_components": [
-              "gid://shopify/Metaobject/1859814228302",
-              "gid://shopify/Metaobject/1897557819726",
-              "gid://shopify/Metaobject/1897580036430"
+              "jedwabna-maska-do-spania",
+              "jedwabna-poszewka-na-poduszke",
+              "jedwabna-scrunchie"
             ]
           }
         },

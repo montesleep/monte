@@ -46,18 +46,30 @@
           }
         },
         "monte_bundle": {
-          "type": "monte_bundle",
+          "type": "monte_set",
           "settings": {
-            "row1_title": "1 Maska",
-            "row2_title": "2 Maski",
-            "row2_discount": 10,
-            "row2_footer": "+ Darmowa dostawa",
-            "popup_title": "Wybierz produkt",
-            "popup_choose_label": "Wybierz",
-            "choose_color_label": "Wybierz kolor maski",
-            "limited_label": "Limitowany kolor",
-            "savings_label": "Oszczędzasz",
-            "monte_bundle_badge": "KORZYSTNIEJSZY"
+            "header": "Zestaw taniej o [percent]%",
+            "contents_heading": "Co zawiera zestaw?",
+            "separate_label": "Cena produktów osobno",
+            "savings_label": "Oszczędzasz w zestawie",
+            "total_label": "Cena zestawu",
+            "footer": "+ Darmowa dostawa",
+            "sleep_title": "Zestaw do Snu",
+            "hair_title": "Zestaw do Włosów",
+            "complete_title": "Kompletny Zestaw do Snu",
+            "sleep_components": [
+              "gid://shopify/Metaobject/1859814228302",
+              "gid://shopify/Metaobject/1897557819726"
+            ],
+            "hair_components": [
+              "gid://shopify/Metaobject/1897557819726",
+              "gid://shopify/Metaobject/1897580036430"
+            ],
+            "complete_components": [
+              "gid://shopify/Metaobject/1859814228302",
+              "gid://shopify/Metaobject/1897557819726",
+              "gid://shopify/Metaobject/1897580036430"
+            ]
           }
         },
         "monte_trust": {
@@ -113,49 +125,6 @@
             "benefit_10": ""
           }
         },
-        "monte_ugc_carousel": {
-          "type": "monte_ugc_carousel",
-          "settings": {
-            "title": "Ty + Monté",
-            "show_play": false,
-            "item_1_enabled": true,
-            "item_1_media_type": "image",
-            "item_1_alt": "Monté — jedwabna maska do spania",
-            "item_1_play_overlay": true,
-            "item_2_enabled": true,
-            "item_2_media_type": "image",
-            "item_2_alt": "Monté — jedwabna maska do spania",
-            "item_2_play_overlay": true,
-            "item_3_enabled": true,
-            "item_3_media_type": "image",
-            "item_3_alt": "Monté — jedwabna maska do spania",
-            "item_3_play_overlay": true,
-            "item_4_enabled": false,
-            "item_4_media_type": "image",
-            "item_4_alt": "",
-            "item_4_play_overlay": true,
-            "item_5_enabled": false,
-            "item_5_media_type": "image",
-            "item_5_alt": "",
-            "item_5_play_overlay": true,
-            "item_6_enabled": false,
-            "item_6_media_type": "image",
-            "item_6_alt": "",
-            "item_6_play_overlay": true,
-            "item_7_enabled": false,
-            "item_7_media_type": "image",
-            "item_7_alt": "",
-            "item_7_play_overlay": true,
-            "item_8_enabled": false,
-            "item_8_media_type": "image",
-            "item_8_alt": "",
-            "item_8_play_overlay": true,
-            "item_9_enabled": false,
-            "item_9_media_type": "image",
-            "item_9_alt": "",
-            "item_9_play_overlay": true
-          }
-        },
         "monte_accordions": {
           "type": "monte_accordions",
           "settings": {
@@ -204,7 +173,6 @@
         "monte_bundle",
         "monte_trust",
         "monte_tabs",
-        "monte_ugc_carousel",
         "monte_accordions"
       ],
       "settings": {

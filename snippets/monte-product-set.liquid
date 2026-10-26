@@ -1,0 +1,96 @@
+{%- liquid
+  assign options = block.settings
+  assign variant = product.selected_or_first_available_variant
+  assign product_group = product.metafields.custom.product_group.value
+  assign group_title = product_group.title.value | default: product.title | split: ' - ' | first
+  assign colors = product_group.colors.value
+  assign current_color = nil
+  assign color_name = product.title | split: ' - ' | last
+  for color in colors
+    if color.product.value.id == product.id
+      assign current_color = color
+      assign color_name = color.color_name.value
+      break
+    endif
+  endfor
+  assign component_groups = nil
+  assign expected_components = 2
+  if group_title == options.sleep_title
+    assign component_groups = options.sleep_components
+  elsif group_title == options.hair_title
+    assign component_groups = options.hair_components
+  elsif group_title == options.complete_title
+    assign component_groups = options.complete_components
+    assign expected_components = 3
+  endif
+  assign subtotal = 0
+  assign component_count = 0
+  assign color_key = color_name | downcase | strip
+-%}
+{%- capture component_rows -%}
+  {%- for component_group in component_groups -%}
+    {%- assign component = nil -%}
+    {%- for component_color in component_group.colors.value -%}
+      {%- assign component_color_key = component_color.color_name.value | downcase | strip -%}
+      {%- if component_color_key == color_key and component_color.product.value != blank -%}
+        {%- assign component = component_color.product.value -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if component != blank -%}
+      {%- liquid
+        assign component_variant = component.selected_or_first_available_variant
+        assign subtotal = subtotal | plus: component_variant.price
+        assign component_count = component_count | plus: 1
+      -%}
+      <div class="mp-set-item">
+        <div class="mp-set-image">{% if component.featured_image != blank %}{{ component.featured_image | image_url: width: 144 | image_tag: width: 48, height: 48, loading: 'lazy' }}{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endif %}</div>
+        <div class="mp-set-item-info">
+          <strong>{% render 'monte-product-display-title', product: component, group_title: component_group.title.value %}</strong>
+          <div class="mp-set-item-price">{% if component_variant.compare_at_price > component_variant.price %}<s>{{ component_variant.compare_at_price | money_without_trailing_zeros }}</s>{% endif %}<strong>{{ component_variant.price | money_without_trailing_zeros }}</strong></div>
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- liquid
+  assign components_complete = false
+  if component_count >= expected_components and component_count == component_groups.size
+    assign components_complete = true
+  else
+    comment
+      Draft component references are deliberately unavailable on the storefront.
+      The set's compare-at price stores the separately sold current-price total.
+    endcomment
+    assign subtotal = variant.compare_at_price | default: variant.price | at_least: variant.price
+  endif
+  assign saving = subtotal | minus: variant.price | at_least: 0
+  assign discount = 0
+  if subtotal > 0
+    assign discount = saving | times: 100.0 | divided_by: subtotal | round
+  endif
+-%}
+{{ 'monte-product-set.css' | asset_url | stylesheet_tag }}
+<monte-product-set class="mp-bundle mp-set" data-fixed-set data-subtotal="{{ subtotal }}" data-components-complete="{{ components_complete }}" data-saving-label="{{ options.savings_label | escape }}" data-header-template="{{ options.header | escape }}" {{ block.shopify_attributes }}>
+  <script type="application/json" data-bundle-data>{"current":{% render 'monte-bundle-product-json', item: product, color: current_color, group_title: product_group.title.value %},"variants":{{ product.variants | json }}}</script>
+  {% if colors != blank %}
+    <div class="mp-colors"><p class="mp-label"><strong>Kolor:</strong> {{ color_name | escape }}</p><div class="mp-swatches">{% for color in colors %}{% if color.product.value != blank %}{% render 'monte-bundle-color-thumbnail', color: color, current_product: product %}{% endif %}{% endfor %}</div></div>
+  {% endif %}
+  {% unless product.has_only_default_variant %}<label class="mp-variant-label">{{ product.options | join: ' / ' | escape }}<select data-current-variant>{% for item in product.variants %}<option value="{{ item.id }}" {% if item.id == variant.id %}selected{% endif %}>{{ item.title | escape }}{% unless item.available %} — Wyprzedane{% endunless %}</option>{% endfor %}</select></label>{% endunless %}
+  <div class="mp-set-card">
+    <div class="mp-set-header"><span class="mp-set-gift"><img src="{{ 'monte-set-gift.svg' | asset_url }}" width="20.25" height="20.1" alt=""></span><span data-set-header>{{ options.header | replace: '[percent]', discount | escape }}</span></div>
+    <div class="mp-set-body">
+      {% if component_count > 0 %}<h2>{{ options.contents_heading | escape }}</h2><div class="mp-set-items">{{ component_rows }}</div>{% endif %}
+      {% if request.design_mode and components_complete == false %}<p class="mp-set-editor-note">Select the component groups below. Matching colors and products must be active to appear on the storefront.</p>{% endif %}
+      <dl class="mp-set-summary">
+        <div><dt>{{ options.separate_label | escape }}</dt><dd data-set-subtotal>{{ subtotal | money_without_trailing_zeros }}</dd></div>
+        <div class="mp-set-savings"><dt>{{ options.savings_label | escape }}</dt><dd data-set-saving>−{{ saving | money_without_trailing_zeros }}</dd></div>
+        <div class="mp-set-total"><dt>{{ options.total_label | escape }}</dt><dd data-set-total>{{ variant.price | money_without_trailing_zeros }}</dd></div>
+      </dl>
+    </div>
+    {% if options.footer != blank %}<p class="mp-bundle-footer">{{ options.footer | escape }}</p>{% endif %}
+  </div>
+  <button type="button" class="mp-atc" data-bundle-atc {% unless variant.available %}disabled{% endunless %}><span data-atc-label>{% if variant.available %}{{ 'product.general.add_to_cart_button' | t }}{% else %}Wyprzedane{% endif %}</span><span class="mp-basket" {% unless variant.available %}hidden{% endunless %}><img src="{{ 'monte-pdp-basket.svg' | asset_url }}" width="22.0333" height="22.3868" alt=""></span></button>
+  <p class="mp-bundle-error" role="alert" hidden></p>
+  <noscript><form action="{{ routes.cart_add_url }}" method="post"><input type="hidden" name="id" value="{{ variant.id }}"><button class="mp-atc" type="submit" {% unless variant.available %}disabled{% endunless %}>{{ 'product.general.add_to_cart_button' | t }}</button></form></noscript>
+</monte-product-set>

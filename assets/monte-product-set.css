@@ -1,0 +1,27 @@
+.mp-set { gap:24px; }
+.mp-set-card { overflow:hidden; border:1px solid #232e71; border-radius:16px; background:#f8f1e9; }
+.mp-set-header { display:flex; align-items:center; justify-content:center; gap:12px; padding:8px 16px; background:#232e71; color:#fdfbf9; font-size:14px; font-weight:600; line-height:1.5; text-align:center; }
+.mp-set-header img { flex:none; max-width:none; }
+.mp-set-gift { display:grid; place-items:center; flex:none; width:24px; height:24px; }
+.mp-set-body { display:grid; gap:12px; padding:16px; }
+.mp-set-body h2 { font:600 16px/1.5 var(--text-font-family); letter-spacing:0; text-transform:none; }
+.mp-set-items { display:grid; gap:8px; padding:12px 0; border-block:1px solid #dcd6cf; }
+.mp-set-item { display:flex; align-items:center; gap:16px; min-width:0; }
+.mp-set-image { flex:none; width:48px; height:48px; overflow:hidden; border-radius:8px; background:#eee7e0; }
+.mp-set-image :is(img,svg) { width:100%; height:100%; object-fit:cover; }
+.mp-set-item-info { display:flex; flex:1; min-width:0; flex-direction:column; gap:4px; }
+.mp-set-item-info>strong { font-size:14px; line-height:1.5; overflow-wrap:anywhere; }
+.mp-set-item-price { display:flex; align-items:center; gap:4px; white-space:nowrap; }
+.mp-set-item-price strong { font-size:14px; line-height:1.5; }
+.mp-set-item-price s { color:#8a2f3a; font-size:12px; line-height:1.5; }
+.mp-set-summary { display:grid; gap:8px; margin:0; padding:12px 16px; border-radius:8px; background:#eee7e0; color:#52597e; font-size:14px; font-weight:600; }
+.mp-set-summary>div { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.mp-set-summary dd { margin:0; white-space:nowrap; }
+.mp-set-summary .mp-set-savings { color:#2f6b57; }
+.mp-set-summary .mp-set-total { margin-top:4px; padding-top:12px; border-top:1px solid #dcd6cf; color:#232e71; font-size:16px; }
+.mp-set-editor-note { color:#52597e; font-size:12px; }
+@media(min-width:1000px) {
+  .mp-set-item-info { flex-direction:row; align-items:center; }
+  .mp-set-item-info>strong { flex:1; }
+  .mp-set-item-price { flex:none; }
+}

@@ -11,7 +11,7 @@ class MonteProductHero extends HTMLElement {
     const sticky = this.querySelector('.mp-sticky'), atc = this.querySelector('[data-bundle-atc]');
     if (sticky && atc) {
       const button = sticky.querySelector('[data-sticky-atc]');
-      const bundle = this.querySelector('monte-product-bundle');
+      const bundle = this.querySelector('monte-product-bundle, monte-product-set');
       const error = sticky.querySelector('.mp-sticky-error');
       const desktop = matchMedia('(min-width: 1000px)');
       const updateVisibility = () => {
@@ -317,7 +317,7 @@ class MonteProductBundle extends HTMLElement {
       document.documentElement.dispatchEvent(new CustomEvent('cart:prepare-bundled-sections', { bubbles: true, detail: { sections } }));
       const chosen = this.count === 1 ? [this.current] : this.slots;
       // Preserve the existing Every Possible Discount line-property contract.
-      const items = chosen.map(item => ({ id: item.id, quantity: 1, properties: { _bundle: 'true' } }));
+      const items = chosen.map(item => this.hasAttribute('data-fixed-set') ? { id: item.id, quantity: 1 } : { id: item.id, quantity: 1, properties: { _bundle: 'true' } });
       const response = await fetch(`${Shopify.routes.root}cart/add.js`, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items, sections: [...new Set(sections)], sections_url: location.pathname }) });
       const result = await response.json();
       if (!response.ok) throw new Error(result.description || 'Nie udało się dodać produktu. Spróbuj ponownie.');
@@ -332,6 +332,39 @@ class MonteProductBundle extends HTMLElement {
       this.error.hidden = false;
       if (added) document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
     } finally { this.busy = false; this.button.disabled = false; this.button.removeAttribute('aria-busy'); this.notifySelection(); }
+  }
+}
+
+class MonteProductSet extends MonteProductBundle {
+  connectedCallback() {
+    this.abort = new AbortController(); const signal = this.abort.signal;
+    this.data = JSON.parse(this.querySelector('[data-bundle-data]').textContent);
+    this.current = this.data.current; this.count = 1; this.slots = [this.current];
+    this.button = this.querySelector('[data-bundle-atc]'); this.error = this.querySelector('.mp-bundle-error');
+    this.addEventListener('click', event => { if (event.target.closest('[data-bundle-atc]')) this.addToCart(); }, { signal });
+    this.addEventListener('change', event => {
+      if (!event.target.matches('[data-current-variant]')) return;
+      const variant = this.data.variants.find(item => item.id === Number(event.target.value));
+      if (!variant) return;
+      this.current = { ...this.current, id: variant.id, price: variant.price, compare: variant.compare_at_price || 0, available: variant.available };
+      const url = new URL(location.href); url.searchParams.set('variant', variant.id); history.replaceState({}, '', url);
+      this.render(); this.updatePrice();
+      if (variant.featured_media) this.closest('monte-product-hero').querySelector('monte-product-media')?.selectMedia(variant.featured_media.id);
+    }, { signal });
+    this.render();
+  }
+  render() {
+    const subtotal = this.dataset.componentsComplete === 'true' ? Number(this.dataset.subtotal) : Math.max(this.current.compare, this.current.price);
+    const saving = Math.max(0, subtotal - this.current.price);
+    const percent = subtotal > 0 ? Math.round(saving * 100 / subtotal) : 0;
+    this.querySelector('[data-set-subtotal]').textContent = money(subtotal, 0);
+    this.querySelector('[data-set-saving]').textContent = `−${money(saving, 0)}`;
+    this.querySelector('[data-set-total]').textContent = money(this.current.price, 0);
+    this.querySelector('[data-set-header]').textContent = this.dataset.headerTemplate.replace('[percent]', percent);
+    this.button.disabled = !this.current.available || Boolean(this.busy);
+    this.querySelector('[data-atc-label]').textContent = this.current.available ? 'Dodaj do koszyka' : 'Wyprzedane';
+    this.querySelector('.mp-basket').hidden = !this.current.available;
+    this.notifySelection();
   }
 }
 
@@ -654,6 +687,6 @@ class MonteProductMedia extends HTMLElement {
   }
 }
 
-for (const [name, component] of [['monte-pdp-tabs', MontePdpTabs], ['monte-product-picker', MonteProductPicker], ['monte-product-bundle', MonteProductBundle], ['monte-product-media', MonteProductMedia], ['monte-product-hero', MonteProductHero]]) {
+for (const [name, component] of [['monte-pdp-tabs', MontePdpTabs], ['monte-product-picker', MonteProductPicker], ['monte-product-bundle', MonteProductBundle], ['monte-product-set', MonteProductSet], ['monte-product-media', MonteProductMedia], ['monte-product-hero', MonteProductHero]]) {
   if (!customElements.get(name)) customElements.define(name, component);
 }

@@ -4092,6 +4092,95 @@ quick buy information in a template, that will be extracted in JS, but ensure it
       ]
     },
     {
+      "type": "monte_set",
+      "name": "Monté — Ready-made set",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Ready-made sets add one set product to the cart at its saved Shopify price. The compare-at price should equal the current prices of its components sold separately."
+        },
+        {
+          "type": "text",
+          "id": "header",
+          "label": "Header",
+          "default": "Zestaw taniej o [percent]%"
+        },
+        {
+          "type": "text",
+          "id": "contents_heading",
+          "label": "Contents heading",
+          "default": "Co zawiera zestaw?"
+        },
+        {
+          "type": "text",
+          "id": "separate_label",
+          "label": "Separate prices label",
+          "default": "Cena produktów osobno"
+        },
+        {
+          "type": "text",
+          "id": "savings_label",
+          "label": "Savings label",
+          "default": "Oszczędzasz w zestawie"
+        },
+        {
+          "type": "text",
+          "id": "total_label",
+          "label": "Total label",
+          "default": "Cena zestawu"
+        },
+        {
+          "type": "text",
+          "id": "footer",
+          "label": "Footer",
+          "default": "+ Darmowa dostawa"
+        },
+        {
+          "type": "text",
+          "id": "sleep_title",
+          "label": "Product group title",
+          "default": "Zestaw do Snu"
+        },
+        {
+          "type": "metaobject_list",
+          "id": "sleep_components",
+          "label": "Zestaw do Snu — component groups",
+          "metaobject_type": "monte_product_group",
+          "limit": 3,
+          "info": "Select the product groups included in this set. Products are matched by color name. Draft entries stay hidden."
+        },
+        {
+          "type": "text",
+          "id": "hair_title",
+          "label": "Product group title",
+          "default": "Zestaw do Włosów"
+        },
+        {
+          "type": "metaobject_list",
+          "id": "hair_components",
+          "label": "Zestaw do Włosów — component groups",
+          "metaobject_type": "monte_product_group",
+          "limit": 3,
+          "info": "Select the product groups included in this set. Products are matched by color name. Draft entries stay hidden."
+        },
+        {
+          "type": "text",
+          "id": "complete_title",
+          "label": "Product group title",
+          "default": "Kompletny Zestaw do Snu"
+        },
+        {
+          "type": "metaobject_list",
+          "id": "complete_components",
+          "label": "Kompletny Zestaw do Snu — component groups",
+          "metaobject_type": "monte_product_group",
+          "limit": 3,
+          "info": "Select the product groups included in this set. Products are matched by color name. Draft entries stay hidden."
+        }
+      ]
+    },
+    {
       "type": "monte_trust",
       "name": "Monté — Trust & payments",
       "limit": 1,

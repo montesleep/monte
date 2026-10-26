@@ -44,6 +44,7 @@
         {%- case block.type -%}
           {%- when 'monte_promotion' -%}{% render 'monte-product-promotion', block: block %}
           {%- when 'monte_bundle' -%}{% render 'monte-product-bundle', product: product, block: block, section: section %}
+          {%- when 'monte_set' -%}{% render 'monte-product-set', product: product, block: block, section: section %}
           {%- when 'monte_trust' -%}{% render 'monte-product-trust', product: product, block: block, section: section %}
           {%- when 'monte_tabs' -%}{% render 'monte-pdp-tabs', product: product, block: block, section: section %}
           {%- when 'monte_ugc_carousel' -%}{% render 'monte-product-ugc', product: product, block: block, section: section %}

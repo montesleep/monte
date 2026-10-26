@@ -46,7 +46,8 @@
           "settings": {
             "collection": "zestawy",
             "label": "Zestawy",
-            "link": "/collections/zestawy"
+            "link": "/collections/zestawy",
+            "image": "shopify://shop_images/Zestaw_do_Snu_-_Midnight_Blue.jpg"
           }
         },
         "monte_collection_2": {
@@ -54,7 +55,8 @@
           "settings": {
             "collection": "maski",
             "label": "Maski",
-            "link": "/collections/maski"
+            "link": "/collections/maski",
+            "image": "shopify://shop_images/Jedwabna_Maska_do_Spania_-_Midnight_Blue.jpg"
           }
         },
         "monte_collection_3": {
@@ -62,7 +64,8 @@
           "settings": {
             "collection": "poszewki",
             "label": "Poszewki",
-            "link": "/collections/poszewki"
+            "link": "/collections/poszewki",
+            "image": "shopify://shop_images/Jedwabna_Poszewka_na_Poduszke_-_Midnight_Blue.jpg"
           }
         },
         "monte_collection_5": {
@@ -70,7 +73,8 @@
           "settings": {
             "collection": "scrunchies",
             "label": "Scrunchies",
-            "link": "/collections/scrunchies"
+            "link": "/collections/scrunchies",
+            "image": "shopify://shop_images/Jedwabna_Scrunchie_-_Midnight_Blue.jpg"
           }
         },
         "monte_shop_promo": {

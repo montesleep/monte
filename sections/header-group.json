@@ -67,7 +67,7 @@
         "monte_collection_5": {
           "type": "monte_collection",
           "settings": {
-            "collection": "gumki",
+            "collection": "scrunchies",
             "label": "Scrunchies",
             "link": "/collections/gumki"
           }

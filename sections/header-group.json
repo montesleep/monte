@@ -112,27 +112,30 @@
           "type": "monte_bundle",
           "settings": {
             "product": "",
-            "label": "Nazwa zestawu",
-            "description": "Krótki opis",
-            "link": "/collections"
+            "label": "Zestaw do Włosów",
+            "description": "Jedwabna poszewka i scrunchie dla pięknych włosów.",
+            "link": "/collections",
+            "image": "shopify://shop_images/Zestaw_do_Pielegnacji_Wlosow_-_Midnight_Blue.jpg"
           }
         },
         "monte_bundle_1": {
           "type": "monte_bundle",
           "settings": {
             "product": "",
-            "label": "Nazwa zestawu",
-            "description": "Krótki opis",
-            "link": "/collections"
+            "label": "Zestaw do Snu",
+            "description": "Jedwabna maska i poszewka dla komfortowego snu.",
+            "link": "/collections",
+            "image": "shopify://shop_images/Zestaw_do_Snu_-_Midnight_Blue.jpg"
           }
         },
         "monte_bundle_2": {
           "type": "monte_bundle",
           "settings": {
             "product": "",
-            "label": "Nazwa zestawu",
-            "description": "Krótki opis",
-            "link": "/collections"
+            "label": "Kompletny Zestaw do Snu",
+            "description": "Maska, poszewka i scrunchie w jednym zestawie.",
+            "link": "/collections",
+            "image": "shopify://shop_images/Kompletny_Zestaw_do_Snu_-_Midnight_Blue.jpg"
           }
         }
       },

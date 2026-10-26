@@ -11,22 +11,67 @@
   "sections": {
     "banner": {
       "type": "collection-banner",
-      "settings": {}
+      "settings": {
+        "design_images": "collection",
+        "desktop_height": 460,
+        "mobile_height": 420,
+        "heading": "Cała kolekcja Monté",
+        "subheading": "Maski, poszewki i scrunchies,\n100% jedwab morwowy, 22 momme.",
+        "badge_text": "",
+        "badge_background": "#f8f1e9",
+        "badge_color": "#232e71",
+        "show_rating": true,
+        "heading_color": "#fdfbf9",
+        "body_color": "#fdfbf9",
+        "rating_color": "#fdfbf9",
+        "overlay_color": "#000000",
+        "overlay_opacity": 20,
+        "mobile_gradient": true
+      }
     },
     "categories": {
       "type": "monte-collection-filter",
       "settings": {
+        "bundle_builder": false,
         "collections": [
           "zestawy",
           "maski",
           "poszewki",
           "scrunchies"
-        ]
+        ],
+        "all_label": "Wszystko",
+        "all_image": "shopify://shop_images/Kompletny_Zestaw_do_Snu_-_Mix.jpg",
+        "accessibility_label": "Kategorie kolekcji",
+        "text_color": "#232e71",
+        "active_color": "#232e71",
+        "border_color": "#dcd6cf",
+        "icon_background": "#eee7e0"
       }
     },
     "main": {
       "type": "main-collection",
-      "settings": {}
+      "settings": {
+        "bundle_promo_enabled": true,
+        "bundle_collection": "",
+        "bundle_heading": "Połącz produkty, oszczędź więcej",
+        "bundle_body": "Wybierz dowolne produkty Monté i otrzymaj do 15% dodatkowego rabatu na cały zestaw.",
+        "bundle_button": "Stwórz swój zestaw",
+        "bundle_link": "",
+        "bundle_text": "#fdfbf9",
+        "bundle_button_bg": "#fdfbf9",
+        "bundle_button_text": "#232e71",
+        "bundle_button_hover": "#eee7e0",
+        "sort_label": "Sortuj według",
+        "best_selling_label": "Bestsellery",
+        "load_more_label": "Pokaż więcej",
+        "count_text": "Wyświetlono [shown] z [total] produktów",
+        "progress_label": "Wyświetlone produkty",
+        "error_text": "Nie udało się wczytać produktów. Spróbuj ponownie.",
+        "text_color": "#232e71",
+        "secondary_color": "#52597e",
+        "muted_color": "#9ba0b5",
+        "card_color": "#eee7e0"
+      }
     },
     "monte_ugc": {
       "type": "monte-ugc-carousel",

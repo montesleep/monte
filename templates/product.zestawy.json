@@ -55,16 +55,17 @@
             "total_label": "Cena zestawu",
             "footer": "+ Darmowa dostawa",
             "sleep_title": "Zestaw do Snu",
-            "hair_title": "Zestaw do Włosów",
-            "complete_title": "Kompletny Zestaw do Snu",
             "sleep_components": [
               "gid://shopify/Metaobject/1859814228302",
-              "gid://shopify/Metaobject/1897557819726"
+              "gid://shopify/Metaobject/1897557819726",
+              "jedwabna-maska-do-spania"
             ],
+            "hair_title": "Zestaw do Włosów",
             "hair_components": [
               "gid://shopify/Metaobject/1897557819726",
               "gid://shopify/Metaobject/1897580036430"
             ],
+            "complete_title": "Kompletny Zestaw do Snu",
             "complete_components": [
               "gid://shopify/Metaobject/1859814228302",
               "gid://shopify/Metaobject/1897557819726",
@@ -282,6 +283,7 @@
         "feature_3"
       ],
       "settings": {
+        "stack_mobile": false,
         "heading": "Małe detale, które\nzmieniają jakość snu",
         "accessibility_label": "Małe detale Monté",
         "show_numbers": true,
@@ -397,13 +399,28 @@
       "type": "related-products",
       "settings": {
         "monte_layout": true,
-        "title": "Może Ci się spodobać",
+        "recommendations_count": 6,
         "products": [
           "midnight-blue-silk-sleep-mask",
           "classic-black-silk-sleep-mask",
           "rose-noir-silk-sleep-mask",
           "champagne-gold-silk-sleep-mask"
-        ]
+        ],
+        "full_width": true,
+        "stack_products": true,
+        "show_progress_bar": false,
+        "products_per_row_mobile": "1",
+        "products_per_row_desktop": 3,
+        "subheading": "",
+        "title": "Może Ci się spodobać",
+        "content": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
       }
     }
   },

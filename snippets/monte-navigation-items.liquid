@@ -6,7 +6,7 @@
     assign source_menu = section.settings.bundles_menu
   endif
 -%}
-<ul class="{% if desktop %}mega-menu__nav monte-collection-grid{% else %}monte-menu-rows{% endif %}" role="list">
+<ul class="{% if desktop %}mega-menu__nav monte-collection-grid{% else %}monte-menu-rows{% if kind == 'bundle' %} monte-menu-rows--bundles{% endif %}{% endif %}" role="list">
   {%- if items.size > 0 -%}
     {%- for item in items -%}
       {%- liquid

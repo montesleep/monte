@@ -87,6 +87,7 @@
 
 html.monte-mobile-menu-locked { overflow: hidden; overscroll-behavior: none; }
 @media (max-width: 1149px) {
+  .monte-mobile-menu .monte-menu-rows--bundles .monte-menu-row { min-height: 80px; }
   .monte-mobile-menu-locked .shopify-section:has(> height-observer > store-header.header--monte) { position: relative !important; top: 0 !important; visibility: visible !important; }
   .monte-mobile-menu-locked .header--monte { transform: none !important; touch-action: none; }
   .monte-mobile-menu-locked .shopify-section--announcement-bar { touch-action: none; }

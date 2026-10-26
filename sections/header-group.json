@@ -37,7 +37,8 @@
           "settings": {
             "collection": "",
             "label": "Wszystko",
-            "link": "/collections/all"
+            "link": "/collections/all",
+            "image": "shopify://shop_images/Kompletny_Zestaw_do_Snu_-_Mix.jpg"
           }
         },
         "monte_collection_1": {

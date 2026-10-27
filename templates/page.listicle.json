@@ -16,7 +16,7 @@
         "logo_max_width": 135,
         "logo_mobile_max_width": 90,
         "button_label": "Sprawdź dostępność",
-        "button_url": "shopify://products/classic-black-silk-sleep-mask",
+        "button_url": "shopify://products/jedwabna-maska-do-spania-classic-black",
         "background_color": "#fdfbf9",
         "padding_top_desktop": 20,
         "padding_bottom_desktop": 20,
@@ -30,7 +30,7 @@
       "settings": {
         "label": "Oferta specjalna:",
         "offer_text": "Kup 1 maskę, drugą otrzymasz 20% taniej",
-        "link_url": "shopify://products/classic-black-silk-sleep-mask",
+        "link_url": "shopify://products/jedwabna-maska-do-spania-classic-black",
         "background_color": "#232e71",
         "text_color": "#f8f1e9"
       }
@@ -228,7 +228,7 @@
             "feature_4_icon": "shopify://shop_images/Check-Circle--Streamline-Sharp_5.svg",
             "feature_4": "100% blackout dla całkowitej ciemności",
             "button_label": "Sprawdź dostępność",
-            "button_url": "shopify://products/classic-black-silk-sleep-mask",
+            "button_url": "shopify://products/jedwabna-maska-do-spania-classic-black",
             "trust_1_icon": "shopify://shop_images/Shield-Check--Streamline-Sharp.svg",
             "trust_1": "Bezpieczna płatność za pomocą BLIK",
             "trust_2_icon": "shopify://shop_images/Shipment-Return--Streamline-Sharp_2.svg",

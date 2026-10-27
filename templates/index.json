@@ -101,7 +101,7 @@
             "title": "Bestsellery",
             "products": [
               "jedwabna-maska-do-spania-midnight-blue",
-              "classic-black-silk-sleep-mask",
+              "jedwabna-maska-do-spania-classic-black",
               "rose-noir-silk-sleep-mask",
               "champagne-gold-silk-sleep-mask"
             ],
@@ -152,7 +152,7 @@
         "products": [
           "rose-noir-silk-sleep-mask",
           "jedwabna-maska-do-spania-midnight-blue",
-          "classic-black-silk-sleep-mask",
+          "jedwabna-maska-do-spania-classic-black",
           "champagne-gold-silk-sleep-mask"
         ],
         "full_width": true,
@@ -318,7 +318,7 @@
           "type": "video",
           "settings": {
             "media_type": "video",
-            "product": "classic-black-silk-sleep-mask"
+            "product": "jedwabna-maska-do-spania-classic-black"
           }
         },
         "video_3": {

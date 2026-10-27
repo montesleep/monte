@@ -6,7 +6,8 @@ const candidates = [
   '.mb-button', '.monte-search-tag', '.monte-header-link',
   '.monte-faq-nav__link', '.dropdown-menu__item', '.monte-contact-links a',
   '.mp-bundle-choice', '.mp-swatch', '.monte-product-card__swatches a', '.mpr-product',
-  '.mugc-product-button', '.monte-numbered-pagination__button'
+  '.mugc-product-button', '.monte-numbered-pagination__button',
+  '.monte-mobile-menu .monte-menu-row', '.monte-mobile-contact a'
 ].join(',');
 const excluded = [
   '[data-monte-motion="off"]', '[data-tooltip]', '.mp-gallery-slide',
@@ -22,7 +23,8 @@ const filled = [
   '.monte-catalog__sort-button', '.mfooter__submit-btn', '.circle-button',
   '.back-button', '.tap-area', '.monte-header-button', '[is="close-button"]',
   '.mp-bundle-choice', '.mp-swatch', '.monte-product-card__swatches a',
-  '.mpr-pagination button', '.mpr-product', '.mugc-product-button', '.monte-numbered-pagination__button'
+  '.mpr-pagination button', '.mpr-product', '.mugc-product-button', '.monte-numbered-pagination__button',
+  '.monte-mobile-menu .monte-menu-row'
 ].join(',');
 const blocked = ':disabled, [disabled], [aria-disabled="true"], [aria-busy="true"], [loading]';
 const prepared = new WeakSet();

@@ -103,7 +103,7 @@
               "jedwabna-maska-do-spania-midnight-blue",
               "jedwabna-maska-do-spania-classic-black",
               "jedwabna-maska-do-spania-rose-noir",
-              "champagne-gold-silk-sleep-mask"
+              "jedwabna-maska-do-spania-champagne-gold"
             ],
             "bundle_promo_enabled": false,
             "bundle_heading": "Połącz produkty, oszczędź więcej",
@@ -153,7 +153,7 @@
           "jedwabna-maska-do-spania-rose-noir",
           "jedwabna-maska-do-spania-midnight-blue",
           "jedwabna-maska-do-spania-classic-black",
-          "champagne-gold-silk-sleep-mask"
+          "jedwabna-maska-do-spania-champagne-gold"
         ],
         "full_width": true,
         "stack_products": false,
@@ -325,7 +325,7 @@
           "type": "video",
           "settings": {
             "media_type": "video",
-            "product": "champagne-gold-silk-sleep-mask"
+            "product": "jedwabna-maska-do-spania-champagne-gold"
           }
         },
         "video_4": {

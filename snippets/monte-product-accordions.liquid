@@ -6,10 +6,42 @@
       assign title_key = prefix | append: 'title'
       assign content_key = prefix | append: 'content'
       assign icon_key = prefix | append: 'icon'
+      assign row_content = block.settings[content_key]
+      assign product_content = false
+      case i
+        when 1
+          assign row_content = product.metafields.custom.faq_materials_and_fit.value
+          assign product_content = true
+        when 2
+          assign row_content = product.metafields.custom.faq_care.value
+          assign product_content = true
+        when 3
+          assign row_content = product.metafields.custom.faq_shipping_and_returns.value
+          assign product_content = true
+      endcase
     -%}
-    {%- if block.settings[enabled_key] and block.settings[title_key] != blank -%}
-      <details is="monte-faq-disclosure"><summary>{%- if block.settings[icon_key] != blank -%}{{ block.settings[icon_key] | image_url: width: 48 | image_tag: width: 24, height: 24, loading: 'lazy' }}{%- endif -%}<span>{{ block.settings[title_key] | escape }}</span><img class="mp-faq-toggle" src="{{ 'monte-detail-plus.svg' | asset_url }}" width="20" height="20" alt=""></summary><div class="mp-faq-answer prose">{{ block.settings[content_key] }}</div></details>
+    {%- if block.settings[enabled_key] and block.settings[title_key] != blank and row_content != blank -%}
+      <details is="monte-faq-disclosure">
+        <summary>
+          {%- if block.settings[icon_key] != blank -%}{{ block.settings[icon_key] | image_url: width: 48 | image_tag: width: 24, height: 24, loading: 'lazy' }}{%- endif -%}
+          <span>{{ block.settings[title_key] | escape }}</span>
+          <img class="mp-faq-toggle" src="{{ 'monte-detail-plus.svg' | asset_url }}" width="20" height="20" alt="">
+        </summary>
+        <div class="mp-faq-answer prose">
+          {%- if product_content -%}
+            {%- assign paragraphs = row_content | newline_to_br | split: '<br />' -%}
+            {%- for paragraph in paragraphs -%}
+              {%- assign paragraph_text = paragraph | strip -%}
+              {%- if paragraph_text != blank -%}
+                <p>{%- if paragraph_text == 'Dostawa' or paragraph_text == 'Zwroty' -%}<strong>{{ paragraph_text | escape }}</strong>{%- else -%}{{ paragraph_text | escape }}{%- endif -%}</p>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- else -%}
+            {{- row_content -}}
+          {%- endif -%}
+        </div>
+      </details>
     {%- endif -%}
   {%- endfor -%}
 {%- endcapture -%}
-{%- if rows != blank -%}<reveal-items margin="0px" {{ block.shopify_attributes }}><monte-faq class="mp-faq">{{ rows }}</monte-faq></reveal-items>{%- elsif request.design_mode -%}<div {{ block.shopify_attributes }}>Enable an accordion row in this block to show product information.</div>{%- endif -%}
+{%- if rows != blank -%}<reveal-items margin="0px" {{ block.shopify_attributes }}><monte-faq class="mp-faq">{{ rows }}</monte-faq></reveal-items>{%- elsif request.design_mode -%}<div {{ block.shopify_attributes }}>Enable an accordion row and fill its product FAQ metafield to show product information.</div>{%- endif -%}

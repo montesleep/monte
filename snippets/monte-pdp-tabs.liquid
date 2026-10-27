@@ -1,10 +1,11 @@
 {%- liquid
   assign description = product.metafields.custom.zalety_description
   assign specification = product.metafields.custom.specyfikacja
+  assign benefits = product.metafields.custom.zalety_bullets.value | newline_to_br | split: '<br />'
   assign benefit_count = 0
-  for i in (1..10)
-    assign key = 'benefit_' | append: i
-    if block.settings[key] != blank
+  for benefit in benefits
+    assign benefit_text = benefit | strip
+    if benefit_text != blank
       assign benefit_count = benefit_count | plus: 1
     endif
   endfor
@@ -22,7 +23,7 @@
               <button type="button" class="mp-expand" data-expand data-expand-label="{{ block.settings.expand_label | escape }}" data-collapse-label="{{ block.settings.collapse_label | escape }}" aria-expanded="false" aria-controls="PdpDescription-{{ section.id }}-{{ block.id }}" hidden><span>{{ block.settings.expand_label | escape }}</span>{% render 'icon', icon: 'chevron-bottom', width: 10 %}</button>
             </div>
           {%- endif -%}
-          {%- if benefit_count > 0 -%}<ul class="mp-benefits mp-benefits--tab">{%- for i in (1..10) -%}{%- assign key = 'benefit_' | append: i -%}{%- if block.settings[key] != blank -%}<li>{% render 'monte-product-check' %}<span>{{ block.settings[key] | escape }}</span></li>{%- endif -%}{%- endfor -%}</ul>{%- endif -%}
+          {%- if benefit_count > 0 -%}<ul class="mp-benefits mp-benefits--tab">{%- for benefit in benefits -%}{%- assign benefit_text = benefit | strip -%}{%- if benefit_text != blank -%}<li>{% render 'monte-product-check' %}<span>{{ benefit_text | escape }}</span></li>{%- endif -%}{%- endfor -%}</ul>{%- endif -%}
         </div>
       {%- endif -%}
       {%- if specification != blank -%}<button type="button" slot="title">{{ block.settings.specification_label | escape }}</button><div slot="content" class="mp-tab-panel mp-specification prose">{%- if specification.type == 'rich_text_field' -%}{{ specification | metafield_tag }}{%- else -%}{{ specification.value | escape | newline_to_br }}{%- endif -%}</div>{%- endif -%}

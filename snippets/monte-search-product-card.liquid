@@ -9,10 +9,10 @@
     {%- else -%}
       {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
     {%- endif -%}
-    {%- render 'product-badges', product: product, variant: variant, types: 'monte_discount,monte_status', class: 'monte-search-badges' -%}
+    {%- render 'product-badges', product: product, variant: variant, types: 'monte_status', class: 'monte-search-badges' -%}
   </div>
   <div class="monte-search-product-info">
     <p class="monte-search-product-title">{%- render 'monte-product-display-title', product: product, group_title: product.metafields.custom.product_group.value.title.value -%}</p>
-    {%- render 'price-list', variant: variant, hide_unit_price: true -%}
+    {%- render 'price-list', variant: variant, hide_unit_price: true, monte_card_discount: true -%}
   </div>
 </a>

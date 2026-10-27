@@ -48,16 +48,17 @@
         "monte_bundle": {
           "type": "monte_bundle",
           "settings": {
-            "row1_title": "1 Maska",
-            "row2_title": "2 Maski",
+            "row1_title": "1 Scrunchie",
+            "row2_title": "2 Scrunchies",
             "row2_discount": 10,
-            "row2_footer": "+ Darmowa dostawa",
+            "row2_footer": "",
             "popup_title": "Wybierz produkt",
             "popup_choose_label": "Wybierz",
-            "choose_color_label": "Wybierz kolor maski",
+            "choose_color_label": "Wybierz kolor scrunchie",
             "limited_label": "Limitowany kolor",
             "savings_label": "Oszczędzasz",
-            "monte_bundle_badge": "KORZYSTNIEJSZY"
+            "monte_bundle_badge": "KORZYSTNIEJSZY",
+            "row1_footer": ""
           }
         },
         "monte_trust": {

@@ -22,7 +22,7 @@
   assign variant = product.selected_or_first_available_variant
   assign drawer_id = 'MonteProductPicker-' | append: section.id
 -%}
-<monte-product-bundle class="mp-bundle" data-drawer="{{ drawer_id }}" data-discount="{{ options.row2_discount | default: 10 }}" data-savings-label="{{ options.savings_label | default: 'Oszczędzasz' | escape }}" {{ block.shopify_attributes }}>
+<monte-product-bundle class="mp-bundle" data-bundle-group="{{ product.type | handleize }}" data-drawer="{{ drawer_id }}" data-discount="{{ options.row2_discount | default: 10 }}" data-savings-label="{{ options.savings_label | default: 'Oszczędzasz' | escape }}" {{ block.shopify_attributes }}>
   <script type="application/json" data-bundle-data>{"current":{% render 'monte-bundle-product-json', item: product, color: current_color, group_title: product_group.title.value %},"products":[{%- assign separator = '' -%}{%- for color in colors -%}{%- assign item = color.product.value -%}{%- if item != blank -%}{{ separator }}{% render 'monte-bundle-product-json', item: item, color: color, group_title: product_group.title.value %}{%- assign separator = ',' -%}{%- endif -%}{%- endfor -%}],"variants":{{ product.variants | json }}}</script>
   {%- if regular_count > 0 -%}
     <div class="mp-colors">

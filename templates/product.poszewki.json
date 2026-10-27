@@ -100,17 +100,7 @@
             "benefits_label": "Zalety",
             "specification_label": "Specyfikacja",
             "expand_label": "Rozwiń",
-            "collapse_label": "Zwiń",
-            "benefit_1": "100% jedwab morwowy z obu stron",
-            "benefit_2": "Oddychająca, nie przegrzewa się w nocy",
-            "benefit_3": "Lekka i miękka w dotyku",
-            "benefit_4": "Hipoalergiczna, dla wrażliwej skóry",
-            "benefit_5": "",
-            "benefit_6": "",
-            "benefit_7": "",
-            "benefit_8": "",
-            "benefit_9": "",
-            "benefit_10": ""
+            "collapse_label": "Zwiń"
           }
         },
         "monte_ugc_carousel": {

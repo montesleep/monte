@@ -46,7 +46,7 @@
     {%- if product.featured_media -%}
       {{- product.featured_media | image_url: width: 1200 | image_tag: class: 'monte-product-card__image', loading: 'lazy', widths: '180,260,360,500,650,850,1200', sizes: '(min-width: 1000px) calc((100vw - 140px) / 4), (min-width: 700px) calc((100vw - 100px) / 2), calc((100vw - 48px) / 2)', alt: '', draggable: 'false' -}}
     {%- else -%}{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}{%- endif -%}
-    {%- render 'product-badges', product: product, variant: variant, types: 'monte_discount,monte_status', monte_status_overridden: use_group, monte_status_override: current_color.badge.value, class: 'monte-product-card__badges' -%}
+    {%- render 'product-badges', product: product, variant: variant, types: 'monte_status', monte_status_overridden: use_group, monte_status_override: current_color.badge.value, class: 'monte-product-card__badges' -%}
   </div>
   <div class="monte-product-card__info">
     {%- if use_group -%}
@@ -81,7 +81,7 @@
         <h3>{{ card_title }}</h3>
         {%- if card_subtitle != blank -%}<p class="monte-product-card__subtitle">{{ card_subtitle | escape }}</p>{%- endif -%}
       </div>
-      {%- render 'price-list', variant: variant, hide_unit_price: true -%}
+      {%- render 'price-list', variant: variant, hide_unit_price: true, monte_card_discount: true -%}
     </div>
   </div>
 </article>

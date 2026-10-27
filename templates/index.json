@@ -102,7 +102,7 @@
             "products": [
               "jedwabna-maska-do-spania-midnight-blue",
               "jedwabna-maska-do-spania-classic-black",
-              "rose-noir-silk-sleep-mask",
+              "jedwabna-maska-do-spania-rose-noir",
               "champagne-gold-silk-sleep-mask"
             ],
             "bundle_promo_enabled": false,
@@ -121,7 +121,7 @@
           "settings": {
             "title": "Zestawy",
             "products": [
-              "rose-noir-silk-sleep-mask",
+              "jedwabna-maska-do-spania-rose-noir",
               "jedwabna-maska-do-spania-midnight-blue"
             ],
             "bundle_promo_enabled": true,
@@ -150,7 +150,7 @@
         "monte_card_background": "#eee7e0",
         "collection": "",
         "products": [
-          "rose-noir-silk-sleep-mask",
+          "jedwabna-maska-do-spania-rose-noir",
           "jedwabna-maska-do-spania-midnight-blue",
           "jedwabna-maska-do-spania-classic-black",
           "champagne-gold-silk-sleep-mask"
@@ -332,7 +332,7 @@
           "type": "video",
           "settings": {
             "media_type": "video",
-            "product": "rose-noir-silk-sleep-mask"
+            "product": "jedwabna-maska-do-spania-rose-noir"
           }
         },
         "video_5": {

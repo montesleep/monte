@@ -19,6 +19,10 @@
       endif
     endif
   endfor
+  assign show_pair = false
+  if picker_count > 0 or template.suffix == 'poszewki' or template.suffix == 'scrunchies'
+    assign show_pair = true
+  endif
   assign variant = product.selected_or_first_available_variant
   assign drawer_id = 'MonteProductPicker-' | append: section.id
 -%}
@@ -52,7 +56,7 @@
   <div class="mp-bundle-options">
     <p class="mp-label"><strong>Zestaw:</strong> <span data-selected-label>{{ options.row1_title | default: '1 Maska' | escape }}</span></p>
     <div class="mp-bundle-choice" data-choice="1" data-selected="true"><label class="mp-choice-header"><input type="radio" name="Bundle-{{ section.id }}" value="1" checked><span class="mp-choice-copy"><strong data-option-title>{{ options.row1_title | default: '1 Maska' | escape }}</strong><span class="mp-choice-savings" data-single-saving {% unless variant.compare_at_price > variant.price %}hidden{% endunless %}>{{ options.savings_label | default: 'Oszczędzasz' | escape }} {{ variant.compare_at_price | minus: variant.price | money_without_trailing_zeros }}</span></span><span class="mp-choice-price"><strong data-single-price>{{ variant.price | money_without_trailing_zeros }}</strong><s data-single-compare {% unless variant.compare_at_price > variant.price %}hidden{% endunless %}>{{ variant.compare_at_price | money_without_trailing_zeros }}</s></span></label>{%- if options.row1_footer != blank -%}<p class="mp-bundle-footer">{{ options.row1_footer | escape }}</p>{%- endif -%}</div>
-    {%- if picker_count > 0 -%}
+    {%- if show_pair -%}
       <div class="mp-bundle-choice" data-choice="2" data-selected="false">
         <span class="mp-bundle-ribbon"><img src="{{ 'monte-bundle-ribbon-left.svg' | asset_url }}" width="12" height="12" alt=""><span>{{ options.monte_bundle_badge | default: 'KORZYSTNIEJSZY' | escape }}</span><img src="{{ 'monte-bundle-ribbon-right.svg' | asset_url }}" width="12" height="12" alt=""></span>
         <label class="mp-choice-header mp-choice-header--pair"><input type="radio" name="Bundle-{{ section.id }}" value="2"><span class="mp-choice-copy"><strong data-option-title>{{ options.row2_title | default: '2 Maski' | escape }}</strong><span class="mp-choice-savings" data-pair-saving></span></span><span class="mp-choice-price"><strong data-pair-price></strong><s data-pair-compare></s></span></label>
@@ -61,7 +65,7 @@
       </div>
     {%- endif -%}
   </div>
-  <button type="button" class="mp-atc" data-bundle-atc><span data-atc-label>{{ 'product.general.add_to_cart_button' | t }}</span><span class="mp-basket"><img src="{{ 'monte-pdp-basket.svg' | asset_url }}" width="22.0333" height="22.3868" alt=""></span></button>
+  <button type="button" class="mp-atc" data-bundle-atc {% unless variant.available %}disabled{% endunless %}><span data-atc-label>{{ 'product.general.add_to_cart_button' | t }}</span><span class="mp-basket"><img src="{{ 'monte-pdp-basket.svg' | asset_url }}" width="22.0333" height="22.3868" alt=""></span></button>
   <p class="mp-bundle-error" role="alert" hidden></p>
   <noscript><form action="{{ routes.cart_add_url }}" method="post"><input type="hidden" name="id" value="{{ variant.id }}"><button class="mp-atc" type="submit" {% unless variant.available %}disabled{% endunless %}>{{ 'product.general.add_to_cart_button' | t }}</button></form></noscript>
   <monte-product-picker id="{{ drawer_id }}" class="drawer mp-picker" aria-labelledby="{{ drawer_id }}-title" tabindex="-1">

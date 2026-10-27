@@ -290,7 +290,9 @@ class MonteProductBundle extends HTMLElement {
         img.hidden = !item; if (item) { img.src = item.image; img.alt = item.title; }
         row.querySelector('[data-slot-plus]').hidden = Boolean(item);
         const title = row.querySelector('[data-slot-title]'); title.hidden = !item; title.textContent = item?.title || '';
-        row.querySelector('[data-pick-slot]').hidden = Boolean(item); row.querySelector('[data-remove-slot]').hidden = !item;
+        row.querySelector('[data-pick-slot]').hidden = Boolean(item);
+        row.querySelector('[data-pick-slot]').disabled = !this.data.products.some(product => product.available);
+        row.querySelector('[data-remove-slot]').hidden = !item;
       });
       const { price: total, compare } = this.pairPrices;
       this.querySelector('[data-pair-price]').textContent = money(total, 0);
@@ -300,7 +302,8 @@ class MonteProductBundle extends HTMLElement {
     this.animateSlots(animateSlots);
     this.querySelectorAll('[data-current-color]').forEach(swatch => swatch.setAttribute('aria-current', String(this.count === 1 || this.slots.some(item => item?.productId === this.current.productId))));
     const incomplete = this.count === 2 && this.slots.some(item => !item);
-    const unavailable = !incomplete && (this.count === 1 ? !this.current.available : this.slots.some(item => !item.available));
+    const unavailable = this.count === 1 ? !this.current.available
+      : this.slots.some(item => item && !item.available) || (incomplete && !this.data.products.some(item => item.available));
     this.querySelector('[data-atc-label]').textContent = unavailable ? 'Wyprzedane' : incomplete ? this.querySelector('[data-pick-slot]').textContent : 'Dodaj do koszyka';
     this.querySelector('.mp-basket').hidden = incomplete || unavailable;
     this.button.disabled = unavailable || Boolean(this.busy); this.error.hidden = true;

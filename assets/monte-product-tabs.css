@@ -80,3 +80,12 @@
 
 .monte-products__track--empty .monte-catalog-promo { grid-row: 1; }
 @media (min-width: 700px) { .monte-products__track .monte-catalog-promo { grid-column: auto; grid-row: auto; } }
+
+/* Keep card discounts beside prices on desktop; mobile reserves the row for prices. */
+.monte-product-card .price-list.monte-card-price { flex-wrap: nowrap; align-items: center; gap: 8px; }
+.monte-product-card .monte-card-price > :is(sale-price, compare-at-price) { flex: none; white-space: nowrap; }
+.monte-product-card .monte-card-price__discount { display: none; flex: none; }
+@media (min-width: 700px) {
+  .monte-product-card .monte-card-price__discount { display: flex; align-items: center; }
+  .monte-product-card .monte-card-price__discount .badge { display: inline-flex; align-items: center; justify-content: center; height: 24px; min-height: 24px; padding: 3px 8px; border-radius: 4px; font: 500 12px/1.5 'PP Neue Montreal Mono', monospace; letter-spacing: -.12px; white-space: nowrap; background: rgb(var(--on-sale-badge-background)); color: rgb(var(--on-sale-badge-text)); }
+}

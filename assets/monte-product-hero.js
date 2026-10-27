@@ -317,7 +317,7 @@ class MonteProductBundle extends HTMLElement {
       document.documentElement.dispatchEvent(new CustomEvent('cart:prepare-bundled-sections', { bubbles: true, detail: { sections } }));
       const chosen = this.count === 1 ? [this.current] : this.slots;
       // Preserve the existing Every Possible Discount line-property contract.
-      const items = chosen.map(item => this.hasAttribute('data-fixed-set') ? { id: item.id, quantity: 1 } : { id: item.id, quantity: 1, properties: { _bundle: 'true' } });
+      const items = chosen.map(item => this.hasAttribute('data-fixed-set') ? { id: item.id, quantity: 1 } : { id: item.id, quantity: 1, properties: { _bundle: ['poszewki', 'scrunchies'].includes(this.dataset.bundleGroup) ? this.dataset.bundleGroup : 'true' } });
       const response = await fetch(`${Shopify.routes.root}cart/add.js`, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ items, sections: [...new Set(sections)], sections_url: location.pathname }) });
       const result = await response.json();
       if (!response.ok) throw new Error(result.description || 'Nie udało się dodać produktu. Spróbuj ponownie.');

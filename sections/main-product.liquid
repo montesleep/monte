@@ -4031,6 +4031,12 @@ quick buy information in a template, that will be extracted in JS, but ensure it
         },
         {
           "type": "text",
+          "id": "row1_footer",
+          "label": "Single-product footer text",
+          "info": "Leave empty to hide the footer for the first option."
+        },
+        {
+          "type": "text",
           "id": "row2_title",
           "label": "Title",
           "default": "2 Maski"
@@ -4039,17 +4045,17 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "type": "range",
           "id": "row2_discount",
           "label": "Two-product display discount (%)",
-          "info": "Visual discount on the combined product prices. Configure the same discount in Every Possible Discount; this setting does not create a checkout discount.",
+          "info": "Visual discount on the combined current prices. For equal-priced products, 7.5% gives 15% off the second item; 10% gives 20% off the second item. Configure the matching checkout discount in Every Possible Discount.",
           "min": 0,
           "max": 50,
-          "step": 1,
+          "step": 0.5,
           "unit": "%",
           "default": 10
         },
         {
           "type": "text",
           "id": "row2_footer",
-          "label": "Footer text",
+          "label": "Two-product footer text",
           "default": "+ Darmowa dostawa"
         },
         {

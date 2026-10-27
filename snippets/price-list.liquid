@@ -16,6 +16,7 @@ Supported variables
 * hide_unit_price: if set to true, unit pricing are hidden (this is useful for elements that are very size constrained)
 * size: can be either "sm" or "lg". If none is passed it will use the standard size
 * alignment: can be "center" to align the prices
+* monte_card_discount: show the Monté card discount beside the variant prices
 {%- endcomment -%}
 
 {%- liquid
@@ -40,7 +41,7 @@ Supported variables
   endcase
 -%}
 
-<price-list class="price-list {% if size == 'lg' %}price-list--lg{% endif %} {% if text_alignment == 'center' %}justify-center{% endif %}">
+<price-list class="price-list {% if monte_card_discount %}monte-card-price{% endif %} {% if size == 'lg' %}price-list--lg{% endif %} {% if text_alignment == 'center' %}justify-center{% endif %}">
   {%- if variant != blank -%}
     {%- comment -%}
     --------------------------------------------------------------------------------------------------------------------
@@ -185,6 +186,10 @@ Supported variables
         {%- endif -%}
       </sale-price>
     {%- endif -%}
+  {%- endif -%}
+
+  {%- if monte_card_discount and variant != blank -%}
+    {%- render 'product-badges', product: product, variant: variant, types: 'monte_discount', class: 'monte-card-price__discount' -%}
   {%- endif -%}
 
   {%- unless hide_unit_price -%}

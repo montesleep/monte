@@ -50,14 +50,15 @@
           "settings": {
             "row1_title": "1 Poszewka",
             "row2_title": "2 Poszewki",
-            "row2_discount": 10,
+            "row2_discount": 7.5,
             "row2_footer": "+ Darmowa dostawa",
             "popup_title": "Wybierz produkt",
             "popup_choose_label": "Wybierz",
-            "choose_color_label": "Wybierz kolor maski",
+            "choose_color_label": "Wybierz kolor poszewki",
             "limited_label": "Limitowany kolor",
             "savings_label": "Oszczędzasz",
-            "monte_bundle_badge": "KORZYSTNIEJSZY"
+            "monte_bundle_badge": "KORZYSTNIEJSZY",
+            "row1_footer": "+ Darmowa dostawa"
           }
         },
         "monte_trust": {

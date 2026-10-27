@@ -70,7 +70,7 @@
 .monte-menu-description { display: block; color: var(--monte-menu-secondary); font-size: 12px; line-height: 18px; font-weight: 400; }
 .monte-mobile-contact { display: grid; gap: 20px; font-size: 18px; line-height: 27px; font-weight: 600; }
 .monte-mobile-contact a { display: block; }
-.monte-mobile-menu :is(a, button):active { opacity: .7; }
+.monte-mobile-menu :is(a, button):not([data-monte-motion]):active { opacity: .7; }
 .monte-mobile-menu .monte-promo-badge { font-size: 10px; line-height: 12px; padding: 4px 8px; }
 @media (min-width: 1150px) {
   .monte-mobile-menu { display: none; }

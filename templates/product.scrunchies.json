@@ -429,13 +429,13 @@
       "type": "related-products",
       "settings": {
         "monte_layout": true,
-        "title": "Może Ci się spodobać",
         "products": [
-          "midnight-blue-silk-sleep-mask",
+          "jedwabna-maska-do-spania-midnight-blue",
           "classic-black-silk-sleep-mask",
           "rose-noir-silk-sleep-mask",
           "champagne-gold-silk-sleep-mask"
-        ]
+        ],
+        "title": "Może Ci się spodobać"
       }
     }
   },

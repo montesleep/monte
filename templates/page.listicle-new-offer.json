@@ -16,7 +16,7 @@
         "logo_max_width": 135,
         "logo_mobile_max_width": 90,
         "button_label": "Sprawdź dostępność",
-        "button_url": "shopify://products/midnight-blue-silk-sleep-mask",
+        "button_url": "shopify://products/jedwabna-maska-do-spania-midnight-blue",
         "background_color": "#fdfbf9",
         "padding_top_desktop": 20,
         "padding_bottom_desktop": 20,
@@ -28,9 +28,7 @@
       "type": "listicle-sticky-cta",
       "settings": {
         "button_label": "Sprawdź dostępność",
-        "button_url": "shopify://products/midnight-blue-silk-sleep-mask",
-        "side_text": "",
-        "background_color": "#232e71"
+        "button_url": "shopify://products/jedwabna-maska-do-spania-midnight-blue"
       }
     },
     "listicle_announcement": {
@@ -38,7 +36,7 @@
       "settings": {
         "label": "Oferta specjalna:",
         "offer_text": "Kup 1 maskę, drugą otrzymasz 30% taniej",
-        "link_url": "shopify://products/midnight-blue-silk-sleep-mask",
+        "link_url": "shopify://products/jedwabna-maska-do-spania-midnight-blue",
         "background_color": "#232e71",
         "text_color": "#f8f1e9"
       }
@@ -55,7 +53,7 @@
         "subtitle": "<p>(Twój krem pod oczy za 200 zł pracuje na połowę wartości.<br/>Oto dlaczego, i jak to zmienić dziś wieczorem.)</p>",
         "body": "Twoja rutyna jest przemyślana. Wiesz, co robi każdy krok, co znaczą składniki na etykiecie i dlaczego tania alternatywa po prostu nie ma sensu. A rano wciąż widzisz to samo.",
         "button_label": "Sprawdź dostępność",
-        "button_url": "shopify://products/midnight-blue-silk-sleep-mask",
+        "button_url": "shopify://products/jedwabna-maska-do-spania-midnight-blue",
         "button_color": "#232e71",
         "feature_1": "30-nocna gwarancja zwrotu",
         "feature_2": "Wysyłka tego samego dnia",
@@ -242,7 +240,7 @@
             "testimonial_reviewer": "",
             "testimonial_verified": true,
             "button_label": "Sprawdź dostępność",
-            "button_url": "shopify://products/midnight-blue-silk-sleep-mask"
+            "button_url": "shopify://products/jedwabna-maska-do-spania-midnight-blue"
           }
         },
         "item_cta": {
@@ -260,7 +258,7 @@
             "testimonial_reviewer": "",
             "testimonial_verified": true,
             "button_label": "Sprawdź dostępność",
-            "button_url": "shopify://products/midnight-blue-silk-sleep-mask"
+            "button_url": "shopify://products/jedwabna-maska-do-spania-midnight-blue"
           }
         }
       },
@@ -362,7 +360,7 @@
         "feature_3_title": "Rzep premium, zero kompromisów",
         "feature_3_desc": "Nie zaczepia o włosy. Nie uciska skroni. Trzyma się przez całą noc, nawet śpiąc na boku.",
         "button_label": "Sprawdź dostępność",
-        "button_url": "shopify://products/midnight-blue-silk-sleep-mask",
+        "button_url": "shopify://products/jedwabna-maska-do-spania-midnight-blue",
         "product_image": "shopify://shop_images/1234_Masks.png",
         "background_color": "#232e71",
         "padding_top_desktop": 40,

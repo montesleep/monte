@@ -37,7 +37,7 @@
       "type": "cart-drawer",
       "settings": {
         "empty_products": [
-          "midnight-blue-silk-sleep-mask",
+          "jedwabna-maska-do-spania-midnight-blue",
           "rose-noir-silk-sleep-mask",
           "classic-black-silk-sleep-mask"
         ],
@@ -45,13 +45,12 @@
           "champagne-gold-silk-sleep-mask",
           "classic-black-silk-sleep-mask",
           "rose-noir-silk-sleep-mask",
-          "midnight-blue-silk-sleep-mask"
+          "jedwabna-maska-do-spania-midnight-blue"
         ]
       }
     },
     "search-drawer": {
       "type": "search-drawer",
-      "settings": {},
       "blocks": {
         "monte_search_tag_1": {
           "type": "popular_search",
@@ -87,7 +86,8 @@
         "monte_search_tag_2",
         "monte_search_tag_4",
         "monte_search_tag_5"
-      ]
+      ],
+      "settings": {}
     }
   },
   "order": [

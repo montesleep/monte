@@ -31,6 +31,9 @@
         "comments"
       ],
       "settings": {
+        "monte_layout": true,
+        "monte_heading_color": "#232e71",
+        "monte_body_color": "#52597e",
         "allow_transparent_header": false,
         "layout": "content_first",
         "show_author": true,
@@ -41,20 +44,18 @@
         "banner_text_color": "#182153",
         "overlay_color": "#182153",
         "overlay_opacity": 0,
-        "content_width": "750px",
-        "monte_layout": true,
-        "monte_heading_color": "#232e71",
-        "monte_body_color": "#52597e"
+        "content_width": "750px"
       }
     },
     "featured_collection_99je87": {
       "type": "featured-collection",
+      "disabled": true,
       "name": "Featured collection",
       "settings": {
         "collection": "",
         "products": [
           "rose-noir-silk-sleep-mask",
-          "midnight-blue-silk-sleep-mask",
+          "jedwabna-maska-do-spania-midnight-blue",
           "classic-black-silk-sleep-mask",
           "champagne-gold-silk-sleep-mask"
         ],
@@ -76,8 +77,7 @@
         "heading_gradient": "",
         "product_card_background": "",
         "product_card_text_color": ""
-      },
-      "disabled": true
+      }
     },
     "monte_blog": {
       "type": "monte-blog",

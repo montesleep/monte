@@ -100,7 +100,7 @@
           "settings": {
             "title": "Bestsellery",
             "products": [
-              "midnight-blue-silk-sleep-mask",
+              "jedwabna-maska-do-spania-midnight-blue",
               "classic-black-silk-sleep-mask",
               "rose-noir-silk-sleep-mask",
               "champagne-gold-silk-sleep-mask"
@@ -122,7 +122,7 @@
             "title": "Zestawy",
             "products": [
               "rose-noir-silk-sleep-mask",
-              "midnight-blue-silk-sleep-mask"
+              "jedwabna-maska-do-spania-midnight-blue"
             ],
             "bundle_promo_enabled": true,
             "bundle_heading": "Połącz produkty, oszczędź więcej",
@@ -151,7 +151,7 @@
         "collection": "",
         "products": [
           "rose-noir-silk-sleep-mask",
-          "midnight-blue-silk-sleep-mask",
+          "jedwabna-maska-do-spania-midnight-blue",
           "classic-black-silk-sleep-mask",
           "champagne-gold-silk-sleep-mask"
         ],
@@ -311,7 +311,7 @@
           "type": "video",
           "settings": {
             "media_type": "video",
-            "product": "midnight-blue-silk-sleep-mask"
+            "product": "jedwabna-maska-do-spania-midnight-blue"
           }
         },
         "video_2": {
@@ -339,7 +339,7 @@
           "type": "video",
           "settings": {
             "media_type": "video",
-            "product": "midnight-blue-silk-sleep-mask"
+            "product": "jedwabna-maska-do-spania-midnight-blue"
           }
         }
       },

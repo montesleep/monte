@@ -15,6 +15,7 @@
         "block-1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/HeroBanner_HP_desktop.jpg",
             "content_max_width": 600,
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",

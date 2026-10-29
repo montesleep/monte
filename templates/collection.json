@@ -13,6 +13,7 @@
       "type": "collection-banner",
       "settings": {
         "design_images": "collection",
+        "image": "shopify://shop_images/Image9.jpg",
         "mobile_image": "shopify://shop_images/Image8_2f26d06a-ce2e-4a1b-8b67-2572ebda34cf.jpg",
         "desktop_height": 460,
         "mobile_height": 420,

@@ -482,8 +482,8 @@
     "monte_brand_story": {
       "type": "monte-brand-story",
       "settings": {
-        "image": "shopify://shop_images/Hand_and_Mask.png",
-        "mobile_image": "shopify://shop_images/Hand_and_Mask.png",
+        "image": "shopify://shop_images/Image3.jpg",
+        "mobile_image": "shopify://shop_images/Image3.jpg",
         "image_zoom": false,
         "heading": "Dlaczego Monté?",
         "body": "Młoda polska marka, która chce zmienić to, jak traktujesz swoją noc.",

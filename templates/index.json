@@ -376,6 +376,8 @@
         "card_1_button_background": "#fdfbf9",
         "card_1_button_text_color": "#232e71",
         "card_1_button_hover": "#eee7e0",
+        "card_2_image": "shopify://shop_images/Image6.jpg",
+        "card_2_mobile_image": "shopify://shop_images/Image6.jpg",
         "card_2_badge": "Nowość",
         "card_2_badge_background": "#f8f1e9",
         "card_2_badge_color": "#232e71",

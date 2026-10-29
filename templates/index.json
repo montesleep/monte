@@ -15,8 +15,8 @@
         "block-1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/HeroBanner_HP_desktop.jpg",
-            "mobile_image": "shopify://shop_images/HeroBanner_HP_mobile.jpg",
+            "image": "shopify://shop_images/HeroBanner_HP_desktop_11fcb7d8-e11f-45d5-9eb4-4b22a51b9593.jpg",
+            "mobile_image": "shopify://shop_images/HeroBanner_HP_mobile_b2f5be57-c6f3-4fed-aa21-6255b45a34e6.jpg",
             "content_max_width": 600,
             "mobile_text_position": "place-self-end-start text-start",
             "desktop_text_position": "sm:place-self-end-start sm:text-start",

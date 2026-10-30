@@ -14,6 +14,8 @@
       "name": "Monté FAQ Hero",
       "settings": {
         "design_images": "faq",
+        "image": "shopify://shop_images/Image12.jpg",
+        "mobile_image": "shopify://shop_images/Image12_mob.jpg",
         "desktop_height": 460,
         "mobile_height": 420,
         "heading": "Najczęściej\nzadawane pytania",

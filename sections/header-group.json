@@ -81,8 +81,8 @@
           "type": "monte_promo",
           "settings": {
             "enabled": true,
-            "desktop_image": "shopify://shop_images/Image6_816633f1-9b28-4b90-8436-1c152566b4bb.jpg",
-            "mobile_image": "shopify://shop_images/Image6_816633f1-9b28-4b90-8436-1c152566b4bb.jpg",
+            "desktop_image": "shopify://shop_images/Image10.jpg",
+            "mobile_image": "shopify://shop_images/Image10.jpg",
             "badge": "Nowość",
             "heading": "Jedwabne poszewki na poduszkę",
             "button_label": "Zobacz poszewki",

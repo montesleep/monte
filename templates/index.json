@@ -363,8 +363,8 @@
     "monte_spotlight": {
       "type": "monte-spotlight",
       "settings": {
-        "card_1_image": "shopify://shop_images/Image5_f88236f9-5a1b-4810-ad16-21f55fcfdaa9.jpg",
-        "card_1_mobile_image": "shopify://shop_images/Image5_f88236f9-5a1b-4810-ad16-21f55fcfdaa9.jpg",
+        "card_1_image": "shopify://shop_images/Image11.jpg",
+        "card_1_mobile_image": "shopify://shop_images/Image11.jpg",
         "card_1_badge": "Bestseller",
         "card_1_badge_background": "#232e71",
         "card_1_badge_color": "#fdfbf9",

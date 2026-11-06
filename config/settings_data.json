@@ -75,6 +75,30 @@
     "monte_judgeme_public_token": "hK2O1Ozd1p2XpZ37Qt-5ZU_8LqI",
     "checkout_accent_color": "#f0c417",
     "checkout_button_color": "#1a1a1a",
+    "sections": {
+      "monte-policy-hero": {
+        "type": "monte-policy-hero",
+        "settings": {
+          "image": "shopify://shop_images/Image14.jpg",
+          "mobile_image": "shopify://shop_images/Image14_mob.jpg",
+          "desktop_height": 460,
+          "mobile_height": 420,
+          "heading_color": "#fdfbf9",
+          "body_color": "#fdfbf9",
+          "overlay_color": "#000000",
+          "overlay_opacity": 20,
+          "mobile_gradient": true,
+          "terms_heading": "Regulamin sklepu",
+          "terms_subheading": "Wersja obowiązująca od dnia:\n10 maja 2026 r.",
+          "privacy_heading": "Polityka prywatności",
+          "privacy_subheading": "",
+          "shipping_heading": "Polityka wysyłki",
+          "shipping_subheading": "",
+          "refund_heading": "Polityka zwrotów",
+          "refund_subheading": ""
+        }
+      }
+    },
     "content_for_index": [],
     "blocks": {
       "855628211100114053": {

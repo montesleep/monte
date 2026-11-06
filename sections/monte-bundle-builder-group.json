@@ -13,10 +13,20 @@
       "type": "collection-banner",
       "settings": {
         "design_images": "builder",
+        "desktop_height": 460,
+        "mobile_height": 420,
         "heading": "Połącz produkty, oszczędź więcej",
         "subheading": "Wybierz dowolne produkty Monté i otrzymaj do 15% dodatkowego rabatu na cały zestaw.",
-        "badge_text": "STWÓRZ SWÓJ ZESTAW",
-        "show_rating": false
+        "badge_text": "",
+        "badge_background": "#f8f1e9",
+        "badge_color": "#232e71",
+        "show_rating": false,
+        "heading_color": "#fdfbf9",
+        "body_color": "#fdfbf9",
+        "rating_color": "#fdfbf9",
+        "overlay_color": "#000000",
+        "overlay_opacity": 20,
+        "mobile_gradient": true
       }
     },
     "categories": {
@@ -28,12 +38,37 @@
           "maski",
           "poszewki",
           "scrunchies"
-        ]
+        ],
+        "all_label": "Wszystko",
+        "accessibility_label": "Kategorie kolekcji",
+        "text_color": "#232e71",
+        "active_color": "#232e71",
+        "border_color": "#dcd6cf",
+        "icon_background": "#eee7e0"
       }
     },
     "builder": {
       "type": "monte-bundle-builder",
-      "settings": {}
+      "settings": {
+        "threshold_1": 350,
+        "threshold_2": 550,
+        "threshold_3": 750,
+        "discount_code": "",
+        "progress_text": "Dodaj jeszcze za [amount], aby uzyskać [percent]% rabatu",
+        "success_text": "Twój zestaw z dodatkowym rabatem 15%!",
+        "empty_title": "Twój zestaw jest pusty",
+        "empty_text": "Dodaj produkty klikając „Dodaj +”",
+        "subtotal_label": "Razem:",
+        "savings_label": "Oszczędzasz:",
+        "total_label": "Cena zestawu:",
+        "checkout_label": "Przejdź do kasy",
+        "shipping_text": "Wysyłka tego samego dnia",
+        "returns_text": "30 dni na zwrot",
+        "error_text": "Nie udało się wykonać tej operacji. Spróbuj ponownie.",
+        "primary_color": "#232e71",
+        "secondary_color": "#52597e",
+        "card_color": "#eee7e0"
+      }
     }
   },
   "order": [

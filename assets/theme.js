@@ -1671,7 +1671,27 @@ var Popover = class extends DialogElement {
       horizontal: this.getAttribute("anchor-horizontal") || "end"
     };
   }
+  _monteSortTransition(open, animated = true) {
+    const content = this.shadowRoot.querySelector('[part="content"]');
+    const overlay = this.shadowRoot.querySelector('[part="overlay"]');
+    const instant = !animated || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Keep the host opaque so the backdrop filter composites with the dimming layer.
+    Object.assign(this.style, { display: "block", visibility: "visible", opacity: "1", insetInlineStart: "0px", insetInlineEnd: "", insetBlockStart: "", insetBlockEnd: "0px" });
+    return motionTimeline2([
+      [overlay, {
+        opacity: 1,
+        backgroundColor: open ? ["rgba(0,0,0,0)", "rgba(0,0,0,.6)"] : ["rgba(0,0,0,.6)", "rgba(0,0,0,0)"],
+        backdropFilter: open ? ["blur(0px)", "blur(17px)"] : ["blur(17px)", "blur(0px)"],
+        webkitBackdropFilter: open ? ["blur(0px)", "blur(17px)"] : ["blur(17px)", "blur(0px)"]
+      }, { at: 0, duration: instant ? 0 : .3 }],
+      [content, { clipPath: "none", transform: open ? ["translateY(100%)", "translateY(0)"] : ["translateY(0)", "translateY(100%)"] }, { at: 0, duration: instant ? 0 : .45, easing: [.22, 1, .36, 1] }],
+      [content.children, { opacity: 1 }, { at: 0, duration: 0 }]
+    ]).finished.then(() => {
+      if (!open) { this.style.display = "none"; this.style.visibility = "hidden"; }
+    });
+  }
   _showTransition(animate19 = true) {
+    if (this.classList.contains("monte-sort") && this.shouldAppendToBody) return this._monteSortTransition(true, animate19);
     let animationControls, content = this.shadowRoot.querySelector('[part="content"]'), closeButton = this.shadowRoot.querySelector('[part="outside-close-button"]');
     this.style.display = "block";
     if (window.matchMedia("screen and (max-width: 999px)").matches) {
@@ -1686,6 +1706,7 @@ var Popover = class extends DialogElement {
         [closeButton, { opacity: [0, 1] }, { at: "<", duration: 0.15 }]
       ]);
     } else {
+      if (this.classList.contains("monte-sort")) content.style.transform = "none";
       let spacingBlockValue = "var(--popover-anchor-block-spacing)", spacingInlineValue = "var(--popover-anchor-inline-spacing)";
       this.style.insetInlineStart = this.anchor.horizontal === "start" ? spacingInlineValue : null;
       this.style.insetInlineEnd = this.anchor.horizontal === "end" ? spacingInlineValue : null;
@@ -1706,6 +1727,7 @@ var Popover = class extends DialogElement {
     return animationControls.finished;
   }
   _hideTransition() {
+    if (this.classList.contains("monte-sort") && this.shouldAppendToBody) return this._monteSortTransition(false);
     let animationControls;
     if (window.matchMedia("screen and (max-width: 999px)").matches) {
       let content = this.shadowRoot.querySelector('[part="content"]'), closeButton = this.shadowRoot.querySelector('[part="outside-close-button"]');

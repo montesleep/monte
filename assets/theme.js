@@ -1684,8 +1684,13 @@ var Popover = class extends DialogElement {
         backdropFilter: open ? ["blur(0px)", "blur(17px)"] : ["blur(17px)", "blur(0px)"],
         webkitBackdropFilter: open ? ["blur(0px)", "blur(17px)"] : ["blur(17px)", "blur(0px)"]
       }, { at: 0, duration: instant ? 0 : .3 }],
-      [content, { clipPath: "none", transform: open ? ["translateY(100%)", "translateY(0)"] : ["translateY(0)", "translateY(100%)"] }, { at: 0, duration: instant ? 0 : .45, easing: [.22, 1, .36, 1] }],
-      [content.children, { opacity: 1 }, { at: 0, duration: 0 }]
+      [content, {
+        transform: "none",
+        clipPath: open
+          ? ["inset(100% 0 0 0 round 16px 16px 0 0)", "inset(0 0 0 0 round 16px 16px 0 0)"]
+          : ["inset(0 0 0 0 round 16px 16px 0 0)", "inset(100% 0 0 0 round 16px 16px 0 0)"]
+      }, { at: instant ? 0 : .15, duration: instant ? 0 : .4, easing: [.86, 0, .07, 1] }],
+      [content.children, { opacity: open ? [0, 1] : [1, 0] }, { at: open && !instant ? .55 : 0, duration: instant ? 0 : .15 }]
     ]).finished.then(() => {
       if (!open) { this.style.display = "none"; this.style.visibility = "hidden"; }
     });

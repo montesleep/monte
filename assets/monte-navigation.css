@@ -93,3 +93,5 @@ html.monte-mobile-menu-locked { overflow: hidden; overscroll-behavior: none; }
   .monte-mobile-menu-locked .shopify-section--announcement-bar { touch-action: none; }
   .monte-mobile-menu .panel__wrapper { touch-action: pan-y; overscroll-behavior: contain; }
 }
+
+.monte-menu-promo--bundle .monte-media-placeholder { background: #d9d9d9; fill: #808080; color: #808080; }

@@ -195,8 +195,8 @@ class MonteProductBundle extends HTMLElement {
       }
     }, { signal });
     this.addEventListener('click', event => {
-      const pick = event.target.closest('[data-pick-slot]'), remove = event.target.closest('[data-remove-slot]');
-      if (pick) this.pick(Number(pick.dataset.pickSlot));
+      const pick = event.target.closest('[data-pick-slot], [data-pick-slot-icon]'), remove = event.target.closest('[data-remove-slot]');
+      if (pick && !pick.disabled) this.pick(Number(pick.dataset.pickSlot ?? pick.dataset.pickSlotIcon));
       if (remove) { this.slots[Number(remove.dataset.removeSlot)] = null; this.render(); }
       if (event.target.closest('[data-bundle-atc]')) this.addToCart();
     }, { signal });
@@ -291,7 +291,9 @@ class MonteProductBundle extends HTMLElement {
         row.querySelector('[data-slot-plus]').hidden = Boolean(item);
         const title = row.querySelector('[data-slot-title]'); title.hidden = !item; title.textContent = item?.title || '';
         row.querySelector('[data-pick-slot]').hidden = Boolean(item);
-        row.querySelector('[data-pick-slot]').disabled = !this.data.products.some(product => product.available);
+        row.querySelectorAll('[data-pick-slot], [data-pick-slot-icon]').forEach(button => {
+          button.disabled = !this.data.products.some(product => product.available);
+        });
         row.querySelector('[data-remove-slot]').hidden = !item;
       });
       const { price: total, compare } = this.pairPrices;

@@ -79,6 +79,7 @@
 @media (prefers-reduced-motion: reduce) { .monte-product-card__color { transition: none; } }
 
 .monte-products__track--empty .monte-catalog-promo { grid-row: 1; }
+@media (max-width: 699px) { .monte-products__track .monte-catalog-promo { align-items: flex-end; } }
 @media (min-width: 700px) { .monte-products__track .monte-catalog-promo { grid-column: auto; grid-row: auto; } }
 
 /* Keep card discounts beside prices on desktop; mobile reserves the row for prices. */

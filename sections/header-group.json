@@ -97,8 +97,8 @@
           "type": "monte_bundle_promo",
           "settings": {
             "enabled": true,
-            "heading": "Połącz produkty, oszczędź więcej",
-            "body": "Wybierz dowolne produkty Monté i otrzymaj do 15% dodatkowego rabatu na cały zestaw.",
+            "heading": "Stwórz zestaw i oszczędź 15%",
+            "body": "",
             "button_label": "Stwórz swój zestaw",
             "link": "/pages/bundle-builder",
             "text_color": "#fdfbf9",

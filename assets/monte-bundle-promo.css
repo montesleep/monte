@@ -1,4 +1,4 @@
-.monte-catalog-promo { grid-column: 1 / -1; grid-row: 2; position: relative; isolation: isolate; display: flex; align-items: flex-start; min-height: 198px; padding: 20px 16px; overflow: hidden; border-radius: 16px; color: var(--promo-text); background: #182153; }
+.monte-catalog-promo { grid-column: 1 / -1; grid-row: 2; position: relative; isolation: isolate; display: flex; align-items: flex-end; min-height: 198px; padding: 20px 16px; overflow: hidden; border-radius: 16px; color: var(--promo-text); background: #182153; }
 .monte-catalog-promo__media { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
 .monte-catalog-promo__media--desktop { display: none; }
 .monte-catalog-promo__media :is(img, video) { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }

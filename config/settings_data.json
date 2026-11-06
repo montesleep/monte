@@ -87,7 +87,7 @@
           "body_color": "#fdfbf9",
           "overlay_color": "#000000",
           "overlay_opacity": 20,
-          "mobile_gradient": true,
+          "mobile_gradient": false,
           "terms_heading": "Regulamin sklepu",
           "terms_subheading": "Wersja obowiązująca od dnia:\n10 maja 2026 r.",
           "privacy_heading": "Polityka prywatności",

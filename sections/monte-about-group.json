@@ -211,10 +211,11 @@
         "padding_bottom_mobile": 40
       }
     },
-    "about_spotlight": {
+    "monte_spotlight_wmYijX": {
       "type": "monte-spotlight",
-      "name": "Monté Product Spotlight",
       "settings": {
+        "card_1_image": "shopify://shop_images/Image11.jpg",
+        "card_1_mobile_image": "shopify://shop_images/Image11.jpg",
         "card_1_badge": "Bestseller",
         "card_1_badge_background": "#232e71",
         "card_1_badge_color": "#fdfbf9",
@@ -226,6 +227,8 @@
         "card_1_button_background": "#fdfbf9",
         "card_1_button_text_color": "#232e71",
         "card_1_button_hover": "#eee7e0",
+        "card_2_image": "shopify://shop_images/Image10.jpg",
+        "card_2_mobile_image": "shopify://shop_images/Image10.jpg",
         "card_2_badge": "Nowość",
         "card_2_badge_background": "#f8f1e9",
         "card_2_badge_color": "#232e71",
@@ -237,8 +240,8 @@
         "card_2_button_background": "#fdfbf9",
         "card_2_button_text_color": "#232e71",
         "card_2_button_hover": "#eee7e0",
-        "overlay_style": "gradient",
-        "padding_bottom_desktop": 80
+        "overlay_style": "solid",
+        "padding_bottom_desktop": 40
       }
     }
   },
@@ -249,6 +252,6 @@
     "about_story",
     "about_mission",
     "about_values",
-    "about_spotlight"
+    "monte_spotlight_wmYijX"
   ]
 }

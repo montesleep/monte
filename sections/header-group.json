@@ -97,6 +97,7 @@
           "type": "monte_bundle_promo",
           "settings": {
             "enabled": true,
+            "image": "shopify://shop_images/Image16_mob.jpg",
             "heading": "Stwórz zestaw i oszczędź 15%",
             "body": "",
             "button_label": "Stwórz swój zestaw",

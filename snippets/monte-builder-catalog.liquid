@@ -1,7 +1,22 @@
 {%- assign source = collection | default: collections.all -%}
 {%- paginate source.products by 24 -%}
 <div data-builder-catalog>
-  <reveal-items selector=".mb-card" margin="0px"><div class="mb-grid">{%- for product in source.products -%}{% render 'monte-builder-card', product: product %}{%- else -%}<p class="mb-no-products">{{ 'collection.general.empty_collection' | t }}</p>{%- endfor -%}</div></reveal-items>
+  <reveal-items selector=".mb-card" margin="0px">
+    <div class="mb-grid">
+      {%- assign visible_products = 0 -%}
+      {%- for product in source.products -%}
+        {%- assign product_collections = product.collections | map: 'handle' -%}
+        {%- if product_collections contains 'zestawy' -%}
+          {%- continue -%}
+        {%- endif -%}
+        {% render 'monte-builder-card', product: product %}
+        {%- assign visible_products = visible_products | plus: 1 -%}
+      {%- endfor -%}
+      {%- if visible_products == 0 and paginate.next == blank and paginate.current_page == 1 -%}
+        <p class="mb-no-products">{{ 'collection.general.empty_collection' | t }}</p>
+      {%- endif -%}
+    </div>
+  </reveal-items>
   {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="mb-button mb-button--outline mb-more" data-builder-more>Pokaż więcej</a>{%- endif -%}
 </div>
 {%- endpaginate -%}

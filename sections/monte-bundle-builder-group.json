@@ -36,11 +36,13 @@
       "settings": {
         "bundle_builder": true,
         "collections": [
+          "zestawy",
           "maski",
           "poszewki",
           "scrunchies"
         ],
         "all_label": "Wszystko",
+        "all_image": "shopify://shop_images/Kompletny_Zestaw_do_Snu_-_Mix.jpg",
         "accessibility_label": "Kategorie kolekcji",
         "text_color": "#232e71",
         "active_color": "#232e71",

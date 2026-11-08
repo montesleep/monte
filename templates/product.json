@@ -278,7 +278,9 @@
           "settings": {
             "title": "Chłodny latem, przyjemny zimą",
             "description": "<p>Naturalna regulacja temperatury każdej nocy.</p>",
-            "number": ""
+            "number": "",
+            "image": "{{ product.metafields.custom.mask_detail_image_1.value }}",
+            "mobile_image": "{{ product.metafields.custom.mask_detail_image_1.value }}"
           }
         },
         "feature_2": {
@@ -286,7 +288,9 @@
           "settings": {
             "title": "Rzep, który się dopasowuje",
             "description": "<p>Bez ucisku na skronie, nie czepia się o włosy.</p>",
-            "number": ""
+            "number": "",
+            "image": "{{ product.metafields.custom.mask_detail_image_2.value }}",
+            "mobile_image": "{{ product.metafields.custom.mask_detail_image_2.value }}"
           }
         },
         "feature_3": {
@@ -294,7 +298,9 @@
           "settings": {
             "title": "Budzisz się bardziej wypoczęta",
             "description": "<p>Głęboki sen w pełnej ciemności.</p>",
-            "number": ""
+            "number": "",
+            "image": "{{ product.metafields.custom.mask_detail_image_3.value }}",
+            "mobile_image": "{{ product.metafields.custom.mask_detail_image_3.value }}"
           }
         }
       },

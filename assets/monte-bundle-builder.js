@@ -74,8 +74,9 @@ class MonteBundleBuilder extends HTMLElement {
     try {
       const items = JSON.parse(sessionStorage.getItem('monte-builder-selection') || '[]');
       items.forEach(([product,quantity]) => {
-        const current = this.products.get(String(product.id)) || product;
-        if (current.available && current.maximum > 0) { this.products.set(String(current.id),current); this.selected.set(String(current.id),Math.min(quantity,current.maximum)); }
+        // Only restore products admitted by this builder's filtered catalog.
+        const current = this.products.get(String(product.id)) || (product.builderEligible ? product : null);
+        if (current?.available && current.maximum > 0) { this.products.set(String(current.id),current); this.selected.set(String(current.id),Math.min(quantity,current.maximum)); }
       });
     } catch(error) { /* Storage can be unavailable in private browsing. */ }
   }
@@ -149,7 +150,7 @@ class MonteBundleBuilder extends HTMLElement {
     this.filter?.querySelectorAll('a').forEach(link=>{const active=(link.dataset.category||new URL(link.href).pathname.split('/').pop())===category;link.classList.toggle('is-active',active);if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');});
   }
   async changeCategory(category,push=false) {
-    if(!/^[a-z0-9-]+$/.test(category))category='all';
+    if(!/^[a-z0-9-]+$/.test(category) || category === 'zestawy')category='all';
     this.category=category;this.markCategory(category);
     if(push){const url=new URL(location.href);category==='all'?url.searchParams.delete('category'):url.searchParams.set('category',category);history.pushState({},'',url);}
     const root=window.Shopify?.routes?.root||'/'; await this.loadCatalog(`${root}collections/${category}?section_id=monte-bundle-catalog`);

@@ -24,7 +24,6 @@
       "settings": {
         "bundle_builder": true,
         "collections": [
-          "zestawy",
           "maski",
           "poszewki",
           "scrunchies"

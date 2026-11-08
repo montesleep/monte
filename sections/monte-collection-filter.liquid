@@ -12,6 +12,9 @@
       if category.handle == 'czepki'
         continue
       endif
+      if section.settings.bundle_builder and category.handle == 'zestawy'
+        continue
+      endif
       if category.image != blank
         assign all_image = category.image
         break
@@ -35,6 +38,7 @@
         {%- render 'monte-collection-category', title: section.settings.all_label, url: routes.all_products_collection_url, image: all_image, active: all_active -%}
         {%- for category in category_collections -%}
           {%- if category.handle == 'czepki' -%}{%- continue -%}{%- endif -%}
+          {%- if section.settings.bundle_builder and category.handle == 'zestawy' -%}{%- continue -%}{%- endif -%}
           {%- unless category.handle == 'all' -%}
             {%- liquid
               assign category_active = false

@@ -5,6 +5,23 @@
 {%- liquid
   assign variant = product.selected_or_first_available_variant
   assign highlights = section.blocks | where: 'type', 'monte_highlight'
+  assign set_block = section.blocks | where: 'type', 'monte_set' | first
+  assign set_kind = ''
+  assign set_components = nil
+  if set_block != blank
+    assign set_group = product.metafields.custom.product_group.value
+    assign set_title = set_group.title.value | default: product.title | split: ' - ' | first
+    if set_title == set_block.settings.sleep_title
+      assign set_kind = 'sleep'
+      assign set_components = set_block.settings.sleep_components
+    elsif set_title == set_block.settings.hair_title
+      assign set_kind = 'hair'
+      assign set_components = set_block.settings.hair_components
+    elsif set_title == set_block.settings.complete_title
+      assign set_kind = 'complete'
+      assign set_components = set_block.settings.complete_components
+    endif
+  endif
 -%}
 <monte-product-hero class="mp" data-product-id="{{ product.id }}" data-section="{{ section.id }}">
   <div class="mp-layout">
@@ -36,7 +53,19 @@
       <reveal-items class="mp-intro" margin="0px">
         {%- if section.settings.monte_show_rating -%}<a class="mp-rating mpr-hero-rating" href="#product-reviews" data-product-review-rating="{{ product.id }}" aria-label="Przejdź do opinii klientów" hidden></a>{%- endif -%}
         <h1 class="mp-title">{% render 'monte-product-display-title', product: product %}</h1>
-        {%- if highlights.size > 0 -%}<ul class="mp-benefits">{%- for block in highlights -%}<li {{ block.shopify_attributes }}>{% render 'monte-product-check' %}<span>{{ block.settings.text }}</span></li>{%- endfor -%}</ul>{%- endif -%}
+        {%- capture benefit_items -%}
+          {%- for block in highlights -%}
+            {%- liquid
+              assign benefit_text = block.settings.text
+              if set_kind != blank
+                assign benefit_key = 'text_' | append: set_kind
+                assign benefit_text = block.settings[benefit_key]
+              endif
+            -%}
+            {%- if benefit_text != blank -%}<li {{ block.shopify_attributes }}>{% render 'monte-product-check' %}<span>{{ benefit_text }}</span></li>{%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- if benefit_items != blank -%}<ul class="mp-benefits">{{ benefit_items }}</ul>{%- endif -%}
         <div class="mp-price" data-main-price><strong>{{ variant.price | money }}</strong>{%- if variant.compare_at_price > variant.price -%}<s>{{ variant.compare_at_price | money }}</s><span class="mp-saving">−{{ variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round }}%</span>{%- endif -%}</div>
 
       </reveal-items>
@@ -47,7 +76,7 @@
           {%- when 'monte_set' -%}{% render 'monte-product-set', product: product, block: block, section: section %}
           {%- when 'monte_trust' -%}{% render 'monte-product-trust', product: product, block: block, section: section %}
           {%- when 'monte_tabs' -%}{% render 'monte-pdp-tabs', product: product, block: block, section: section %}
-          {%- when 'monte_ugc_carousel' -%}{% render 'monte-product-ugc', product: product, block: block, section: section %}
+          {%- when 'monte_ugc_carousel' -%}{% render 'monte-product-ugc', product: product, block: block, section: section, set_kind: set_kind, set_components: set_components %}
           {%- when 'monte_accordions' -%}{% render 'monte-product-accordions', product: product, block: block, section: section %}
         {%- endcase -%}
       {%- endfor -%}

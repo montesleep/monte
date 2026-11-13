@@ -48,7 +48,9 @@
         "monte_bundle": {
           "type": "monte_bundle",
           "settings": {
+            "single_size": "50x70 cm",
             "row1_title": "1 Poszewka",
+            "row1_footer": "+ Darmowa dostawa",
             "row2_title": "2 Poszewki",
             "row2_discount": 7.5,
             "row2_footer": "+ Darmowa dostawa",
@@ -57,9 +59,7 @@
             "choose_color_label": "Wybierz kolor poszewki",
             "limited_label": "Limitowany kolor",
             "savings_label": "Oszczędzasz",
-            "monte_bundle_badge": "KORZYSTNIEJSZY",
-            "row1_footer": "+ Darmowa dostawa",
-            "single_size": "50x70 cm"
+            "monte_bundle_badge": "KORZYSTNIEJSZY"
           }
         },
         "monte_trust": {

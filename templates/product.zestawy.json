@@ -15,25 +15,37 @@
         "monte_highlight_1": {
           "type": "monte_highlight",
           "settings": {
-            "text": "<strong>100% blackout</strong> dla całkowitej ciemności"
+            "text": "<strong>100% jedwab morwowy</strong> — maska i poszewka",
+            "text_sleep": "<strong>100% jedwab morwowy</strong> — maska i poszewka",
+            "text_hair": "<strong>100% jedwab morwowy</strong> — poszewka i scrunchie",
+            "text_complete": "<strong>100% jedwab morwowy</strong> — maska, poszewka i scrunchie"
           }
         },
         "monte_highlight_2": {
           "type": "monte_highlight",
           "settings": {
-            "text": "<strong>Nie wchłania kosmetyków</strong>, zero załamów rano"
+            "text": "<strong>Maska blokująca światło</strong> na czas snu i odpoczynku",
+            "text_sleep": "<strong>Maska blokująca światło</strong> na czas snu i odpoczynku",
+            "text_hair": "<strong>Gładka poszewka</strong> delikatna dla skóry i włosów",
+            "text_complete": "<strong>Maska blokująca światło</strong> na czas snu i odpoczynku"
           }
         },
         "monte_highlight_3": {
           "type": "monte_highlight",
           "settings": {
-            "text": "<strong>Bez ucisku na oczy</strong> i rzęsy przez całą noc"
+            "text": "<strong>Poszewka 50 × 70 cm</strong> z jedwabiem po obu stronach",
+            "text_sleep": "<strong>Poszewka 50 × 70 cm</strong> z jedwabiem po obu stronach",
+            "text_hair": "<strong>Scrunchie 11 cm</strong> do delikatnego upinania włosów",
+            "text_complete": "<strong>Poszewka 50 × 70 cm</strong> z jedwabiem po obu stronach"
           }
         },
         "monte_highlight_4": {
           "type": "monte_highlight",
           "settings": {
-            "text": "<strong>Rzep zamiast gumki</strong>, nie ściska skroni"
+            "text": "<strong>Regulowane zapięcie maski</strong> dla wygodnego dopasowania",
+            "text_sleep": "<strong>Regulowane zapięcie maski</strong> dla wygodnego dopasowania",
+            "text_hair": "<strong>Ukryty zamek poszewki</strong> bez kontaktu z twarzą",
+            "text_complete": "<strong>Scrunchie 11 cm</strong> do delikatnego upinania włosów"
           }
         },
         "monte_promotion": {
@@ -166,7 +178,11 @@
             "item_9_media_type": "image",
             "item_9_alt": "",
             "item_9_caption": "",
-            "item_9_play_overlay": true
+            "item_9_play_overlay": true,
+            "filter_set_components": true,
+            "item_1_product_group": "jedwabna-poszewka-na-poduszke",
+            "item_2_product_group": "jedwabna-maska-do-spania",
+            "item_3_product_group": "jedwabna-scrunchie"
           }
         },
         "monte_accordions": {

@@ -1,3 +1,4 @@
+{%- if block.settings.monte_promo_enabled != false -%}
 <reveal-items class="mp-promotion" margin="0px" {{ block.shopify_attributes }}>
   <div class="mp-promo" style="--promo-bg:{{ block.settings.monte_promo_bg }};--promo-color:{{ block.settings.monte_promo_color }}">
     <span class="mp-promo-icon">
@@ -12,3 +13,4 @@
     <img class="mp-promo-mark" src="{{ 'monte-pdp-promo-logo.svg' | asset_url }}" width="99" height="99" alt="">
   </div>
 </reveal-items>
+{%- endif -%}

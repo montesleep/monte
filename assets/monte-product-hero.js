@@ -4,11 +4,74 @@ import { timeline } from 'vendor';
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const money = (value, minimumFractionDigits = 2) => new Intl.NumberFormat(Shopify.locale || 'pl-PL', { style: 'currency', currency: Shopify.currency?.active || 'PLN', minimumFractionDigits: value % 100 ? 2 : minimumFractionDigits, maximumFractionDigits: 2 }).format(value / 100);
 
+
+/* One entrance accent per main PDP button; never targets sticky or quick-view buttons. */
+function setupAtcEntrance(hero, button, signal) {
+  if (!button || hero.closest('monte-builder-dialog') || button.dataset.atcEntranceSeen) return () => {};
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  let visible = false, timer, layer, animations = [], observer, attributes;
+  const cancel = () => {
+    clearTimeout(timer); timer = null;
+    animations.forEach(animation => animation.cancel()); animations = [];
+    layer?.remove(); layer = null;
+    button.classList.remove('mp-atc--entrance');
+  };
+  const eligible = () => visible && hero.isConnected && !document.hidden && !motion.matches &&
+    !button.matches(':disabled,[aria-disabled="true"],[aria-busy="true"],[loading]');
+  const update = () => {
+    if (!eligible()) { cancel(); return; }
+    if (button.dataset.atcEntranceSeen || timer) return;
+    timer = setTimeout(() => {
+      timer = null;
+      if (!eligible()) return;
+      button.dataset.atcEntranceSeen = 'true';
+      observer.disconnect();
+      const width = button.clientWidth, height = button.clientHeight;
+      layer = document.createElement('span');
+      layer.className = 'mp-atc-entrance';
+      layer.setAttribute('aria-hidden', 'true');
+      layer.innerHTML = '<span class="mp-atc-entrance__shine"></span><svg class="mp-atc-entrance__ring" aria-hidden="true" focusable="false"><rect x="1" y="1" width="' + (width - 2) + '" height="' + (height - 2) + '" rx="' + (height / 2 - 1) + '" pathLength="100"/></svg>';
+      button.classList.add('mp-atc--entrance');
+      button.append(layer);
+      const timing = { duration: 1050, easing: 'cubic-bezier(.25,.46,.45,.94)' };
+      animations = [
+        layer.querySelector('.mp-atc-entrance__shine').animate([
+          { transform: 'translateX(-150%) skewX(-18deg)', opacity: 0 },
+          { opacity: 1, offset: .15 },
+          { opacity: 1, offset: .75 },
+          { transform: 'translateX(360%) skewX(-18deg)', opacity: 0 }
+        ], timing),
+        layer.querySelector('rect').animate([
+          { strokeDashoffset: '0', opacity: 0 },
+          { opacity: 1, offset: .12 },
+          { opacity: 1, offset: .8 },
+          { strokeDashoffset: '-100', opacity: 0 }
+        ], timing)
+      ];
+      Promise.all(animations.map(animation => animation.finished.catch(() => {}))).then(cancel);
+    }, 200);
+  };
+  observer = new IntersectionObserver(entries => {
+    visible = entries[0].isIntersecting && entries[0].intersectionRatio >= .65;
+    update();
+  }, { threshold: [0, .65] });
+  attributes = new MutationObserver(update);
+  attributes.observe(button, { attributes: true, attributeFilter: ['disabled', 'aria-disabled', 'aria-busy', 'loading'] });
+  observer.observe(button);
+  motion.addEventListener('change', update, { signal });
+  document.addEventListener('visibilitychange', update, { signal });
+  button.addEventListener('pointerdown', cancel, { signal });
+  const cleanup = () => { cancel(); observer.disconnect(); attributes.disconnect(); };
+  signal.addEventListener('abort', cleanup, { once: true });
+  return cleanup;
+}
+
 class MonteProductHero extends HTMLElement {
   connectedCallback() {
     this.abort = new AbortController();
     const signal = this.abort.signal;
     const sticky = this.querySelector('.mp-sticky'), atc = this.querySelector('[data-bundle-atc]');
+    setupAtcEntrance(this, atc, signal);
     if (sticky && atc) {
       const button = sticky.querySelector('[data-sticky-atc]');
       const bundle = this.querySelector('monte-product-bundle, monte-product-set');

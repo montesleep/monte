@@ -235,3 +235,8 @@
 .mp-atc-entrance__ring { position:absolute; inset:0; border-radius:inherit; padding:2px; -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; }
 .mp-atc-entrance__edge { position:absolute; top:0; bottom:0; left:0; width:40%; opacity:0; background:linear-gradient(100deg,transparent,rgb(253 251 249 / .95),transparent); }
 @media(prefers-reduced-motion:reduce) { .mp-atc-entrance { display:none; } }
+
+/* A single size remains selected independently of the bundle quantity. */
+.mp-size { display:grid; justify-items:start; gap:12px; }
+.mp-size > .mp-label { font-size:12px; line-height:18px; }
+.mp-size-option { display:flex; align-items:center; justify-content:center; padding:8px 16px; min-height:40px; border:1px solid #232e71; border-radius:8px; background:#eee7e0; color:#232e71; font:600 16px/24px var(--text-font-family); white-space:nowrap; }

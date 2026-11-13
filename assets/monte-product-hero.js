@@ -26,11 +26,10 @@ function setupAtcEntrance(hero, button, signal) {
       if (!eligible()) return;
       button.dataset.atcEntranceSeen = 'true';
       observer.disconnect();
-      const width = button.clientWidth, height = button.clientHeight;
       layer = document.createElement('span');
       layer.className = 'mp-atc-entrance';
       layer.setAttribute('aria-hidden', 'true');
-      layer.innerHTML = '<span class="mp-atc-entrance__shine"></span><svg class="mp-atc-entrance__ring" aria-hidden="true" focusable="false"><rect x="1" y="1" width="' + (width - 2) + '" height="' + (height - 2) + '" rx="' + (height / 2 - 1) + '" pathLength="100"/></svg>';
+      layer.innerHTML = '<span class="mp-atc-entrance__shine"></span><span class="mp-atc-entrance__ring"><span class="mp-atc-entrance__edge"></span></span>';
       button.classList.add('mp-atc--entrance');
       button.append(layer);
       const timing = { duration: 1050, easing: 'cubic-bezier(.25,.46,.45,.94)' };
@@ -41,11 +40,11 @@ function setupAtcEntrance(hero, button, signal) {
           { opacity: 1, offset: .75 },
           { transform: 'translateX(360%) skewX(-18deg)', opacity: 0 }
         ], timing),
-        layer.querySelector('rect').animate([
-          { strokeDashoffset: '0', opacity: 0 },
-          { opacity: 1, offset: .12 },
-          { opacity: 1, offset: .8 },
-          { strokeDashoffset: '-100', opacity: 0 }
+        layer.querySelector('.mp-atc-entrance__edge').animate([
+          { transform: 'translateX(-150%) skewX(-18deg)', opacity: 0 },
+          { opacity: 1, offset: .15 },
+          { opacity: 1, offset: .75 },
+          { transform: 'translateX(360%) skewX(-18deg)', opacity: 0 }
         ], timing)
       ];
       Promise.all(animations.map(animation => animation.finished.catch(() => {}))).then(cancel);

@@ -10,14 +10,18 @@
         assign group_key = prefix | append: 'product_group'
         assign media_group = block.settings[group_key]
         assign matches_set = false
-        if media_group != blank
-          for component_group in set_components
-            if component_group.system.handle == media_group.system.handle
+        case media_group
+          when 'jedwabna-poszewka-na-poduszke'
+            assign matches_set = true
+          when 'jedwabna-maska-do-spania'
+            if set_kind == 'sleep' or set_kind == 'complete'
               assign matches_set = true
-              break
             endif
-          endfor
-        endif
+          when 'jedwabna-scrunchie'
+            if set_kind == 'hair' or set_kind == 'complete'
+              assign matches_set = true
+            endif
+        endcase
         unless matches_set
           continue
         endunless

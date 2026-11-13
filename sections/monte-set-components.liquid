@@ -1,0 +1,207 @@
+{%- liquid
+  assign product_group = product.metafields.custom.product_group.value
+  assign group_title = product_group.title.value | default: product.title | split: ' - ' | first
+  assign color_name = product.title | split: ' - ' | last
+  for color in product_group.colors.value
+    if color.product.value.id == product.id
+      assign color_name = color.color_name.value
+      break
+    endif
+  endfor
+  assign color_key = color_name | downcase | strip
+  assign set_type = ''
+  if group_title == section.settings.sleep_title
+    assign set_type = 'show_sleep'
+  elsif group_title == section.settings.hair_title
+    assign set_type = 'show_hair'
+  elsif group_title == section.settings.complete_title
+    assign set_type = 'show_complete'
+  endif
+  assign row_index = 0
+-%}
+{%- capture rows -%}
+  {%- for block in section.blocks -%}
+    {%- liquid
+      unless block.settings[set_type]
+        continue
+      endunless
+      assign component_group = block.settings.product_group
+      assign component = nil
+      for color in component_group.colors.value
+        assign candidate_color = color.color_name.value | downcase | strip
+        if candidate_color == color_key and color.product.value != blank
+          assign component = color.product.value
+          break
+        endif
+      endfor
+      assign video = component.metafields.custom.bundle_component_video.value
+      assign row_index = row_index | plus: 1
+      assign parity = row_index | modulo: 2
+    -%}
+    <reveal-items margin="0px">
+      <article class="msc-row{% if parity == 0 %} msc-row--reverse{% endif %}" data-component-color="{{ color_name | escape }}" data-component-product="{{ component.handle | escape }}" {{ block.shopify_attributes }}>
+        <div class="msc-media">
+          {%- if video.media_type == 'video' -%}
+            {{ video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', image_size: '1100x' }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder monte-media-placeholder' }}
+          {%- endif -%}
+        </div>
+        <div class="msc-copy">
+          {% if block.settings.heading != blank %}<h3>{{ block.settings.heading | escape }}</h3>{% endif %}
+          {% if block.settings.description != blank %}<div class="msc-description prose">{{ block.settings.description }}</div>{% endif %}
+        </div>
+      </article>
+    </reveal-items>
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if rows != blank -%}
+  {{ 'monte-set-components.css' | asset_url | stylesheet_tag }}
+  <div class="msc" style="--msc-heading:{{ section.settings.heading_color }};--msc-text:{{ section.settings.text_color }};--msc-top:{{ section.settings.padding_top }}px;--msc-bottom:{{ section.settings.padding_bottom }}px;--msc-mobile-top:{{ section.settings.padding_top_mobile }}px;--msc-mobile-bottom:{{ section.settings.padding_bottom_mobile }}px;">
+    {% if section.settings.heading != blank %}<reveal-items margin="0px"><h2 class="msc-heading">{{ section.settings.heading | escape }}</h2></reveal-items>{% endif %}
+    <div class="msc-rows">{{ rows }}</div>
+  </div>
+{%- elsif request.design_mode -%}<div class="container">Select a set product and configure its component blocks to preview this section.</div>{%- endif -%}
+
+{% schema %}
+{
+  "name": "Monté Set Components",
+  "tag": "section",
+  "class": "shopify-section--monte-set-components",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "W zestawie znajdziesz"
+    },
+    {
+      "type": "paragraph",
+      "content": "Each block uses custom.bundle_component_video from the component product matching the set color. Upload the video on each individual product. Missing or draft products show a placeholder; another color is never substituted."
+    },
+    {
+      "type": "text",
+      "id": "sleep_title",
+      "label": "Sleep set group title",
+      "default": "Zestaw do Snu"
+    },
+    {
+      "type": "text",
+      "id": "hair_title",
+      "label": "Hair set group title",
+      "default": "Zestaw do Włosów"
+    },
+    {
+      "type": "text",
+      "id": "complete_title",
+      "label": "Complete set group title",
+      "default": "Kompletny Zestaw do Snu"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#232E71"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#52597E"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "padding top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "padding bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "padding top mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "padding bottom mobile",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "component",
+      "name": "Component",
+      "settings": [
+        {
+          "type": "metaobject",
+          "id": "product_group",
+          "label": "Component product group",
+          "metaobject_type": "monte_product_group"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_sleep",
+          "label": "Show in Sleep Set",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_hair",
+          "label": "Show in Hair Set",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_complete",
+          "label": "Show in Complete Set",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Monté Set Components"
+    }
+  ]
+}
+{% endschema %}

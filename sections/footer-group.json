@@ -92,7 +92,8 @@
           "type": "nav_column",
           "settings": {
             "heading": "Sklep",
-            "menu": "sklep-footer"
+            "menu": "sklep-footer",
+            "resolve_collection_links": true
           }
         },
         "nav_legal": {

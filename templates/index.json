@@ -122,10 +122,7 @@
           "type": "tab",
           "settings": {
             "title": "Zestawy",
-            "products": [
-              "jedwabna-maska-do-spania-rose-noir",
-              "jedwabna-maska-do-spania-midnight-blue"
-            ],
+            "products": [],
             "bundle_promo_enabled": true,
             "bundle_image": "shopify://shop_images/Image15_mob.jpg",
             "bundle_mobile_image": "shopify://shop_images/Image16_mob.jpg",

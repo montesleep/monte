@@ -3975,6 +3975,29 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "id": "text",
           "label": "Text",
           "default": "Product benefit"
+        },
+        {
+          "type": "header",
+          "content": "Set-specific text"
+        },
+        {
+          "type": "paragraph",
+          "content": "Used only for a matching Monté set product. Leave a set field empty to hide this benefit for that set. Other product templates use Text."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text_sleep",
+          "label": "Sleep set text"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text_hair",
+          "label": "Hair set text"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text_complete",
+          "label": "Complete set text"
         }
       ]
     },
@@ -4473,6 +4496,16 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "default": true
         },
         {
+          "type": "checkbox",
+          "id": "filter_set_components",
+          "label": "Show only items matching the set components",
+          "default": false
+        },
+        {
+          "type": "paragraph",
+          "content": "For set products, assign a component product group to each media item. Only items whose group belongs to the current set are shown. Upload that component's image or video and edit its caption below. Unassigned items are hidden when filtering is enabled."
+        },
+        {
           "type": "paragraph",
           "content": "Enable up to 9 media items. Navigation hides when 3 or fewer items are shown. Each item also has its own play-button toggle."
         },
@@ -4485,6 +4518,12 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "id": "item_1_enabled",
           "label": "Show this media item",
           "default": false
+        },
+        {
+          "type": "metaobject",
+          "id": "item_1_product_group",
+          "label": "Component product group",
+          "metaobject_type": "monte_product_group"
         },
         {
           "type": "select",
@@ -4539,6 +4578,12 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "default": false
         },
         {
+          "type": "metaobject",
+          "id": "item_2_product_group",
+          "label": "Component product group",
+          "metaobject_type": "monte_product_group"
+        },
+        {
           "type": "select",
           "id": "item_2_media_type",
           "label": "Media type",
@@ -4589,6 +4634,12 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "id": "item_3_enabled",
           "label": "Show this media item",
           "default": false
+        },
+        {
+          "type": "metaobject",
+          "id": "item_3_product_group",
+          "label": "Component product group",
+          "metaobject_type": "monte_product_group"
         },
         {
           "type": "select",
@@ -4643,6 +4694,12 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "default": false
         },
         {
+          "type": "metaobject",
+          "id": "item_4_product_group",
+          "label": "Component product group",
+          "metaobject_type": "monte_product_group"
+        },
+        {
           "type": "select",
           "id": "item_4_media_type",
           "label": "Media type",
@@ -4693,6 +4750,12 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "id": "item_5_enabled",
           "label": "Show this media item",
           "default": false
+        },
+        {
+          "type": "metaobject",
+          "id": "item_5_product_group",
+          "label": "Component product group",
+          "metaobject_type": "monte_product_group"
         },
         {
           "type": "select",
@@ -4747,6 +4810,12 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "default": false
         },
         {
+          "type": "metaobject",
+          "id": "item_6_product_group",
+          "label": "Component product group",
+          "metaobject_type": "monte_product_group"
+        },
+        {
           "type": "select",
           "id": "item_6_media_type",
           "label": "Media type",
@@ -4797,6 +4866,12 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "id": "item_7_enabled",
           "label": "Show this media item",
           "default": false
+        },
+        {
+          "type": "metaobject",
+          "id": "item_7_product_group",
+          "label": "Component product group",
+          "metaobject_type": "monte_product_group"
         },
         {
           "type": "select",
@@ -4851,6 +4926,12 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "default": false
         },
         {
+          "type": "metaobject",
+          "id": "item_8_product_group",
+          "label": "Component product group",
+          "metaobject_type": "monte_product_group"
+        },
+        {
           "type": "select",
           "id": "item_8_media_type",
           "label": "Media type",
@@ -4901,6 +4982,12 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "id": "item_9_enabled",
           "label": "Show this media item",
           "default": false
+        },
+        {
+          "type": "metaobject",
+          "id": "item_9_product_group",
+          "label": "Component product group",
+          "metaobject_type": "monte_product_group"
         },
         {
           "type": "select",

@@ -239,4 +239,4 @@
 /* A single size remains selected independently of the bundle quantity. */
 .mp-size { display:grid; justify-items:start; gap:12px; }
 .mp-size > .mp-label { font-size:12px; line-height:18px; }
-.mp-size-option { display:flex; align-items:center; justify-content:center; padding:8px 16px; min-height:40px; border:1px solid #232e71; border-radius:8px; background:#eee7e0; color:#232e71; font:600 16px/24px var(--text-font-family); white-space:nowrap; }
+.mp-size-option { display:flex; align-items:center; justify-content:center; padding:7px 15px; min-height:40px; border:1px solid #232e71; border-radius:8px; background:#eee7e0; color:#232e71; font:600 16px/24px var(--text-font-family); white-space:nowrap; }

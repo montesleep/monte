@@ -6,6 +6,22 @@
       unless block.settings[enabled_key]
         continue
       endunless
+      if block.settings.filter_set_components and set_kind != blank
+        assign group_key = prefix | append: 'product_group'
+        assign media_group = block.settings[group_key]
+        assign matches_set = false
+        if media_group != blank
+          for component_group in set_components
+            if component_group.system.handle == media_group.system.handle
+              assign matches_set = true
+              break
+            endif
+          endfor
+        endif
+        unless matches_set
+          continue
+        endunless
+      endif
       assign image_key = prefix | append: 'image'
       assign video_key = prefix | append: 'video'
       assign type_key = prefix | append: 'media_type'

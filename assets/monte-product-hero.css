@@ -232,6 +232,6 @@
 .mp-atc--entrance > :not(.mp-atc-entrance) { position:relative; z-index:2; }
 .mp-atc-entrance { position:absolute; inset:0; border-radius:inherit; overflow:hidden; pointer-events:none; z-index:1; }
 .mp-atc-entrance__shine { position:absolute; top:0; bottom:0; left:0; width:40%; opacity:0; background:linear-gradient(100deg,transparent,rgb(253 251 249 / .24),transparent); }
-.mp-atc-entrance__ring { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
-.mp-atc-entrance__ring rect { fill:none; stroke:#fdfbf9; stroke-width:2; stroke-linecap:round; stroke-dasharray:18 82; opacity:0; }
+.mp-atc-entrance__ring { position:absolute; inset:0; border-radius:inherit; padding:2px; -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; }
+.mp-atc-entrance__edge { position:absolute; top:0; bottom:0; left:0; width:40%; opacity:0; background:linear-gradient(100deg,transparent,rgb(253 251 249 / .95),transparent); }
 @media(prefers-reduced-motion:reduce) { .mp-atc-entrance { display:none; } }

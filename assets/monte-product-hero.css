@@ -239,3 +239,8 @@
 /* A single size remains selected independently of the bundle quantity. */
 .mp-size { display:grid; justify-items:start; gap:12px; }
 .mp-size-option { display:flex; align-items:center; justify-content:center; padding:7px 15px; min-height:40px; border:1px solid #232e71; border-radius:8px; background:#eee7e0; color:#232e71; font:600 16px/24px var(--text-font-family); white-space:nowrap; }
+
+/* Optional captions keep media controls inside the original fixed media frame. */
+.mp-ugc-card { display:flex; flex-direction:column; min-width:0; gap:12px; scroll-snap-align:start; }
+.mp-ugc-card .mp-ugc-item { display:block; width:100%; flex-shrink:0; }
+.mp .mp-ugc-caption { font:600 14px/1.5 var(--text-font-family); color:#232e71; text-align:center; }

@@ -761,3 +761,14 @@ class MonteProductMedia extends HTMLElement {
 for (const [name, component] of [['monte-pdp-tabs', MontePdpTabs], ['monte-product-picker', MonteProductPicker], ['monte-product-bundle', MonteProductBundle], ['monte-product-set', MonteProductSet], ['monte-product-media', MonteProductMedia], ['monte-product-hero', MonteProductHero]]) {
   if (!customElements.get(name)) customElements.define(name, component);
 }
+
+/* Keep the same entrance treatment on the remaining Impact product template. */
+class MonteLegacyAtcEntrance extends HTMLElement {
+  connectedCallback() {
+    this.abort = new AbortController();
+    const button = this.querySelector('.product buy-buttons button[type="submit"]');
+    setupAtcEntrance(this, button, this.abort.signal);
+  }
+  disconnectedCallback() { this.abort?.abort(); }
+}
+if (!customElements.get('monte-legacy-atc-entrance')) customElements.define('monte-legacy-atc-entrance', MonteLegacyAtcEntrance);

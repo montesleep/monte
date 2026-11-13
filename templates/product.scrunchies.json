@@ -49,6 +49,7 @@
           "type": "monte_bundle",
           "settings": {
             "row1_title": "1 Scrunchie",
+            "single_size": "11 cm",
             "row2_title": "2 Scrunchies",
             "row2_discount": 10,
             "row2_footer": "",

@@ -52,6 +52,12 @@
       </div>
     </div>
   {%- endif -%}
+  {%- if options.single_size != blank -%}
+    <div class="mp-size" role="group" aria-labelledby="MonteSize-{{ section.id }}-{{ block.id }}">
+      <p class="mp-label" id="MonteSize-{{ section.id }}-{{ block.id }}"><strong>Rozmiar:</strong> <span>{{ options.single_size | escape }}</span></p>
+      <button type="button" class="mp-size-option" aria-pressed="true">{{ options.single_size | escape }}</button>
+    </div>
+  {%- endif -%}
   {%- unless product.has_only_default_variant -%}<label class="mp-variant-label">{{ product.options | join: ' / ' | escape }}<select data-current-variant>{%- for item in product.variants -%}<option value="{{ item.id }}" {% if item.id == variant.id %}selected{% endif %}>{{ item.title | escape }} — {{ item.price | money }}{% unless item.available %} — Wyprzedane{% endunless %}</option>{%- endfor -%}</select></label>{%- endunless -%}
   <div class="mp-bundle-options">
     <p class="mp-label"><strong>Zestaw:</strong> <span data-selected-label>{{ options.row1_title | default: '1 Maska' | escape }}</span></p>

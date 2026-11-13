@@ -42,7 +42,8 @@
             "monte_promo_title": "Letnia Wyprzedaż",
             "monte_promo_text": "Oferta ograniczona czasowo: -30% na wszystkie produkty Monté.",
             "monte_promo_bg": "#f8f1e9",
-            "monte_promo_color": "#232e71"
+            "monte_promo_color": "#232e71",
+            "monte_promo_enabled": false
           }
         },
         "monte_bundle": {

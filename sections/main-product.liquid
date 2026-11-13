@@ -1,6 +1,9 @@
 {%- if section.settings.monte_product_design -%}
   {%- render 'monte-product-hero', product: product, section: section -%}
 {%- else -%}
+{{ 'monte-product-hero.css' | asset_url | stylesheet_tag }}
+<script type="module" src="{{ 'monte-product-hero.js' | asset_url }}"></script>
+<monte-legacy-atc-entrance style="display:contents">
 {%- render 'section-spacing-collapsing' -%}
 
 <style>
@@ -222,6 +225,7 @@ is however only possible by rendering the whole product page, and extracting the
 quick buy information in a template, that will be extracted in JS, but ensure it is not visible in the main product page
 {%- endcomment -%}
 
+</monte-legacy-atc-entrance>
 {%- endif -%}
 {%- render 'product-quick-buy', product: product -%}
 

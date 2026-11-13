@@ -26,7 +26,19 @@
         <div class="mfooter__nav-col" {{ block.shopify_attributes }}>
           {%- if block.settings.heading != blank -%}<h2 class="mfooter__column-header mfooter__col-heading">{{ block.settings.heading | escape }}</h2>{%- endif -%}
           {%- if block.settings.menu != blank -%}
-            <ul class="mfooter__nav-links" role="list">{%- for link in block.settings.menu.links -%}<li><a class="link-faded" href="{{ link.url }}" {% if link.current %}aria-current="page"{% endif %}>{{ link.title | escape }}</a></li>{%- endfor -%}</ul>
+            <ul class="mfooter__nav-links" role="list">
+              {%- for link in block.settings.menu.links -%}
+                {%- liquid
+                  assign footer_link_url = link.url
+                  assign collection_handle = link.title | handleize
+                  assign footer_collection = collections[collection_handle]
+                  if block.settings.resolve_collection_links and link.url == routes.collections_url and footer_collection != blank
+                    assign footer_link_url = footer_collection.url
+                  endif
+                -%}
+                <li><a class="link-faded" href="{{ footer_link_url }}" {% if request.path == footer_link_url %}aria-current="page"{% endif %}>{{ link.title | escape }}</a></li>
+              {%- endfor -%}
+            </ul>
           {%- endif -%}
         </div>
       {%- endfor -%}
@@ -192,6 +204,13 @@
           "id": "menu",
           "label": "Menu",
           "default": "footer"
+        },
+        {
+          "type": "checkbox",
+          "id": "resolve_collection_links",
+          "label": "Resolve category links",
+          "info": "For links to the collection index, use the matching collection when its handle matches the link label. Custom destinations stay unchanged.",
+          "default": false
         }
       ],
       "limit": 2

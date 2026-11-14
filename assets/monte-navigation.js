@@ -7,7 +7,7 @@ function revealMenuPromos(root, delay = 0) {
   if (!root || matchMedia('(prefers-reduced-motion: reduce)').matches ||
       window.themeVariables.settings.reduceMenuAnimation) return;
   root.querySelectorAll('.monte-promo-media .monte-menu-media').forEach(media => {
-    if (media.closest('[hidden]')) return;
+    if (media.closest('.panel__wrapper[hidden]')) return;
     promoEntries.get(media)?.cancel();
     const entry = media.animate([{ scale: 1.1 }, { scale: 1 }], {
       duration: matchMedia('(max-width: 1149px)').matches ? 1000 : 1200,

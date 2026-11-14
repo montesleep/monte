@@ -54,7 +54,7 @@ LIQUID
     <span class="slideshow__slide-background"></span>
   {%- endunless -%}
 
-  <slideshow-carousel id="{{ slideshow_id }}" class="slideshow__carousel" {% if section.settings.show_initial_transition and section.settings.monte_hero != true %}reveal-on-scroll="true"{% endif %} selector=".slideshow__slide" transition="{{ section.settings.transition_type }}" {% if section.settings.autoplay %}autoplay="{{ section.settings.cycle_speed }}"{% endif %} role="region">
+  <slideshow-carousel id="{{ slideshow_id }}" class="slideshow__carousel" {% unless section.settings.monte_hero %}{% if section.settings.show_initial_transition %}reveal-on-scroll="true"{% endif %}{% endunless %} selector=".slideshow__slide" transition="{{ section.settings.transition_type }}" {% if section.settings.autoplay %}autoplay="{{ section.settings.cycle_speed }}"{% endif %} role="region">
     {%- unless section.blocks.size == 1 or section.settings.controls_type contains 'arrows' -%}
       <custom-cursor class="slideshow__cursor circle-button circle-button--lg circle-button--fill" aria-hidden="true">
         {%- render 'icon' with 'chevron-right' -%}

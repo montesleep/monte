@@ -32,8 +32,12 @@
                   assign footer_link_url = link.url
                   assign collection_handle = link.title | handleize
                   assign footer_collection = collections[collection_handle]
-                  if block.settings.resolve_collection_links and link.url == routes.collections_url and footer_collection != blank
-                    assign footer_link_url = footer_collection.url
+                  if block.settings.resolve_collection_links and link.url == routes.collections_url
+                    if collection_handle == 'wszystko' or collection_handle == 'wszystkie'
+                      assign footer_link_url = routes.all_products_collection_url
+                    elsif footer_collection != blank
+                      assign footer_link_url = footer_collection.url
+                    endif
                   endif
                 -%}
                 <li><a class="link-faded" href="{{ footer_link_url }}" {% if request.path == footer_link_url %}aria-current="page"{% endif %}>{{ link.title | escape }}</a></li>

@@ -15,10 +15,10 @@
         "monte_highlight_1": {
           "type": "monte_highlight",
           "settings": {
-            "text": "<strong>100% jedwab morwowy</strong> — maska i poszewka",
-            "text_sleep": "<strong>100% jedwab morwowy</strong> — maska i poszewka",
-            "text_hair": "<strong>100% jedwab morwowy</strong> — poszewka i scrunchie",
-            "text_complete": "<strong>100% jedwab morwowy</strong> — maska, poszewka i scrunchie"
+            "text": "<strong>100% jedwab morwowy</strong> - maska i poszewka",
+            "text_sleep": "<strong>100% jedwab morwowy</strong> - maska i poszewka",
+            "text_hair": "<strong>100% jedwab morwowy</strong> - poszewka i scrunchie",
+            "text_complete": "<strong>100% jedwab morwowy</strong> - maska, poszewka i scrunchie"
           }
         },
         "monte_highlight_2": {

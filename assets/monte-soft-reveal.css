@@ -22,3 +22,9 @@ html[data-monte-soft-reveal] #main :is(
   html[data-monte-soft-reveal] #main [data-monte-entry="card"] { translate: none !important; }
   html[data-monte-soft-reveal] #main [data-monte-entry="image"] { scale: none !important; }
 }
+
+/* Clip hero media only; overlay and copy remain at their normal scale. */
+html[data-monte-soft-reveal] #main .monte-hero .content-over-media { overflow: clip; }
+@media (prefers-reduced-motion: reduce), print {
+  html[data-monte-soft-reveal] #main [data-monte-entry="carousel"] :is(.mugc-slide,.mp-ugc-item,.mp-ugc-card) { translate: none !important; }
+}

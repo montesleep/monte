@@ -1,10 +1,24 @@
-/* Content is visible by default, even if JavaScript fails or the editor reloads a section. */
+/* Page entries have one owner. No CSS-hidden content or changes to interactive motion. */
 html[data-monte-soft-reveal] #main reveal-items {
   opacity: 1 !important;
 }
+
+/* Scale photos inside their existing frame, preserving the frame and its rounded corners. */
+html[data-monte-soft-reveal] #main :is(
+  .monte-story__media, .monte-details__media, .monte-feature__media,
+  .monte-blog__media, .monte-article__hero, .monte-collection-hero__media,
+  .monte-mission__motion, .monte-sleep-story__float
+) {
+  overflow: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-monte-soft-reveal] #main [data-monte-entry="text"],
+  html[data-monte-soft-reveal] #main [data-monte-entry="card"] { translate: none !important; }
+  html[data-monte-soft-reveal] #main [data-monte-entry="image"] { scale: none !important; }
+}
 @media print {
-  html[data-monte-soft-reveal] #main [data-monte-revealed] {
-    opacity: 1 !important;
-    translate: none !important;
-  }
+  html[data-monte-soft-reveal] #main [data-monte-entry="text"],
+  html[data-monte-soft-reveal] #main [data-monte-entry="card"] { translate: none !important; }
+  html[data-monte-soft-reveal] #main [data-monte-entry="image"] { scale: none !important; }
 }

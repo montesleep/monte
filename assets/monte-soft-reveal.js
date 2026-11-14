@@ -3,17 +3,16 @@ const main = document.getElementById('main');
 const enabled = document.documentElement.hasAttribute('data-monte-soft-reveal');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const mobile = matchMedia('(max-width: 999px)');
-const text = 'h1,h2,h3,h4,h5,h6,p,blockquote,ul,ol,dl';
 const cards = '.monte-product-card,.mb-card,.monte-blog__card,.monte-feature,.monte-sleep-story__stat,.product-card,.blog-post-card';
-const copies = '.monte-story__content,.monte-details__intro,.monte-faq__intro,.monte-mission__content,.monte-spotlight__content,.monte-catalog-promo__content,.monte-collection-hero__content,.monte-hero__content,.monte-faq__list,.monte-details__list,.monte-benefits,.mp-intro,.mp-colors,.mp-size,.mp-bundle-options,.mp-set-card,.mp-gallery-thumbs';
+// Explicit editorial groups only. Purchase controls, FAQs, forms and footer stay static.
+const copies = '.monte-story__content,.monte-details__intro,.monte-mission__content,.monte-spotlight__content,.monte-catalog-promo__content,.monte-collection-hero__content,.monte-hero__content,.monte-reviews__intro,.monte-blog__heading,.monte-features__heading,.monte-sleep-story__heading,.monte-silk-story__heading,.mugc-heading,.mpr-heading';
 const carousels = '.mugc-viewport,.mp-ugc-track';
 let initialScan = true;
 const media = [
   '.monte-story__media :is(img,video,svg.placeholder)', '.monte-spotlight__media :is(img,video,svg.placeholder)',
-  '.monte-details__media :is(img,video,svg.placeholder)', '.monte-feature__media :is(img,video,svg.placeholder)',
-  '.monte-blog__media img', '.monte-article__hero img',
+  '.monte-details__media :is(img,video,svg.placeholder)',
+  '.monte-article__hero img',
   '.monte-collection-hero__media :is(img,video,svg.placeholder)', '.monte-catalog-promo__media :is(img,video,svg.placeholder)',
-  '.monte-mission__motion img', '.monte-sleep-story__float img',
   '.monte-hero .content-over-media > picture > img',
   '.monte-hero .content-over-media > :is(img,video,svg.placeholder)',
   '.monte-hero .content-over-media > video-media video',
@@ -24,7 +23,8 @@ const excluded = [
   '.shopify-app-block', '.shopify-payment-button', '.shopify-section-group-header-group',
   '.drawer', '.popover', 'dialog', '[role="dialog"]', '.mb-dialog', '.pswp',
   '.mp-sticky', '.product-quick-add', '.mb-sticky', '.mb-summary-desktop',
-  '.mp-bundle-slots', 'monte-pdp-tabs', 'details', 'button', '[role="button"]',
+  '.mp-intro', '.mp-colors', '.mp-size', '.mp-bundle-options', '.mp-set-card', '.mp-trust', '.mp-gallery-thumbs',
+  'form', 'footer', '.mfooter', '.monte-faq__list', '.mp-bundle-slots', 'monte-pdp-tabs', 'details', 'button', '[role="button"]',
   'nav', '[role="tablist"]', '.monte-reviews__columns', '.monte-benefits__track',
   '.mp-ugc-track', '[data-reveal-item]', '[reveal-js]',
   'x-slideshow:not(.monte-hero)', '[reveal-on-scroll="true"]'
@@ -96,18 +96,18 @@ function register(element, kind) {
     if (kind === 'image') {
       // Individual scale composes with the existing 1.03 hover transform.
       if (style.scale !== 'none' && style.scale !== '1') { finish(element); return; }
-      keyframes = [{ scale: 1.1 }, { scale: 1 }];
-      duration = mobile.matches ? 1000 : 1200;
+      keyframes = [{ scale: mobile.matches ? 1.04 : 1.06 }, { scale: 1 }];
+      duration = mobile.matches ? 800 : 1100;
     } else {
       if (style.translate !== 'none' && style.translate !== '0px') { finish(element); return; }
-      let offset = mobile.matches ? 24 : 56;
+      let offset = mobile.matches ? 14 : 24;
       if (kind === 'card') {
         const siblings = [...element.parentElement.children].filter(child => child.matches(cards));
         const index = Math.max(0, siblings.indexOf(element)) % (mobile.matches ? 2 : 4);
-        offset += index * (mobile.matches ? 10 : 20);
+        offset += index * (mobile.matches ? 5 : 8);
       }
       keyframes = [{ translate: `0 ${offset}px` }, { translate: '0 0' }];
-      duration = kind === 'card' ? (mobile.matches ? 950 : 1200) : 750;
+      duration = kind === 'card' ? (mobile.matches ? 650 : 850) : (mobile.matches ? 550 : 700);
     }
     // Offscreen preparation keeps content opaque. There is no fade-out/re-hide cycle.
     animation = element.animate(keyframes, {
@@ -149,8 +149,8 @@ function startCarousel(element, record) {
     return rect.width && rect.right > bounds.left && rect.left < bounds.right;
   });
   const animations = slides.map((slide, index) => slide.animate(
-    [{ translate: '0 ' + ((mobile.matches ? 24 : 48) + index * (mobile.matches ? 8 : 12)) + 'px' }, { translate: '0 0' }],
-    { duration: mobile.matches ? 950 : 1200, easing: 'cubic-bezier(.32,.71,.42,.94)', fill: 'both' }
+    [{ translate: '0 ' + ((mobile.matches ? 14 : 24) + index * (mobile.matches ? 5 : 8)) + 'px' }, { translate: '0 0' }],
+    { duration: mobile.matches ? 650 : 850, easing: 'cubic-bezier(.32,.71,.42,.94)', fill: 'both' }
   ));
   record.animation = { cancel: () => animations.forEach(animation => animation.cancel()) };
   Promise.all(animations.map(animation => animation.finished)).then(
@@ -171,17 +171,8 @@ function scan(root = main) {
   // Cards own their copy. Text inside them must not run a second entrance.
   select(root, cards).forEach(element => register(element, 'card'));
   select(root, copies).forEach(element => register(element, 'text'));
-  select(root, text).forEach(element => {
-    if (element.closest(cards + ',' + copies) || element.parentElement?.closest(text) || !element.textContent.trim()) return;
-    // Lists with controls/media keep their own layout and interactions.
-    if (element.querySelector('img,picture,video,button,input,select,form,article')) return;
-    register(element, 'text');
-  });
   select(root, media).forEach(element => register(element, 'image'));
-  // Give remaining mixed-content blocks (icons, benefits, forms) one shared entrance.
-  select(root, 'reveal-items').reverse().forEach(element => {
-    if (!element.querySelector('[data-monte-entry]') && !element.hasAttribute('data-monte-entry')) register(element, 'text');
-  });
+  // No catch-all paragraph/reveal-items scan: nested copy must not cascade or animate twice.
 }
 
 function finishAll(root = main) {

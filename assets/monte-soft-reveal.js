@@ -5,7 +5,7 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const mobile = matchMedia('(max-width: 999px)');
 const text = 'h1,h2,h3,h4,h5,h6,p,blockquote,ul,ol,dl';
 const cards = '.monte-product-card,.mb-card,.monte-blog__card,.monte-feature,.monte-sleep-story__stat,.product-card,.blog-post-card';
-const copies = '.monte-story__content,.monte-details__intro,.monte-faq__intro,.monte-mission__content,.monte-spotlight__content,.monte-catalog-promo__content,.monte-collection-hero__content,.monte-hero__content,.monte-faq__list,.monte-details__list,.monte-benefits';
+const copies = '.monte-story__content,.monte-details__intro,.monte-faq__intro,.monte-mission__content,.monte-spotlight__content,.monte-catalog-promo__content,.monte-collection-hero__content,.monte-hero__content,.monte-faq__list,.monte-details__list,.monte-benefits,.mp-intro,.mp-colors,.mp-size,.mp-bundle-options,.mp-set-card,.mp-gallery-thumbs';
 const carousels = '.mugc-viewport,.mp-ugc-track';
 let initialScan = true;
 const media = [
@@ -16,7 +16,8 @@ const media = [
   '.monte-mission__motion img', '.monte-sleep-story__float img',
   '.monte-hero .content-over-media > picture > img',
   '.monte-hero .content-over-media > :is(img,video,svg.placeholder)',
-  '.monte-hero .content-over-media > video-media video'
+  '.monte-hero .content-over-media > video-media video',
+  '.mp-gallery-slide:first-child > :is(img,video,svg)'
 ].join(',');
 const excluded = [
   '[data-monte-reveal="off"]', '.sr-only', '.visually-hidden', '[role="alert"]', '[aria-live]',
@@ -36,7 +37,7 @@ const observer = new IntersectionObserver(entries => {
     const element = entry.target;
     const record = records.get(element);
     if (!record || record.started) continue;
-    if (disabled() || (record.carousel ? element.parentElement.closest(excluded) : element.closest(excluded))) { finish(element); continue; }
+    if (disabled() || (record.carousel ? element.parentElement.closest(excluded) : isExcluded(element, record.kind))) { finish(element); continue; }
     record.started = true;
     seen.add(element);
     observer.unobserve(element);
@@ -64,8 +65,16 @@ function hasEntryParent(element) {
   return element.parentElement?.closest('[data-monte-entry="text"],[data-monte-entry="card"]');
 }
 
+function isExcluded(element, kind) {
+  const blocker = element.closest(excluded);
+  // Product media is a lightbox button; animate its image, never the button or drawer.
+  if (kind === 'image' && blocker?.matches('.mp-gallery-slide') &&
+      !blocker.parentElement.closest(excluded)) return false;
+  return Boolean(blocker);
+}
+
 function register(element, kind) {
-  if (seen.has(element) || records.has(element) || !main.contains(element) || element.closest(excluded)) return;
+  if (seen.has(element) || records.has(element) || !main.contains(element) || isExcluded(element, kind)) return;
   if (kind !== 'image' && hasEntryParent(element)) return;
   // Defer hidden tabs and responsive alternatives until they are actually shown.
   const rect = element.getBoundingClientRect();
@@ -106,7 +115,7 @@ function register(element, kind) {
     });
     animation.pause();
     animation.currentTime = 0;
-    records.set(element, { animation, started: false });
+    records.set(element, { animation, kind, started: false });
     element.dataset.monteRevealed = 'pending';
     animation.finished.then(() => {
       if (records.get(element)?.animation === animation) finish(element);

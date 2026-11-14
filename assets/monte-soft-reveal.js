@@ -5,7 +5,7 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const mobile = matchMedia('(max-width: 999px)');
 const text = 'h1,h2,h3,h4,h5,h6,p,blockquote,ul,ol,dl';
 const cards = '.monte-product-card,.mb-card,.monte-blog__card,.monte-feature,.monte-sleep-story__stat,.product-card,.blog-post-card';
-const copies = '.monte-story__copy,.monte-details__intro,.monte-faq__intro,.monte-mission__copy,.monte-spotlight__details,.monte-collection-hero__copy,.monte-hero__messaging';
+const copies = '.monte-story__content,.monte-details__intro,.monte-faq__intro,.monte-mission__content,.monte-spotlight__content,.monte-catalog-promo__content,.monte-collection-hero__content,.monte-hero__content';
 const media = [
   '.monte-story__media img', '.monte-spotlight__media img',
   '.monte-details__media img', '.monte-feature__media img',

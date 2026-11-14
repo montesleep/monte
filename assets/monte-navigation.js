@@ -1,6 +1,25 @@
 import { NavigationDrawer, MegaMenuDisclosure } from 'theme';
 import { animate, timeline } from 'vendor';
 
+// Animate promo media only; menu transitions, text and controls keep their own motion.
+const promoEntries = new WeakMap();
+function revealMenuPromos(root, delay = 0) {
+  if (!root || matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      window.themeVariables.settings.reduceMenuAnimation) return;
+  root.querySelectorAll('.monte-promo-media .monte-menu-media').forEach(media => {
+    if (media.closest('[hidden]')) return;
+    promoEntries.get(media)?.cancel();
+    const entry = media.animate([{ scale: 1.1 }, { scale: 1 }], {
+      duration: matchMedia('(max-width: 1149px)').matches ? 1000 : 1200,
+      delay, easing: 'cubic-bezier(.32,.71,.42,.94)', fill: 'both'
+    });
+    promoEntries.set(media, entry);
+    entry.finished.then(() => {
+      if (promoEntries.get(media) === entry) { promoEntries.delete(media); entry.cancel(); }
+    }, () => {});
+  });
+}
+
 class MonteNavigationDrawer extends NavigationDrawer {
   get shouldAppendToBody() { return false; }
   get openFrom() { return 'left'; }
@@ -86,7 +105,9 @@ class MonteNavigationDrawer extends NavigationDrawer {
         this.lockPage();
         if (this.header.hasAttribute('hide-on-scroll')) this.header.show();
         this.controls.forEach(control => control.setAttribute('aria-label', this.dataset.closeLabel));
-        await super.show(animated);
+        const opening = super.show(animated);
+        if (animated) revealMenuPromos(this.querySelector('.monte-mobile-root'), 150);
+        await opening;
         this.controls.forEach(control => control.setAttribute('aria-label', this.dataset.closeLabel));
       } else {
         this._panelVersion = (this._panelVersion || 0) + 1;
@@ -116,6 +137,7 @@ class MonteNavigationDrawer extends NavigationDrawer {
     incoming.inert = false;
     const direction = (document.dir === 'rtl' ? -1 : 1) * (forward ? 1 : -1);
     const duration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : .3;
+    revealMenuPromos(incoming);
     this._panelAnimations = [
       animate(outgoing, { transform: ['translateX(0%)', `translateX(${-direction * 100}%)`], opacity: [1, 0] }, { duration }),
       animate(incoming, { visibility: ['visible', 'visible'], transform: [`translateX(${direction * 100}%)`, 'translateX(0%)'], opacity: [0, 1] }, { duration })
@@ -197,6 +219,7 @@ class MonteMegaMenuDisclosure extends MegaMenuDisclosure {
     const closed = 'inset(0 0 100% 0 round 0 0 16px 16px)';
     const expanded = 'inset(0 0 0 0 round 0 0 16px 16px)';
     this.contentElement.style.opacity = '1';
+    if (open && !reduced) revealMenuPromos(this.contentElement, 550);
     return timeline([
       [this.contentElement, { clipPath: open ? [closed, expanded] : [expanded, closed] }, { duration: reduced ? 0 : .4, easing: [.86, 0, .07, 1], at: reduced ? 0 : .15 }],
       [this.contentElement.children, { opacity: open ? [0, 1] : [1, 0] }, { duration: reduced ? 0 : .15, at: open && !reduced ? .55 : 0 }]

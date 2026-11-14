@@ -1,11 +1,12 @@
 .mp-set { gap:24px; }
-.mp-set-card { overflow:hidden; border:1px solid #232e71; border-radius:16px; background:#f8f1e9; }
+.mp-set-card { overflow:hidden; padding:0 2px 2px; border-radius:16px; background:#232e71; }
+.mp-set-inner { overflow:hidden; border-radius:14px; background:#f8f1e9; }
+.mp-set-inner>.mp-bundle-footer { border:0; border-radius:0; }
 .mp-set-header { display:flex; align-items:center; justify-content:center; gap:12px; padding:8px 16px; background:#232e71; color:#fdfbf9; font-size:14px; font-weight:600; line-height:1.5; text-align:center; }
 .mp-set-header img { flex:none; max-width:none; }
 .mp-set-gift { display:grid; place-items:center; flex:none; width:24px; height:24px; }
 .mp-set-body { display:grid; gap:12px; padding:16px; }
-.mp-set-body h2 { font:600 16px/1.5 var(--text-font-family); letter-spacing:0; text-transform:none; }
-.mp-set-items { display:grid; gap:8px; padding:12px 0; border-block:1px solid #dcd6cf; }
+.mp-set-items { display:grid; gap:8px; padding:0 0 12px; border-bottom:1px solid #dcd6cf; }
 .mp-set-item { display:flex; align-items:center; gap:16px; min-width:0; }
 .mp-set-image { flex:none; width:48px; height:48px; overflow:hidden; border-radius:8px; background:#eee7e0; }
 .mp-set-image :is(img,svg) { width:100%; height:100%; object-fit:cover; }

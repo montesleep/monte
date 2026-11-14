@@ -61,8 +61,7 @@
         "monte_bundle": {
           "type": "monte_set",
           "settings": {
-            "header": "Zestaw taniej o [percent]%",
-            "contents_heading": "Co zawiera zestaw?",
+            "header": "Kup w zestawie i zaoszczędź [percent]%",
             "separate_label": "Cena produktów osobno",
             "savings_label": "Oszczędzasz w zestawie",
             "total_label": "Cena zestawu",

@@ -32,7 +32,7 @@ class MonteMission extends HTMLElement {
       if (this.visible) this.schedule();
     }, { rootMargin: '200px' });
     this.visibilityObserver.observe(this);
-    if (this.hasAttribute('data-revealed') || this.reduced.matches || window.Shopify?.designMode) {
+    if (document.documentElement.hasAttribute('data-monte-soft-reveal') || this.hasAttribute('data-revealed') || this.reduced.matches || window.Shopify?.designMode) {
       this.setAttribute('data-revealed', '');
       return;
     }

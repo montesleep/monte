@@ -1,3 +1,9 @@
+{%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: 'newsletter' -%}{%- endcapture -%}
+{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- liquid
+  assign newsletter_heading = campaign_content.heading.value | default: section.settings.newsletter_heading
+  assign newsletter_desc = campaign_content.body.value | default: section.settings.newsletter_desc
+-%}
 {{ 'monte-footer.css' | asset_url | stylesheet_tag }}
 <script type="module" src="{{ 'monte-footer.js' | asset_url }}"></script>
 {%- liquid
@@ -46,10 +52,10 @@
           {%- endif -%}
         </div>
       {%- endfor -%}
-      <div class="mfooter__newsletter">
-        {%- if section.settings.newsletter_heading != blank -%}<h2 class="mfooter__column-header mfooter__col-heading">{{ section.settings.newsletter_heading | escape }}</h2>{%- endif -%}
+      {%- unless campaign_handle == '__hidden__' -%}<div class="mfooter__newsletter">
+        {%- if newsletter_heading != blank -%}<h2 class="mfooter__column-header mfooter__col-heading">{{ newsletter_heading | escape }}</h2>{%- endif -%}
         <div class="mfooter__newsletter-content">
-          {%- if section.settings.newsletter_desc != blank -%}<p class="mfooter__description">{{ section.settings.newsletter_desc | escape | newline_to_br }}</p>{%- endif -%}
+          {%- if newsletter_desc != blank -%}<p class="mfooter__description">{{ newsletter_desc | escape | newline_to_br }}</p>{%- endif -%}
           <monte-footer-newsletter data-public-key="{{ settings.klaviyo_public_api_key | strip | escape }}" data-list-id="{{ settings.klaviyo_list_id | strip | escape }}" data-success="{{ section.settings.newsletter_success | escape }}" data-error="{{ section.settings.newsletter_error | escape }}">
             <form class="mfooter__newsletter-form" onsubmit="return false;">
               <label class="sr-only" for="FooterEmail-{{ section.id }}">{{ section.settings.newsletter_placeholder | escape }}</label>
@@ -62,6 +68,7 @@
           </monte-footer-newsletter>
         </div>
       </div>
+    {%- endunless -%}
     </reveal-items>
     {%- if section.settings.logo != blank -%}<reveal-items class="mfooter__wordmark"><div>{{ section.settings.logo | image_url: width: 2800 | image_tag: loading: 'lazy', widths: '343,686,1360,2000,2800', sizes: '(min-width: 1100px) calc(100vw - 80px), calc(100vw - 32px)', alt: shop.name }}</div></reveal-items>{%- endif -%}
     <reveal-items class="mfooter__bottom">

@@ -1,0 +1,22 @@
+{%- liquid
+  assign position = position | downcase
+  assign vertical = position | split: ' ' | first
+  assign horizontal = position | split: ' ' | last
+  assign align = 'start'
+  assign justify = 'start'
+  if vertical == 'middle'
+    assign align = 'center'
+  elsif vertical == 'bottom'
+    assign align = 'end'
+  endif
+  if horizontal == 'center'
+    assign justify = 'center'
+  elsif horizontal == 'right'
+    assign justify = 'end'
+  endif
+  if desktop
+    echo 'sm:place-self-' | append: align | append: '-' | append: justify | append: ' sm:text-' | append: horizontal
+  else
+    echo 'place-self-' | append: align | append: '-' | append: justify | append: ' text-' | append: horizontal
+  endif
+-%}

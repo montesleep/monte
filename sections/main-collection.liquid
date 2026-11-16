@@ -1,3 +1,5 @@
+{%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: 'collection_bundle' -%}{%- endcapture -%}
+{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
 {{ 'monte-product-tabs.css' | asset_url | stylesheet_tag }}
 {{ 'monte-collection-grid.css' | asset_url | stylesheet_tag }}
 {{ 'monte-bundle-promo.css' | asset_url | stylesheet_tag }}
@@ -16,7 +18,13 @@
   {%- liquid
     assign show_bundle_promo = false
     assign bundle_collection = section.settings.bundle_collection.handle | default: 'zestawy'
-    if section.settings.bundle_promo_enabled and collection.handle == bundle_collection and paginate.current_page == 1
+    assign campaign_promo_enabled = section.settings.bundle_promo_enabled
+    if campaign_handle == '__hidden__'
+      assign campaign_promo_enabled = false
+    elsif campaign_content != blank
+      assign campaign_promo_enabled = true
+    endif
+    if campaign_promo_enabled and collection.handle == bundle_collection and paginate.current_page == 1
       assign show_bundle_promo = true
     endif
   -%}

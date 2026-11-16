@@ -1,3 +1,16 @@
+{%- assign campaign_handle = '' -%}{%- if section.settings.monte_hero and request.page_type == 'index' -%}{%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: 'home_hero' -%}{%- endcapture -%}
+{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- endif -%}
+{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- liquid
+  assign campaign_frost = section.settings.hero_defrost
+  if campaign_content.frost_effect.value == 'Enabled'
+    assign campaign_frost = true
+  elsif campaign_content.frost_effect.value == 'Disabled'
+    assign campaign_frost = false
+  endif
+-%}
+{%- unless campaign_handle == '__hidden__' -%}
 {%- if section.settings.monte_hero -%}{{ 'monte-hero.css' | asset_url | stylesheet_tag }}{%- endif -%}
 {%- comment -%}
 ------------------------------------------------------------------------------------------------------------------------
@@ -66,12 +79,26 @@ LIQUID
     {%- endunless -%}
 
     {%- for block in section.blocks -%}
+      {%- assign active_campaign_content = nil -%}
+      {%- if forloop.first -%}{%- assign active_campaign_content = campaign_content -%}{%- endif -%}
+      {%- liquid
+        assign mobile_position = block.settings.mobile_text_position
+        assign desktop_position = block.settings.desktop_text_position
+      -%}
+      {%- if active_campaign_content.mobile_position.value != blank and active_campaign_content.mobile_position.value != 'Standard' -%}
+        {%- capture mobile_position -%}{%- render 'monte-campaign-position', position: active_campaign_content.mobile_position.value -%}{%- endcapture -%}
+      {%- endif -%}
+      {%- if active_campaign_content.desktop_position.value != blank and active_campaign_content.desktop_position.value != 'Standard' -%}
+        {%- capture desktop_position -%}{%- render 'monte-campaign-position', position: active_campaign_content.desktop_position.value, desktop: true -%}{%- endcapture -%}
+      {%- endif -%}
       {%- capture slide -%}
         <div class="content-over-media content-over-media--{{ section.settings.image_size }} {% unless section.settings.full_width %}rounded{% endunless %}" style="--content-over-media-content-max-width: {{ block.settings.content_max_width }}px; --content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
           {%- comment -%}---------------- MEDIA ----------------{%- endcomment -%}
           {%- capture sizes -%}{% if section.settings.full_width %}100vw{% else %}min({{ settings.page_width }}px, 100vw){% endif %}{%- endcapture -%}
 
-          {%- if block.type == 'image' -%}
+          {%- if forloop.first and campaign_content != blank -%}
+            {%- render 'monte-campaign-hero-media', block: block, campaign_content: campaign_content, sizes: sizes -%}
+          {%- elsif block.type == 'image' -%}
             {%- if block.settings.image != blank -%}
               {%- capture loading_strategy -%}{% if forloop.first %}eager{% else %}lazy{% endif %}{%- endcapture -%}
               {%- capture fetch_priority -%}{% if forloop.first %}high{% else %}low{% endif %}{%- endcapture -%}
@@ -115,16 +142,17 @@ LIQUID
             {%- endif -%}
           {%- endif -%}
 
-          {%- if section.settings.monte_hero and section.settings.hero_defrost and request.page_type == 'index' and forloop.first -%}
+          {%- if section.settings.monte_hero and campaign_frost and request.page_type == 'index' and forloop.first -%}
             {%- render 'monte-hero-frost', section_id: section.id -%}
           {%- endif -%}
 
           {%- comment -%}---------------- CONTENT ----------------{%- endcomment -%}
-          {%- capture content_class -%}{% if section.settings.monte_hero %}monte-hero__position {% endif %}{{ block.settings.mobile_text_position }} {{ block.settings.desktop_text_position }}{%- endcapture -%}
+          {%- capture content_class -%}{% if section.settings.monte_hero %}monte-hero__position {% endif %}{{ mobile_position }} {{ desktop_position }}{%- endcapture -%}
 
-          <div {% render 'surface', class: content_class, text_color: block.settings.text_color %}>
+          {%- capture campaign_text_style -%}{%- if active_campaign_content.text_color.value != blank -%}color: {{ active_campaign_content.text_color.value }};{%- endif -%}{%- endcapture -%}
+          <div {% render 'surface', class: content_class, text_color: block.settings.text_color, style: campaign_text_style %}>
             {%- if section.settings.monte_hero -%}
-              {%- render 'monte-hero-content', block: block, section: section, first_slide: forloop.first -%}
+              {%- render 'monte-hero-content', block: block, section: section, first_slide: forloop.first, campaign_content: active_campaign_content -%}
             {%- else -%}
             <div class="prose">
               {%- if block.settings.subheading != blank -%}
@@ -201,6 +229,8 @@ LIQUID
   </slideshow-carousel>
 </x-slideshow>
 
+
+{%- endunless -%}
 {% schema %}
 {
   "name": "Slideshow",

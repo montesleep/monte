@@ -1,0 +1,25 @@
+{%- comment -%}
+  Resolve one placement on the server. No campaign data is written into base settings.
+  A draft/missing reference, Standard behavior, or disabled control returns no override.
+{%- endcomment -%}
+{%- liquid
+  assign selected_campaign = nil
+  assign campaign_mode = settings.monte_campaign_mode | default: 'follow'
+  if campaign_mode == 'preview'
+    assign selected_campaign = settings.monte_campaign_preview
+  elsif campaign_mode == 'follow'
+    assign campaign_control = shop.metaobjects.monte_campaign_control.storefront
+    if campaign_control.enabled.value == true
+      assign selected_campaign = campaign_control.campaign.value
+    endif
+  endif
+  if selected_campaign != blank and slot != blank
+    assign placement = selected_campaign[slot].value
+    assign behavior = placement.behavior.value | downcase
+    if behavior == 'hidden'
+      echo '__hidden__'
+    elsif behavior == 'campaign'
+      echo placement.system.handle
+    endif
+  endif
+-%}

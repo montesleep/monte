@@ -7,20 +7,58 @@
     assign mobile_video = promo_settings.bundle_video
   endif
 -%}
-<article class="monte-catalog-promo" style="--promo-text: {{ promo_settings.bundle_text }}; --promo-button: {{ promo_settings.bundle_button_bg }}; --promo-button-text: {{ promo_settings.bundle_button_text }}; --promo-button-hover: {{ promo_settings.bundle_button_hover }};">
-  <div class="monte-catalog-promo__media monte-catalog-promo__media--desktop{% if promo_settings.bundle_image == blank and promo_settings.bundle_video == blank %} monte-catalog-promo__media--default{% endif %}">
-    {%- render 'monte-navigation-media', image: promo_settings.bundle_image, video: promo_settings.bundle_video, placeholder: 'image', sizes: '(min-width: 700px) 25vw, 100vw', width: 2327, height: 1080 -%}
+{%- assign campaign_slot = 'collection_bundle' -%}{%- if request.page_type == 'index' -%}{%- assign campaign_slot = 'home_bundle' -%}{%- endif -%}
+{%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: campaign_slot -%}{%- endcapture -%}
+{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- liquid
+  assign bundle_heading = campaign_content.heading.value | default: promo_settings.bundle_heading
+  assign bundle_body = campaign_content.body.value | default: promo_settings.bundle_body
+  assign bundle_button = campaign_content.button_label.value | default: promo_settings.bundle_button
+  assign bundle_link = campaign_content.link.value | default: promo_settings.bundle_link
+  assign bundle_text = campaign_content.text_color.value | default: promo_settings.bundle_text
+-%}
+{%- assign desktop_image = promo_settings.bundle_image -%}{%- assign desktop_video = promo_settings.bundle_video -%}
+{%- liquid
+  assign campaign_desktop = campaign_content.desktop_media.value
+  assign campaign_mobile = campaign_content.mobile_media.value
+  if campaign_desktop.media_type == 'image' or campaign_desktop.media_type == 'video'
+    assign desktop_image = nil
+    assign desktop_video = nil
+    if campaign_desktop.media_type == 'video'
+      assign desktop_video = campaign_desktop
+    else
+      assign desktop_image = campaign_desktop
+    endif
+    assign mobile_image = desktop_image
+    assign mobile_video = desktop_video
+  endif
+  if campaign_mobile.media_type == 'image' or campaign_mobile.media_type == 'video'
+    assign mobile_image = nil
+    assign mobile_video = nil
+    if campaign_mobile.media_type == 'video'
+      assign mobile_video = campaign_mobile
+    else
+      assign mobile_image = campaign_mobile
+    endif
+  endif
+-%}
+{%- unless campaign_handle == '__hidden__' -%}
+<article class="monte-catalog-promo" style="--promo-text: {{ bundle_text }}; --promo-button: {{ bundle_button_bg }}; --promo-button-text: {{ bundle_button_text }}; --promo-button-hover: {{ bundle_button_hover }};">
+  <div class="monte-catalog-promo__media monte-catalog-promo__media--desktop{% if desktop_image == blank and desktop_video == blank %} monte-catalog-promo__media--default{% endif %}">
+    {%- render 'monte-navigation-media', image: desktop_image, video: desktop_video, placeholder: 'image', sizes: '(min-width: 700px) 25vw, 100vw', width: 2327, height: 1080 -%}
   </div>
   <div class="monte-catalog-promo__media monte-catalog-promo__media--mobile">
     {%- render 'monte-navigation-media', image: mobile_image, video: mobile_video, placeholder: 'image', sizes: '100vw', width: 2327, height: 1080 -%}
   </div>
   <div class="monte-catalog-promo__content">
     <div class="monte-catalog-promo__copy">
-      {%- if promo_settings.bundle_heading != blank -%}<h2>{{ promo_settings.bundle_heading | escape }}</h2>{%- endif -%}
-      {%- if promo_settings.bundle_body != blank -%}<p>{{ promo_settings.bundle_body | escape }}</p>{%- endif -%}
+      {%- if bundle_heading != blank -%}<h2>{{ bundle_heading | escape }}</h2>{%- endif -%}
+      {%- if bundle_body != blank -%}<p>{{ bundle_body | escape }}</p>{%- endif -%}
     </div>
-    {%- if promo_settings.bundle_button != blank -%}
-      <a class="button monte-catalog-promo__button" href="{{ promo_settings.bundle_link | default: '/pages/bundle-builder' }}">{{ promo_settings.bundle_button | escape }}</a>
+    {%- if bundle_button != blank -%}
+      <a class="button monte-catalog-promo__button" href="{{ bundle_link | default: '/pages/bundle-builder' }}">{{ bundle_button | escape }}</a>
     {%- endif -%}
   </div>
 </article>
+
+{%- endunless -%}

@@ -14,10 +14,45 @@
   assign rating = settings.monte_social_rating | default: 4.5 | at_least: 0 | at_most: 5
   assign rating_text = shop.metafields.custom.rating_text_social.value
 -%}
+{%- assign campaign_slot = '' -%}
+{%- if design_images == 'builder' -%}{%- assign campaign_slot = 'builder_intro' -%}
+{%- elsif request.page_type == 'collection' or request.page_type == 'list-collections' -%}{%- assign campaign_slot = 'collection_hero' -%}{%- endif -%}
+{%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: campaign_slot -%}{%- endcapture -%}
+{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- liquid
+  assign hero_heading = campaign_content.heading.value | default: hero_heading
+  assign hero_subheading = campaign_content.body.value | default: hero_subheading
+  assign hero_badge = campaign_content.badge.value | default: section.settings.badge_text
+-%}
+{%- liquid
+  assign campaign_desktop = campaign_content.desktop_media.value
+  assign campaign_mobile = campaign_content.mobile_media.value
+  if campaign_desktop.media_type == 'image' or campaign_desktop.media_type == 'video'
+    assign desktop_image = nil
+    assign desktop_video = nil
+    if campaign_desktop.media_type == 'video'
+      assign desktop_video = campaign_desktop
+    else
+      assign desktop_image = campaign_desktop
+    endif
+    assign mobile_image = desktop_image
+    assign mobile_video = desktop_video
+  endif
+  if campaign_mobile.media_type == 'image' or campaign_mobile.media_type == 'video'
+    assign mobile_image = nil
+    assign mobile_video = nil
+    if campaign_mobile.media_type == 'video'
+      assign mobile_video = campaign_mobile
+    else
+      assign mobile_image = campaign_mobile
+    endif
+  endif
+-%}
+{%- unless campaign_handle == '__hidden__' -%}
 <style>
   #shopify-section-{{ section.id }} { background: transparent; margin: 0; padding: 0; }
 </style>
-<reveal-items class="monte-collection-hero{% if design_images == 'about' %} monte-collection-hero--about{% endif %}" selector=".monte-collection-hero__content" margin="0px" style="--mch-gradient-opacity: {% if design_images == 'faq' or design_images == 'policy' or design_images == 'contact' or design_images == 'about' or design_images == 'builder' %}.7{% else %}.8{% endif %}; --mch-height-desktop: {{ section.settings.desktop_height }}px; --mch-height-mobile: {{ section.settings.mobile_height }}px; --mch-heading: {{ section.settings.heading_color }}; --mch-body: {{ section.settings.body_color }}; --mch-rating: {{ section.settings.rating_color }}; --mch-overlay: {{ section.settings.overlay_color }}; --mch-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --mch-image-position: {{ desktop_image.presentation.focal_point | default: '50% 50%' }}; --mch-mobile-image-position: {{ mobile_image.presentation.focal_point | default: '50% 50%' }};">
+<reveal-items class="monte-collection-hero{% if design_images == 'about' %} monte-collection-hero--about{% endif %}" selector=".monte-collection-hero__content" margin="0px" style="--mch-gradient-opacity: {% if design_images == 'faq' or design_images == 'policy' or design_images == 'contact' or design_images == 'about' or design_images == 'builder' %}.7{% else %}.8{% endif %}; --mch-height-desktop: {{ section.settings.desktop_height }}px; --mch-height-mobile: {{ section.settings.mobile_height }}px; --mch-heading: {{ campaign_content.text_color.value | default: section.settings.heading_color }}; --mch-body: {{ campaign_content.text_color.value | default: section.settings.body_color }}; --mch-rating: {{ section.settings.rating_color }}; --mch-overlay: {{ section.settings.overlay_color }}; --mch-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --mch-image-position: {{ desktop_image.presentation.focal_point | default: '50% 50%' }}; --mch-mobile-image-position: {{ mobile_image.presentation.focal_point | default: '50% 50%' }};">
   <div class="monte-collection-hero__frame{% if section.settings.mobile_gradient %} monte-collection-hero__frame--gradient{% endif %}">
     <div class="monte-collection-hero__media" aria-hidden="true">
       {%- for device in (1..2) -%}
@@ -44,7 +79,7 @@
     </div>
     <div class="monte-collection-hero__overlay" aria-hidden="true"></div>
     <div class="monte-collection-hero__content">
-      {% if section.settings.badge_text != blank %}<span class="monte-collection-hero__badge" style="background:{{ section.settings.badge_background }};color:{{ section.settings.badge_color }};">{{ section.settings.badge_text | escape }}</span>{% endif %}
+      {% if hero_badge != blank %}<span class="monte-collection-hero__badge" style="background:{{ campaign_content.badge_background.value | default: section.settings.badge_background }};color:{{ campaign_content.badge_color.value | default: section.settings.badge_color }};">{{ hero_badge | escape }}</span>{% endif %}
       {%- if section.settings.show_rating -%}
         <div class="monte-collection-hero__rating">
           {%- render 'monte-social-rating', rating: rating -%}
@@ -61,3 +96,5 @@
   </div>
 </reveal-items>
 
+
+{%- endunless -%}

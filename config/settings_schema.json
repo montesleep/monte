@@ -1200,5 +1200,41 @@
         "info": "Public storefront token only. Never enter a private API token. Reviews are grouped using custom.product_group."
       }
     ]
+  },
+  {
+    "name": "Monté campaigns",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Manage campaigns in Content > Metaobjects. Blank placement fields inherit the standard section settings. Prices and discount rules are not changed by campaigns."
+      },
+      {
+        "type": "select",
+        "id": "monte_campaign_mode",
+        "label": "Campaign mode",
+        "default": "follow",
+        "options": [
+          {
+            "value": "follow",
+            "label": "Follow campaign control"
+          },
+          {
+            "value": "standard",
+            "label": "Standard appearance only"
+          },
+          {
+            "value": "preview",
+            "label": "Preview selected campaign"
+          }
+        ]
+      },
+      {
+        "type": "metaobject",
+        "id": "monte_campaign_preview",
+        "label": "Preview campaign",
+        "metaobject_type": "monte_campaign",
+        "info": "Applies only to this theme. Use on an unpublished theme to prepare a campaign."
+      }
+    ]
   }
 ]

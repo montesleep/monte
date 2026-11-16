@@ -18,14 +18,45 @@
     assign media_video = promo.settings.video
   endif
 -%}
-{%- if promo != blank and promo.settings.enabled -%}
-  <div class="monte-menu-promo{% if desktop %} mega-menu__promo monte-menu-promo--desktop{% elsif kind == 'bundle' %} monte-menu-promo--bundle{% endif %}" style="--promo-text: {{ promo.settings.text_color | default: '#fdfbf9' }}; --promo-button: {{ promo.settings.button_background | default: '#fdfbf9' }}; --promo-button-text: {{ promo.settings.button_text | default: '#232e71' }}; --promo-button-hover: {{ promo.settings.button_hover | default: '#eee7e0' }};" {{ promo.shopify_attributes }}>
+{%- assign campaign_slot = 'menu_shop' -%}{%- if kind == 'bundle' -%}{%- assign campaign_slot = 'menu_bundle' -%}{%- endif -%}
+{%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: campaign_slot -%}{%- endcapture -%}
+{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- liquid
+  assign promo_heading = campaign_content.heading.value | default: promo.settings.heading
+  assign promo_body = campaign_content.body.value | default: promo.settings.body
+  assign promo_badge = campaign_content.badge.value | default: promo.settings.badge
+  assign promo_label = campaign_content.button_label.value | default: promo.settings.button_label
+  assign promo_link = campaign_content.link.value | default: promo.settings.link
+  assign promo_text_color = campaign_content.text_color.value | default: promo.settings.text_color
+-%}
+{%- liquid
+  assign campaign_media = campaign_content.mobile_media.value | default: campaign_content.desktop_media.value
+  if desktop
+    assign campaign_media = campaign_content.desktop_media.value
+  elsif campaign_content.mobile_body.value != blank
+    assign promo_body = campaign_content.mobile_body.value
+  endif
+  if campaign_media.media_type == 'image' or campaign_media.media_type == 'video'
+    assign media_image = nil
+    assign media_video = nil
+    if campaign_media.media_type == 'video'
+      assign media_video = campaign_media
+    else
+      assign media_image = campaign_media
+    endif
+  endif
+-%}
+{%- unless campaign_handle == '__hidden__' -%}
+{%- if promo.settings.enabled or campaign_content != blank -%}
+  <div class="monte-menu-promo{% if desktop %} mega-menu__promo monte-menu-promo--desktop{% elsif kind == 'bundle' %} monte-menu-promo--bundle{% endif %}" style="--promo-text: {{ promo_text_color | default: '#fdfbf9' }}; --promo-button: {{ promo.settings.button_background | default: '#fdfbf9' }}; --promo-button-text: {{ promo.settings.button_text | default: '#232e71' }}; --promo-button-hover: {{ promo.settings.button_hover | default: '#eee7e0' }};" {{ promo.shopify_attributes }}>
     <div class="monte-promo-media">{%- render 'monte-navigation-media', image: media_image, video: media_video, placeholder: promo_placeholder, sizes: '(min-width: 1150px) 440px, 100vw', width: 880, height: 960 -%}</div>
     <div class="monte-promo-content">
-      {%- if promo.settings.badge != blank -%}<span class="monte-promo-badge">{{ promo.settings.badge | escape }}</span>{%- endif -%}
-      {%- if promo.settings.heading != blank -%}<p class="monte-promo-heading">{{ promo.settings.heading | escape }}</p>{%- endif -%}
-      {%- if promo.settings.body != blank -%}<p class="monte-promo-body">{{ promo.settings.body | escape }}</p>{%- endif -%}
-      {%- if promo.settings.button_label != blank -%}<a class="button monte-promo-button" href="{{ promo.settings.link | default: default_promo_link }}"><span>{{ promo.settings.button_label | escape }}</span></a>{%- endif -%}
+      {%- if promo_badge != blank -%}<span class="monte-promo-badge" style="{% if campaign_content.badge_background.value != blank %}background:{{ campaign_content.badge_background.value }};{% endif %}{% if campaign_content.badge_color.value != blank %}color:{{ campaign_content.badge_color.value }};{% endif %}">{{ promo_badge | escape }}</span>{%- endif -%}
+      {%- if promo_heading != blank -%}<p class="monte-promo-heading">{{ promo_heading | escape }}</p>{%- endif -%}
+      {%- if promo_body != blank -%}<p class="monte-promo-body">{{ promo_body | escape }}</p>{%- endif -%}
+      {%- if promo_label != blank -%}<a class="button monte-promo-button" href="{{ promo_link | default: default_promo_link }}"><span>{{ promo_label | escape }}</span></a>{%- endif -%}
     </div>
   </div>
 {%- endif -%}
+
+{%- endunless -%}

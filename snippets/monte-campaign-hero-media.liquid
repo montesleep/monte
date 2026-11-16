@@ -1,0 +1,48 @@
+{%- liquid
+  assign desktop_image = block.settings.image
+  assign desktop_video = block.settings.video
+  assign mobile_image = block.settings.mobile_image
+  assign mobile_video = block.settings.mobile_video
+  if mobile_image == blank and mobile_video == blank
+    assign mobile_image = desktop_image
+    assign mobile_video = desktop_video
+  endif
+-%}
+{%- liquid
+  assign campaign_desktop = campaign_content.desktop_media.value
+  assign campaign_mobile = campaign_content.mobile_media.value
+  if campaign_desktop.media_type == 'image' or campaign_desktop.media_type == 'video'
+    assign desktop_image = nil
+    assign desktop_video = nil
+    if campaign_desktop.media_type == 'video'
+      assign desktop_video = campaign_desktop
+    else
+      assign desktop_image = campaign_desktop
+    endif
+    assign mobile_image = desktop_image
+    assign mobile_video = desktop_video
+  endif
+  if campaign_mobile.media_type == 'image' or campaign_mobile.media_type == 'video'
+    assign mobile_image = nil
+    assign mobile_video = nil
+    if campaign_mobile.media_type == 'video'
+      assign mobile_video = campaign_mobile
+    else
+      assign mobile_image = campaign_mobile
+    endif
+  endif
+-%}
+<div class="monte-campaign-hero-media">
+  {%- for device in (1..2) -%}
+    {%- assign image = desktop_image -%}{%- assign video = desktop_video -%}
+    {%- if device == 2 -%}{%- assign image = mobile_image -%}{%- assign video = mobile_video -%}{%- endif -%}
+    <div class="{% if device == 1 %}hidden sm:block{% else %}sm:hidden{% endif %}">
+      {%- if video != blank -%}
+        {{ video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, preload: 'metadata', image_size: '1200x' }}
+      {%- elsif image != blank -%}
+        {{ image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400,600,800,1200,1600,2000,2400', sizes: sizes, alt: '' }}
+      {%- else -%}{{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}{%- endif -%}
+    </div>
+  {%- endfor -%}
+</div>
+<style>.monte-campaign-hero-media,.monte-campaign-hero-media>div,.monte-campaign-hero-media img,.monte-campaign-hero-media video,.monte-campaign-hero-media video-media,.monte-campaign-hero-media svg{width:100%;height:100%;object-fit:cover}</style>

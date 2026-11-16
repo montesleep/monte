@@ -1,3 +1,5 @@
+{%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: 'announcement' -%}{%- endcapture -%}
+{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
 {%- liquid
   assign show_bar = true
   if section.settings.show_on_homepage_only and request.page_type != 'index'
@@ -9,12 +11,35 @@
   assign campaign_start = start_date | append: 'T' | append: start_time | append: ':00'
 -%}
 
+{%- liquid
+  assign announcement_text = campaign_content.heading.value | default: section.settings.text
+  assign announcement_mobile = campaign_content.mobile_body.value | default: mobile_text
+  assign announcement_bg = campaign_content.background.value | default: section.settings.background
+  assign announcement_color = campaign_content.text_color.value | default: section.settings.text_color
+-%}
+{%- liquid
+  assign announcement_countdown = section.settings.countdown_enabled
+  assign announcement_show_icon = section.settings.show_icon
+  assign announcement_icon = section.settings.icon_image
+  if campaign_content != blank
+    assign announcement_mobile = campaign_content.mobile_body.value | default: announcement_text
+    assign announcement_countdown = false
+    assign announcement_show_icon = false
+    if campaign_content.icon.value != blank
+      assign announcement_show_icon = true
+      assign announcement_icon = campaign_content.icon.value
+    endif
+  endif
+  if campaign_handle == '__hidden__'
+    assign show_bar = false
+  endif
+-%}
 <style>
   :root { --sticky-announcement-bar-enabled: 0; }
   #shopify-section-{{ section.id }} {
     position: relative;
-    --monte-announcement-background: {{ section.settings.background | default: '#232e71' }};
-    --monte-announcement-text: {{ section.settings.text_color | default: '#f8f1e9' }};
+    --monte-announcement-background: {{ announcement_bg | default: '#232e71' }};
+    --monte-announcement-text: {{ announcement_color | default: '#f8f1e9' }};
     --monte-timer-background: {{ section.settings.timer_background | default: '#fdfbf9' }};
     --monte-timer-text: {{ section.settings.timer_text_color | default: '#232e71' }};
   }
@@ -107,24 +132,25 @@
 {%- if show_bar -%}
   <height-observer variable="announcement-bar">
     <monte-announcement-bar
-      class="monte-announcement{% unless section.settings.countdown_enabled %} monte-announcement--text-only{% endunless %}"
+      class="monte-announcement{% unless announcement_countdown %} monte-announcement--text-only{% endunless %}"
       data-campaign-start="{{ campaign_start | escape }}"
     >
       <div class="monte-announcement__inner">
-        <p class="monte-announcement__message">
-          {%- if section.settings.show_icon -%}
+        <p class="monte-announcement__message">{% if campaign_content.link.value != blank %}<a href="{{ campaign_content.link.value | escape }}">{% endif %}
+          {%- if announcement_show_icon -%}
             <span class="monte-announcement__icon" aria-hidden="true">
-              {%- if section.settings.icon_image != blank -%}
-                {{- section.settings.icon_image | image_url: width: 32 | image_tag: width: 16, height: 16, alt: '' -}}
+              {%- if announcement_icon != blank -%}
+                {{- announcement_icon | image_url: width: 32 | image_tag: width: 16, height: 16, alt: '' -}}
               {%- else -%}
                 {{- section.settings.icon_text | escape -}}
               {%- endif -%}
             </span>
           {%- endif -%}
-          <span class="monte-announcement__desktop">{{ section.settings.text | escape }}</span>
-          <span class="monte-announcement__mobile">{{ mobile_text | escape | newline_to_br }}</span>
+          <span class="monte-announcement__desktop">{{ announcement_text | escape }}</span>
+          <span class="monte-announcement__mobile">{{ announcement_mobile | escape | newline_to_br }}</span>
+          {% if campaign_content.link.value != blank %}</a>{% endif %}
         </p>
-        {%- if section.settings.countdown_enabled -%}
+        {%- if announcement_countdown -%}
           <div class="monte-announcement__timer" role="timer" aria-live="off" aria-label="{{ section.settings.countdown_label | escape }}">
             <span class="monte-announcement__unit"><span data-countdown-days>00</span>D</span>
             <span class="monte-announcement__unit"><span data-countdown-hours>00</span>G</span>
@@ -133,7 +159,7 @@
           </div>
         {%- endif -%}
       </div>
-      {%- if request.design_mode and section.settings.countdown_enabled -%}
+      {%- if request.design_mode and announcement_countdown -%}
         <p class="monte-announcement__notice" data-countdown-notice hidden>Enter a valid start date and time in Poland (Europe/Warsaw). Times skipped during the spring clock change are not valid.</p>
       {%- endif -%}
     </monte-announcement-bar>

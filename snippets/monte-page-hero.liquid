@@ -18,7 +18,7 @@
 {%- if design_images == 'builder' -%}{%- assign campaign_slot = 'builder_intro' -%}
 {%- elsif request.page_type == 'collection' or request.page_type == 'list-collections' -%}{%- assign campaign_slot = 'collection_hero' -%}{%- endif -%}
 {%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: campaign_slot -%}{%- endcapture -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 {%- liquid
   assign hero_heading = campaign_content.heading.value | default: hero_heading
   assign hero_subheading = campaign_content.body.value | default: hero_subheading

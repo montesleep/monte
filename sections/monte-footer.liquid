@@ -1,5 +1,5 @@
 {%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: 'newsletter' -%}{%- endcapture -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 {%- liquid
   assign newsletter_heading = campaign_content.heading.value | default: section.settings.newsletter_heading
   assign newsletter_desc = campaign_content.body.value | default: section.settings.newsletter_desc

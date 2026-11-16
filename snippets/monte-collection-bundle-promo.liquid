@@ -9,7 +9,7 @@
 -%}
 {%- assign campaign_slot = 'collection_bundle' -%}{%- if request.page_type == 'index' -%}{%- assign campaign_slot = 'home_bundle' -%}{%- endif -%}
 {%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: campaign_slot -%}{%- endcapture -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 {%- liquid
   assign bundle_heading = campaign_content.heading.value | default: promo_settings.bundle_heading
   assign bundle_body = campaign_content.body.value | default: promo_settings.bundle_body

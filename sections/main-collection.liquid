@@ -1,5 +1,5 @@
 {%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: 'collection_bundle' -%}{%- endcapture -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 {{ 'monte-product-tabs.css' | asset_url | stylesheet_tag }}
 {{ 'monte-collection-grid.css' | asset_url | stylesheet_tag }}
 {{ 'monte-bundle-promo.css' | asset_url | stylesheet_tag }}

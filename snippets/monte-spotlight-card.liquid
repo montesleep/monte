@@ -30,9 +30,9 @@
 {%- assign campaign_slot = 'spotlight_one' -%}{%- if number == 2 -%}{%- assign campaign_slot = 'spotlight_two' -%}{%- endif -%}
 {%- assign campaign_handle = '' -%}
 {%- if request.page_type == 'index' -%}{%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: campaign_slot -%}{%- endcapture -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 {%- endif -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 {%- liquid
   assign heading = campaign_content.heading.value | default: heading
   assign body = campaign_content.body.value | default: body

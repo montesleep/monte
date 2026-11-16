@@ -1,7 +1,7 @@
 {%- assign campaign_handle = '' -%}{%- if section.settings.monte_hero and request.page_type == 'index' -%}{%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: 'home_hero' -%}{%- endcapture -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 {%- endif -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 {%- liquid
   assign campaign_frost = section.settings.hero_defrost
   if campaign_content.frost_effect.value == 'Enabled'

@@ -1,5 +1,5 @@
 {%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: 'announcement' -%}{%- endcapture -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 {%- liquid
   assign show_bar = true
   if section.settings.show_on_homepage_only and request.page_type != 'index'

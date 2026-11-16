@@ -1,5 +1,5 @@
 {%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: 'product_promo' -%}{%- endcapture -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 {%- liquid
   assign promo_title = campaign_content.heading.value | default: block.settings.monte_promo_title
   assign promo_text = campaign_content.body.value | default: block.settings.monte_promo_text

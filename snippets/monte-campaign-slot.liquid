@@ -8,7 +8,7 @@
   if campaign_mode == 'preview'
     assign selected_campaign = settings.monte_campaign_preview
   elsif campaign_mode == 'follow'
-    assign campaign_control = shop.metaobjects.monte_campaign_control.storefront
+    assign campaign_control = metaobjects.monte_campaign_control.storefront
     if campaign_control.enabled.value == true
       assign selected_campaign = campaign_control.campaign.value
     endif

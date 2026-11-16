@@ -1,5 +1,5 @@
 {%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: 'home_bundle' -%}{%- endcapture -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 <style>#shopify-section-{{ section.id }} { background: transparent; }</style>
 {{ 'monte-bundle-promo.css' | asset_url | stylesheet_tag }}
 {{ 'monte-product-tabs.css' | asset_url | stylesheet_tag }}

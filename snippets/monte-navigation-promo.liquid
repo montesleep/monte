@@ -20,7 +20,7 @@
 -%}
 {%- assign campaign_slot = 'menu_shop' -%}{%- if kind == 'bundle' -%}{%- assign campaign_slot = 'menu_bundle' -%}{%- endif -%}
 {%- capture campaign_handle -%}{%- render 'monte-campaign-slot', slot: campaign_slot -%}{%- endcapture -%}
-{%- assign campaign_content = shop.metaobjects.monte_campaign_placement[campaign_handle] -%}
+{%- assign campaign_content = metaobjects.monte_campaign_placement[campaign_handle] -%}
 {%- liquid
   assign promo_heading = campaign_content.heading.value | default: promo.settings.heading
   assign promo_body = campaign_content.body.value | default: promo.settings.body

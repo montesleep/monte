@@ -14,9 +14,13 @@
   elsif horizontal == 'right'
     assign justify = 'end'
   endif
+  assign placement = align
+  if align != justify
+    assign placement = align | append: '-' | append: justify
+  endif
   if desktop
-    echo 'sm:place-self-' | append: align | append: '-' | append: justify | append: ' sm:text-' | append: horizontal
+    echo 'sm:place-self-' | append: placement | append: ' sm:text-' | append: justify
   else
-    echo 'place-self-' | append: align | append: '-' | append: justify | append: ' text-' | append: horizontal
+    echo 'place-self-' | append: placement | append: ' text-' | append: justify
   endif
 -%}

@@ -18,7 +18,7 @@
     </span>
     <div>
       {%- if promo_title != blank -%}<strong>{{ promo_title | escape }}</strong>{%- endif -%}
-      {%- if promo_text != blank -%}<p>{{ promo_text | escape | newline_to_br }}</p>{%- endif -%}
+      {%- if promo_text != blank -%}<p {% if campaign_content.text_color.value != blank %}style="color:inherit"{% endif %}>{{ promo_text | escape | newline_to_br }}</p>{%- endif -%}
     </div>
     <img class="mp-promo-mark" src="{{ 'monte-pdp-promo-logo.svg' | asset_url }}" width="99" height="99" alt="">
   </div>

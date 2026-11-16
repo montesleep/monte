@@ -45,7 +45,7 @@
       "name": "Slideshow",
       "settings": {
         "monte_hero": true,
-        "hero_defrost": true,
+        "hero_defrost": false,
         "hero_desktop_height": 620,
         "hero_mobile_height": 620,
         "full_width": true,

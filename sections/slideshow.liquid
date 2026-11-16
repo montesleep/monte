@@ -115,8 +115,12 @@ LIQUID
             {%- endif -%}
           {%- endif -%}
 
+          {%- if section.settings.monte_hero and section.settings.hero_defrost and request.page_type == 'index' and forloop.first -%}
+            {%- render 'monte-hero-frost', section_id: section.id -%}
+          {%- endif -%}
+
           {%- comment -%}---------------- CONTENT ----------------{%- endcomment -%}
-          {%- capture content_class -%}{{ block.settings.mobile_text_position }} {{ block.settings.desktop_text_position }}{%- endcapture -%}
+          {%- capture content_class -%}{% if section.settings.monte_hero %}monte-hero__position {% endif %}{{ block.settings.mobile_text_position }} {{ block.settings.desktop_text_position }}{%- endcapture -%}
 
           <div {% render 'surface', class: content_class, text_color: block.settings.text_color %}>
             {%- if section.settings.monte_hero -%}
@@ -216,6 +220,14 @@ LIQUID
       "label": "Monté hero layout",
       "default": false,
       "info": "Use the Monté homepage design. Add an Image or Video slide with separate desktop and mobile media."
+    },
+    {
+      "type": "checkbox",
+      "id": "hero_defrost",
+      "label": "Frost reveal",
+      "default": false,
+      "info": "Reveal the first homepage slide through a soft melting frost layer. Plays once on page load; disabled for reduced motion.",
+      "visible_if": "{{ section.settings.monte_hero }}"
     },
     {
       "type": "range",

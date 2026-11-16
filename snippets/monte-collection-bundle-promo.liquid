@@ -43,7 +43,7 @@
   endif
 -%}
 {%- unless campaign_handle == '__hidden__' -%}
-<article class="monte-catalog-promo" style="--promo-text: {{ bundle_text }}; --promo-button: {{ bundle_button_bg }}; --promo-button-text: {{ bundle_button_text }}; --promo-button-hover: {{ bundle_button_hover }};">
+<article class="monte-catalog-promo" style="--promo-text: {{ bundle_text }}; --promo-button: {{ promo_settings.bundle_button_bg }}; --promo-button-text: {{ promo_settings.bundle_button_text }}; --promo-button-hover: {{ promo_settings.bundle_button_hover }};">
   <div class="monte-catalog-promo__media monte-catalog-promo__media--desktop{% if desktop_image == blank and desktop_video == blank %} monte-catalog-promo__media--default{% endif %}">
     {%- render 'monte-navigation-media', image: desktop_image, video: desktop_video, placeholder: 'image', sizes: '(min-width: 700px) 25vw, 100vw', width: 2327, height: 1080 -%}
   </div>

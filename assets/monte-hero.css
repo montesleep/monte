@@ -35,7 +35,7 @@
   .monte-hero__position.sm\:text-center { --monte-hero-align: center; }
   .monte-hero__position.sm\:text-end { --monte-hero-align: flex-end; }
 }
-/* Decorative media-only frost; one CSS animation, no scroll listeners or blur. */
+/* Layered frost reveal. Each texture melts from its own initial aperture. */
 .monte-hero .content-over-media > .monte-hero__frost {
   position: absolute;
   inset: 0;
@@ -48,24 +48,50 @@
   user-select: none;
   border-radius: inherit;
   overflow: hidden;
-  background: radial-gradient(ellipse at center, rgb(255 255 255 / .18), rgb(255 255 255 / .8));
-  -webkit-mask-image: radial-gradient(ellipse closest-side, #000 60%, transparent 100%), linear-gradient(#000, #000);
-  mask-image: radial-gradient(ellipse closest-side, #000 60%, transparent 100%), linear-gradient(#000, #000);
-  -webkit-mask-position: center, center;
-  mask-position: center, center;
+}
+.monte-hero__frost[hidden] { display: none !important; }
+.monte-hero__frost-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(0 0 0 / .2), transparent 80%), linear-gradient(180deg, transparent 47.72%, rgb(0 0 0 / .2) 77.78%), linear-gradient(180deg, rgb(0 0 0 / .2), transparent 50%);
+  transition: opacity 2s linear;
+}
+.monte-hero__frost-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: var(--frost-opacity);
+  transform: translateZ(0);
+  -webkit-mask-image: radial-gradient(circle closest-side, #000 65%, transparent 100%), linear-gradient(#000, #000);
+  mask-image: radial-gradient(circle closest-side, #000 65%, transparent 100%), linear-gradient(#000, #000);
+  -webkit-mask-size: var(--frost-aperture) var(--frost-aperture), 100% 100%;
+  mask-size: var(--frost-aperture) var(--frost-aperture), 100% 100%;
+  -webkit-mask-position: center, 0 0;
+  mask-position: center, 0 0;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: monte-hero-defrost 2.8s .15s linear both;
+  mask-composite: exclude, add;
+  transition: mask-size 2s linear, -webkit-mask-size 2s linear, opacity 2s linear;
 }
-.monte-hero__frost > svg { display: block; width: 100%; height: 100%; }
-@keyframes monte-hero-defrost {
-  0% { -webkit-mask-size: 0% 0%, 100% 100%; mask-size: 0% 0%, 100% 100%; opacity: 1; visibility: visible; }
-  12% { -webkit-mask-size: 8% 8%, 100% 100%; mask-size: 8% 8%, 100% 100%; opacity: 1; }
-  72% { opacity: .85; }
-  100% { -webkit-mask-size: 300% 300%, 100% 100%; mask-size: 300% 300%, 100% 100%; opacity: 0; visibility: hidden; }
+.monte-hero__frost-layer--snow { --frost-aperture: 175%; --frost-opacity: .7; }
+.monte-hero__frost-layer--scattered { --frost-aperture: 125%; --frost-opacity: 1; }
+.monte-hero__frost-layer--frame { --frost-aperture: 50%; --frost-opacity: .8; object-position: top; }
+.monte-hero__frost-layer--bottom { transform: translateZ(0) rotate(180deg); }
+.monte-hero__frost.is-defrosting .monte-hero__frost-layer {
+  -webkit-mask-size: 250% 250%, 100% 100%;
+  mask-size: 250% 250%, 100% 100%;
+  opacity: 0;
+}
+.monte-hero__frost.is-defrosting .monte-hero__frost-shade { opacity: 0; }
+@media (max-width: 767px) {
+  .monte-hero__frost-layer--frame { --frost-opacity: 0; }
+  .monte-hero__frost-layer--bottom { --frost-opacity: .2; }
 }
 @media (prefers-reduced-motion: reduce), print {
-  .monte-hero .content-over-media > .monte-hero__frost { display: none; animation: none; }
+  .monte-hero .content-over-media > .monte-hero__frost { display: none; }
+  .monte-hero__frost-layer, .monte-hero__frost-shade { transition: none; }
 }

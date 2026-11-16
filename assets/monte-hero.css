@@ -87,6 +87,10 @@
   opacity: 0;
 }
 .monte-hero__frost.is-defrosting .monte-hero__frost-shade { opacity: 0; }
+/* Neutralize the blue cast in the desktop frost textures only. */
+@media (min-width: 768px) {
+  .monte-hero__frost-layer { filter: grayscale(1); }
+}
 @media (max-width: 767px) {
   .monte-hero__frost-layer--frame { --frost-opacity: 0; }
   .monte-hero__frost-layer--bottom { --frost-opacity: .2; }

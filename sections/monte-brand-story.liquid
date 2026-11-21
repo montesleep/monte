@@ -11,12 +11,15 @@
   assign button_label = section.settings.button_label | escape
 -%}
 <style>#shopify-section-{{ section.id }} { background: transparent; }</style>
-<reveal-items class="monte-story" margin="0px" style="--ms-primary: {{ section.settings.heading_color }}; --ms-secondary: {{ section.settings.body_color }}; --ms-top-mobile: {{ section.settings.padding_top_mobile }}px; --ms-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px; --ms-top-desktop: {{ section.settings.padding_top_desktop }}px; --ms-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;">
+<reveal-items class="monte-story{% if section.settings.eyebrow != blank or section.settings.about_artwork != blank and section.settings.about_artwork != 'none' %} monte-story--editorial{% endif %}{% if section.settings.image_on_right %} monte-story--reverse{% endif %}" margin="0px" style="--ms-primary: {{ section.settings.heading_color }}; --ms-secondary: {{ section.settings.body_color }}; --ms-top-mobile: {{ section.settings.padding_top_mobile }}px; --ms-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px; --ms-top-desktop: {{ section.settings.padding_top_desktop }}px; --ms-bottom-desktop: {{ section.settings.padding_bottom_desktop }}px;">
   <div class="monte-story__layout">
     <div class="monte-story__media{% if section.settings.image_zoom %} monte-story__media--zoom{% endif %}">
       <div class="monte-story__desktop">
         {%- if desktop_video != blank -%}
           {%- render 'media', media: desktop_video, autoplay: true, loop: true, show_play_button: true, sizes: '60vw' -%}
+        {%- elsif desktop_image == blank and section.settings.about_artwork != blank and section.settings.about_artwork != 'none' -%}
+          {%- assign default_image = 'monte-about-' | append: section.settings.about_artwork | append: '-desktop.webp' -%}
+          <img src="{{ default_image | asset_url }}" alt="" width="936" height="780" loading="lazy">
         {%- else -%}
           {%- render 'monte-navigation-media', image: desktop_image, placeholder: 'lifestyle-1', width: 1814, height: 1400, sizes: '(min-width: 1000px) 60vw, 100vw' -%}
         {%- endif -%}
@@ -24,6 +27,9 @@
       <div class="monte-story__mobile">
         {%- if mobile_video != blank -%}
           {%- render 'media', media: mobile_video, autoplay: true, loop: true, show_play_button: true, sizes: '100vw' -%}
+        {%- elsif mobile_image == blank and section.settings.about_artwork != blank and section.settings.about_artwork != 'none' -%}
+          {%- assign default_image = 'monte-about-' | append: section.settings.about_artwork | append: '-mobile.webp' -%}
+          <img src="{{ default_image | asset_url }}" alt="" width="670" height="500" loading="lazy">
         {%- else -%}
           {%- render 'monte-navigation-media', image: mobile_image, placeholder: 'lifestyle-1', width: 1814, height: 1400, sizes: '100vw' -%}
         {%- endif -%}
@@ -31,6 +37,7 @@
     </div>
     <div class="monte-story__content">
       <div class="monte-story__copy">
+        {%- if section.settings.eyebrow != blank -%}<p class="monte-story__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
         {%- if section.settings.heading != blank -%}<h2 class="monte-story__heading">{{ section.settings.heading | escape | newline_to_br }}</h2>{%- endif -%}
         {%- if section.settings.body_richtext != blank -%}<div class="monte-story__body monte-story__body--rich">{{ section.settings.body_richtext }}</div>{%- elsif section.settings.body != blank -%}<p class="monte-story__body">{{ section.settings.body | escape | newline_to_br }}</p>{%- endif -%}
       </div>
@@ -79,6 +86,41 @@
       "id": "mobile_video",
       "label": "Mobile video",
       "info": "Replaces the mobile image. If both mobile media fields are empty, desktop media is used."
+    },
+    {
+      "type": "select",
+      "id": "about_artwork",
+      "label": "Default story image",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "Theme placeholder"
+        },
+        {
+          "value": "origin",
+          "label": "First mask"
+        },
+        {
+          "value": "silk",
+          "label": "Silk detail"
+        },
+        {
+          "value": "mission",
+          "label": "Our mission"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "image_on_right",
+      "label": "Place image on the right on desktop",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
     },
     {
       "type": "checkbox",

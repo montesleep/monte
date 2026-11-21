@@ -55,6 +55,12 @@
 <reveal-items class="monte-collection-hero{% if design_images == 'about' %} monte-collection-hero--about{% endif %}" selector=".monte-collection-hero__content" margin="0px" style="--mch-gradient-opacity: {% if design_images == 'faq' or design_images == 'policy' or design_images == 'contact' or design_images == 'about' or design_images == 'builder' %}.7{% else %}.8{% endif %}; --mch-height-desktop: {{ section.settings.desktop_height }}px; --mch-height-mobile: {{ section.settings.mobile_height }}px; --mch-heading: {{ campaign_content.text_color.value | default: section.settings.heading_color }}; --mch-body: {{ campaign_content.text_color.value | default: section.settings.body_color }}; --mch-rating: {{ section.settings.rating_color }}; --mch-overlay: {{ section.settings.overlay_color }}; --mch-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --mch-image-position: {{ desktop_image.presentation.focal_point | default: '50% 50%' }}; --mch-mobile-image-position: {{ mobile_image.presentation.focal_point | default: '50% 50%' }};">
   <div class="monte-collection-hero__frame{% if section.settings.mobile_gradient %} monte-collection-hero__frame--gradient{% endif %}">
     <div class="monte-collection-hero__media" aria-hidden="true">
+      {%- if design_images == 'about' and desktop_image == blank and desktop_video == blank and mobile_image == blank and mobile_video == blank -%}
+        <picture>
+          <source media="(max-width: 699px)" srcset="{{ 'monte-about-hero-mobile.webp' | asset_url }}">
+          <img src="{{ 'monte-about-hero-desktop.webp' | asset_url }}" width="1851" height="598" alt="" fetchpriority="high">
+        </picture>
+      {%- else -%}
       {%- for device in (1..2) -%}
         {%- liquid
           assign device_class = 'desktop'
@@ -76,6 +82,7 @@
           {%- endif -%}
         </div>
       {%- endfor -%}
+      {%- endif -%}
     </div>
     <div class="monte-collection-hero__overlay" aria-hidden="true"></div>
     <div class="monte-collection-hero__content">

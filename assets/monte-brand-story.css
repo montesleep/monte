@@ -34,3 +34,22 @@
 
 .monte-story__body--rich p { margin: 0; }
 .monte-story__body--rich p + p { margin-top: 1.5em; }
+
+.monte-story__eyebrow {
+  margin: 0;
+  color: var(--ms-primary);
+  font: 500 12px/1.5 "PP Neue Montreal Mono", monospace;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+
+@media (min-width: 1000px) {
+  .monte-story--editorial .monte-story__layout { align-items: center; }
+  .monte-story--editorial .monte-story__copy { max-width: none; }
+  .monte-story__eyebrow { font-size: 14px; line-height: 1.2; }
+  .monte-story--reverse .monte-story__layout { grid-template-columns: minmax(0, 520fr) minmax(0, 720fr); }
+  .monte-story--reverse .monte-story__media { grid-column: 2; }
+  .monte-story--reverse .monte-story__content { grid-column: 1; }
+}

@@ -79,7 +79,8 @@
         "heading_color": "#232e71",
         "body_color": "#52597e",
         "card_color": "#eee7e0"
-      }
+      },
+      "disabled": true
     },
     "about_silk": {
       "type": "monte-silk-story",
@@ -124,7 +125,8 @@
         "surface_color": "#eee7e0",
         "badge_color": "#d9a17d",
         "badge_text_color": "#fdfbf9"
-      }
+      },
+      "disabled": true
     },
     "about_story": {
       "type": "monte-brand-story",
@@ -159,7 +161,8 @@
         "button_background": "#232e71",
         "button_hover": "#182153",
         "button_text": "#fdfbf9"
-      }
+      },
+      "disabled": true
     },
     "about_values": {
       "type": "monte-product-features",
@@ -209,7 +212,8 @@
         "padding_bottom_desktop": 80,
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
-      }
+      },
+      "disabled": true
     },
     "monte_spotlight_wmYijX": {
       "type": "monte-spotlight",
@@ -243,15 +247,57 @@
         "overlay_style": "solid",
         "padding_bottom_desktop": 40
       }
+    },
+    "editorial_origin": {
+      "type": "monte-brand-story",
+      "name": "Jak to się zaczęło",
+      "settings": {
+        "about_artwork": "origin",
+        "eyebrow": "JAK TO SIĘ ZACZĘŁO",
+        "heading": "Wszystko zaczęło się od jednej maski",
+        "body": "Monté zaczęło się od prostego pomysłu: stworzyć miejsce, w którym komfort snu spotyka się z codzienną pielęgnacją. Pierwszym produktem była jedwabna maska do spania. Dziś dołączają do niej poszewki i scrunchie, które pomagają zadbać o siebie również podczas snu.",
+        "image_on_right": false,
+        "image_zoom": false,
+        "button_label": ""
+      }
+    },
+    "editorial_silk": {
+      "type": "monte-brand-story",
+      "name": "Dlaczego jedwab",
+      "settings": {
+        "about_artwork": "silk",
+        "eyebrow": "DLACZEGO JEDWAB",
+        "heading": "Różnicę poczujesz na własnej skórze",
+        "body": "W Monté stawiamy na 100% jedwab morwowy 22 momme. Jest wyjątkowo miękki, gładki i delikatny dla skóry oraz włosów. Zmniejsza tarcie, które może powodować podrażnienia i łamanie włosów. Bo dobry materiał powinien nie tylko pięknie wyglądać, ale przede wszystkim zapewniać komfort każdego dnia.",
+        "image_on_right": true,
+        "image_zoom": false,
+        "button_label": ""
+      }
+    },
+    "editorial_mission": {
+      "type": "monte-brand-story",
+      "name": "Nasza misja",
+      "settings": {
+        "about_artwork": "mission",
+        "eyebrow": "NASZA MISJA",
+        "heading": "Małe rzeczy, które robią różnicę",
+        "body": "Wierzymy, że dbanie o siebie nie musi być skomplikowane. Czasem wystarczy spokojny wieczór, miękka poszewka czy chwila odpoczynku bez rozpraszającego światła. Chcemy, aby Monté było częścią tych codziennych momentów, przypominając, że Twój komfort i odpoczynek są równie ważne jak wszystko inne.",
+        "image_on_right": false,
+        "image_zoom": false,
+        "button_label": ""
+      }
     }
   },
   "order": [
     "about_hero",
+    "editorial_origin",
+    "editorial_silk",
+    "editorial_mission",
+    "monte_spotlight_wmYijX",
     "about_sleep",
     "about_silk",
     "about_story",
     "about_mission",
-    "about_values",
-    "monte_spotlight_wmYijX"
+    "about_values"
   ]
 }
